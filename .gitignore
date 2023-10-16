@@ -1,4 +1,7 @@
 .idea/
 
-.android/http
+.cz/msebera
 .androidx/
+.android/
+.lombok/
+.org/cocos2dx
