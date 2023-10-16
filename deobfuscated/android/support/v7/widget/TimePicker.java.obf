@@ -1,0 +1,405 @@
+package android.support.v7.widget;
+
+import a.a.d.a.j;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources.NotFoundException;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.support.v4.widget.b;
+import android.support.v4.widget.m;
+import android.text.method.PasswordTransformationMethod;
+import android.util.AttributeSet;
+import android.widget.TextView;
+import java.lang.ref.WeakReference;
+
+class H
+{
+  private final TextView a;
+  private ra b;
+  private ra c;
+  private ra d;
+  private ra e;
+  private ra f;
+  private ra g;
+  private final J h;
+  private int i = 0;
+  private Typeface j;
+  private boolean k;
+  
+  H(TextView paramTextView)
+  {
+    a = paramTextView;
+    h = new J(a);
+  }
+  
+  private static ra a(Context paramContext, o paramO, int paramInt)
+  {
+    paramContext = paramO.b(paramContext, paramInt);
+    if (paramContext != null)
+    {
+      paramO = new ra();
+      d = true;
+      a = paramContext;
+      return paramO;
+    }
+    return null;
+  }
+  
+  private void a(Context paramContext, ta paramTa)
+  {
+    i = paramTa.d(j.TextAppearance_android_textStyle, i);
+    boolean bool2 = paramTa.g(j.TextAppearance_android_fontFamily);
+    boolean bool1 = false;
+    int m;
+    if ((!bool2) && (!paramTa.g(j.TextAppearance_fontFamily)))
+    {
+      if (paramTa.g(j.TextAppearance_android_typeface))
+      {
+        k = false;
+        m = paramTa.d(j.TextAppearance_android_typeface, 1);
+        if (m != 1)
+        {
+          if (m != 2)
+          {
+            if (m != 3) {
+              return;
+            }
+            paramContext = Typeface.MONOSPACE;
+          }
+          else
+          {
+            paramContext = Typeface.SERIF;
+          }
+        }
+        else {
+          paramContext = Typeface.SANS_SERIF;
+        }
+        j = paramContext;
+      }
+      return;
+    }
+    j = null;
+    if (paramTa.g(j.TextAppearance_fontFamily)) {
+      m = j.TextAppearance_fontFamily;
+    } else {
+      m = j.TextAppearance_android_fontFamily;
+    }
+    if (!paramContext.isRestricted()) {
+      paramContext = new G(this, new WeakReference(a));
+    }
+    try
+    {
+      j = paramTa.a(m, i, paramContext);
+      if (j == null) {
+        bool1 = true;
+      }
+      k = bool1;
+    }
+    catch (UnsupportedOperationException|Resources.NotFoundException paramContext)
+    {
+      for (;;) {}
+    }
+    if (j == null)
+    {
+      paramContext = paramTa.d(m);
+      if (paramContext != null) {
+        j = Typeface.create(paramContext, i);
+      }
+    }
+  }
+  
+  private void a(Drawable paramDrawable, ra paramRa)
+  {
+    if ((paramDrawable != null) && (paramRa != null)) {
+      o.a(paramDrawable, paramRa, a.getDrawableState());
+    }
+  }
+  
+  private void b(int paramInt, float paramFloat)
+  {
+    h.a(paramInt, paramFloat);
+  }
+  
+  void a()
+  {
+    Drawable[] arrayOfDrawable;
+    if ((b != null) || (c != null) || (d != null) || (e != null))
+    {
+      arrayOfDrawable = a.getCompoundDrawables();
+      a(arrayOfDrawable[0], b);
+      a(arrayOfDrawable[1], c);
+      a(arrayOfDrawable[2], d);
+      a(arrayOfDrawable[3], e);
+    }
+    if ((Build.VERSION.SDK_INT >= 17) && ((f != null) || (g != null)))
+    {
+      arrayOfDrawable = a.getCompoundDrawablesRelative();
+      a(arrayOfDrawable[0], f);
+      a(arrayOfDrawable[2], g);
+    }
+  }
+  
+  void a(int paramInt)
+  {
+    h.a(paramInt);
+  }
+  
+  void a(int paramInt, float paramFloat)
+  {
+    if ((!b.a) && (!h())) {
+      b(paramInt, paramFloat);
+    }
+  }
+  
+  void a(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    h.a(paramInt1, paramInt2, paramInt3, paramInt4);
+  }
+  
+  void a(Context paramContext, int paramInt)
+  {
+    ta localTa = ta.a(paramContext, paramInt, j.TextAppearance);
+    if (localTa.g(j.TextAppearance_textAllCaps)) {
+      a(localTa.a(j.TextAppearance_textAllCaps, false));
+    }
+    if ((Build.VERSION.SDK_INT < 23) && (localTa.g(j.TextAppearance_android_textColor)))
+    {
+      ColorStateList localColorStateList = localTa.a(j.TextAppearance_android_textColor);
+      if (localColorStateList != null) {
+        a.setTextColor(localColorStateList);
+      }
+    }
+    if ((localTa.g(j.TextAppearance_android_textSize)) && (localTa.c(j.TextAppearance_android_textSize, -1) == 0)) {
+      a.setTextSize(0, 0.0F);
+    }
+    a(paramContext, localTa);
+    localTa.a();
+    paramContext = j;
+    if (paramContext != null) {
+      a.setTypeface(paramContext, i);
+    }
+  }
+  
+  @SuppressLint({"NewApi"})
+  void a(AttributeSet paramAttributeSet, int paramInt)
+  {
+    Context localContext = a.getContext();
+    Object localObject1 = o.a();
+    Object localObject2 = ta.a(localContext, paramAttributeSet, j.AppCompatTextHelper, paramInt, 0);
+    int m = ((ta)localObject2).g(j.AppCompatTextHelper_android_textAppearance, -1);
+    if (((ta)localObject2).g(j.AppCompatTextHelper_android_drawableLeft)) {
+      b = a(localContext, (o)localObject1, ((ta)localObject2).g(j.AppCompatTextHelper_android_drawableLeft, 0));
+    }
+    if (((ta)localObject2).g(j.AppCompatTextHelper_android_drawableTop)) {
+      c = a(localContext, (o)localObject1, ((ta)localObject2).g(j.AppCompatTextHelper_android_drawableTop, 0));
+    }
+    if (((ta)localObject2).g(j.AppCompatTextHelper_android_drawableRight)) {
+      d = a(localContext, (o)localObject1, ((ta)localObject2).g(j.AppCompatTextHelper_android_drawableRight, 0));
+    }
+    if (((ta)localObject2).g(j.AppCompatTextHelper_android_drawableBottom)) {
+      e = a(localContext, (o)localObject1, ((ta)localObject2).g(j.AppCompatTextHelper_android_drawableBottom, 0));
+    }
+    if (Build.VERSION.SDK_INT >= 17)
+    {
+      if (((ta)localObject2).g(j.AppCompatTextHelper_android_drawableStart)) {
+        f = a(localContext, (o)localObject1, ((ta)localObject2).g(j.AppCompatTextHelper_android_drawableStart, 0));
+      }
+      if (((ta)localObject2).g(j.AppCompatTextHelper_android_drawableEnd)) {
+        g = a(localContext, (o)localObject1, ((ta)localObject2).g(j.AppCompatTextHelper_android_drawableEnd, 0));
+      }
+    }
+    ((ta)localObject2).a();
+    boolean bool2 = a.getTransformationMethod() instanceof PasswordTransformationMethod;
+    int n = 1;
+    localObject2 = null;
+    Object localObject3 = null;
+    ColorStateList localColorStateList1 = null;
+    boolean bool1;
+    if (m != -1)
+    {
+      localObject3 = ta.a(localContext, m, j.TextAppearance);
+      if ((!bool2) && (((ta)localObject3).g(j.TextAppearance_textAllCaps)))
+      {
+        bool1 = ((ta)localObject3).a(j.TextAppearance_textAllCaps, false);
+        m = 1;
+      }
+      else
+      {
+        m = 0;
+        bool1 = false;
+      }
+      a(localContext, (ta)localObject3);
+      if (Build.VERSION.SDK_INT < 23)
+      {
+        if (((ta)localObject3).g(j.TextAppearance_android_textColor)) {
+          localObject2 = ((ta)localObject3).a(j.TextAppearance_android_textColor);
+        } else {
+          localObject2 = null;
+        }
+        if (((ta)localObject3).g(j.TextAppearance_android_textColorHint)) {
+          localObject1 = ((ta)localObject3).a(j.TextAppearance_android_textColorHint);
+        } else {
+          localObject1 = null;
+        }
+        if (((ta)localObject3).g(j.TextAppearance_android_textColorLink)) {
+          localColorStateList1 = ((ta)localObject3).a(j.TextAppearance_android_textColorLink);
+        }
+      }
+      else
+      {
+        localColorStateList1 = null;
+        localObject1 = localColorStateList1;
+      }
+      ((ta)localObject3).a();
+    }
+    else
+    {
+      localColorStateList1 = null;
+      localObject1 = localColorStateList1;
+      m = 0;
+      bool1 = false;
+      localObject2 = localObject3;
+    }
+    ta localTa = ta.a(localContext, paramAttributeSet, j.TextAppearance, paramInt, 0);
+    if ((!bool2) && (localTa.g(j.TextAppearance_textAllCaps)))
+    {
+      bool1 = localTa.a(j.TextAppearance_textAllCaps, false);
+      m = n;
+    }
+    Object localObject4 = localObject2;
+    ColorStateList localColorStateList2 = localColorStateList1;
+    localObject3 = localObject1;
+    if (Build.VERSION.SDK_INT < 23)
+    {
+      if (localTa.g(j.TextAppearance_android_textColor)) {
+        localObject2 = localTa.a(j.TextAppearance_android_textColor);
+      }
+      if (localTa.g(j.TextAppearance_android_textColorHint)) {
+        localObject1 = localTa.a(j.TextAppearance_android_textColorHint);
+      }
+      localObject4 = localObject2;
+      localColorStateList2 = localColorStateList1;
+      localObject3 = localObject1;
+      if (localTa.g(j.TextAppearance_android_textColorLink))
+      {
+        localColorStateList2 = localTa.a(j.TextAppearance_android_textColorLink);
+        localObject3 = localObject1;
+        localObject4 = localObject2;
+      }
+    }
+    if ((Build.VERSION.SDK_INT >= 28) && (localTa.g(j.TextAppearance_android_textSize)) && (localTa.c(j.TextAppearance_android_textSize, -1) == 0)) {
+      a.setTextSize(0, 0.0F);
+    }
+    a(localContext, localTa);
+    localTa.a();
+    if (localObject4 != null) {
+      a.setTextColor(localObject4);
+    }
+    if (localObject3 != null) {
+      a.setHintTextColor((ColorStateList)localObject3);
+    }
+    if (localColorStateList2 != null) {
+      a.setLinkTextColor(localColorStateList2);
+    }
+    if ((!bool2) && (m != 0)) {
+      a(bool1);
+    }
+    localObject1 = j;
+    if (localObject1 != null) {
+      a.setTypeface((Typeface)localObject1, i);
+    }
+    h.a(paramAttributeSet, paramInt);
+    if ((b.a) && (h.f() != 0))
+    {
+      localObject1 = h.e();
+      if (localObject1.length > 0) {
+        if (a.getAutoSizeStepGranularity() != -1.0F) {
+          a.setAutoSizeTextTypeUniformWithConfiguration(h.c(), h.b(), h.d(), 0);
+        } else {
+          a.setAutoSizeTextTypeUniformWithPresetSizes((int[])localObject1, 0);
+        }
+      }
+    }
+    paramAttributeSet = ta.a(localContext, paramAttributeSet, j.AppCompatTextView);
+    paramInt = paramAttributeSet.c(j.AppCompatTextView_firstBaselineToTopHeight, -1);
+    m = paramAttributeSet.c(j.AppCompatTextView_lastBaselineToBottomHeight, -1);
+    n = paramAttributeSet.c(j.AppCompatTextView_lineHeight, -1);
+    paramAttributeSet.a();
+    if (paramInt != -1) {
+      m.a(a, paramInt);
+    }
+    if (m != -1) {
+      m.b(a, m);
+    }
+    if (n != -1) {
+      m.c(a, n);
+    }
+  }
+  
+  void a(WeakReference<TextView> paramWeakReference, Typeface paramTypeface)
+  {
+    if (k)
+    {
+      j = paramTypeface;
+      paramWeakReference = (TextView)paramWeakReference.get();
+      if (paramWeakReference != null) {
+        paramWeakReference.setTypeface(paramTypeface, i);
+      }
+    }
+  }
+  
+  void a(boolean paramBoolean)
+  {
+    a.setAllCaps(paramBoolean);
+  }
+  
+  void a(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if (!b.a) {
+      b();
+    }
+  }
+  
+  void a(int[] paramArrayOfInt, int paramInt)
+  {
+    h.a(paramArrayOfInt, paramInt);
+  }
+  
+  void b()
+  {
+    h.a();
+  }
+  
+  int c()
+  {
+    return h.b();
+  }
+  
+  int d()
+  {
+    return h.c();
+  }
+  
+  int e()
+  {
+    return h.d();
+  }
+  
+  int[] f()
+  {
+    return h.e();
+  }
+  
+  int g()
+  {
+    return h.f();
+  }
+  
+  boolean h()
+  {
+    return h.g();
+  }
+}

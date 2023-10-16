@@ -1,0 +1,143 @@
+package c.a.a.a.k;
+
+import c.a.a.a.e;
+import c.a.a.a.h;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class r
+  implements Cloneable, Serializable
+{
+  private final e[] a = new e[0];
+  private final List<e> b = new ArrayList(16);
+  
+  public r() {}
+  
+  public void a()
+  {
+    b.clear();
+  }
+  
+  public void a(e paramE)
+  {
+    if (paramE == null) {
+      return;
+    }
+    b.add(paramE);
+  }
+  
+  public void a(e[] paramArrayOfE)
+  {
+    a();
+    if (paramArrayOfE == null) {
+      return;
+    }
+    Collections.addAll(b, paramArrayOfE);
+  }
+  
+  public boolean a(String paramString)
+  {
+    int i = 0;
+    while (i < b.size())
+    {
+      if (((e)b.get(i)).getName().equalsIgnoreCase(paramString)) {
+        return true;
+      }
+      i += 1;
+    }
+    return false;
+  }
+  
+  public e b(String paramString)
+  {
+    int i = 0;
+    while (i < b.size())
+    {
+      e localE = (e)b.get(i);
+      if (localE.getName().equalsIgnoreCase(paramString)) {
+        return localE;
+      }
+      i += 1;
+    }
+    return null;
+  }
+  
+  public void b(e paramE)
+  {
+    if (paramE == null) {
+      return;
+    }
+    b.remove(paramE);
+  }
+  
+  public e[] b()
+  {
+    List localList = b;
+    return (e[])localList.toArray(new e[localList.size()]);
+  }
+  
+  public h c()
+  {
+    return new l(b, null);
+  }
+  
+  public void c(e paramE)
+  {
+    if (paramE == null) {
+      return;
+    }
+    int i = 0;
+    while (i < b.size())
+    {
+      if (((e)b.get(i)).getName().equalsIgnoreCase(paramE.getName()))
+      {
+        b.set(i, paramE);
+        return;
+      }
+      i += 1;
+    }
+    b.add(paramE);
+  }
+  
+  public e[] c(String paramString)
+  {
+    Object localObject1 = null;
+    int i = 0;
+    while (i < b.size())
+    {
+      e localE = (e)b.get(i);
+      Object localObject2 = localObject1;
+      if (localE.getName().equalsIgnoreCase(paramString))
+      {
+        localObject2 = localObject1;
+        if (localObject1 == null) {
+          localObject2 = new ArrayList();
+        }
+        ((List)localObject2).add(localE);
+      }
+      i += 1;
+      localObject1 = localObject2;
+    }
+    if (localObject1 != null) {
+      return (e[])localObject1.toArray(new e[localObject1.size()]);
+    }
+    return a;
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public h d(String paramString)
+  {
+    return new l(b, paramString);
+  }
+  
+  public String toString()
+  {
+    return b.toString();
+  }
+}

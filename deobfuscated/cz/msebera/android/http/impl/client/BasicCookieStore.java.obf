@@ -1,0 +1,84 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.b.h;
+import c.a.a.a.f.c;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeSet;
+
+public class e
+  implements h, Serializable
+{
+  private final TreeSet<c> a = new TreeSet(new c.a.a.a.f.e());
+  
+  public e() {}
+  
+  public void a(c paramC)
+  {
+    if (paramC != null) {}
+    try
+    {
+      a.remove(paramC);
+      if (!paramC.isExpired(new Date())) {
+        a.add(paramC);
+      }
+    }
+    finally {}
+  }
+  
+  public boolean clearExpired(Date paramDate)
+  {
+    boolean bool = false;
+    if (paramDate == null) {
+      return false;
+    }
+    try
+    {
+      Iterator localIterator = a.iterator();
+      while (localIterator.hasNext()) {
+        if (((c)localIterator.next()).isExpired(paramDate))
+        {
+          localIterator.remove();
+          bool = true;
+        }
+      }
+      return bool;
+    }
+    finally {}
+    for (;;)
+    {
+      throw paramDate;
+    }
+  }
+  
+  public List<c> getCookies()
+  {
+    try
+    {
+      ArrayList localArrayList = new ArrayList(a);
+      return localArrayList;
+    }
+    finally
+    {
+      localObject = finally;
+      throw localObject;
+    }
+  }
+  
+  public String toString()
+  {
+    try
+    {
+      String str = a.toString();
+      return str;
+    }
+    finally
+    {
+      localObject = finally;
+      throw localObject;
+    }
+  }
+}

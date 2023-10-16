@@ -1,0 +1,13 @@
+package a.a.c.g;
+
+import android.view.View;
+
+public class B
+  implements A
+{
+  public B() {}
+  
+  public void a(View paramView) {}
+  
+  public void c(View paramView) {}
+}

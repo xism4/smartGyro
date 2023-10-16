@@ -1,0 +1,8 @@
+package c.a.a.a.e;
+
+import java.net.InetAddress;
+
+public abstract interface j
+{
+  public abstract InetAddress[] resolve(String paramString);
+}

@@ -1,0 +1,16 @@
+package c.a.a.a.b.c;
+
+import c.a.a.a.r;
+import java.net.URI;
+
+public abstract interface l
+  extends r
+{
+  public abstract void abort();
+  
+  public abstract String getMethod();
+  
+  public abstract URI getURI();
+  
+  public abstract boolean isAborted();
+}

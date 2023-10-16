@@ -1,0 +1,204 @@
+package c.a.a.a.k;
+
+import c.a.a.a.p.d;
+import java.util.BitSet;
+
+public class x
+{
+  public static final x a = new x();
+  
+  public x() {}
+  
+  public static BitSet a(int... paramVarArgs)
+  {
+    BitSet localBitSet = new BitSet();
+    int j = paramVarArgs.length;
+    int i = 0;
+    while (i < j)
+    {
+      localBitSet.set(paramVarArgs[i]);
+      i += 1;
+    }
+    return localBitSet;
+  }
+  
+  public static boolean a(char paramChar)
+  {
+    return (paramChar == ' ') || (paramChar == '\t') || (paramChar == '\r') || (paramChar == '\n');
+  }
+  
+  public String a(d paramD, w paramW, BitSet paramBitSet)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    for (;;)
+    {
+      for (int i = 0;; i = 1)
+      {
+        if (paramW.a()) {
+          break label98;
+        }
+        char c = paramD.charAt(paramW.b());
+        if ((paramBitSet != null) && (paramBitSet.get(c))) {
+          break label98;
+        }
+        if (!a(c)) {
+          break;
+        }
+        a(paramD, paramW);
+      }
+      if ((i != 0) && (localStringBuilder.length() > 0)) {
+        localStringBuilder.append(' ');
+      }
+      a(paramD, paramW, paramBitSet, localStringBuilder);
+    }
+    label98:
+    return localStringBuilder.toString();
+  }
+  
+  public void a(d paramD, w paramW)
+  {
+    int j = paramW.b();
+    int i = paramW.b();
+    int k = paramW.c();
+    while ((i < k) && (a(paramD.charAt(i))))
+    {
+      j += 1;
+      i += 1;
+    }
+    paramW.a(j);
+  }
+  
+  public void a(d paramD, w paramW, StringBuilder paramStringBuilder)
+  {
+    if (paramW.a()) {
+      return;
+    }
+    int i = paramW.b();
+    int j = paramW.b();
+    int n = paramW.c();
+    if (paramD.charAt(i) != '"') {
+      return;
+    }
+    int k = j + 1;
+    i += 1;
+    for (int m = 0;; m = j)
+    {
+      j = i;
+      if (k >= n) {
+        break;
+      }
+      char c = paramD.charAt(k);
+      if (m != 0)
+      {
+        if ((c != '"') && (c != '\\')) {
+          paramStringBuilder.append('\\');
+        }
+        paramStringBuilder.append(c);
+        j = 0;
+      }
+      else
+      {
+        if (c == '"')
+        {
+          j = i + 1;
+          break;
+        }
+        if (c == '\\')
+        {
+          j = 1;
+        }
+        else
+        {
+          j = m;
+          if (c != '\r')
+          {
+            j = m;
+            if (c != '\n')
+            {
+              paramStringBuilder.append(c);
+              j = m;
+            }
+          }
+        }
+      }
+      k += 1;
+      i += 1;
+    }
+    paramW.a(j);
+  }
+  
+  public void a(d paramD, w paramW, BitSet paramBitSet, StringBuilder paramStringBuilder)
+  {
+    int j = paramW.b();
+    int i = paramW.b();
+    int k = paramW.c();
+    while (i < k)
+    {
+      char c = paramD.charAt(i);
+      if (((paramBitSet != null) && (paramBitSet.get(c))) || (a(c))) {
+        break;
+      }
+      j += 1;
+      paramStringBuilder.append(c);
+      i += 1;
+    }
+    paramW.a(j);
+  }
+  
+  public String b(d paramD, w paramW, BitSet paramBitSet)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    for (;;)
+    {
+      char c;
+      for (int i = 0;; i = 1)
+      {
+        if (paramW.a()) {
+          break label137;
+        }
+        c = paramD.charAt(paramW.b());
+        if ((paramBitSet != null) && (paramBitSet.get(c))) {
+          break label137;
+        }
+        if (!a(c)) {
+          break;
+        }
+        a(paramD, paramW);
+      }
+      if (c == '"')
+      {
+        if ((i != 0) && (localStringBuilder.length() > 0)) {
+          localStringBuilder.append(' ');
+        }
+        a(paramD, paramW, localStringBuilder);
+      }
+      else
+      {
+        if ((i != 0) && (localStringBuilder.length() > 0)) {
+          localStringBuilder.append(' ');
+        }
+        b(paramD, paramW, paramBitSet, localStringBuilder);
+      }
+    }
+    label137:
+    return localStringBuilder.toString();
+  }
+  
+  public void b(d paramD, w paramW, BitSet paramBitSet, StringBuilder paramStringBuilder)
+  {
+    int j = paramW.b();
+    int i = paramW.b();
+    int k = paramW.c();
+    while (i < k)
+    {
+      char c = paramD.charAt(i);
+      if (((paramBitSet != null) && (paramBitSet.get(c))) || (a(c)) || (c == '"')) {
+        break;
+      }
+      j += 1;
+      paramStringBuilder.append(c);
+      i += 1;
+    }
+    paramW.a(j);
+  }
+}

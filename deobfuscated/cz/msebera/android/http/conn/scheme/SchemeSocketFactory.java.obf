@@ -1,0 +1,15 @@
+package c.a.a.a.e.c;
+
+import c.a.a.a.l.g;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+@Deprecated
+public abstract interface j
+{
+  public abstract Socket a(g paramG);
+  
+  public abstract Socket a(Socket paramSocket, InetSocketAddress paramInetSocketAddress1, InetSocketAddress paramInetSocketAddress2, g paramG);
+  
+  public abstract boolean isSecure(Socket paramSocket);
+}

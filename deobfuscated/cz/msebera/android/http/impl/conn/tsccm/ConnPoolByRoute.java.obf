@@ -1,0 +1,606 @@
+package c.a.a.a.i.c.a;
+
+import c.a.a.a.e.a.c;
+import c.a.a.a.e.h;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+
+@Deprecated
+public class e
+  extends a
+{
+  public c.a.a.a.h.b e = new c.a.a.a.h.b(e.class);
+  private final Lock f;
+  protected final c.a.a.a.e.d g;
+  protected final c.a.a.a.e.a.d h;
+  protected final Set<b> i;
+  protected final Queue<b> j;
+  protected final Queue<j> k;
+  protected final Map<c.a.a.a.e.b.b, g> l;
+  private final long m;
+  private final TimeUnit n;
+  protected volatile boolean o;
+  protected volatile int p;
+  protected volatile int q;
+  
+  public e(c.a.a.a.e.d paramD, c.a.a.a.e.a.d paramD1, int paramInt)
+  {
+    this(paramD, paramD1, paramInt, -1L, TimeUnit.MILLISECONDS);
+  }
+  
+  public e(c.a.a.a.e.d paramD, c.a.a.a.e.a.d paramD1, int paramInt, long paramLong, TimeUnit paramTimeUnit)
+  {
+    c.a.a.a.p.a.a(paramD, "Connection operator");
+    c.a.a.a.p.a.a(paramD1, "Connections per route");
+    f = b;
+    i = c;
+    g = paramD;
+    h = paramD1;
+    p = paramInt;
+    j = a();
+    k = c();
+    l = b();
+    m = paramLong;
+    n = paramTimeUnit;
+  }
+  
+  @Deprecated
+  public e(c.a.a.a.e.d paramD, c.a.a.a.l.g paramG)
+  {
+    this(paramD, c.a(paramG), c.b(paramG));
+  }
+  
+  private void b(b paramB)
+  {
+    paramB = paramB.c();
+    if (paramB != null) {
+      try
+      {
+        paramB.close();
+        return;
+      }
+      catch (IOException paramB)
+      {
+        e.a("I/O error closing connection", paramB);
+      }
+    }
+  }
+  
+  protected b a(c.a.a.a.e.b.b paramB, Object paramObject, long paramLong, TimeUnit paramTimeUnit, k paramK)
+  {
+    Object localObject2 = null;
+    Date localDate;
+    if (paramLong > 0L) {
+      localDate = new Date(System.currentTimeMillis() + paramTimeUnit.toMillis(paramLong));
+    } else {
+      localDate = null;
+    }
+    f.lock();
+    for (;;)
+    {
+      try
+      {
+        localG = a(paramB, true);
+        localObject1 = null;
+        paramTimeUnit = (TimeUnit)localObject2;
+        localObject2 = paramTimeUnit;
+        if (paramTimeUnit != null) {
+          continue;
+        }
+        bool = o;
+        i1 = 0;
+        if (bool) {
+          continue;
+        }
+        bool = true;
+      }
+      finally
+      {
+        g localG;
+        Object localObject1;
+        int i1;
+        Object localObject3;
+        f.unlock();
+        continue;
+        throw paramB;
+        continue;
+        boolean bool = false;
+        continue;
+      }
+      c.a.a.a.p.b.a(bool, "Connection pool shut down");
+      bool = e.a();
+      if (bool)
+      {
+        paramTimeUnit = e;
+        localObject2 = new StringBuilder();
+        ((StringBuilder)localObject2).append("[");
+        ((StringBuilder)localObject2).append(paramB);
+        ((StringBuilder)localObject2).append("] total kept alive: ");
+        ((StringBuilder)localObject2).append(j.size());
+        ((StringBuilder)localObject2).append(", total issued: ");
+        ((StringBuilder)localObject2).append(i.size());
+        ((StringBuilder)localObject2).append(", total allocated: ");
+        ((StringBuilder)localObject2).append(q);
+        ((StringBuilder)localObject2).append(" out of ");
+        ((StringBuilder)localObject2).append(p);
+        paramTimeUnit.a(((StringBuilder)localObject2).toString());
+      }
+      localObject2 = a(localG, paramObject);
+      if (localObject2 == null)
+      {
+        if (localG.b() > 0) {
+          i1 = 1;
+        }
+        bool = e.a();
+        if (bool)
+        {
+          paramTimeUnit = e;
+          localObject3 = new StringBuilder();
+          ((StringBuilder)localObject3).append("Available capacity: ");
+          ((StringBuilder)localObject3).append(localG.b());
+          ((StringBuilder)localObject3).append(" out of ");
+          ((StringBuilder)localObject3).append(localG.c());
+          ((StringBuilder)localObject3).append(" [");
+          ((StringBuilder)localObject3).append(paramB);
+          ((StringBuilder)localObject3).append("][");
+          ((StringBuilder)localObject3).append(paramObject);
+          ((StringBuilder)localObject3).append("]");
+          paramTimeUnit.a(((StringBuilder)localObject3).toString());
+        }
+        if ((i1 != 0) && (q < p))
+        {
+          paramTimeUnit = g;
+          paramTimeUnit = a(localG, paramTimeUnit);
+          continue;
+        }
+        if ((i1 != 0) && (!j.isEmpty()))
+        {
+          d();
+          localG = a(paramB, true);
+          paramTimeUnit = g;
+          continue;
+        }
+        if (e.a())
+        {
+          paramTimeUnit = e;
+          localObject3 = new StringBuilder();
+          ((StringBuilder)localObject3).append("Need to wait for connection [");
+          ((StringBuilder)localObject3).append(paramB);
+          ((StringBuilder)localObject3).append("][");
+          ((StringBuilder)localObject3).append(paramObject);
+          ((StringBuilder)localObject3).append("]");
+          paramTimeUnit.a(((StringBuilder)localObject3).toString());
+        }
+        localObject3 = localObject1;
+        if (localObject1 == null)
+        {
+          localObject3 = a(f.newCondition(), localG);
+          paramK.a((j)localObject3);
+        }
+        try
+        {
+          localG.a((j)localObject3);
+          k.add(localObject3);
+          bool = ((j)localObject3).a(localDate);
+          localG.b((j)localObject3);
+          k.remove(localObject3);
+          paramTimeUnit = (TimeUnit)localObject2;
+          localObject1 = localObject3;
+          if (!bool)
+          {
+            paramTimeUnit = (TimeUnit)localObject2;
+            localObject1 = localObject3;
+            if (localDate != null) {
+              if (localDate.getTime() > System.currentTimeMillis())
+              {
+                paramTimeUnit = (TimeUnit)localObject2;
+                localObject1 = localObject3;
+              }
+              else
+              {
+                throw new h("Timeout waiting for connection from pool");
+              }
+            }
+          }
+        }
+        finally
+        {
+          localG.b((j)localObject3);
+          k.remove(localObject3);
+        }
+      }
+    }
+    f.unlock();
+    return localObject2;
+  }
+  
+  protected b a(g paramG, c.a.a.a.e.d paramD)
+  {
+    if (e.a())
+    {
+      c.a.a.a.h.b localB = e;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Creating new connection [");
+      localStringBuilder.append(paramG.d());
+      localStringBuilder.append("]");
+      localB.a(localStringBuilder.toString());
+    }
+    paramD = new b(paramD, paramG.d(), m, n);
+    f.lock();
+    try
+    {
+      paramG.a(paramD);
+      q += 1;
+      i.add(paramD);
+      return paramD;
+    }
+    finally
+    {
+      f.unlock();
+    }
+  }
+  
+  protected b a(g paramG, Object paramObject)
+  {
+    f.lock();
+    int i1 = 0;
+    b localB = null;
+    while (i1 == 0) {
+      try
+      {
+        localB = paramG.a(paramObject);
+        c.a.a.a.h.b localB1;
+        StringBuilder localStringBuilder;
+        if (localB != null)
+        {
+          if (e.a())
+          {
+            localB1 = e;
+            localStringBuilder = new StringBuilder();
+            localStringBuilder.append("Getting free connection [");
+            localStringBuilder.append(paramG.d());
+            localStringBuilder.append("][");
+            localStringBuilder.append(paramObject);
+            localStringBuilder.append("]");
+            localB1.a(localStringBuilder.toString());
+          }
+          j.remove(localB);
+          if (localB.a(System.currentTimeMillis()))
+          {
+            if (e.a())
+            {
+              localB1 = e;
+              localStringBuilder = new StringBuilder();
+              localStringBuilder.append("Closing expired free connection [");
+              localStringBuilder.append(paramG.d());
+              localStringBuilder.append("][");
+              localStringBuilder.append(paramObject);
+              localStringBuilder.append("]");
+              localB1.a(localStringBuilder.toString());
+            }
+            b(localB);
+            paramG.a();
+            q -= 1;
+            continue;
+          }
+          i.add(localB);
+        }
+        else if (e.a())
+        {
+          localB1 = e;
+          localStringBuilder = new StringBuilder();
+          localStringBuilder.append("No free connections [");
+          localStringBuilder.append(paramG.d());
+          localStringBuilder.append("][");
+          localStringBuilder.append(paramObject);
+          localStringBuilder.append("]");
+          localB1.a(localStringBuilder.toString());
+        }
+        i1 = 1;
+      }
+      finally
+      {
+        f.unlock();
+      }
+    }
+    f.unlock();
+    return localB;
+  }
+  
+  public f a(c.a.a.a.e.b.b paramB, Object paramObject)
+  {
+    return new d(this, new k(), paramB, paramObject);
+  }
+  
+  protected g a(c.a.a.a.e.b.b paramB)
+  {
+    return new g(paramB, h);
+  }
+  
+  protected g a(c.a.a.a.e.b.b paramB, boolean paramBoolean)
+  {
+    f.lock();
+    try
+    {
+      g localG2 = (g)l.get(paramB);
+      g localG1 = localG2;
+      if (localG2 == null)
+      {
+        localG1 = localG2;
+        if (paramBoolean)
+        {
+          localG1 = a(paramB);
+          l.put(paramB, localG1);
+        }
+      }
+      return localG1;
+    }
+    finally
+    {
+      f.unlock();
+    }
+  }
+  
+  protected j a(Condition paramCondition, g paramG)
+  {
+    return new j(paramCondition, paramG);
+  }
+  
+  protected Queue<b> a()
+  {
+    return new LinkedList();
+  }
+  
+  protected void a(b paramB)
+  {
+    c.a.a.a.e.b.b localB = paramB.d();
+    Object localObject;
+    if (e.a())
+    {
+      localObject = e;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Deleting connection [");
+      localStringBuilder.append(localB);
+      localStringBuilder.append("][");
+      localStringBuilder.append(paramB.a());
+      localStringBuilder.append("]");
+      ((c.a.a.a.h.b)localObject).a(localStringBuilder.toString());
+    }
+    f.lock();
+    try
+    {
+      b(paramB);
+      localObject = a(localB, true);
+      ((g)localObject).b(paramB);
+      q -= 1;
+      if (((g)localObject).f()) {
+        l.remove(localB);
+      }
+      return;
+    }
+    finally
+    {
+      f.unlock();
+    }
+  }
+  
+  public void a(b paramB, boolean paramBoolean, long paramLong, TimeUnit paramTimeUnit)
+  {
+    c.a.a.a.e.b.b localB = paramB.d();
+    Object localObject1;
+    Object localObject2;
+    if (e.a())
+    {
+      localObject1 = e;
+      localObject2 = new StringBuilder();
+      ((StringBuilder)localObject2).append("Releasing connection [");
+      ((StringBuilder)localObject2).append(localB);
+      ((StringBuilder)localObject2).append("][");
+      ((StringBuilder)localObject2).append(paramB.a());
+      ((StringBuilder)localObject2).append("]");
+      ((c.a.a.a.h.b)localObject1).a(((StringBuilder)localObject2).toString());
+    }
+    f.lock();
+    for (;;)
+    {
+      try
+      {
+        if (o)
+        {
+          b(paramB);
+          return;
+        }
+        i.remove(paramB);
+        localObject2 = a(localB, true);
+        if ((paramBoolean) && (((g)localObject2).b() >= 0))
+        {
+          if (e.a())
+          {
+            if (paramLong <= 0L) {
+              break label367;
+            }
+            localObject1 = new StringBuilder();
+            ((StringBuilder)localObject1).append("for ");
+            ((StringBuilder)localObject1).append(paramLong);
+            ((StringBuilder)localObject1).append(" ");
+            ((StringBuilder)localObject1).append(paramTimeUnit);
+            localObject1 = ((StringBuilder)localObject1).toString();
+            c.a.a.a.h.b localB1 = e;
+            StringBuilder localStringBuilder = new StringBuilder();
+            localStringBuilder.append("Pooling connection [");
+            localStringBuilder.append(localB);
+            localStringBuilder.append("][");
+            localStringBuilder.append(paramB.a());
+            localStringBuilder.append("]; keep alive ");
+            localStringBuilder.append((String)localObject1);
+            localB1.a(localStringBuilder.toString());
+          }
+          ((g)localObject2).c(paramB);
+          paramB.a(paramLong, paramTimeUnit);
+          j.add(paramB);
+        }
+        else
+        {
+          b(paramB);
+          ((g)localObject2).a();
+          q -= 1;
+        }
+        a((g)localObject2);
+        return;
+      }
+      finally
+      {
+        f.unlock();
+      }
+      label367:
+      localObject1 = "indefinitely";
+    }
+  }
+  
+  protected void a(g paramG)
+  {
+    f.lock();
+    if (paramG != null) {}
+    for (;;)
+    {
+      try
+      {
+        if (paramG.e())
+        {
+          if (e.a())
+          {
+            c.a.a.a.h.b localB = e;
+            StringBuilder localStringBuilder = new StringBuilder();
+            localStringBuilder.append("Notifying thread waiting on pool [");
+            localStringBuilder.append(paramG.d());
+            localStringBuilder.append("]");
+            localB.a(localStringBuilder.toString());
+          }
+          paramG = paramG.g();
+        }
+        else if (!k.isEmpty())
+        {
+          if (e.a()) {
+            e.a("Notifying thread waiting on any pool");
+          }
+          paramG = (j)k.remove();
+        }
+        else
+        {
+          if (!e.a()) {
+            break label184;
+          }
+          e.a("Notifying no-one, there are no waiting threads");
+          break label184;
+        }
+        if (paramG != null) {
+          paramG.b();
+        }
+        return;
+      }
+      finally
+      {
+        f.unlock();
+      }
+      label184:
+      paramG = null;
+    }
+  }
+  
+  protected Map<c.a.a.a.e.b.b, g> b()
+  {
+    return new HashMap();
+  }
+  
+  protected Queue<j> c()
+  {
+    return new LinkedList();
+  }
+  
+  protected void d()
+  {
+    f.lock();
+    try
+    {
+      b localB = (b)j.remove();
+      if (localB != null) {
+        a(localB);
+      } else if (e.a()) {
+        e.a("No free connection to delete");
+      }
+      return;
+    }
+    finally
+    {
+      f.unlock();
+    }
+  }
+  
+  public void e()
+  {
+    f.lock();
+    try
+    {
+      boolean bool = o;
+      if (bool)
+      {
+        f.unlock();
+        return;
+      }
+      o = true;
+      Iterator localIterator = i.iterator();
+      Object localObject2;
+      while (localIterator.hasNext())
+      {
+        localObject2 = (b)localIterator.next();
+        localIterator.remove();
+        b((b)localObject2);
+      }
+      localIterator = j.iterator();
+      while (localIterator.hasNext())
+      {
+        localObject2 = (b)localIterator.next();
+        localIterator.remove();
+        if (e.a())
+        {
+          c.a.a.a.h.b localB = e;
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Closing connection [");
+          localStringBuilder.append(((b)localObject2).d());
+          localStringBuilder.append("][");
+          localStringBuilder.append(((c.a.a.a.i.c.b)localObject2).a());
+          localStringBuilder.append("]");
+          localB.a(localStringBuilder.toString());
+        }
+        b((b)localObject2);
+      }
+      localIterator = k.iterator();
+      while (localIterator.hasNext())
+      {
+        localObject2 = (j)localIterator.next();
+        localIterator.remove();
+        ((j)localObject2).b();
+      }
+      l.clear();
+      f.unlock();
+      return;
+    }
+    finally
+    {
+      f.unlock();
+    }
+    for (;;)
+    {
+      throw localObject1;
+    }
+  }
+}

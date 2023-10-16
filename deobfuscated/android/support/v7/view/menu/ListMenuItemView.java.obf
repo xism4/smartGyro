@@ -1,0 +1,357 @@
+package android.support.v7.view.menu;
+
+import a.a.c.g.u;
+import a.a.d.a.a;
+import a.a.d.a.f;
+import a.a.d.a.g;
+import a.a.d.a.j;
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.ta;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView.SelectionBoundsAdjuster;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+public class ListMenuItemView
+  extends LinearLayout
+  implements w.a, AbsListView.SelectionBoundsAdjuster
+{
+  private p a;
+  private ImageView b;
+  private RadioButton c;
+  private TextView d;
+  private CheckBox e;
+  private TextView f;
+  private ImageView g;
+  private ImageView h;
+  private LinearLayout i;
+  private Drawable j;
+  private int k;
+  private Context l;
+  private boolean m;
+  private Drawable n;
+  private boolean o;
+  private int p;
+  private LayoutInflater q;
+  private boolean r;
+  
+  public ListMenuItemView(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, a.listMenuViewStyle);
+  }
+  
+  public ListMenuItemView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet);
+    paramAttributeSet = ta.a(getContext(), paramAttributeSet, j.MenuView, paramInt, 0);
+    j = paramAttributeSet.b(j.MenuView_android_itemBackground);
+    k = paramAttributeSet.g(j.MenuView_android_itemTextAppearance, -1);
+    m = paramAttributeSet.a(j.MenuView_preserveIconSpacing, false);
+    l = paramContext;
+    n = paramAttributeSet.b(j.MenuView_subMenuArrow);
+    paramContext = paramContext.getTheme();
+    paramInt = a.dropDownListViewStyle;
+    paramContext = paramContext.obtainStyledAttributes(null, new int[] { 16843049 }, paramInt, 0);
+    o = paramContext.hasValue(0);
+    paramAttributeSet.a();
+    paramContext.recycle();
+  }
+  
+  private void a()
+  {
+    e = ((CheckBox)getInflater().inflate(g.abc_list_menu_item_checkbox, this, false));
+    a(e);
+  }
+  
+  private void a(View paramView)
+  {
+    a(paramView, -1);
+  }
+  
+  private void a(View paramView, int paramInt)
+  {
+    LinearLayout localLinearLayout = i;
+    if (localLinearLayout != null)
+    {
+      localLinearLayout.addView(paramView, paramInt);
+      return;
+    }
+    addView(paramView, paramInt);
+  }
+  
+  private void b()
+  {
+    b = ((ImageView)getInflater().inflate(g.abc_list_menu_item_icon, this, false));
+    a(b, 0);
+  }
+  
+  private void d()
+  {
+    c = ((RadioButton)getInflater().inflate(g.abc_list_menu_item_radio, this, false));
+    a(c);
+  }
+  
+  private LayoutInflater getInflater()
+  {
+    if (q == null) {
+      q = LayoutInflater.from(getContext());
+    }
+    return q;
+  }
+  
+  private void setSubMenuArrowVisible(boolean paramBoolean)
+  {
+    ImageView localImageView = g;
+    if (localImageView != null)
+    {
+      int i1;
+      if (paramBoolean) {
+        i1 = 0;
+      } else {
+        i1 = 8;
+      }
+      localImageView.setVisibility(i1);
+    }
+  }
+  
+  public void a(p paramP, int paramInt)
+  {
+    a = paramP;
+    p = paramInt;
+    if (paramP.isVisible()) {
+      paramInt = 0;
+    } else {
+      paramInt = 8;
+    }
+    setVisibility(paramInt);
+    setTitle(paramP.a(this));
+    setCheckable(paramP.isCheckable());
+    a(paramP.m(), paramP.d());
+    setIcon(paramP.getIcon());
+    setEnabled(paramP.isEnabled());
+    setSubMenuArrowVisible(paramP.hasSubMenu());
+    setContentDescription(paramP.getContentDescription());
+  }
+  
+  public void a(boolean paramBoolean, char paramChar)
+  {
+    if ((paramBoolean) && (a.m())) {
+      paramChar = '\000';
+    } else {
+      paramChar = '\b';
+    }
+    if (paramChar == 0) {
+      f.setText(a.e());
+    }
+    if (f.getVisibility() != paramChar) {
+      f.setVisibility(paramChar);
+    }
+  }
+  
+  public void adjustListItemSelectionBounds(Rect paramRect)
+  {
+    Object localObject = h;
+    if ((localObject != null) && (((ImageView)localObject).getVisibility() == 0))
+    {
+      localObject = (LinearLayout.LayoutParams)h.getLayoutParams();
+      top += h.getHeight() + topMargin + bottomMargin;
+    }
+  }
+  
+  public boolean c()
+  {
+    return false;
+  }
+  
+  public p getItemData()
+  {
+    return a;
+  }
+  
+  protected void onFinishInflate()
+  {
+    super.onFinishInflate();
+    u.a(this, j);
+    d = ((TextView)findViewById(f.title));
+    int i1 = k;
+    if (i1 != -1) {
+      d.setTextAppearance(l, i1);
+    }
+    f = ((TextView)findViewById(f.shortcut));
+    g = ((ImageView)findViewById(f.submenuarrow));
+    ImageView localImageView = g;
+    if (localImageView != null) {
+      localImageView.setImageDrawable(n);
+    }
+    h = ((ImageView)findViewById(f.group_divider));
+    i = ((LinearLayout)findViewById(f.content));
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    if ((b != null) && (m))
+    {
+      ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
+      LinearLayout.LayoutParams localLayoutParams1 = (LinearLayout.LayoutParams)b.getLayoutParams();
+      if ((height > 0) && (width <= 0)) {
+        width = height;
+      }
+    }
+    super.onMeasure(paramInt1, paramInt2);
+  }
+  
+  public void setCheckable(boolean paramBoolean)
+  {
+    if ((!paramBoolean) && (c == null) && (e == null)) {
+      return;
+    }
+    Object localObject1;
+    Object localObject2;
+    if (a.i())
+    {
+      if (c == null) {
+        d();
+      }
+      localObject1 = c;
+      localObject2 = e;
+    }
+    else
+    {
+      if (e == null) {
+        a();
+      }
+      localObject1 = e;
+      localObject2 = c;
+    }
+    if (paramBoolean)
+    {
+      ((CompoundButton)localObject1).setChecked(a.isChecked());
+      if (((CompoundButton)localObject1).getVisibility() != 0) {
+        ((CompoundButton)localObject1).setVisibility(0);
+      }
+      if ((localObject2 != null) && (((CompoundButton)localObject2).getVisibility() != 8)) {
+        ((CompoundButton)localObject2).setVisibility(8);
+      }
+    }
+    else
+    {
+      localObject1 = e;
+      if (localObject1 != null) {
+        ((CheckBox)localObject1).setVisibility(8);
+      }
+      localObject1 = c;
+      if (localObject1 != null) {
+        ((RadioButton)localObject1).setVisibility(8);
+      }
+    }
+  }
+  
+  public void setChecked(boolean paramBoolean)
+  {
+    Object localObject;
+    if (a.i())
+    {
+      if (c == null) {
+        d();
+      }
+      localObject = c;
+    }
+    else
+    {
+      if (e == null) {
+        a();
+      }
+      localObject = e;
+    }
+    ((CompoundButton)localObject).setChecked(paramBoolean);
+  }
+  
+  public void setForceShowIcon(boolean paramBoolean)
+  {
+    r = paramBoolean;
+    m = paramBoolean;
+  }
+  
+  public void setGroupDividerEnabled(boolean paramBoolean)
+  {
+    ImageView localImageView = h;
+    if (localImageView != null)
+    {
+      int i1;
+      if ((!o) && (paramBoolean)) {
+        i1 = 0;
+      } else {
+        i1 = 8;
+      }
+      localImageView.setVisibility(i1);
+    }
+  }
+  
+  public void setIcon(Drawable paramDrawable)
+  {
+    int i1;
+    if ((!a.l()) && (!r)) {
+      i1 = 0;
+    } else {
+      i1 = 1;
+    }
+    if ((i1 == 0) && (!m)) {
+      return;
+    }
+    if ((b == null) && (paramDrawable == null) && (!m)) {
+      return;
+    }
+    if (b == null) {
+      b();
+    }
+    if ((paramDrawable == null) && (!m))
+    {
+      b.setVisibility(8);
+      return;
+    }
+    ImageView localImageView = b;
+    if (i1 == 0) {
+      paramDrawable = null;
+    }
+    localImageView.setImageDrawable(paramDrawable);
+    if (b.getVisibility() != 0) {
+      b.setVisibility(0);
+    }
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    int i1;
+    if (paramCharSequence != null)
+    {
+      d.setText(paramCharSequence);
+      if (d.getVisibility() == 0) {
+        return;
+      }
+      paramCharSequence = d;
+      i1 = 0;
+    }
+    else
+    {
+      int i2 = d.getVisibility();
+      i1 = 8;
+      if (i2 == 8) {
+        return;
+      }
+      paramCharSequence = d;
+    }
+    paramCharSequence.setVisibility(i1);
+  }
+}

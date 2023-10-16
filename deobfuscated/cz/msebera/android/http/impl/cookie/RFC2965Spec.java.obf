@@ -1,0 +1,195 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.n;
+import c.a.a.a.f.p;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class G
+  extends z
+{
+  public G()
+  {
+    this(null, false);
+  }
+  
+  G(boolean paramBoolean, c.a.a.a.f.b... paramVarArgs)
+  {
+    super(paramBoolean, paramVarArgs);
+  }
+  
+  public G(String[] paramArrayOfString, boolean paramBoolean)
+  {
+    super(paramBoolean, new c.a.a.a.f.b[] { localI, localI1, localE, localF, localH, localJ, localE1, new g(paramArrayOfString), new C(), new D() });
+  }
+  
+  private List<c.a.a.a.f.c> b(c.a.a.a.f[] paramArrayOfF, c.a.a.a.f.f paramF)
+  {
+    ArrayList localArrayList = new ArrayList(paramArrayOfF.length);
+    int k = paramArrayOfF.length;
+    int i = 0;
+    while (i < k)
+    {
+      Object localObject2 = paramArrayOfF[i];
+      Object localObject1 = ((c.a.a.a.f)localObject2).getName();
+      Object localObject3 = ((c.a.a.a.f)localObject2).getValue();
+      if ((localObject1 != null) && (!((String)localObject1).isEmpty()))
+      {
+        localObject1 = new c((String)localObject1, (String)localObject3);
+        ((d)localObject1).setPath(q.b(paramF));
+        ((d)localObject1).setDomain(q.a(paramF));
+        ((c)localObject1).setPorts(new int[] { paramF.c() });
+        localObject2 = ((c.a.a.a.f)localObject2).getParameters();
+        localObject3 = new HashMap(localObject2.length);
+        int j = localObject2.length - 1;
+        Object localObject4;
+        while (j >= 0)
+        {
+          localObject4 = localObject2[j];
+          ((Map)localObject3).put(((c.a.a.a.z)localObject4).getName().toLowerCase(Locale.ROOT), localObject4);
+          j -= 1;
+        }
+        localObject2 = ((Map)localObject3).entrySet().iterator();
+        while (((Iterator)localObject2).hasNext())
+        {
+          localObject3 = (c.a.a.a.z)((Map.Entry)((Iterator)localObject2).next()).getValue();
+          localObject4 = ((c.a.a.a.z)localObject3).getName().toLowerCase(Locale.ROOT);
+          ((d)localObject1).a((String)localObject4, ((c.a.a.a.z)localObject3).getValue());
+          localObject4 = a((String)localObject4);
+          if (localObject4 != null) {
+            ((c.a.a.a.f.d)localObject4).a((p)localObject1, ((c.a.a.a.z)localObject3).getValue());
+          }
+        }
+        localArrayList.add(localObject1);
+        i += 1;
+      }
+      else
+      {
+        throw new n("Cookie name may not be empty");
+      }
+    }
+    return localArrayList;
+  }
+  
+  private static c.a.a.a.f.f c(c.a.a.a.f.f paramF)
+  {
+    String str = paramF.a();
+    int k = 0;
+    int i = 0;
+    while (i < str.length())
+    {
+      int m = str.charAt(i);
+      j = k;
+      if (m == 46) {
+        break label57;
+      }
+      if (m == 58)
+      {
+        j = k;
+        break label57;
+      }
+      i += 1;
+    }
+    int j = 1;
+    label57:
+    if (j != 0)
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append(str);
+      localStringBuilder.append(".local");
+      return new c.a.a.a.f.f(localStringBuilder.toString(), paramF.c(), paramF.b(), paramF.d());
+    }
+    return paramF;
+  }
+  
+  public List<c.a.a.a.f.c> a(c.a.a.a.e paramE, c.a.a.a.f.f paramF)
+  {
+    c.a.a.a.p.a.a(paramE, "Header");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    if (paramE.getName().equalsIgnoreCase("Set-Cookie2")) {
+      return b(paramE.getElements(), c(paramF));
+    }
+    paramF = new StringBuilder();
+    paramF.append("Unrecognized cookie header '");
+    paramF.append(paramE.toString());
+    paramF.append("'");
+    throw new n(paramF.toString());
+  }
+  
+  protected List<c.a.a.a.f.c> a(c.a.a.a.f[] paramArrayOfF, c.a.a.a.f.f paramF)
+  {
+    return b(paramArrayOfF, c(paramF));
+  }
+  
+  public void a(c.a.a.a.f.c paramC, c.a.a.a.f.f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    super.a(paramC, c(paramF));
+  }
+  
+  protected void a(c.a.a.a.p.d paramD, c.a.a.a.f.c paramC, int paramInt)
+  {
+    super.a(paramD, paramC, paramInt);
+    if ((paramC instanceof c.a.a.a.f.a))
+    {
+      String str = ((c.a.a.a.f.a)paramC).getAttribute("port");
+      if (str != null)
+      {
+        paramD.a("; $Port");
+        paramD.a("=\"");
+        if (!str.trim().isEmpty())
+        {
+          paramC = paramC.getPorts();
+          if (paramC != null)
+          {
+            int i = paramC.length;
+            paramInt = 0;
+            while (paramInt < i)
+            {
+              if (paramInt > 0) {
+                paramD.a(",");
+              }
+              paramD.a(Integer.toString(paramC[paramInt]));
+              paramInt += 1;
+            }
+          }
+        }
+        paramD.a("\"");
+      }
+    }
+  }
+  
+  public boolean b(c.a.a.a.f.c paramC, c.a.a.a.f.f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    return super.b(paramC, c(paramF));
+  }
+  
+  public int getVersion()
+  {
+    return 1;
+  }
+  
+  public c.a.a.a.e getVersionHeader()
+  {
+    c.a.a.a.p.d localD = new c.a.a.a.p.d(40);
+    localD.a("Cookie2");
+    localD.a(": ");
+    localD.a("$Version=");
+    localD.a(Integer.toString(getVersion()));
+    return new c.a.a.a.k.q(localD);
+  }
+  
+  public String toString()
+  {
+    return "rfc2965";
+  }
+}

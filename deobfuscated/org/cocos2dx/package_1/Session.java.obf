@@ -1,0 +1,12 @@
+package org.cocos2dx.lib;
+
+class T
+  implements Runnable
+{
+  T(Cocos2dxGLSurfaceView paramCocos2dxGLSurfaceView, int paramInt) {}
+  
+  public void run()
+  {
+    Cocos2dxGLSurfaceView.access$300(b).handleKeyDown(a);
+  }
+}

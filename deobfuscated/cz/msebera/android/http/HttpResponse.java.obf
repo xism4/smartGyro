@@ -1,0 +1,11 @@
+package c.a.a.a;
+
+public abstract interface t
+  extends q
+{
+  public abstract void a(l paramL);
+  
+  public abstract l getEntity();
+  
+  public abstract G getStatusLine();
+}

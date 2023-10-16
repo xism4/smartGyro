@@ -1,0 +1,212 @@
+package c.a.a.a.e.e;
+
+import c.a.a.a.e.m;
+import c.a.a.a.o;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.security.KeyStore;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+
+@Deprecated
+public class i
+  implements c.a.a.a.e.d.b, c.a.a.a.e.c.f, c.a.a.a.e.c.b, c.a.a.a.e.c.c
+{
+  public static final l a = new b();
+  public static final l b = new c();
+  public static final l c = new j();
+  private final SSLSocketFactory d;
+  private final c.a.a.a.e.c.a e;
+  private volatile l f;
+  private final String[] g;
+  private final String[] h;
+  
+  public i(KeyStore paramKeyStore)
+  {
+    this(localF.a(), b);
+  }
+  
+  public i(SSLContext paramSSLContext, l paramL)
+  {
+    this(((SSLContext)paramSSLContext).getSocketFactory(), null, null, paramL);
+  }
+  
+  public i(SSLSocketFactory paramSSLSocketFactory, String[] paramArrayOfString1, String[] paramArrayOfString2, l paramL)
+  {
+    c.a.a.a.p.a.a(paramSSLSocketFactory, "SSL socket factory");
+    d = ((SSLSocketFactory)paramSSLSocketFactory);
+    g = paramArrayOfString1;
+    h = paramArrayOfString2;
+    if (paramL == null) {
+      paramL = b;
+    }
+    f = paramL;
+    e = null;
+  }
+  
+  public static i a()
+  {
+    return new i(g.a(), b);
+  }
+  
+  private void a(SSLSocket paramSSLSocket, String paramString)
+  {
+    try
+    {
+      f.verify(paramString, paramSSLSocket);
+      return;
+    }
+    catch (IOException paramString) {}
+    try
+    {
+      paramSSLSocket.close();
+      throw paramString;
+    }
+    catch (Exception paramSSLSocket)
+    {
+      for (;;) {}
+    }
+  }
+  
+  private void b(SSLSocket paramSSLSocket)
+  {
+    String[] arrayOfString = g;
+    if (arrayOfString != null) {
+      paramSSLSocket.setEnabledProtocols(arrayOfString);
+    }
+    arrayOfString = h;
+    if (arrayOfString != null) {
+      paramSSLSocket.setEnabledCipherSuites(arrayOfString);
+    }
+    a(paramSSLSocket);
+  }
+  
+  public Socket a(int paramInt, Socket paramSocket, o paramO, InetSocketAddress paramInetSocketAddress1, InetSocketAddress paramInetSocketAddress2, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramO, "HTTP host");
+    c.a.a.a.p.a.a(paramInetSocketAddress1, "Remote address");
+    if (paramSocket == null) {
+      paramSocket = a(paramE);
+    }
+    if (paramInetSocketAddress2 != null) {
+      paramSocket.bind(paramInetSocketAddress2);
+    }
+    try
+    {
+      paramSocket.connect(paramInetSocketAddress1, paramInt);
+      if ((paramSocket instanceof SSLSocket))
+      {
+        paramInetSocketAddress1 = (SSLSocket)paramSocket;
+        paramInetSocketAddress1.startHandshake();
+        a(paramInetSocketAddress1, paramO.b());
+        return paramSocket;
+      }
+      return a(paramSocket, paramO.b(), paramInetSocketAddress1.getPort(), paramE);
+    }
+    catch (IOException paramO) {}
+    try
+    {
+      paramSocket.close();
+      throw paramO;
+    }
+    catch (IOException paramSocket)
+    {
+      for (;;) {}
+    }
+  }
+  
+  public Socket a(c.a.a.a.l.g paramG)
+  {
+    return a(null);
+  }
+  
+  public Socket a(c.a.a.a.n.e paramE)
+  {
+    paramE = (SSLSocket)d.createSocket();
+    b(paramE);
+    return paramE;
+  }
+  
+  public Socket a(Socket paramSocket, String paramString, int paramInt, c.a.a.a.l.g paramG)
+  {
+    return a(paramSocket, paramString, paramInt, null);
+  }
+  
+  public Socket a(Socket paramSocket, String paramString, int paramInt, c.a.a.a.n.e paramE)
+  {
+    paramSocket = (SSLSocket)d.createSocket(paramSocket, paramString, paramInt, true);
+    b(paramSocket);
+    paramSocket.startHandshake();
+    a(paramSocket, paramString);
+    return paramSocket;
+  }
+  
+  public Socket a(Socket paramSocket, String paramString, int paramInt1, InetAddress paramInetAddress, int paramInt2, c.a.a.a.l.g paramG)
+  {
+    Object localObject = e;
+    if (localObject != null) {
+      localObject = ((c.a.a.a.e.c.a)localObject).resolve(paramString);
+    } else {
+      localObject = InetAddress.getByName(paramString);
+    }
+    InetSocketAddress localInetSocketAddress = null;
+    if ((paramInetAddress != null) || (paramInt2 > 0))
+    {
+      if (paramInt2 <= 0) {
+        paramInt2 = 0;
+      }
+      localInetSocketAddress = new InetSocketAddress(paramInetAddress, paramInt2);
+    }
+    return a(paramSocket, new m(new o(paramString, paramInt1), (InetAddress)localObject, paramInt1), localInetSocketAddress, paramG);
+  }
+  
+  public Socket a(Socket paramSocket, String paramString, int paramInt, boolean paramBoolean)
+  {
+    return a(paramSocket, paramString, paramInt, null);
+  }
+  
+  public Socket a(Socket paramSocket, InetSocketAddress paramInetSocketAddress1, InetSocketAddress paramInetSocketAddress2, c.a.a.a.l.g paramG)
+  {
+    c.a.a.a.p.a.a(paramInetSocketAddress1, "Remote address");
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    o localO;
+    if ((paramInetSocketAddress1 instanceof m)) {
+      localO = ((m)paramInetSocketAddress1).a();
+    } else {
+      localO = new o(paramInetSocketAddress1.getHostName(), paramInetSocketAddress1.getPort(), "https");
+    }
+    int i = c.a.a.a.l.e.d(paramG);
+    int j = c.a.a.a.l.e.a(paramG);
+    paramSocket.setSoTimeout(i);
+    return a(j, paramSocket, localO, paramInetSocketAddress1, paramInetSocketAddress2, null);
+  }
+  
+  public void a(l paramL)
+  {
+    c.a.a.a.p.a.a(paramL, "Hostname verifier");
+    f = paramL;
+  }
+  
+  protected void a(SSLSocket paramSSLSocket) {}
+  
+  public Socket createSocket()
+  {
+    return a(null);
+  }
+  
+  public Socket createSocket(Socket paramSocket, String paramString, int paramInt, boolean paramBoolean)
+  {
+    return a(paramSocket, paramString, paramInt, paramBoolean);
+  }
+  
+  public boolean isSecure(Socket paramSocket)
+  {
+    c.a.a.a.p.a.a(paramSocket, "Socket");
+    c.a.a.a.p.b.a(paramSocket instanceof SSLSocket, "Socket not created by this factory");
+    c.a.a.a.p.b.a(paramSocket.isClosed() ^ true, "Socket is closed");
+    return true;
+  }
+}

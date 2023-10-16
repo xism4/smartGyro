@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<gameStringDefine >
+  <gameString
+    hxz1 ="Hall-E"
+    hxz2 ="Hall-E"
+    hxz3 ="转向异常"
+    hxz4 ="陀螺仪异常"
+    hxz5 ="突然掉电"
+    hxz6 ="大电流保护"
+    hxz7 ="应力片异常"
+    hxz8 ="RM-Loss"
+    hxz9 ="LM-Loss"
+    hxz10 ="陀螺仪异常"
+    hxz11 ="Hall-A"
+    hxz12 ="Hall-A"
+    hxz13 ="倾角速度过大"
+  
+    tip1="Abra el archivo de actualización"
+    tip2="No puedo encontrar archivos de 
+actualización"
+    tip3="Leer el archivo es anormal, 
+¡pruébelo!"
+    tip4="Abra correctamente el archivo de 
+actualización"
+    tip5="请求升级失败，请重启车再升级！"
+    tip6="正在写入升级程序！"
+    tip7="Solicitud de actualización fallida.
+Reinicie el auto y actualice nuevamente."
+    tip8="Complete el programa de actualización
+para escribir"
+    tip9="La verificación de actualización falló.
+Por favor, vuelva a superarlo."
+    tip10="Mejora"
+    tip11="Anormalidades de la red, 
+¡conecte la red!"
+    tip12="该设备不支持蓝牙低功耗技术(BLE)"
+    tip13="The device does not support BLE"
+    tip14="正在检查更新"
+    tip15="当前版本已经是最新版本" 
+    
+    tip16="Carga de archivos de actualización
+en Internet."
+        
+    tip17 ="遥控器"
+    tip18 ="基站"
+    tip19 ="协控板"
+    tip20 ="Bluetooth"
+    tip21 ="Control eléctrico"
+ 
+    tip22="El servidor no puede encontrar el 
+archivo de actualización."
+    tip23="El servidor no puede encontrar el 
+archivo de configuración de actualización."
+    tip24="El archivo de configuración de
+actualización del servidor es incorrecto."
+    
+    tip25 ="电池升级"
+    tip26 = "您操作的太频繁，10秒内只能发送一次！"
+    tip27 = "网络异常,请检查网络连接！"
+    tip28 = "请输入留意内容！"
+    tip29 = "请输入电话！"
+    tip30 = "发送成功！"
+    tip31 = "正在发送中！"
+    tip32 = "请输入姓名！"
+	tip33 = "等待设备重启和初始化！"
+    
+  >
+  </gameString>
+
+</gameStringDefine>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+package c.a.a.a;
+
+public abstract interface F
+{
+  public abstract String getMethod();
+  
+  public abstract D getProtocolVersion();
+  
+  public abstract String getUri();
+}

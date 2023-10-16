@@ -1,0 +1,120 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.j.g;
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class f
+  extends OutputStream
+{
+  private final g a;
+  private final byte[] b;
+  private int c = 0;
+  private boolean d = false;
+  private boolean e = false;
+  
+  public f(int paramInt, g paramG)
+  {
+    b = new byte[paramInt];
+    a = paramG;
+  }
+  
+  @Deprecated
+  public f(g paramG)
+  {
+    this(2048, paramG);
+  }
+  
+  public void a()
+  {
+    if (!d)
+    {
+      b();
+      c();
+      d = true;
+    }
+  }
+  
+  protected void a(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    a.writeLine(Integer.toHexString(c + paramInt2));
+    a.write(b, 0, c);
+    a.write(paramArrayOfByte, paramInt1, paramInt2);
+    a.writeLine("");
+    c = 0;
+  }
+  
+  protected void b()
+  {
+    int i = c;
+    if (i > 0)
+    {
+      a.writeLine(Integer.toHexString(i));
+      a.write(b, 0, c);
+      a.writeLine("");
+      c = 0;
+    }
+  }
+  
+  protected void c()
+  {
+    a.writeLine("0");
+    a.writeLine("");
+  }
+  
+  public void close()
+  {
+    if (!e)
+    {
+      e = true;
+      a();
+      a.flush();
+    }
+  }
+  
+  public void flush()
+  {
+    b();
+    a.flush();
+  }
+  
+  public void write(int paramInt)
+  {
+    if (!e)
+    {
+      byte[] arrayOfByte = b;
+      int i = c;
+      arrayOfByte[i] = ((byte)paramInt);
+      c = (i + 1);
+      if (c == arrayOfByte.length) {
+        b();
+      }
+      return;
+    }
+    throw new IOException("Attempted write to closed stream.");
+  }
+  
+  public void write(byte[] paramArrayOfByte)
+  {
+    write(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public void write(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    if (!e)
+    {
+      byte[] arrayOfByte = b;
+      int i = arrayOfByte.length;
+      int j = c;
+      if (paramInt2 >= i - j)
+      {
+        a(paramArrayOfByte, paramInt1, paramInt2);
+        return;
+      }
+      System.arraycopy(paramArrayOfByte, paramInt1, arrayOfByte, j, paramInt2);
+      c += paramInt2;
+      return;
+    }
+    throw new IOException("Attempted write to closed stream.");
+  }
+}

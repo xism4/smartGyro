@@ -1,0 +1,71 @@
+package c.a.a.a.n;
+
+import c.a.a.a.j;
+import c.a.a.a.o;
+import c.a.a.a.r;
+
+public class f
+  implements e
+{
+  private final e a;
+  
+  public f()
+  {
+    a = new a();
+  }
+  
+  public f(e paramE)
+  {
+    a = paramE;
+  }
+  
+  public static f a(e paramE)
+  {
+    c.a.a.a.p.a.a(paramE, "HTTP context");
+    if ((paramE instanceof f)) {
+      return (f)paramE;
+    }
+    return new f(paramE);
+  }
+  
+  public j a()
+  {
+    return (j)a("http.connection", j.class);
+  }
+  
+  public <T> T a(String paramString, Class<T> paramClass)
+  {
+    c.a.a.a.p.a.a(paramClass, "Attribute class");
+    paramString = getAttribute(paramString);
+    if (paramString == null) {
+      return null;
+    }
+    return paramClass.cast(paramString);
+  }
+  
+  public r b()
+  {
+    return (r)a("http.request", r.class);
+  }
+  
+  public o c()
+  {
+    return (o)a("http.target_host", o.class);
+  }
+  
+  public boolean d()
+  {
+    Boolean localBoolean = (Boolean)a("http.request_sent", Boolean.class);
+    return (localBoolean != null) && (localBoolean.booleanValue());
+  }
+  
+  public Object getAttribute(String paramString)
+  {
+    return a.getAttribute(paramString);
+  }
+  
+  public void setAttribute(String paramString, Object paramObject)
+  {
+    a.setAttribute(paramString, paramObject);
+  }
+}

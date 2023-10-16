@@ -1,0 +1,116 @@
+package c.a.a.a.b.e;
+
+import c.a.a.a.a.a;
+import c.a.a.a.a.c;
+import c.a.a.a.a.i;
+import c.a.a.a.a.j;
+import c.a.a.a.a.m;
+import c.a.a.a.a.n;
+import c.a.a.a.q;
+import c.a.a.a.r;
+import c.a.a.a.s;
+import java.util.Queue;
+
+@Deprecated
+abstract class e
+  implements s
+{
+  final c.a.a.a.h.b a = new c.a.a.a.h.b(getClass());
+  
+  public e() {}
+  
+  private c.a.a.a.e a(c paramC, n paramN, r paramR, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.b.a(paramC, "Auth scheme");
+    if ((paramC instanceof m)) {
+      return ((m)paramC).a(paramN, paramR, paramE);
+    }
+    return paramC.a(paramN, paramR);
+  }
+  
+  private void a(c paramC)
+  {
+    c.a.a.a.p.b.a(paramC, "Auth scheme");
+  }
+  
+  void a(i paramI, r paramR, c.a.a.a.n.e paramE)
+  {
+    c localC = paramI.b();
+    Object localObject = paramI.c();
+    int i = d.a[paramI.d().ordinal()];
+    if (i != 1)
+    {
+      if (i != 2)
+      {
+        if (i == 3)
+        {
+          Queue localQueue = paramI.a();
+          if (localQueue != null)
+          {
+            while (!localQueue.isEmpty())
+            {
+              localObject = (a)localQueue.remove();
+              localC = ((a)localObject).a();
+              localObject = ((a)localObject).b();
+              paramI.a(localC, (n)localObject);
+              c.a.a.a.h.b localB;
+              StringBuilder localStringBuilder;
+              if (a.a())
+              {
+                localB = a;
+                localStringBuilder = new StringBuilder();
+                localStringBuilder.append("Generating response to an authentication challenge using ");
+                localStringBuilder.append(localC.getSchemeName());
+                localStringBuilder.append(" scheme");
+                localB.a(localStringBuilder.toString());
+              }
+              try
+              {
+                paramR.a(a(localC, (n)localObject, paramR, paramE));
+                return;
+              }
+              catch (j localJ) {}
+              if (a.d())
+              {
+                localB = a;
+                localStringBuilder = new StringBuilder();
+                localStringBuilder.append(localC);
+                localStringBuilder.append(" authentication error: ");
+                localStringBuilder.append(localJ.getMessage());
+                localB.d(localStringBuilder.toString());
+              }
+            }
+            return;
+          }
+          a(localC);
+        }
+      }
+      else
+      {
+        a(localC);
+        if (localC.isConnectionBased()) {
+          return;
+        }
+      }
+      if (localC != null) {
+        try
+        {
+          paramR.a(a(localC, localJ, paramR, paramE));
+          return;
+        }
+        catch (j paramI)
+        {
+          if (a.b())
+          {
+            paramR = a;
+            paramE = new StringBuilder();
+            paramE.append(localC);
+            paramE.append(" authentication error: ");
+            paramE.append(paramI.getMessage());
+            paramR.b(paramE.toString());
+          }
+        }
+      }
+    }
+  }
+}

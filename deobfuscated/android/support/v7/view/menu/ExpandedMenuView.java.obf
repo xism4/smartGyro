@@ -1,0 +1,64 @@
+package android.support.v7.view.menu;
+
+import android.content.Context;
+import android.support.v7.widget.ta;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+public final class ExpandedMenuView
+  extends ListView
+  implements l.b, w, AdapterView.OnItemClickListener
+{
+  private static final int[] a = { 16842964, 16843049 };
+  private l b;
+  private int c;
+  
+  public ExpandedMenuView(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 16842868);
+  }
+  
+  public ExpandedMenuView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet);
+    setOnItemClickListener(this);
+    paramContext = ta.a(paramContext, paramAttributeSet, a, paramInt, 0);
+    if (paramContext.g(0)) {
+      setBackgroundDrawable(paramContext.b(0));
+    }
+    if (paramContext.g(1)) {
+      setDivider(paramContext.b(1));
+    }
+    paramContext.a();
+  }
+  
+  public void a(l paramL)
+  {
+    b = paramL;
+  }
+  
+  public boolean a(p paramP)
+  {
+    return b.a(paramP, 0);
+  }
+  
+  public int getWindowAnimations()
+  {
+    return c;
+  }
+  
+  protected void onDetachedFromWindow()
+  {
+    super.onDetachedFromWindow();
+    setChildrenDrawingCacheEnabled(false);
+  }
+  
+  public void onItemClick(AdapterView paramAdapterView, View paramView, int paramInt, long paramLong)
+  {
+    a((p)getAdapter().getItem(paramInt));
+  }
+}

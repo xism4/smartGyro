@@ -1,0 +1,65 @@
+package c.a.a.a.g;
+
+import c.a.a.a.n.d;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+
+public class g
+  extends a
+  implements Cloneable
+{
+  protected final byte[] d;
+  
+  public g(String paramString, e paramE)
+  {
+    c.a.a.a.p.a.a(paramString, "Source string");
+    Charset localCharset1;
+    if (paramE != null) {
+      localCharset1 = paramE.a();
+    } else {
+      localCharset1 = null;
+    }
+    Charset localCharset2 = localCharset1;
+    if (localCharset1 == null) {
+      localCharset2 = d.a;
+    }
+    d = paramString.getBytes(localCharset2);
+    if (paramE != null) {
+      a(paramE.toString());
+    }
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public InputStream getContent()
+  {
+    return new ByteArrayInputStream(d);
+  }
+  
+  public long getContentLength()
+  {
+    return d.length;
+  }
+  
+  public boolean isRepeatable()
+  {
+    return true;
+  }
+  
+  public boolean isStreaming()
+  {
+    return false;
+  }
+  
+  public void writeTo(OutputStream paramOutputStream)
+  {
+    c.a.a.a.p.a.a(paramOutputStream, "Output stream");
+    paramOutputStream.write(d);
+    paramOutputStream.flush();
+  }
+}

@@ -1,0 +1,133 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.a.h;
+import c.a.a.a.a.j;
+import c.a.a.a.b.i;
+import c.a.a.a.o;
+import c.a.a.a.t;
+import java.util.LinkedList;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Queue;
+
+@Deprecated
+class b
+  implements c.a.a.a.b.c
+{
+  public c.a.a.a.h.b a;
+  private final c.a.a.a.b.b b;
+  
+  private boolean a(c.a.a.a.a.c paramC)
+  {
+    boolean bool2 = false;
+    boolean bool1 = bool2;
+    if (paramC != null)
+    {
+      if (!paramC.isComplete()) {
+        return false;
+      }
+      paramC = paramC.getSchemeName();
+      if (!paramC.equalsIgnoreCase("Basic"))
+      {
+        bool1 = bool2;
+        if (!paramC.equalsIgnoreCase("Digest")) {}
+      }
+      else
+      {
+        bool1 = true;
+      }
+    }
+    return bool1;
+  }
+  
+  public c.a.a.a.b.b a()
+  {
+    return b;
+  }
+  
+  public Map<String, c.a.a.a.e> a(o paramO, t paramT, c.a.a.a.n.e paramE)
+  {
+    return b.a(paramT, paramE);
+  }
+  
+  public Queue<c.a.a.a.a.a> a(Map<String, c.a.a.a.e> paramMap, o paramO, t paramT, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramMap, "Map of auth challenges");
+    c.a.a.a.p.a.a(paramO, "Host");
+    c.a.a.a.p.a.a(paramT, "HTTP response");
+    c.a.a.a.p.a.a(paramE, "HTTP context");
+    LinkedList localLinkedList = new LinkedList();
+    i localI = (i)paramE.getAttribute("http.auth.credentials-provider");
+    if (localI == null)
+    {
+      a.a("Credentials provider not set in the context");
+      return localLinkedList;
+    }
+    try
+    {
+      paramT = b.a(paramMap, paramT, paramE);
+      paramT.a((c.a.a.a.e)paramMap.get(paramT.getSchemeName().toLowerCase(Locale.ROOT)));
+      paramMap = localI.a(new h(paramO.b(), paramO.c(), paramT.getRealm(), paramT.getSchemeName()));
+      if (paramMap != null) {
+        localLinkedList.add(new c.a.a.a.a.a(paramT, paramMap));
+      }
+      return localLinkedList;
+    }
+    catch (j paramMap)
+    {
+      if (a.d()) {
+        a.b(paramMap.getMessage(), paramMap);
+      }
+    }
+    return localLinkedList;
+  }
+  
+  public void a(o paramO, c.a.a.a.a.c paramC, c.a.a.a.n.e paramE)
+  {
+    paramE = (c.a.a.a.b.a)paramE.getAttribute("http.auth.auth-cache");
+    if (paramE == null) {
+      return;
+    }
+    if (a.a())
+    {
+      c.a.a.a.h.b localB = a;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Removing from cache '");
+      localStringBuilder.append(paramC.getSchemeName());
+      localStringBuilder.append("' auth scheme for ");
+      localStringBuilder.append(paramO);
+      localB.a(localStringBuilder.toString());
+    }
+    paramE.a(paramO);
+  }
+  
+  public void b(o paramO, c.a.a.a.a.c paramC, c.a.a.a.n.e paramE)
+  {
+    Object localObject2 = (c.a.a.a.b.a)paramE.getAttribute("http.auth.auth-cache");
+    if (a(paramC))
+    {
+      Object localObject1 = localObject2;
+      if (localObject2 == null)
+      {
+        localObject1 = new d();
+        paramE.setAttribute("http.auth.auth-cache", localObject1);
+      }
+      if (a.a())
+      {
+        paramE = a;
+        localObject2 = new StringBuilder();
+        ((StringBuilder)localObject2).append("Caching '");
+        ((StringBuilder)localObject2).append(paramC.getSchemeName());
+        ((StringBuilder)localObject2).append("' auth scheme for ");
+        ((StringBuilder)localObject2).append(paramO);
+        paramE.a(((StringBuilder)localObject2).toString());
+      }
+      ((c.a.a.a.b.a)localObject1).a(paramO, paramC);
+    }
+  }
+  
+  public boolean b(o paramO, t paramT, c.a.a.a.n.e paramE)
+  {
+    return b.b(paramT, paramE);
+  }
+}

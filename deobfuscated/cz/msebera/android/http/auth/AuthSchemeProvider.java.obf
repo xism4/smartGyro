@@ -1,0 +1,6 @@
+package c.a.a.a.a;
+
+public abstract interface e
+{
+  public abstract c a(c.a.a.a.n.e paramE);
+}

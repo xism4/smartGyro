@@ -1,0 +1,37 @@
+package c.a.a.a.b.e;
+
+import c.a.a.a.F;
+import c.a.a.a.h.b;
+import c.a.a.a.q;
+import c.a.a.a.r;
+import c.a.a.a.s;
+
+public class f
+  implements s
+{
+  public b a = new b(f.class);
+  
+  public f() {}
+  
+  public void a(r paramR, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    if (paramR.getRequestLine().getMethod().equalsIgnoreCase("CONNECT"))
+    {
+      paramR.setHeader("Proxy-Connection", "Keep-Alive");
+      return;
+    }
+    paramE = a.a(paramE).l();
+    if (paramE == null)
+    {
+      a.a("Connection route not set in the context");
+      return;
+    }
+    if (((paramE.getHopCount() == 1) || (paramE.isTunnelled())) && (!paramR.containsHeader("Connection"))) {
+      paramR.addHeader("Connection", "Keep-Alive");
+    }
+    if ((paramE.getHopCount() == 2) && (!paramE.isTunnelled()) && (!paramR.containsHeader("Proxy-Connection"))) {
+      paramR.addHeader("Proxy-Connection", "Keep-Alive");
+    }
+  }
+}

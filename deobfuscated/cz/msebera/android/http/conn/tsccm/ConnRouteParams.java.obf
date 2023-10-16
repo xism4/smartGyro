@@ -1,0 +1,50 @@
+package c.a.a.a.e.a;
+
+import c.a.a.a.e.b.b;
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+import java.net.InetAddress;
+
+@Deprecated
+public class g
+  implements f
+{
+  public static final o a = new o("127.0.0.255", 0, "no-host");
+  public static final b b = new b(a);
+  
+  public static o a(c.a.a.a.l.g paramG)
+  {
+    a.a(paramG, "Parameters");
+    o localO = (o)paramG.getParameter("http.route.default-proxy");
+    paramG = localO;
+    if (localO != null)
+    {
+      paramG = localO;
+      if (a.equals(localO)) {
+        paramG = null;
+      }
+    }
+    return paramG;
+  }
+  
+  public static b b(c.a.a.a.l.g paramG)
+  {
+    a.a(paramG, "Parameters");
+    b localB = (b)paramG.getParameter("http.route.forced-route");
+    paramG = localB;
+    if (localB != null)
+    {
+      paramG = localB;
+      if (b.equals(localB)) {
+        paramG = null;
+      }
+    }
+    return paramG;
+  }
+  
+  public static InetAddress c(c.a.a.a.l.g paramG)
+  {
+    a.a(paramG, "Parameters");
+    return (InetAddress)paramG.getParameter("http.route.local-address");
+  }
+}

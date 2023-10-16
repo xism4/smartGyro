@@ -1,0 +1,25 @@
+package org.cocos2dx.lib;
+
+import android.util.SparseArray;
+import android.widget.EditText;
+
+final class H
+  implements Runnable
+{
+  H(int paramInt, boolean paramBoolean) {}
+  
+  public void run()
+  {
+    Cocos2dxEditBox localCocos2dxEditBox = (Cocos2dxEditBox)Cocos2dxEditBoxHelper.access$400().get(a);
+    if (localCocos2dxEditBox != null)
+    {
+      int i;
+      if (b) {
+        i = 0;
+      } else {
+        i = 8;
+      }
+      localCocos2dxEditBox.setVisibility(i);
+    }
+  }
+}

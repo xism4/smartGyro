@@ -1,0 +1,8 @@
+package c.a.a.a.n;
+
+public abstract interface e
+{
+  public abstract Object getAttribute(String paramString);
+  
+  public abstract void setAttribute(String paramString, Object paramObject);
+}

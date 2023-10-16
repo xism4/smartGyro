@@ -1,0 +1,13 @@
+package c.a.a.a.e.e;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSocket;
+
+@Deprecated
+public abstract interface l
+  extends HostnameVerifier
+{
+  public abstract void verify(String paramString, SSLSocket paramSSLSocket);
+  
+  public abstract void verify(String paramString, String[] paramArrayOfString1, String[] paramArrayOfString2);
+}

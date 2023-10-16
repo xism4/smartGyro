@@ -1,0 +1,507 @@
+package android.support.v7.widget;
+
+import a.a.c.g.u;
+import a.a.c.g.z;
+import a.a.d.a.e;
+import a.a.d.a.f;
+import a.a.d.a.h;
+import a.a.d.a.j;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.a.a;
+import android.support.v7.view.menu.b;
+import android.support.v7.view.menu.l;
+import android.support.v7.view.menu.v.a;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
+import android.view.Window.Callback;
+
+public class Aa
+  implements L
+{
+  Toolbar a;
+  private int b;
+  private View c;
+  private View d;
+  private Drawable e;
+  private Drawable f;
+  private Drawable g;
+  private boolean h;
+  CharSequence i;
+  private CharSequence j;
+  private CharSequence k;
+  Window.Callback l;
+  boolean m;
+  private g n;
+  private int o = 0;
+  private int p = 0;
+  private Drawable q;
+  
+  public Aa(Toolbar paramToolbar, boolean paramBoolean)
+  {
+    this(paramToolbar, paramBoolean, h.abc_action_bar_up_description, e.abc_ic_ab_back_material);
+  }
+  
+  public Aa(Toolbar paramToolbar, boolean paramBoolean, int paramInt1, int paramInt2)
+  {
+    a = paramToolbar;
+    i = paramToolbar.getTitle();
+    j = paramToolbar.getSubtitle();
+    boolean bool;
+    if (i != null) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    h = bool;
+    g = paramToolbar.getNavigationIcon();
+    paramToolbar = ta.a(paramToolbar.getContext(), null, j.ActionBar, a.a.d.a.a.actionBarStyle, 0);
+    q = paramToolbar.b(j.ActionBar_homeAsUpIndicator);
+    if (paramBoolean)
+    {
+      Object localObject = paramToolbar.e(j.ActionBar_title);
+      if (!TextUtils.isEmpty((CharSequence)localObject)) {
+        c((CharSequence)localObject);
+      }
+      localObject = paramToolbar.e(j.ActionBar_subtitle);
+      if (!TextUtils.isEmpty((CharSequence)localObject)) {
+        b((CharSequence)localObject);
+      }
+      localObject = paramToolbar.b(j.ActionBar_logo);
+      if (localObject != null) {
+        a((Drawable)localObject);
+      }
+      localObject = paramToolbar.b(j.ActionBar_icon);
+      if (localObject != null) {
+        setIcon((Drawable)localObject);
+      }
+      if (g == null)
+      {
+        localObject = q;
+        if (localObject != null) {
+          b((Drawable)localObject);
+        }
+      }
+      a(paramToolbar.d(j.ActionBar_displayOptions, 0));
+      paramInt2 = paramToolbar.g(j.ActionBar_customNavigationLayout, 0);
+      if (paramInt2 != 0)
+      {
+        a(LayoutInflater.from(a.getContext()).inflate(paramInt2, a, false));
+        a(b | 0x10);
+      }
+      paramInt2 = paramToolbar.f(j.ActionBar_height, 0);
+      if (paramInt2 > 0)
+      {
+        localObject = a.getLayoutParams();
+        height = paramInt2;
+        a.setLayoutParams((ViewGroup.LayoutParams)localObject);
+      }
+      paramInt2 = paramToolbar.b(j.ActionBar_contentInsetStart, -1);
+      int i1 = paramToolbar.b(j.ActionBar_contentInsetEnd, -1);
+      if ((paramInt2 >= 0) || (i1 >= 0)) {
+        a.a(Math.max(paramInt2, 0), Math.max(i1, 0));
+      }
+      paramInt2 = paramToolbar.g(j.ActionBar_titleTextStyle, 0);
+      if (paramInt2 != 0)
+      {
+        localObject = a;
+        ((Toolbar)localObject).b(((ViewGroup)localObject).getContext(), paramInt2);
+      }
+      paramInt2 = paramToolbar.g(j.ActionBar_subtitleTextStyle, 0);
+      if (paramInt2 != 0)
+      {
+        localObject = a;
+        ((Toolbar)localObject).a(((ViewGroup)localObject).getContext(), paramInt2);
+      }
+      paramInt2 = paramToolbar.g(j.ActionBar_popupTheme, 0);
+      if (paramInt2 != 0) {
+        a.setPopupTheme(paramInt2);
+      }
+    }
+    else
+    {
+      b = o();
+    }
+    paramToolbar.a();
+    d(paramInt1);
+    k = a.getNavigationContentDescription();
+    a.setNavigationOnClickListener(new ya(this));
+  }
+  
+  private void d(CharSequence paramCharSequence)
+  {
+    i = paramCharSequence;
+    if ((b & 0x8) != 0) {
+      a.setTitle(paramCharSequence);
+    }
+  }
+  
+  private int o()
+  {
+    if (a.getNavigationIcon() != null)
+    {
+      q = a.getNavigationIcon();
+      return 15;
+    }
+    return 11;
+  }
+  
+  private void p()
+  {
+    if ((b & 0x4) != 0)
+    {
+      if (TextUtils.isEmpty(k))
+      {
+        a.setNavigationContentDescription(p);
+        return;
+      }
+      a.setNavigationContentDescription(k);
+    }
+  }
+  
+  private void q()
+  {
+    Toolbar localToolbar;
+    Drawable localDrawable;
+    if ((b & 0x4) != 0)
+    {
+      localToolbar = a;
+      localDrawable = g;
+      if (localDrawable == null) {
+        localDrawable = q;
+      }
+    }
+    else
+    {
+      localToolbar = a;
+      localDrawable = null;
+    }
+    localToolbar.setNavigationIcon(localDrawable);
+  }
+  
+  private void r()
+  {
+    int i1 = b;
+    Drawable localDrawable;
+    if ((i1 & 0x2) != 0)
+    {
+      if ((i1 & 0x1) != 0)
+      {
+        localDrawable = f;
+        if (localDrawable != null) {}
+      }
+      else
+      {
+        localDrawable = e;
+      }
+    }
+    else {
+      localDrawable = null;
+    }
+    a.setLogo(localDrawable);
+  }
+  
+  public z a(int paramInt, long paramLong)
+  {
+    z localZ = u.a(a);
+    float f1;
+    if (paramInt == 0) {
+      f1 = 1.0F;
+    } else {
+      f1 = 0.0F;
+    }
+    localZ.a(f1);
+    localZ.a(paramLong);
+    localZ.a(new za(this, paramInt));
+    return localZ;
+  }
+  
+  public void a(int paramInt)
+  {
+    int i1 = b ^ paramInt;
+    b = paramInt;
+    if (i1 != 0)
+    {
+      if ((i1 & 0x4) != 0)
+      {
+        if ((paramInt & 0x4) != 0) {
+          p();
+        }
+        q();
+      }
+      if ((i1 & 0x3) != 0) {
+        r();
+      }
+      Object localObject;
+      if ((i1 & 0x8) != 0)
+      {
+        CharSequence localCharSequence;
+        if ((paramInt & 0x8) != 0)
+        {
+          a.setTitle(i);
+          localObject = a;
+          localCharSequence = j;
+        }
+        else
+        {
+          localObject = a;
+          localCharSequence = null;
+          ((Toolbar)localObject).setTitle(null);
+          localObject = a;
+        }
+        ((Toolbar)localObject).setSubtitle(localCharSequence);
+      }
+      if ((i1 & 0x10) != 0)
+      {
+        localObject = d;
+        if (localObject != null)
+        {
+          if ((paramInt & 0x10) != 0)
+          {
+            a.addView((View)localObject);
+            return;
+          }
+          a.removeView((View)localObject);
+        }
+      }
+    }
+  }
+  
+  public void a(Drawable paramDrawable)
+  {
+    f = paramDrawable;
+    r();
+  }
+  
+  public void a(aa paramAa)
+  {
+    Object localObject = c;
+    if (localObject != null)
+    {
+      localObject = ((View)localObject).getParent();
+      Toolbar localToolbar = a;
+      if (localObject == localToolbar) {
+        localToolbar.removeView(c);
+      }
+    }
+    c = paramAa;
+    if ((paramAa != null) && (o == 2))
+    {
+      a.addView(c, 0);
+      localObject = (Toolbar.b)c.getLayoutParams();
+      width = -2;
+      height = -2;
+      a = 8388691;
+      paramAa.setAllowCollapse(true);
+    }
+  }
+  
+  public void a(Menu paramMenu, v.a paramA)
+  {
+    if (n == null)
+    {
+      n = new g(a.getContext());
+      n.a(f.action_menu_presenter);
+    }
+    n.a(paramA);
+    a.a((l)paramMenu, n);
+  }
+  
+  public void a(View paramView)
+  {
+    View localView = d;
+    if ((localView != null) && ((b & 0x10) != 0)) {
+      a.removeView(localView);
+    }
+    d = paramView;
+    if ((paramView != null) && ((b & 0x10) != 0)) {
+      a.addView(d);
+    }
+  }
+  
+  public void a(CharSequence paramCharSequence)
+  {
+    k = paramCharSequence;
+    p();
+  }
+  
+  public void a(boolean paramBoolean) {}
+  
+  public boolean a()
+  {
+    return a.i();
+  }
+  
+  public void b()
+  {
+    m = true;
+  }
+  
+  public void b(int paramInt)
+  {
+    Drawable localDrawable;
+    if (paramInt != 0) {
+      localDrawable = a.a.d.b.a.a.b(k(), paramInt);
+    } else {
+      localDrawable = null;
+    }
+    a(localDrawable);
+  }
+  
+  public void b(Drawable paramDrawable)
+  {
+    g = paramDrawable;
+    q();
+  }
+  
+  public void b(CharSequence paramCharSequence)
+  {
+    j = paramCharSequence;
+    if ((b & 0x8) != 0) {
+      a.setSubtitle(paramCharSequence);
+    }
+  }
+  
+  public void b(boolean paramBoolean)
+  {
+    a.setCollapsible(paramBoolean);
+  }
+  
+  public void c(int paramInt)
+  {
+    a.setVisibility(paramInt);
+  }
+  
+  public void c(CharSequence paramCharSequence)
+  {
+    h = true;
+    d(paramCharSequence);
+  }
+  
+  public boolean c()
+  {
+    return a.b();
+  }
+  
+  public void collapseActionView()
+  {
+    a.c();
+  }
+  
+  public void d(int paramInt)
+  {
+    if (paramInt == p) {
+      return;
+    }
+    p = paramInt;
+    if (TextUtils.isEmpty(a.getNavigationContentDescription())) {
+      e(p);
+    }
+  }
+  
+  public boolean d()
+  {
+    return a.h();
+  }
+  
+  public void e(int paramInt)
+  {
+    String str;
+    if (paramInt == 0) {
+      str = null;
+    } else {
+      str = k().getString(paramInt);
+    }
+    a(str);
+  }
+  
+  public boolean e()
+  {
+    return a.g();
+  }
+  
+  public boolean f()
+  {
+    return a.k();
+  }
+  
+  public void g()
+  {
+    a.d();
+  }
+  
+  public CharSequence getTitle()
+  {
+    return a.getTitle();
+  }
+  
+  public boolean h()
+  {
+    return a.f();
+  }
+  
+  public int i()
+  {
+    return o;
+  }
+  
+  public ViewGroup j()
+  {
+    return a;
+  }
+  
+  public Context k()
+  {
+    return a.getContext();
+  }
+  
+  public int l()
+  {
+    return b;
+  }
+  
+  public void m()
+  {
+    Log.i("ToolbarWidgetWrapper", "Progress display unsupported");
+  }
+  
+  public void n()
+  {
+    Log.i("ToolbarWidgetWrapper", "Progress display unsupported");
+  }
+  
+  public void setIcon(int paramInt)
+  {
+    Drawable localDrawable;
+    if (paramInt != 0) {
+      localDrawable = a.a.d.b.a.a.b(k(), paramInt);
+    } else {
+      localDrawable = null;
+    }
+    setIcon(localDrawable);
+  }
+  
+  public void setIcon(Drawable paramDrawable)
+  {
+    e = paramDrawable;
+    r();
+  }
+  
+  public void setWindowCallback(Window.Callback paramCallback)
+  {
+    l = paramCallback;
+  }
+  
+  public void setWindowTitle(CharSequence paramCharSequence)
+  {
+    if (!h) {
+      d(paramCharSequence);
+    }
+  }
+}

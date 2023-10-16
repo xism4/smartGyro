@@ -1,0 +1,45 @@
+package c.a.a.a.i.e;
+
+import c.a.a.a.g.d;
+import c.a.a.a.i.f.f;
+import c.a.a.a.i.f.h;
+import c.a.a.a.i.f.m;
+import c.a.a.a.j.g;
+import c.a.a.a.l;
+import c.a.a.a.p.a;
+import c.a.a.a.q;
+import java.io.OutputStream;
+
+@Deprecated
+public class b
+{
+  private final d a;
+  
+  public b(d paramD)
+  {
+    a.a(paramD, "Content length strategy");
+    a = ((d)paramD);
+  }
+  
+  protected OutputStream a(g paramG, q paramQ)
+  {
+    long l = a.a(paramQ);
+    if (l == -2L) {
+      return new f(paramG);
+    }
+    if (l == -1L) {
+      return new m(paramG);
+    }
+    return new h(paramG, l);
+  }
+  
+  public void a(g paramG, q paramQ, l paramL)
+  {
+    a.a(paramG, "Session output buffer");
+    a.a(paramQ, "HTTP message");
+    a.a(paramL, "HTTP entity");
+    paramG = a(paramG, paramQ);
+    paramL.writeTo(paramG);
+    paramG.close();
+  }
+}

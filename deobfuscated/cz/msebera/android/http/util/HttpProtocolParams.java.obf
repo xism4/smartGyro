@@ -1,0 +1,50 @@
+package c.a.a.a.l;
+
+import c.a.a.a.D;
+import c.a.a.a.p.a;
+import c.a.a.a.w;
+import java.nio.charset.Charset;
+
+@Deprecated
+public final class i
+  implements d
+{
+  public static String a(g paramG)
+  {
+    a.a(paramG, "HTTP parameters");
+    String str = (String)paramG.getParameter("http.protocol.element-charset");
+    paramG = str;
+    if (str == null) {
+      paramG = c.a.a.a.n.d.b.name();
+    }
+    return paramG;
+  }
+  
+  public static void a(g paramG, D paramD)
+  {
+    a.a(paramG, "HTTP parameters");
+    paramG.setParameter("http.protocol.version", paramD);
+  }
+  
+  public static void a(g paramG, String paramString)
+  {
+    a.a(paramG, "HTTP parameters");
+    paramG.setParameter("http.protocol.content-charset", paramString);
+  }
+  
+  public static D b(g paramG)
+  {
+    a.a(paramG, "HTTP parameters");
+    paramG = paramG.getParameter("http.protocol.version");
+    if (paramG == null) {
+      return w.f;
+    }
+    return (D)paramG;
+  }
+  
+  public static void b(g paramG, String paramString)
+  {
+    a.a(paramG, "HTTP parameters");
+    paramG.setParameter("http.useragent", paramString);
+  }
+}

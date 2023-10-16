@@ -1,0 +1,104 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.n;
+import c.a.a.a.p.a;
+import java.util.ArrayList;
+import java.util.List;
+
+public class w
+  extends q
+{
+  public w()
+  {
+    this(null);
+  }
+  
+  w(b... paramVarArgs)
+  {
+    super(paramVarArgs);
+  }
+  
+  public w(String[] paramArrayOfString)
+  {
+    super(new b[] { localI, localU, localJ, localE, new g(paramArrayOfString) });
+  }
+  
+  public List<c> a(c.a.a.a.e paramE, c.a.a.a.f.f paramF)
+  {
+    a.a(paramE, "Header");
+    a.a(paramF, "Cookie origin");
+    if (paramE.getName().equalsIgnoreCase("Set-Cookie"))
+    {
+      v localV = v.a;
+      Object localObject;
+      if ((paramE instanceof c.a.a.a.d))
+      {
+        localObject = (c.a.a.a.d)paramE;
+        paramE = ((c.a.a.a.d)localObject).getBuffer();
+        localObject = new c.a.a.a.k.w(((c.a.a.a.d)localObject).getValuePos(), paramE.length());
+      }
+      else
+      {
+        localObject = paramE.getValue();
+        if (localObject == null) {
+          break label134;
+        }
+        paramE = new c.a.a.a.p.d(((String)localObject).length());
+        paramE.a((String)localObject);
+        localObject = new c.a.a.a.k.w(0, paramE.length());
+      }
+      return a(new c.a.a.a.f[] { localV.a(paramE, (c.a.a.a.k.w)localObject) }, paramF);
+      label134:
+      throw new n("Header value is null");
+    }
+    paramF = new StringBuilder();
+    paramF.append("Unrecognized cookie header '");
+    paramF.append(paramE.toString());
+    paramF.append("'");
+    throw new n(paramF.toString());
+  }
+  
+  public List<c.a.a.a.e> formatCookies(List<c> paramList)
+  {
+    a.a(paramList, "List of cookies");
+    c.a.a.a.p.d localD = new c.a.a.a.p.d(paramList.size() * 20);
+    localD.a("Cookie");
+    localD.a(": ");
+    int i = 0;
+    while (i < paramList.size())
+    {
+      Object localObject = (c)paramList.get(i);
+      if (i > 0) {
+        localD.a("; ");
+      }
+      localD.a(((c)localObject).getName());
+      localObject = ((c)localObject).getValue();
+      if (localObject != null)
+      {
+        localD.a("=");
+        localD.a((String)localObject);
+      }
+      i += 1;
+    }
+    paramList = new ArrayList(1);
+    paramList.add(new c.a.a.a.k.q(localD));
+    return paramList;
+  }
+  
+  public int getVersion()
+  {
+    return 0;
+  }
+  
+  public c.a.a.a.e getVersionHeader()
+  {
+    return null;
+  }
+  
+  public String toString()
+  {
+    return "netscape";
+  }
+}

@@ -1,0 +1,11 @@
+package c.a.a.a.e.c;
+
+import c.a.a.a.l.g;
+import java.net.Socket;
+
+@Deprecated
+public abstract interface f
+  extends j
+{
+  public abstract Socket a(Socket paramSocket, String paramString, int paramInt, g paramG);
+}

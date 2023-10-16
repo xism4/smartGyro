@@ -1,0 +1,100 @@
+package c.a.a.a;
+
+import c.a.a.a.p.a;
+import java.io.Serializable;
+
+public class D
+  implements Serializable, Cloneable
+{
+  protected final String a;
+  protected final int b;
+  protected final int c;
+  
+  public D(String paramString, int paramInt1, int paramInt2)
+  {
+    a.a(paramString, "Protocol name");
+    a = ((String)paramString);
+    a.a(paramInt1, "Protocol minor version");
+    b = paramInt1;
+    a.a(paramInt2, "Protocol minor version");
+    c = paramInt2;
+  }
+  
+  public final int a()
+  {
+    return b;
+  }
+  
+  public int a(D paramD)
+  {
+    a.a(paramD, "Protocol version");
+    a.a(a.equals(a), "Versions for different protocols cannot be compared: %s %s", new Object[] { this, paramD });
+    int j = a() - paramD.a();
+    int i = j;
+    if (j == 0) {
+      i = b() - paramD.b();
+    }
+    return i;
+  }
+  
+  public D a(int paramInt1, int paramInt2)
+  {
+    if ((paramInt1 == b) && (paramInt2 == c)) {
+      return this;
+    }
+    return new D(a, paramInt1, paramInt2);
+  }
+  
+  public final int b()
+  {
+    return c;
+  }
+  
+  public boolean b(D paramD)
+  {
+    return (paramD != null) && (a.equals(a));
+  }
+  
+  public final String c()
+  {
+    return a;
+  }
+  
+  public final boolean c(D paramD)
+  {
+    return (b(paramD)) && (a(paramD) <= 0);
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (!(paramObject instanceof D)) {
+      return false;
+    }
+    paramObject = (D)paramObject;
+    return (a.equals(a)) && (b == b) && (c == c);
+  }
+  
+  public final int hashCode()
+  {
+    return a.hashCode() ^ b * 100000 ^ c;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(a);
+    localStringBuilder.append('/');
+    localStringBuilder.append(Integer.toString(b));
+    localStringBuilder.append('.');
+    localStringBuilder.append(Integer.toString(c));
+    return localStringBuilder.toString();
+  }
+}

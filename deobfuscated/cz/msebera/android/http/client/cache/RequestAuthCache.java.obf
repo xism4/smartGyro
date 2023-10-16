@@ -1,0 +1,108 @@
+package c.a.a.a.b.e;
+
+import c.a.a.a.a.h;
+import c.a.a.a.n.f;
+import c.a.a.a.o;
+import c.a.a.a.r;
+import c.a.a.a.s;
+
+public class c
+  implements s
+{
+  public c.a.a.a.h.b a = new c.a.a.a.h.b(c.class);
+  
+  public c() {}
+  
+  private void a(o paramO, c.a.a.a.a.c paramC, c.a.a.a.a.i paramI, c.a.a.a.b.i paramI1)
+  {
+    String str = paramC.getSchemeName();
+    if (a.a())
+    {
+      c.a.a.a.h.b localB = a;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Re-using cached '");
+      localStringBuilder.append(str);
+      localStringBuilder.append("' auth scheme for ");
+      localStringBuilder.append(paramO);
+      localB.a(localStringBuilder.toString());
+    }
+    paramI1 = paramI1.a(new h(paramO, h.b, str));
+    if (paramI1 != null)
+    {
+      if ("BASIC".equalsIgnoreCase(paramC.getSchemeName())) {
+        paramO = c.a.a.a.a.b.b;
+      } else {
+        paramO = c.a.a.a.a.b.e;
+      }
+      paramI.a(paramO);
+      paramI.a(paramC, paramI1);
+      return;
+    }
+    a.a("No credentials for preemptive authentication");
+  }
+  
+  public void a(r paramR, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    c.a.a.a.p.a.a(paramE, "HTTP context");
+    a localA = a.a(paramE);
+    Object localObject = localA.e();
+    if (localObject == null)
+    {
+      paramR = a;
+      paramE = "Auth cache not set in the context";
+    }
+    c.a.a.a.b.i localI;
+    c.a.a.a.e.b.e localE;
+    for (;;)
+    {
+      paramR.a(paramE);
+      return;
+      localI = localA.k();
+      if (localI == null)
+      {
+        paramR = a;
+        paramE = "Credentials provider not set in the context";
+      }
+      else
+      {
+        localE = localA.l();
+        if (localE == null)
+        {
+          paramR = a;
+          paramE = "Route info not set in the context";
+        }
+        else
+        {
+          paramE = localA.c();
+          if (paramE != null) {
+            break;
+          }
+          paramR = a;
+          paramE = "Target host not set in the context";
+        }
+      }
+    }
+    paramR = paramE;
+    if (paramE.c() < 0) {
+      paramR = new o(paramE.b(), localE.getTargetHost().c(), paramE.d());
+    }
+    paramE = localA.o();
+    if ((paramE != null) && (paramE.d() == c.a.a.a.a.b.a))
+    {
+      c.a.a.a.a.c localC = ((c.a.a.a.b.a)localObject).b(paramR);
+      if (localC != null) {
+        a(paramR, localC, paramE, localI);
+      }
+    }
+    paramR = localE.getProxyHost();
+    paramE = localA.m();
+    if ((paramR != null) && (paramE != null) && (paramE.d() == c.a.a.a.a.b.a))
+    {
+      localObject = ((c.a.a.a.b.a)localObject).b(paramR);
+      if (localObject != null) {
+        a(paramR, (c.a.a.a.a.c)localObject, paramE, localI);
+      }
+    }
+  }
+}

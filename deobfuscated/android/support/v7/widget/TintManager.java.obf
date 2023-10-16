@@ -1,0 +1,44 @@
+package android.support.v7.widget;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import java.lang.ref.WeakReference;
+
+public class Ga
+  extends Resources
+{
+  private static boolean a = false;
+  private final WeakReference<Context> b;
+  
+  public Ga(Context paramContext, Resources paramResources)
+  {
+    super(paramResources.getAssets(), paramResources.getDisplayMetrics(), paramResources.getConfiguration());
+    b = new WeakReference(paramContext);
+  }
+  
+  public static boolean a()
+  {
+    return a;
+  }
+  
+  public static boolean b()
+  {
+    return (a()) && (Build.VERSION.SDK_INT <= 20);
+  }
+  
+  final Drawable a(int paramInt)
+  {
+    return super.getDrawable(paramInt);
+  }
+  
+  public Drawable getDrawable(int paramInt)
+  {
+    Context localContext = (Context)b.get();
+    if (localContext != null) {
+      return o.a().a(localContext, this, paramInt);
+    }
+    return super.getDrawable(paramInt);
+  }
+}

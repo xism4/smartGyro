@@ -1,0 +1,212 @@
+package c.a.a.a.b.c;
+
+import c.a.a.a.D;
+import c.a.a.a.F;
+import c.a.a.a.c;
+import c.a.a.a.g.e;
+import c.a.a.a.q;
+import c.a.a.a.z;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.util.List;
+
+public class m
+{
+  private String a;
+  private Charset b = c.a;
+  private D c;
+  private URI d;
+  private c.a.a.a.k.r e;
+  private c.a.a.a.l f;
+  private List<z> g;
+  private c.a.a.a.b.a.a h;
+  
+  m()
+  {
+    this(null);
+  }
+  
+  m(String paramString)
+  {
+    a = paramString;
+  }
+  
+  public static m a(c.a.a.a.r paramR)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    m localM = new m();
+    localM.b(paramR);
+    return localM;
+  }
+  
+  private m b(c.a.a.a.r paramR)
+  {
+    if (paramR == null) {
+      return this;
+    }
+    a = paramR.getRequestLine().getMethod();
+    c = paramR.getRequestLine().getProtocolVersion();
+    if (e == null) {
+      e = new c.a.a.a.k.r();
+    }
+    e.a();
+    e.a(paramR.getAllHeaders());
+    g = null;
+    f = null;
+    Object localObject1;
+    if ((paramR instanceof c.a.a.a.m))
+    {
+      localObject1 = ((c.a.a.a.m)paramR).getEntity();
+      localObject2 = e.a((c.a.a.a.l)localObject1);
+      if ((localObject2 == null) || (!((e)localObject2).b().equals(e.b.b()))) {}
+    }
+    try
+    {
+      localObject1 = c.a.a.a.b.f.f.a((c.a.a.a.l)localObject1);
+      if (((List)localObject1).isEmpty()) {
+        break label156;
+      }
+      g = ((List)localObject1);
+    }
+    catch (IOException localIOException)
+    {
+      label156:
+      List localList;
+      for (;;) {}
+    }
+    break label156;
+    f = ((c.a.a.a.l)localObject1);
+    if ((paramR instanceof l)) {
+      localObject1 = ((l)paramR).getURI();
+    } else {
+      localObject1 = URI.create(paramR.getRequestLine().getUri());
+    }
+    Object localObject2 = new c.a.a.a.b.f.d((URI)localObject1);
+    if (g == null)
+    {
+      localList = ((c.a.a.a.b.f.d)localObject2).e();
+      if (!localList.isEmpty())
+      {
+        g = localList;
+        ((c.a.a.a.b.f.d)localObject2).b();
+      }
+      else
+      {
+        g = null;
+      }
+    }
+    try
+    {
+      d = ((c.a.a.a.b.f.d)localObject2).a();
+    }
+    catch (URISyntaxException localURISyntaxException)
+    {
+      for (;;) {}
+    }
+    d = ((URI)localObject1);
+    if ((paramR instanceof f))
+    {
+      h = ((f)paramR).a();
+      return this;
+    }
+    h = null;
+    return this;
+  }
+  
+  public l a()
+  {
+    localObject1 = d;
+    if (localObject1 == null) {
+      localObject1 = URI.create("/");
+    }
+    localL = f;
+    List localList = g;
+    Object localObject2 = localObject1;
+    localObject4 = localL;
+    if (localList != null)
+    {
+      localObject2 = localObject1;
+      localObject4 = localL;
+      if (!localList.isEmpty()) {
+        if ((localL == null) && (("POST".equalsIgnoreCase(a)) || ("PUT".equalsIgnoreCase(a))))
+        {
+          localObject4 = new c.a.a.a.b.b.a(g, c.a.a.a.n.d.a);
+          localObject2 = localObject1;
+        }
+      }
+    }
+    try
+    {
+      localObject2 = new c.a.a.a.b.f.d((URI)localObject1);
+      ((c.a.a.a.b.f.d)localObject2).a(b);
+      ((c.a.a.a.b.f.d)localObject2).a(g);
+      localObject2 = ((c.a.a.a.b.f.d)localObject2).a();
+      localObject4 = localL;
+    }
+    catch (URISyntaxException localURISyntaxException)
+    {
+      for (;;)
+      {
+        Object localObject3 = localObject1;
+        localObject4 = localL;
+      }
+    }
+    if (localObject4 == null)
+    {
+      localObject1 = new b(a);
+    }
+    else
+    {
+      localObject1 = new a(a);
+      ((g)localObject1).a((c.a.a.a.l)localObject4);
+    }
+    ((k)localObject1).a(c);
+    ((k)localObject1).a((URI)localObject2);
+    localObject2 = e;
+    if (localObject2 != null) {
+      ((c.a.a.a.k.a)localObject1).a(((c.a.a.a.k.r)localObject2).b());
+    }
+    ((k)localObject1).a(h);
+    return localObject1;
+  }
+  
+  public m a(URI paramURI)
+  {
+    d = paramURI;
+    return this;
+  }
+  
+  static class a
+    extends g
+  {
+    private final String i;
+    
+    a(String paramString)
+    {
+      i = paramString;
+    }
+    
+    public String getMethod()
+    {
+      return i;
+    }
+  }
+  
+  static class b
+    extends k
+  {
+    private final String h;
+    
+    b(String paramString)
+    {
+      h = paramString;
+    }
+    
+    public String getMethod()
+    {
+      return h;
+    }
+  }
+}

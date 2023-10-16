@@ -1,0 +1,91 @@
+package android.support.v7.app;
+
+import a.a.d.a.j;
+import a.a.d.d.b;
+import a.a.d.d.b.a;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
+
+public abstract class a
+{
+  public a() {}
+  
+  public abstract b a(b.a paramA);
+  
+  public abstract void a(CharSequence paramCharSequence);
+  
+  public abstract boolean a(int paramInt, KeyEvent paramKeyEvent);
+  
+  public abstract void b(boolean paramBoolean);
+  
+  public abstract void c(boolean paramBoolean);
+  
+  public abstract void d(boolean paramBoolean);
+  
+  public abstract boolean e();
+  
+  public abstract Context f();
+  
+  public boolean g()
+  {
+    return false;
+  }
+  
+  public static class a
+    extends ViewGroup.MarginLayoutParams
+  {
+    public int a = 0;
+    
+    public a(int paramInt1, int paramInt2)
+    {
+      super(paramInt2);
+      a = 8388627;
+    }
+    
+    public a(Context paramContext, AttributeSet paramAttributeSet)
+    {
+      super(paramAttributeSet);
+      paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, j.ActionBarLayout);
+      a = paramContext.getInt(j.ActionBarLayout_android_layout_gravity, 0);
+      paramContext.recycle();
+    }
+    
+    public a(a paramA)
+    {
+      super();
+      a = a;
+    }
+    
+    public a(ViewGroup.LayoutParams paramLayoutParams)
+    {
+      super();
+    }
+  }
+  
+  public static abstract interface b
+  {
+    public abstract void onMenuVisibilityChanged(boolean paramBoolean);
+  }
+  
+  @Deprecated
+  public static abstract class c
+  {
+    public c() {}
+    
+    public abstract CharSequence a();
+    
+    public abstract View b();
+    
+    public abstract Drawable c();
+    
+    public abstract CharSequence d();
+    
+    public abstract void e();
+  }
+}

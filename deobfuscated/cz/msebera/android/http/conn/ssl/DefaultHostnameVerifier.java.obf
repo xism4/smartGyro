@@ -1,0 +1,69 @@
+package c.a.a.a.e.e;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.security.cert.CertificateParsingException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import javax.net.ssl.HostnameVerifier;
+
+public final class d
+  implements HostnameVerifier
+{
+  static String a(String paramString)
+  {
+    if (paramString == null) {
+      return paramString;
+    }
+    try
+    {
+      String str = InetAddress.getByName(paramString).getHostAddress();
+      return str;
+    }
+    catch (UnknownHostException localUnknownHostException) {}
+    return paramString;
+  }
+  
+  static List<String> a(X509Certificate paramX509Certificate, int paramInt)
+  {
+    Object localObject = null;
+    String str = null;
+    try
+    {
+      paramX509Certificate = paramX509Certificate.getSubjectAlternativeNames();
+    }
+    catch (CertificateParsingException paramX509Certificate)
+    {
+      Iterator localIterator;
+      for (;;) {}
+    }
+    paramX509Certificate = null;
+    if (paramX509Certificate != null)
+    {
+      localIterator = paramX509Certificate.iterator();
+      paramX509Certificate = str;
+      for (;;)
+      {
+        localObject = paramX509Certificate;
+        if (!localIterator.hasNext()) {
+          break;
+        }
+        localObject = (List)localIterator.next();
+        if (((Integer)((List)localObject).get(0)).intValue() == paramInt)
+        {
+          str = (String)((List)localObject).get(1);
+          localObject = paramX509Certificate;
+          if (paramX509Certificate == null) {
+            localObject = new ArrayList();
+          }
+          ((List)localObject).add(str);
+          paramX509Certificate = (X509Certificate)localObject;
+        }
+      }
+    }
+    return localObject;
+  }
+}

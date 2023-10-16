@@ -1,0 +1,12 @@
+package org.cocos2dx.lib;
+
+final class y
+  implements Runnable
+{
+  y(int paramInt) {}
+  
+  public void run()
+  {
+    Cocos2dxEditBoxHelper.access$500(a);
+  }
+}

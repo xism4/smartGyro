@@ -1,0 +1,8 @@
+package c.a.a.a.f;
+
+import c.a.a.a.n.e;
+
+public abstract interface k
+{
+  public abstract i a(e paramE);
+}

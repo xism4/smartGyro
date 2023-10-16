@@ -1,0 +1,36 @@
+package c.a.a.a.e.c;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+@Deprecated
+class g
+  implements f
+{
+  private final b a;
+  
+  g(b paramB)
+  {
+    a = paramB;
+  }
+  
+  public Socket a(c.a.a.a.l.g paramG)
+  {
+    return a.a(paramG);
+  }
+  
+  public Socket a(Socket paramSocket, String paramString, int paramInt, c.a.a.a.l.g paramG)
+  {
+    return a.a(paramSocket, paramString, paramInt, true);
+  }
+  
+  public Socket a(Socket paramSocket, InetSocketAddress paramInetSocketAddress1, InetSocketAddress paramInetSocketAddress2, c.a.a.a.l.g paramG)
+  {
+    return a.a(paramSocket, paramInetSocketAddress1, paramInetSocketAddress2, paramG);
+  }
+  
+  public boolean isSecure(Socket paramSocket)
+  {
+    return a.isSecure(paramSocket);
+  }
+}

@@ -1,0 +1,15 @@
+package android.support.v7.app;
+
+import a.a.c.g.g.a;
+import android.view.KeyEvent;
+
+class y
+  implements g.a
+{
+  y(z paramZ) {}
+  
+  public boolean a(KeyEvent paramKeyEvent)
+  {
+    return a.a(paramKeyEvent);
+  }
+}

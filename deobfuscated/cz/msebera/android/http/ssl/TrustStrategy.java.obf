@@ -1,0 +1,8 @@
+package c.a.a.a.o;
+
+import java.security.cert.X509Certificate;
+
+public abstract interface a
+{
+  public abstract boolean a(X509Certificate[] paramArrayOfX509Certificate, String paramString);
+}

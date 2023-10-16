@@ -1,0 +1,8 @@
+package c.a.a.a.b.c;
+
+import c.a.a.a.b.a.a;
+
+public abstract interface f
+{
+  public abstract a a();
+}

@@ -1,0 +1,281 @@
+package a.a.c.g.a;
+
+import android.graphics.Rect;
+import android.os.Build.VERSION;
+import android.view.accessibility.AccessibilityNodeInfo;
+
+public class a
+{
+  private final AccessibilityNodeInfo a;
+  public int b = -1;
+  
+  private a(AccessibilityNodeInfo paramAccessibilityNodeInfo)
+  {
+    a = paramAccessibilityNodeInfo;
+  }
+  
+  public static a a(AccessibilityNodeInfo paramAccessibilityNodeInfo)
+  {
+    return new a(paramAccessibilityNodeInfo);
+  }
+  
+  private static String b(int paramInt)
+  {
+    if (paramInt != 1)
+    {
+      if (paramInt != 2)
+      {
+        switch (paramInt)
+        {
+        default: 
+          return "ACTION_UNKNOWN";
+        case 131072: 
+          return "ACTION_SET_SELECTION";
+        case 65536: 
+          return "ACTION_CUT";
+        case 32768: 
+          return "ACTION_PASTE";
+        case 16384: 
+          return "ACTION_COPY";
+        case 8192: 
+          return "ACTION_SCROLL_BACKWARD";
+        case 4096: 
+          return "ACTION_SCROLL_FORWARD";
+        case 2048: 
+          return "ACTION_PREVIOUS_HTML_ELEMENT";
+        case 1024: 
+          return "ACTION_NEXT_HTML_ELEMENT";
+        case 512: 
+          return "ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY";
+        case 256: 
+          return "ACTION_NEXT_AT_MOVEMENT_GRANULARITY";
+        case 128: 
+          return "ACTION_CLEAR_ACCESSIBILITY_FOCUS";
+        case 64: 
+          return "ACTION_ACCESSIBILITY_FOCUS";
+        case 32: 
+          return "ACTION_LONG_CLICK";
+        case 16: 
+          return "ACTION_CLICK";
+        case 8: 
+          return "ACTION_CLEAR_SELECTION";
+        }
+        return "ACTION_SELECT";
+      }
+      return "ACTION_CLEAR_FOCUS";
+    }
+    return "ACTION_FOCUS";
+  }
+  
+  public int a()
+  {
+    return a.getActions();
+  }
+  
+  public void a(int paramInt)
+  {
+    a.addAction(paramInt);
+  }
+  
+  public void a(Rect paramRect)
+  {
+    a.getBoundsInParent(paramRect);
+  }
+  
+  public void a(CharSequence paramCharSequence)
+  {
+    a.setClassName(paramCharSequence);
+  }
+  
+  public void a(boolean paramBoolean)
+  {
+    a.setScrollable(paramBoolean);
+  }
+  
+  public CharSequence b()
+  {
+    return a.getClassName();
+  }
+  
+  public void b(Rect paramRect)
+  {
+    a.getBoundsInScreen(paramRect);
+  }
+  
+  public CharSequence c()
+  {
+    return a.getContentDescription();
+  }
+  
+  public CharSequence d()
+  {
+    return a.getPackageName();
+  }
+  
+  public CharSequence e()
+  {
+    return a.getText();
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if (paramObject == null) {
+      return false;
+    }
+    if (a.class != paramObject.getClass()) {
+      return false;
+    }
+    paramObject = (a)paramObject;
+    AccessibilityNodeInfo localAccessibilityNodeInfo = a;
+    if (localAccessibilityNodeInfo == null)
+    {
+      if (a != null) {
+        return false;
+      }
+    }
+    else if (!localAccessibilityNodeInfo.equals(a)) {
+      return false;
+    }
+    return true;
+  }
+  
+  public String f()
+  {
+    if (Build.VERSION.SDK_INT >= 18) {
+      return a.getViewIdResourceName();
+    }
+    return null;
+  }
+  
+  public boolean g()
+  {
+    return a.isCheckable();
+  }
+  
+  public boolean h()
+  {
+    return a.isChecked();
+  }
+  
+  public int hashCode()
+  {
+    AccessibilityNodeInfo localAccessibilityNodeInfo = a;
+    if (localAccessibilityNodeInfo == null) {
+      return 0;
+    }
+    return localAccessibilityNodeInfo.hashCode();
+  }
+  
+  public boolean i()
+  {
+    return a.isClickable();
+  }
+  
+  public boolean j()
+  {
+    return a.isEnabled();
+  }
+  
+  public boolean k()
+  {
+    return a.isFocusable();
+  }
+  
+  public boolean l()
+  {
+    return a.isFocused();
+  }
+  
+  public boolean m()
+  {
+    return a.isLongClickable();
+  }
+  
+  public boolean n()
+  {
+    return a.isPassword();
+  }
+  
+  public boolean o()
+  {
+    return a.isScrollable();
+  }
+  
+  public boolean p()
+  {
+    return a.isSelected();
+  }
+  
+  public AccessibilityNodeInfo q()
+  {
+    return a;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder1 = new StringBuilder();
+    localStringBuilder1.append(super.toString());
+    Object localObject = new Rect();
+    a((Rect)localObject);
+    StringBuilder localStringBuilder2 = new StringBuilder();
+    localStringBuilder2.append("; boundsInParent: ");
+    localStringBuilder2.append(localObject);
+    localStringBuilder1.append(localStringBuilder2.toString());
+    b((Rect)localObject);
+    localStringBuilder2 = new StringBuilder();
+    localStringBuilder2.append("; boundsInScreen: ");
+    localStringBuilder2.append(localObject);
+    localStringBuilder1.append(localStringBuilder2.toString());
+    localStringBuilder1.append("; packageName: ");
+    localStringBuilder1.append(d());
+    localStringBuilder1.append("; className: ");
+    localStringBuilder1.append(b());
+    localStringBuilder1.append("; text: ");
+    localStringBuilder1.append(e());
+    localStringBuilder1.append("; contentDescription: ");
+    localStringBuilder1.append(c());
+    localStringBuilder1.append("; viewId: ");
+    localStringBuilder1.append(f());
+    localStringBuilder1.append("; checkable: ");
+    localStringBuilder1.append(g());
+    localStringBuilder1.append("; checked: ");
+    localStringBuilder1.append(h());
+    localStringBuilder1.append("; focusable: ");
+    localStringBuilder1.append(k());
+    localStringBuilder1.append("; focused: ");
+    localStringBuilder1.append(l());
+    localStringBuilder1.append("; selected: ");
+    localStringBuilder1.append(p());
+    localStringBuilder1.append("; clickable: ");
+    localStringBuilder1.append(i());
+    localStringBuilder1.append("; longClickable: ");
+    localStringBuilder1.append(m());
+    localStringBuilder1.append("; enabled: ");
+    localStringBuilder1.append(j());
+    localStringBuilder1.append("; password: ");
+    localStringBuilder1.append(n());
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("; scrollable: ");
+    ((StringBuilder)localObject).append(o());
+    localStringBuilder1.append(((StringBuilder)localObject).toString());
+    localStringBuilder1.append("; [");
+    int i = a();
+    while (i != 0)
+    {
+      int k = 1 << Integer.numberOfTrailingZeros(i);
+      int j = i & (k ^ 0xFFFFFFFF);
+      localStringBuilder1.append(b(k));
+      i = j;
+      if (j != 0)
+      {
+        localStringBuilder1.append(", ");
+        i = j;
+      }
+    }
+    localStringBuilder1.append("]");
+    return localStringBuilder1.toString();
+  }
+}

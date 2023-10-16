@@ -1,0 +1,13 @@
+package org.cocos2dx.lib;
+
+final class g
+  implements Runnable
+{
+  g() {}
+  
+  public void run()
+  {
+    Cocos2dxHelper.setAudioFocus(true);
+    Cocos2dxAudioFocusManager.a(0);
+  }
+}

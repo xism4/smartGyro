@@ -1,0 +1,10 @@
+package c.a.a.a;
+
+public abstract interface G
+{
+  public abstract D getProtocolVersion();
+  
+  public abstract String getReasonPhrase();
+  
+  public abstract int getStatusCode();
+}

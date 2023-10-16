@@ -1,0 +1,43 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.i;
+import c.a.a.a.f.j;
+import c.a.a.a.l.g;
+import c.a.a.a.n.e;
+import java.util.Collection;
+
+@Deprecated
+public class l
+  implements j, c.a.a.a.f.k
+{
+  private final i a;
+  
+  public l()
+  {
+    this(null, false);
+  }
+  
+  public l(String[] paramArrayOfString, boolean paramBoolean)
+  {
+    a = new k(paramArrayOfString, paramBoolean);
+  }
+  
+  public i a(g paramG)
+  {
+    if (paramG != null)
+    {
+      String[] arrayOfString = null;
+      Collection localCollection = (Collection)paramG.getParameter("http.protocol.cookie-datepatterns");
+      if (localCollection != null) {
+        arrayOfString = (String[])localCollection.toArray(new String[localCollection.size()]);
+      }
+      return new k(arrayOfString, paramG.getBooleanParameter("http.protocol.single-cookie-header", false));
+    }
+    return new k();
+  }
+  
+  public i a(e paramE)
+  {
+    return a;
+  }
+}

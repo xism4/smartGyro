@@ -1,0 +1,78 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import c.a.a.a.f.h;
+import c.a.a.a.f.p;
+import c.a.a.a.p.a;
+
+public class i
+  implements b
+{
+  public i() {}
+  
+  static boolean a(String paramString1, String paramString2)
+  {
+    String str = paramString2;
+    if (paramString2 == null) {
+      str = "/";
+    }
+    paramString2 = str;
+    if (str.length() > 1)
+    {
+      paramString2 = str;
+      if (str.endsWith("/")) {
+        paramString2 = str.substring(0, str.length() - 1);
+      }
+    }
+    if (paramString1.startsWith(paramString2))
+    {
+      if (paramString2.equals("/")) {
+        return true;
+      }
+      if (paramString1.length() == paramString2.length()) {
+        return true;
+      }
+      if (paramString1.charAt(paramString2.length()) == '/') {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public String a()
+  {
+    return "path";
+  }
+  
+  public void a(c paramC, f paramF)
+  {
+    if (b(paramC, paramF)) {
+      return;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Illegal 'path' attribute \"");
+    localStringBuilder.append(paramC.getPath());
+    localStringBuilder.append("\". Path of origin: \"");
+    localStringBuilder.append(paramF.b());
+    localStringBuilder.append("\"");
+    throw new h(localStringBuilder.toString());
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    a.a(paramP, "Cookie");
+    if (c.a.a.a.p.i.b(paramString)) {
+      paramString = "/";
+    }
+    paramP.setPath(paramString);
+  }
+  
+  public boolean b(c paramC, f paramF)
+  {
+    a.a(paramC, "Cookie");
+    a.a(paramF, "Cookie origin");
+    return a(paramF.b(), paramC.getPath());
+  }
+}

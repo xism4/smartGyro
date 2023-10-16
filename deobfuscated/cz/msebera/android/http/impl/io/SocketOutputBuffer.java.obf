@@ -1,0 +1,24 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.l.g;
+import c.a.a.a.p.a;
+import java.net.Socket;
+
+@Deprecated
+public class o
+  extends d
+{
+  public o(Socket paramSocket, int paramInt, g paramG)
+  {
+    a.a(paramSocket, "Socket");
+    int i = paramInt;
+    if (paramInt < 0) {
+      i = paramSocket.getSendBufferSize();
+    }
+    paramInt = i;
+    if (i < 1024) {
+      paramInt = 1024;
+    }
+    a(paramSocket.getOutputStream(), paramInt, paramG);
+  }
+}

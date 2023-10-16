@@ -1,0 +1,141 @@
+package c.a.a.a.b.e;
+
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import c.a.a.a.f.i;
+import c.a.a.a.f.n;
+import c.a.a.a.h.b;
+import c.a.a.a.q;
+import c.a.a.a.t;
+import c.a.a.a.v;
+import java.util.Iterator;
+import java.util.List;
+
+public class j
+  implements v
+{
+  public b a = new b(j.class);
+  
+  public j() {}
+  
+  private static String a(c paramC)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramC.getName());
+    localStringBuilder.append("=\"");
+    String str = paramC.getValue();
+    if (str != null)
+    {
+      Object localObject = str;
+      if (str.length() > 100)
+      {
+        localObject = new StringBuilder();
+        ((StringBuilder)localObject).append(str.substring(0, 100));
+        ((StringBuilder)localObject).append("...");
+        localObject = ((StringBuilder)localObject).toString();
+      }
+      localStringBuilder.append((String)localObject);
+    }
+    localStringBuilder.append("\"");
+    localStringBuilder.append(", version:");
+    localStringBuilder.append(Integer.toString(paramC.getVersion()));
+    localStringBuilder.append(", domain:");
+    localStringBuilder.append(paramC.getDomain());
+    localStringBuilder.append(", path:");
+    localStringBuilder.append(paramC.getPath());
+    localStringBuilder.append(", expiry:");
+    localStringBuilder.append(paramC.getExpiryDate());
+    return localStringBuilder.toString();
+  }
+  
+  private void a(c.a.a.a.h paramH, i paramI, f paramF, c.a.a.a.b.h paramH1)
+  {
+    while (paramH.hasNext())
+    {
+      c.a.a.a.e localE = paramH.nextHeader();
+      try
+      {
+        Iterator localIterator = paramI.a(localE, paramF).iterator();
+        while (localIterator.hasNext())
+        {
+          localObject1 = (c)localIterator.next();
+          Object localObject2;
+          try
+          {
+            paramI.a((c)localObject1, paramF);
+            paramH1.a((c)localObject1);
+            if (!a.a()) {
+              continue;
+            }
+            b localB = a;
+            localObject2 = new StringBuilder();
+            ((StringBuilder)localObject2).append("Cookie accepted [");
+            ((StringBuilder)localObject2).append(a((c)localObject1));
+            ((StringBuilder)localObject2).append("]");
+            localB.a(((StringBuilder)localObject2).toString());
+          }
+          catch (n localN2) {}
+          if (a.d())
+          {
+            localObject2 = a;
+            StringBuilder localStringBuilder2 = new StringBuilder();
+            localStringBuilder2.append("Cookie rejected [");
+            localStringBuilder2.append(a((c)localObject1));
+            localStringBuilder2.append("] ");
+            localStringBuilder2.append(localN2.getMessage());
+            ((b)localObject2).d(localStringBuilder2.toString());
+          }
+        }
+        if (!a.d()) {
+          continue;
+        }
+      }
+      catch (n localN1) {}
+      Object localObject1 = a;
+      StringBuilder localStringBuilder1 = new StringBuilder();
+      localStringBuilder1.append("Invalid cookie header: \"");
+      localStringBuilder1.append(localE);
+      localStringBuilder1.append("\". ");
+      localStringBuilder1.append(localN1.getMessage());
+      ((b)localObject1).d(localStringBuilder1.toString());
+    }
+  }
+  
+  public void a(t paramT, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramT, "HTTP request");
+    c.a.a.a.p.a.a(paramE, "HTTP context");
+    Object localObject = a.a(paramE);
+    paramE = ((a)localObject).h();
+    if (paramE == null)
+    {
+      paramT = a;
+      paramE = "Cookie spec not specified in HTTP context";
+    }
+    c.a.a.a.b.h localH;
+    for (;;)
+    {
+      paramT.a(paramE);
+      return;
+      localH = ((a)localObject).j();
+      if (localH == null)
+      {
+        paramT = a;
+        paramE = "Cookie store not specified in HTTP context";
+      }
+      else
+      {
+        localObject = ((a)localObject).g();
+        if (localObject != null) {
+          break;
+        }
+        paramT = a;
+        paramE = "Cookie origin not specified in HTTP context";
+      }
+    }
+    a(paramT.headerIterator("Set-Cookie"), paramE, (f)localObject, localH);
+    if (paramE.getVersion() > 0) {
+      a(paramT.headerIterator("Set-Cookie2"), paramE, (f)localObject, localH);
+    }
+  }
+}

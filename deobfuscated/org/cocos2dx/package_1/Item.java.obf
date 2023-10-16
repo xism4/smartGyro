@@ -1,0 +1,12 @@
+package org.cocos2dx.lib;
+
+final class Va
+  implements Runnable
+{
+  Va(String paramString, int paramInt1, int paramInt2, boolean paramBoolean1, float paramFloat, boolean paramBoolean2) {}
+  
+  public void run()
+  {
+    GameControllerAdapter.access$200(a, b, c, d, e, f);
+  }
+}

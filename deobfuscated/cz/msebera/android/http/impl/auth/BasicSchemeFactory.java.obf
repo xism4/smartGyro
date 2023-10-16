@@ -1,0 +1,31 @@
+package c.a.a.a.i.a;
+
+import c.a.a.a.a.c;
+import c.a.a.a.l.g;
+import java.nio.charset.Charset;
+
+public class e
+  implements c.a.a.a.a.d, c.a.a.a.a.e
+{
+  private final Charset a;
+  
+  public e()
+  {
+    this(null);
+  }
+  
+  public e(Charset paramCharset)
+  {
+    a = paramCharset;
+  }
+  
+  public c a(g paramG)
+  {
+    return new d();
+  }
+  
+  public c a(c.a.a.a.n.e paramE)
+  {
+    return new d(a);
+  }
+}

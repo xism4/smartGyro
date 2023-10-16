@@ -1,0 +1,219 @@
+package android.support.v7.view.menu;
+
+import a.a.d.a.g;
+import android.content.Context;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import java.util.ArrayList;
+
+public class j
+  implements v, AdapterView.OnItemClickListener
+{
+  Context a;
+  LayoutInflater b;
+  l c;
+  ExpandedMenuView d;
+  int e;
+  int f;
+  int g;
+  private v.a h;
+  a i;
+  
+  public j(int paramInt1, int paramInt2)
+  {
+    g = paramInt1;
+    f = paramInt2;
+  }
+  
+  public j(Context paramContext, int paramInt)
+  {
+    this(paramInt, 0);
+    a = paramContext;
+    b = LayoutInflater.from(a);
+  }
+  
+  public w a(ViewGroup paramViewGroup)
+  {
+    if (d == null)
+    {
+      d = ((ExpandedMenuView)b.inflate(g.abc_expanded_menu_layout, paramViewGroup, false));
+      if (i == null) {
+        i = new a();
+      }
+      d.setAdapter(i);
+      d.setOnItemClickListener(this);
+    }
+    return d;
+  }
+  
+  public void a(Context paramContext, l paramL)
+  {
+    int j = f;
+    if (j != 0) {
+      a = new ContextThemeWrapper(paramContext, j);
+    }
+    do
+    {
+      b = LayoutInflater.from(a);
+      break;
+      if (a == null) {
+        break;
+      }
+      a = paramContext;
+    } while (b == null);
+    c = paramL;
+    paramContext = i;
+    if (paramContext != null) {
+      paramContext.notifyDataSetChanged();
+    }
+  }
+  
+  public void a(l paramL, boolean paramBoolean)
+  {
+    v.a localA = h;
+    if (localA != null) {
+      localA.a(paramL, paramBoolean);
+    }
+  }
+  
+  public void a(v.a paramA)
+  {
+    h = paramA;
+  }
+  
+  public void a(boolean paramBoolean)
+  {
+    a localA = i;
+    if (localA != null) {
+      localA.notifyDataSetChanged();
+    }
+  }
+  
+  public boolean a()
+  {
+    return false;
+  }
+  
+  public boolean a(D paramD)
+  {
+    if (!paramD.hasVisibleItems()) {
+      return false;
+    }
+    new m(paramD).a(null);
+    v.a localA = h;
+    if (localA != null) {
+      localA.a(paramD);
+    }
+    return true;
+  }
+  
+  public boolean a(l paramL, p paramP)
+  {
+    return false;
+  }
+  
+  public ListAdapter b()
+  {
+    if (i == null) {
+      i = new a();
+    }
+    return i;
+  }
+  
+  public boolean b(l paramL, p paramP)
+  {
+    return false;
+  }
+  
+  public void onItemClick(AdapterView<?> paramAdapterView, View paramView, int paramInt, long paramLong)
+  {
+    c.a(i.getItem(paramInt), this, 0);
+  }
+  
+  private class a
+    extends BaseAdapter
+  {
+    private int a = -1;
+    
+    public a()
+    {
+      a();
+    }
+    
+    void a()
+    {
+      p localP = c.f();
+      if (localP != null)
+      {
+        ArrayList localArrayList = c.j();
+        int j = localArrayList.size();
+        int i = 0;
+        while (i < j)
+        {
+          if ((p)localArrayList.get(i) == localP)
+          {
+            a = i;
+            return;
+          }
+          i += 1;
+        }
+      }
+      a = -1;
+    }
+    
+    public int getCount()
+    {
+      int i = c.j().size() - e;
+      if (a < 0) {
+        return i;
+      }
+      return i - 1;
+    }
+    
+    public p getItem(int paramInt)
+    {
+      ArrayList localArrayList = c.j();
+      int i = paramInt + e;
+      int j = a;
+      paramInt = i;
+      if (j >= 0)
+      {
+        paramInt = i;
+        if (i >= j) {
+          paramInt = i + 1;
+        }
+      }
+      return (p)localArrayList.get(paramInt);
+    }
+    
+    public long getItemId(int paramInt)
+    {
+      return paramInt;
+    }
+    
+    public View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
+    {
+      View localView = paramView;
+      if (paramView == null)
+      {
+        paramView = j.this;
+        localView = b.inflate(g, paramViewGroup, false);
+      }
+      ((w.a)localView).a(getItem(paramInt), 0);
+      return localView;
+    }
+    
+    public void notifyDataSetChanged()
+    {
+      a();
+      super.notifyDataSetChanged();
+    }
+  }
+}

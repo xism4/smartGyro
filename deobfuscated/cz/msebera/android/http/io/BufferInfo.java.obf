@@ -1,0 +1,6 @@
+package c.a.a.a.j;
+
+public abstract interface a
+{
+  public abstract int length();
+}

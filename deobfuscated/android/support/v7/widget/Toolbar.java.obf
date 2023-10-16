@@ -1,0 +1,1921 @@
+package android.support.v7.widget;
+
+import a.a.c.g.f;
+import a.a.c.g.i;
+import a.a.c.g.u;
+import a.a.d.a.j;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.support.v7.app.a.a;
+import android.support.v7.view.menu.D;
+import android.support.v7.view.menu.l;
+import android.support.v7.view.menu.l.a;
+import android.support.v7.view.menu.p;
+import android.support.v7.view.menu.v;
+import android.support.v7.view.menu.v.a;
+import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
+import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Toolbar
+  extends ViewGroup
+{
+  private int A;
+  private boolean B;
+  private boolean C;
+  private final ArrayList<View> D = new ArrayList();
+  private final ArrayList<View> E = new ArrayList();
+  private final int[] F = new int[2];
+  c G;
+  private final ActionMenuView.e H = new ua(this);
+  private Aa I;
+  private g J;
+  private a K;
+  private v.a L;
+  private l.a M;
+  private boolean N;
+  private final Runnable O = new va(this);
+  private ActionMenuView a;
+  private TextView b;
+  private TextView c;
+  private ImageButton d;
+  private ImageView e;
+  private Drawable f;
+  private CharSequence g;
+  ImageButton h;
+  View i;
+  private Context j;
+  private int k;
+  private int l;
+  private int m;
+  int n;
+  private int o;
+  private int p;
+  private int q;
+  private int r;
+  private int s;
+  private Y t;
+  private int u;
+  private int v;
+  private int w = 8388627;
+  private CharSequence x;
+  private CharSequence y;
+  private int z;
+  
+  public Toolbar(Context paramContext)
+  {
+    this(paramContext, null);
+  }
+  
+  public Toolbar(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, a.a.d.a.a.toolbarStyle);
+  }
+  
+  public Toolbar(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    paramContext = ta.a(getContext(), paramAttributeSet, j.Toolbar, paramInt, 0);
+    l = paramContext.g(j.Toolbar_titleTextAppearance, 0);
+    m = paramContext.g(j.Toolbar_subtitleTextAppearance, 0);
+    w = paramContext.e(j.Toolbar_android_gravity, w);
+    n = paramContext.e(j.Toolbar_buttonGravity, 48);
+    int i1 = paramContext.b(j.Toolbar_titleMargin, 0);
+    paramInt = i1;
+    if (paramContext.g(j.Toolbar_titleMargins)) {
+      paramInt = paramContext.b(j.Toolbar_titleMargins, i1);
+    }
+    s = paramInt;
+    r = paramInt;
+    q = paramInt;
+    p = paramInt;
+    paramInt = paramContext.b(j.Toolbar_titleMarginStart, -1);
+    if (paramInt >= 0) {
+      p = paramInt;
+    }
+    paramInt = paramContext.b(j.Toolbar_titleMarginEnd, -1);
+    if (paramInt >= 0) {
+      q = paramInt;
+    }
+    paramInt = paramContext.b(j.Toolbar_titleMarginTop, -1);
+    if (paramInt >= 0) {
+      r = paramInt;
+    }
+    paramInt = paramContext.b(j.Toolbar_titleMarginBottom, -1);
+    if (paramInt >= 0) {
+      s = paramInt;
+    }
+    o = paramContext.c(j.Toolbar_maxButtonHeight, -1);
+    paramInt = paramContext.b(j.Toolbar_contentInsetStart, Integer.MIN_VALUE);
+    i1 = paramContext.b(j.Toolbar_contentInsetEnd, Integer.MIN_VALUE);
+    int i2 = paramContext.c(j.Toolbar_contentInsetLeft, 0);
+    int i3 = paramContext.c(j.Toolbar_contentInsetRight, 0);
+    l();
+    t.a(i2, i3);
+    if ((paramInt != Integer.MIN_VALUE) || (i1 != Integer.MIN_VALUE)) {
+      t.b(paramInt, i1);
+    }
+    u = paramContext.b(j.Toolbar_contentInsetStartWithNavigation, Integer.MIN_VALUE);
+    v = paramContext.b(j.Toolbar_contentInsetEndWithActions, Integer.MIN_VALUE);
+    f = paramContext.b(j.Toolbar_collapseIcon);
+    g = paramContext.e(j.Toolbar_collapseContentDescription);
+    paramAttributeSet = paramContext.e(j.Toolbar_title);
+    if (!TextUtils.isEmpty(paramAttributeSet)) {
+      setTitle(paramAttributeSet);
+    }
+    paramAttributeSet = paramContext.e(j.Toolbar_subtitle);
+    if (!TextUtils.isEmpty(paramAttributeSet)) {
+      setSubtitle(paramAttributeSet);
+    }
+    j = getContext();
+    setPopupTheme(paramContext.g(j.Toolbar_popupTheme, 0));
+    paramAttributeSet = paramContext.b(j.Toolbar_navigationIcon);
+    if (paramAttributeSet != null) {
+      setNavigationIcon(paramAttributeSet);
+    }
+    paramAttributeSet = paramContext.e(j.Toolbar_navigationContentDescription);
+    if (!TextUtils.isEmpty(paramAttributeSet)) {
+      setNavigationContentDescription(paramAttributeSet);
+    }
+    paramAttributeSet = paramContext.b(j.Toolbar_logo);
+    if (paramAttributeSet != null) {
+      setLogo(paramAttributeSet);
+    }
+    paramAttributeSet = paramContext.e(j.Toolbar_logoDescription);
+    if (!TextUtils.isEmpty(paramAttributeSet)) {
+      setLogoDescription(paramAttributeSet);
+    }
+    if (paramContext.g(j.Toolbar_titleTextColor)) {
+      setTitleTextColor(paramContext.a(j.Toolbar_titleTextColor, -1));
+    }
+    if (paramContext.g(j.Toolbar_subtitleTextColor)) {
+      setSubtitleTextColor(paramContext.a(j.Toolbar_subtitleTextColor, -1));
+    }
+    paramContext.a();
+  }
+  
+  private int a(int paramInt)
+  {
+    int i1 = u.d(this);
+    int i2 = f.a(paramInt, i1) & 0x7;
+    if (i2 != 1)
+    {
+      paramInt = 3;
+      if ((i2 != 3) && (i2 != 5))
+      {
+        if (i1 == 1) {
+          paramInt = 5;
+        }
+        return paramInt;
+      }
+    }
+    return i2;
+  }
+  
+  private int a(View paramView)
+  {
+    paramView = (ViewGroup.MarginLayoutParams)paramView.getLayoutParams();
+    return i.b(paramView) + i.a(paramView);
+  }
+  
+  private int a(View paramView, int paramInt)
+  {
+    b localB = (b)paramView.getLayoutParams();
+    int i2 = paramView.getMeasuredHeight();
+    if (paramInt > 0) {
+      paramInt = (i2 - paramInt) / 2;
+    } else {
+      paramInt = 0;
+    }
+    int i1 = b(a);
+    if (i1 != 48)
+    {
+      if (i1 != 80)
+      {
+        int i3 = getPaddingTop();
+        int i4 = getPaddingBottom();
+        int i5 = getHeight();
+        i1 = (i5 - i3 - i4 - i2) / 2;
+        paramInt = topMargin;
+        if (i1 >= paramInt)
+        {
+          i2 = i5 - i4 - i2 - i1 - i3;
+          i4 = bottomMargin;
+          paramInt = i1;
+          if (i2 < i4) {
+            paramInt = Math.max(0, i1 - (i4 - i2));
+          }
+        }
+        return i3 + paramInt;
+      }
+      return getHeight() - getPaddingBottom() - i2 - bottomMargin - paramInt;
+    }
+    return getPaddingTop() - paramInt;
+  }
+  
+  private int a(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int[] paramArrayOfInt)
+  {
+    ViewGroup.MarginLayoutParams localMarginLayoutParams = (ViewGroup.MarginLayoutParams)paramView.getLayoutParams();
+    int i1 = leftMargin - paramArrayOfInt[0];
+    int i2 = rightMargin - paramArrayOfInt[1];
+    int i3 = Math.max(0, i1) + Math.max(0, i2);
+    paramArrayOfInt[0] = Math.max(0, -i1);
+    paramArrayOfInt[1] = Math.max(0, -i2);
+    paramView.measure(ViewGroup.getChildMeasureSpec(paramInt1, getPaddingLeft() + getPaddingRight() + i3 + paramInt2, width), ViewGroup.getChildMeasureSpec(paramInt3, getPaddingTop() + getPaddingBottom() + topMargin + bottomMargin + paramInt4, height));
+    return paramView.getMeasuredWidth() + i3;
+  }
+  
+  private int a(View paramView, int paramInt1, int[] paramArrayOfInt, int paramInt2)
+  {
+    b localB = (b)paramView.getLayoutParams();
+    int i1 = leftMargin - paramArrayOfInt[0];
+    paramInt1 += Math.max(0, i1);
+    paramArrayOfInt[0] = Math.max(0, -i1);
+    paramInt2 = a(paramView, paramInt2);
+    i1 = paramView.getMeasuredWidth();
+    paramView.layout(paramInt1, paramInt2, paramInt1 + i1, paramView.getMeasuredHeight() + paramInt2);
+    return paramInt1 + (i1 + rightMargin);
+  }
+  
+  private int a(List<View> paramList, int[] paramArrayOfInt)
+  {
+    int i4 = paramArrayOfInt[0];
+    int i3 = paramArrayOfInt[1];
+    int i5 = paramList.size();
+    int i1 = 0;
+    int i2 = 0;
+    while (i1 < i5)
+    {
+      paramArrayOfInt = (View)paramList.get(i1);
+      b localB = (b)paramArrayOfInt.getLayoutParams();
+      i4 = leftMargin - i4;
+      i3 = rightMargin - i3;
+      int i6 = Math.max(0, i4);
+      int i7 = Math.max(0, i3);
+      i4 = Math.max(0, -i4);
+      i3 = Math.max(0, -i3);
+      i2 += i6 + paramArrayOfInt.getMeasuredWidth() + i7;
+      i1 += 1;
+    }
+    return i2;
+  }
+  
+  private void a(View paramView, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5)
+  {
+    ViewGroup.MarginLayoutParams localMarginLayoutParams = (ViewGroup.MarginLayoutParams)paramView.getLayoutParams();
+    int i1 = ViewGroup.getChildMeasureSpec(paramInt1, getPaddingLeft() + getPaddingRight() + leftMargin + rightMargin + paramInt2, width);
+    paramInt2 = ViewGroup.getChildMeasureSpec(paramInt3, getPaddingTop() + getPaddingBottom() + topMargin + bottomMargin + paramInt4, height);
+    paramInt3 = View.MeasureSpec.getMode(paramInt2);
+    paramInt1 = paramInt2;
+    if (paramInt3 != 1073741824)
+    {
+      paramInt1 = paramInt2;
+      if (paramInt5 >= 0)
+      {
+        paramInt1 = paramInt5;
+        if (paramInt3 != 0) {
+          paramInt1 = Math.min(View.MeasureSpec.getSize(paramInt2), paramInt5);
+        }
+        paramInt1 = View.MeasureSpec.makeMeasureSpec(paramInt1, 1073741824);
+      }
+    }
+    paramView.measure(i1, paramInt1);
+  }
+  
+  private void a(View paramView, boolean paramBoolean)
+  {
+    Object localObject = paramView.getLayoutParams();
+    if (localObject == null) {
+      localObject = generateDefaultLayoutParams();
+    } else if (!checkLayoutParams((ViewGroup.LayoutParams)localObject)) {
+      localObject = generateLayoutParams((ViewGroup.LayoutParams)localObject);
+    } else {
+      localObject = (b)localObject;
+    }
+    b = 1;
+    if ((paramBoolean) && (i != null))
+    {
+      paramView.setLayoutParams((ViewGroup.LayoutParams)localObject);
+      E.add(paramView);
+      return;
+    }
+    addView(paramView, (ViewGroup.LayoutParams)localObject);
+  }
+  
+  private void a(List<View> paramList, int paramInt)
+  {
+    int i1 = u.d(this);
+    int i2 = 0;
+    if (i1 == 1) {
+      i1 = 1;
+    } else {
+      i1 = 0;
+    }
+    int i4 = getChildCount();
+    int i3 = f.a(paramInt, u.d(this));
+    paramList.clear();
+    paramInt = i2;
+    View localView;
+    b localB;
+    if (i1 != 0)
+    {
+      paramInt = i4 - 1;
+      while (paramInt >= 0)
+      {
+        localView = getChildAt(paramInt);
+        localB = (b)localView.getLayoutParams();
+        if ((b == 0) && (d(localView)) && (a(a) == i3)) {
+          paramList.add(localView);
+        }
+        paramInt -= 1;
+      }
+    }
+    while (paramInt < i4)
+    {
+      localView = getChildAt(paramInt);
+      localB = (b)localView.getLayoutParams();
+      if ((b == 0) && (d(localView)) && (a(a) == i3)) {
+        paramList.add(localView);
+      }
+      paramInt += 1;
+    }
+  }
+  
+  private int b(int paramInt)
+  {
+    int i1 = paramInt & 0x70;
+    paramInt = i1;
+    if (i1 != 16)
+    {
+      paramInt = i1;
+      if (i1 != 48)
+      {
+        paramInt = i1;
+        if (i1 != 80) {
+          paramInt = w & 0x70;
+        }
+      }
+    }
+    return paramInt;
+  }
+  
+  private int b(View paramView)
+  {
+    paramView = (ViewGroup.MarginLayoutParams)paramView.getLayoutParams();
+    return topMargin + bottomMargin;
+  }
+  
+  private int b(View paramView, int paramInt1, int[] paramArrayOfInt, int paramInt2)
+  {
+    b localB = (b)paramView.getLayoutParams();
+    int i1 = rightMargin - paramArrayOfInt[1];
+    paramInt1 -= Math.max(0, i1);
+    paramArrayOfInt[1] = Math.max(0, -i1);
+    paramInt2 = a(paramView, paramInt2);
+    i1 = paramView.getMeasuredWidth();
+    paramView.layout(paramInt1 - i1, paramInt2, paramInt1, paramView.getMeasuredHeight() + paramInt2);
+    return paramInt1 - (i1 + leftMargin);
+  }
+  
+  private boolean c(View paramView)
+  {
+    return (paramView.getParent() == this) || (E.contains(paramView));
+  }
+  
+  private boolean d(View paramView)
+  {
+    return (paramView != null) && (paramView.getParent() == this) && (paramView.getVisibility() != 8);
+  }
+  
+  private MenuInflater getMenuInflater()
+  {
+    return new a.a.d.d.g(getContext());
+  }
+  
+  private void l()
+  {
+    if (t == null) {
+      t = new Y();
+    }
+  }
+  
+  private void m()
+  {
+    if (e == null) {
+      e = new t(getContext());
+    }
+  }
+  
+  private void n()
+  {
+    o();
+    if (a.g() == null)
+    {
+      l localL = (l)a.getMenu();
+      if (K == null) {
+        K = new a();
+      }
+      a.setExpandedActionViewsExclusive(true);
+      localL.a(K, j);
+    }
+  }
+  
+  private void o()
+  {
+    if (a == null)
+    {
+      a = new ActionMenuView(getContext());
+      a.setPopupTheme(k);
+      a.setOnMenuItemClickListener(H);
+      a.a(L, M);
+      b localB = generateDefaultLayoutParams();
+      a = (0x800005 | n & 0x70);
+      a.setLayoutParams(localB);
+      a(a, false);
+    }
+  }
+  
+  private void p()
+  {
+    if (d == null)
+    {
+      d = new r(getContext(), null, a.a.d.a.a.toolbarNavigationButtonStyle);
+      b localB = generateDefaultLayoutParams();
+      a = (0x800003 | n & 0x70);
+      d.setLayoutParams(localB);
+    }
+  }
+  
+  private void q()
+  {
+    removeCallbacks(O);
+    post(O);
+  }
+  
+  private boolean r()
+  {
+    if (!N) {
+      return false;
+    }
+    int i2 = getChildCount();
+    int i1 = 0;
+    while (i1 < i2)
+    {
+      View localView = getChildAt(i1);
+      if ((d(localView)) && (localView.getMeasuredWidth() > 0) && (localView.getMeasuredHeight() > 0)) {
+        return false;
+      }
+      i1 += 1;
+    }
+    return true;
+  }
+  
+  void a()
+  {
+    int i1 = E.size() - 1;
+    while (i1 >= 0)
+    {
+      addView((View)E.get(i1));
+      i1 -= 1;
+    }
+    E.clear();
+  }
+  
+  public void a(int paramInt1, int paramInt2)
+  {
+    l();
+    t.b(paramInt1, paramInt2);
+  }
+  
+  public void a(Context paramContext, int paramInt)
+  {
+    m = paramInt;
+    TextView localTextView = c;
+    if (localTextView != null) {
+      localTextView.setTextAppearance(paramContext, paramInt);
+    }
+  }
+  
+  public void a(l paramL, g paramG)
+  {
+    if ((paramL == null) && (a == null)) {
+      return;
+    }
+    o();
+    l localL = a.g();
+    if (localL == paramL) {
+      return;
+    }
+    if (localL != null)
+    {
+      localL.b(J);
+      localL.b(K);
+    }
+    if (K == null) {
+      K = new a();
+    }
+    paramG.b(true);
+    if (paramL != null)
+    {
+      paramL.a(paramG, j);
+      paramL.a(K, j);
+    }
+    else
+    {
+      paramG.a(j, null);
+      K.a(j, null);
+      paramG.a(true);
+      K.a(true);
+    }
+    a.setPopupTheme(k);
+    a.setPresenter(paramG);
+    J = paramG;
+  }
+  
+  public void b(Context paramContext, int paramInt)
+  {
+    l = paramInt;
+    TextView localTextView = b;
+    if (localTextView != null) {
+      localTextView.setTextAppearance(paramContext, paramInt);
+    }
+  }
+  
+  public boolean b()
+  {
+    if (getVisibility() == 0)
+    {
+      ActionMenuView localActionMenuView = a;
+      if ((localActionMenuView != null) && (localActionMenuView.f())) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public void c()
+  {
+    Object localObject = K;
+    if (localObject == null) {
+      localObject = null;
+    } else {
+      localObject = b;
+    }
+    if (localObject != null) {
+      ((p)localObject).collapseActionView();
+    }
+  }
+  
+  protected boolean checkLayoutParams(ViewGroup.LayoutParams paramLayoutParams)
+  {
+    return (super.checkLayoutParams(paramLayoutParams)) && ((paramLayoutParams instanceof b));
+  }
+  
+  public void d()
+  {
+    ActionMenuView localActionMenuView = a;
+    if (localActionMenuView != null) {
+      localActionMenuView.a();
+    }
+  }
+  
+  void e()
+  {
+    if (h == null)
+    {
+      h = new r(getContext(), null, a.a.d.a.a.toolbarNavigationButtonStyle);
+      h.setImageDrawable(f);
+      h.setContentDescription(g);
+      b localB = generateDefaultLayoutParams();
+      a = (0x800003 | n & 0x70);
+      b = 2;
+      h.setLayoutParams(localB);
+      h.setOnClickListener(new wa(this));
+    }
+  }
+  
+  public boolean f()
+  {
+    a localA = K;
+    return (localA != null) && (b != null);
+  }
+  
+  public boolean g()
+  {
+    ActionMenuView localActionMenuView = a;
+    return (localActionMenuView != null) && (localActionMenuView.c());
+  }
+  
+  protected b generateDefaultLayoutParams()
+  {
+    return new b(-2, -2);
+  }
+  
+  public b generateLayoutParams(AttributeSet paramAttributeSet)
+  {
+    return new b(getContext(), paramAttributeSet);
+  }
+  
+  protected b generateLayoutParams(ViewGroup.LayoutParams paramLayoutParams)
+  {
+    if ((paramLayoutParams instanceof b)) {
+      return new b((b)paramLayoutParams);
+    }
+    if ((paramLayoutParams instanceof a.a)) {
+      return new b((a.a)paramLayoutParams);
+    }
+    if ((paramLayoutParams instanceof ViewGroup.MarginLayoutParams)) {
+      return new b((ViewGroup.MarginLayoutParams)paramLayoutParams);
+    }
+    return new b(paramLayoutParams);
+  }
+  
+  public int getContentInsetEnd()
+  {
+    Y localY = t;
+    if (localY != null) {
+      return localY.a();
+    }
+    return 0;
+  }
+  
+  public int getContentInsetEndWithActions()
+  {
+    int i1 = v;
+    if (i1 != Integer.MIN_VALUE) {
+      return i1;
+    }
+    return getContentInsetEnd();
+  }
+  
+  public int getContentInsetLeft()
+  {
+    Y localY = t;
+    if (localY != null) {
+      return localY.b();
+    }
+    return 0;
+  }
+  
+  public int getContentInsetRight()
+  {
+    Y localY = t;
+    if (localY != null) {
+      return localY.c();
+    }
+    return 0;
+  }
+  
+  public int getContentInsetStart()
+  {
+    Y localY = t;
+    if (localY != null) {
+      return localY.d();
+    }
+    return 0;
+  }
+  
+  public int getContentInsetStartWithNavigation()
+  {
+    int i1 = u;
+    if (i1 != Integer.MIN_VALUE) {
+      return i1;
+    }
+    return getContentInsetStart();
+  }
+  
+  public int getCurrentContentInsetEnd()
+  {
+    Object localObject = a;
+    if (localObject != null)
+    {
+      localObject = ((ActionMenuView)localObject).g();
+      if ((localObject != null) && (((l)localObject).hasVisibleItems()))
+      {
+        i1 = 1;
+        break label32;
+      }
+    }
+    int i1 = 0;
+    label32:
+    if (i1 != 0) {
+      return Math.max(getContentInsetEnd(), Math.max(v, 0));
+    }
+    return getContentInsetEnd();
+  }
+  
+  public int getCurrentContentInsetLeft()
+  {
+    if (u.d(this) == 1) {
+      return getCurrentContentInsetEnd();
+    }
+    return getCurrentContentInsetStart();
+  }
+  
+  public int getCurrentContentInsetRight()
+  {
+    if (u.d(this) == 1) {
+      return getCurrentContentInsetStart();
+    }
+    return getCurrentContentInsetEnd();
+  }
+  
+  public int getCurrentContentInsetStart()
+  {
+    if (getNavigationIcon() != null) {
+      return Math.max(getContentInsetStart(), Math.max(u, 0));
+    }
+    return getContentInsetStart();
+  }
+  
+  public Drawable getLogo()
+  {
+    ImageView localImageView = e;
+    if (localImageView != null) {
+      return localImageView.getDrawable();
+    }
+    return null;
+  }
+  
+  public CharSequence getLogoDescription()
+  {
+    ImageView localImageView = e;
+    if (localImageView != null) {
+      return localImageView.getContentDescription();
+    }
+    return null;
+  }
+  
+  public Menu getMenu()
+  {
+    n();
+    return a.getMenu();
+  }
+  
+  public CharSequence getNavigationContentDescription()
+  {
+    ImageButton localImageButton = d;
+    if (localImageButton != null) {
+      return localImageButton.getContentDescription();
+    }
+    return null;
+  }
+  
+  public Drawable getNavigationIcon()
+  {
+    ImageButton localImageButton = d;
+    if (localImageButton != null) {
+      return localImageButton.getDrawable();
+    }
+    return null;
+  }
+  
+  g getOuterActionMenuPresenter()
+  {
+    return J;
+  }
+  
+  public Drawable getOverflowIcon()
+  {
+    n();
+    return a.getOverflowIcon();
+  }
+  
+  Context getPopupContext()
+  {
+    return j;
+  }
+  
+  public int getPopupTheme()
+  {
+    return k;
+  }
+  
+  public CharSequence getSubtitle()
+  {
+    return y;
+  }
+  
+  public CharSequence getTitle()
+  {
+    return x;
+  }
+  
+  public int getTitleMarginBottom()
+  {
+    return s;
+  }
+  
+  public int getTitleMarginEnd()
+  {
+    return q;
+  }
+  
+  public int getTitleMarginStart()
+  {
+    return p;
+  }
+  
+  public int getTitleMarginTop()
+  {
+    return r;
+  }
+  
+  public L getWrapper()
+  {
+    if (I == null) {
+      I = new Aa(this, true);
+    }
+    return I;
+  }
+  
+  public boolean h()
+  {
+    ActionMenuView localActionMenuView = a;
+    return (localActionMenuView != null) && (localActionMenuView.d());
+  }
+  
+  public boolean i()
+  {
+    ActionMenuView localActionMenuView = a;
+    return (localActionMenuView != null) && (localActionMenuView.e());
+  }
+  
+  void j()
+  {
+    int i1 = getChildCount() - 1;
+    while (i1 >= 0)
+    {
+      View localView = getChildAt(i1);
+      if ((getLayoutParamsb != 2) && (localView != a))
+      {
+        removeViewAt(i1);
+        E.add(localView);
+      }
+      i1 -= 1;
+    }
+  }
+  
+  public boolean k()
+  {
+    ActionMenuView localActionMenuView = a;
+    return (localActionMenuView != null) && (localActionMenuView.h());
+  }
+  
+  protected void onDetachedFromWindow()
+  {
+    super.onDetachedFromWindow();
+    removeCallbacks(O);
+  }
+  
+  public boolean onHoverEvent(MotionEvent paramMotionEvent)
+  {
+    int i1 = paramMotionEvent.getActionMasked();
+    if (i1 == 9) {
+      C = false;
+    }
+    if (!C)
+    {
+      boolean bool = super.onHoverEvent(paramMotionEvent);
+      if ((i1 == 9) && (!bool)) {
+        C = true;
+      }
+    }
+    if ((i1 == 10) || (i1 == 3)) {
+      C = false;
+    }
+    return true;
+  }
+  
+  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if (u.d(this) == 1) {
+      i3 = 1;
+    } else {
+      i3 = 0;
+    }
+    int i5 = getWidth();
+    int i8 = getHeight();
+    int i1 = getPaddingLeft();
+    int i6 = getPaddingRight();
+    int i7 = getPaddingTop();
+    int i9 = getPaddingBottom();
+    int i4 = i5 - i6;
+    int[] arrayOfInt = F;
+    arrayOfInt[1] = 0;
+    arrayOfInt[0] = 0;
+    paramInt1 = u.e(this);
+    if (paramInt1 >= 0) {
+      paramInt4 = Math.min(paramInt1, paramInt4 - paramInt2);
+    } else {
+      paramInt4 = 0;
+    }
+    if (d(d))
+    {
+      if (i3 != 0)
+      {
+        i2 = b(d, i4, arrayOfInt, paramInt4);
+        paramInt3 = i1;
+        break label167;
+      }
+      paramInt3 = a(d, i1, arrayOfInt, paramInt4);
+    }
+    else
+    {
+      paramInt3 = i1;
+    }
+    int i2 = i4;
+    label167:
+    paramInt1 = paramInt3;
+    paramInt2 = i2;
+    if (d(h)) {
+      if (i3 != 0)
+      {
+        paramInt2 = b(h, i2, arrayOfInt, paramInt4);
+        paramInt1 = paramInt3;
+      }
+      else
+      {
+        paramInt1 = a(h, paramInt3, arrayOfInt, paramInt4);
+        paramInt2 = i2;
+      }
+    }
+    i2 = paramInt1;
+    paramInt3 = paramInt2;
+    if (d(a)) {
+      if (i3 != 0)
+      {
+        i2 = a(a, paramInt1, arrayOfInt, paramInt4);
+        paramInt3 = paramInt2;
+      }
+      else
+      {
+        paramInt3 = b(a, paramInt2, arrayOfInt, paramInt4);
+        i2 = paramInt1;
+      }
+    }
+    paramInt2 = getCurrentContentInsetLeft();
+    paramInt1 = getCurrentContentInsetRight();
+    arrayOfInt[0] = Math.max(0, paramInt2 - i2);
+    arrayOfInt[1] = Math.max(0, paramInt1 - (i4 - paramInt3));
+    paramInt2 = Math.max(i2, paramInt2);
+    paramInt3 = Math.min(paramInt3, i4 - paramInt1);
+    paramInt1 = paramInt2;
+    i2 = paramInt3;
+    if (d(i)) {
+      if (i3 != 0)
+      {
+        i2 = b(i, paramInt3, arrayOfInt, paramInt4);
+        paramInt1 = paramInt2;
+      }
+      else
+      {
+        paramInt1 = a(i, paramInt2, arrayOfInt, paramInt4);
+        i2 = paramInt3;
+      }
+    }
+    paramInt3 = paramInt1;
+    paramInt2 = i2;
+    if (d(e)) {
+      if (i3 != 0)
+      {
+        paramInt2 = b(e, i2, arrayOfInt, paramInt4);
+        paramInt3 = paramInt1;
+      }
+      else
+      {
+        paramInt3 = a(e, paramInt1, arrayOfInt, paramInt4);
+        paramInt2 = i2;
+      }
+    }
+    boolean bool = d(b);
+    paramBoolean = d(c);
+    Object localObject1;
+    if (bool)
+    {
+      localObject1 = (b)b.getLayoutParams();
+      paramInt1 = topMargin + b.getMeasuredHeight() + bottomMargin + 0;
+    }
+    else
+    {
+      paramInt1 = 0;
+    }
+    if (paramBoolean)
+    {
+      localObject1 = (b)c.getLayoutParams();
+      paramInt1 += topMargin + c.getMeasuredHeight() + bottomMargin;
+    }
+    if ((!bool) && (!paramBoolean)) {}
+    for (paramInt1 = paramInt3;; paramInt1 = paramInt3)
+    {
+      paramInt3 = paramInt2;
+      break label1330;
+      if (bool) {
+        localObject1 = b;
+      } else {
+        localObject1 = c;
+      }
+      if (paramBoolean) {
+        localObject2 = c;
+      } else {
+        localObject2 = b;
+      }
+      localObject1 = (b)((View)localObject1).getLayoutParams();
+      Object localObject2 = (b)((View)localObject2).getLayoutParams();
+      if (((bool) && (b.getMeasuredWidth() > 0)) || ((paramBoolean) && (c.getMeasuredWidth() > 0))) {
+        i2 = 1;
+      } else {
+        i2 = 0;
+      }
+      i4 = w & 0x70;
+      if (i4 != 48)
+      {
+        if (i4 != 80)
+        {
+          i4 = (i8 - i7 - i9 - paramInt1) / 2;
+          int i10 = topMargin;
+          int i11 = r;
+          if (i4 < i10 + i11)
+          {
+            paramInt1 = i10 + i11;
+          }
+          else
+          {
+            i8 = i8 - i9 - paramInt1 - i4 - i7;
+            i9 = bottomMargin;
+            i10 = s;
+            paramInt1 = i4;
+            if (i8 < i9 + i10) {
+              paramInt1 = Math.max(0, i4 - (bottomMargin + i10 - i8));
+            }
+          }
+          paramInt1 = i7 + paramInt1;
+        }
+        else
+        {
+          paramInt1 = i8 - i9 - bottomMargin - s - paramInt1;
+        }
+      }
+      else {
+        paramInt1 = getPaddingTop() + topMargin + r;
+      }
+      if (i3 == 0) {
+        break;
+      }
+      if (i2 != 0) {
+        i3 = p;
+      } else {
+        i3 = 0;
+      }
+      i3 -= arrayOfInt[1];
+      paramInt2 -= Math.max(0, i3);
+      arrayOfInt[1] = Math.max(0, -i3);
+      if (bool)
+      {
+        localObject1 = (b)b.getLayoutParams();
+        i4 = paramInt2 - b.getMeasuredWidth();
+        i3 = b.getMeasuredHeight() + paramInt1;
+        b.layout(i4, paramInt1, paramInt2, i3);
+        paramInt1 = i4 - q;
+        i4 = i3 + bottomMargin;
+      }
+      else
+      {
+        i3 = paramInt2;
+        i4 = paramInt1;
+        paramInt1 = i3;
+      }
+      if (paramBoolean)
+      {
+        localObject1 = (b)c.getLayoutParams();
+        i3 = i4 + topMargin;
+        i4 = c.getMeasuredWidth();
+        i7 = c.getMeasuredHeight();
+        c.layout(paramInt2 - i4, i3, paramInt2, i7 + i3);
+        i3 = paramInt2 - q;
+        i4 = bottomMargin;
+      }
+      else
+      {
+        i3 = paramInt2;
+      }
+      if (i2 != 0) {
+        paramInt2 = Math.min(paramInt1, i3);
+      }
+    }
+    if (i2 != 0) {
+      i3 = p;
+    } else {
+      i3 = 0;
+    }
+    i3 -= arrayOfInt[0];
+    paramInt3 += Math.max(0, i3);
+    arrayOfInt[0] = Math.max(0, -i3);
+    if (bool)
+    {
+      localObject1 = (b)b.getLayoutParams();
+      i3 = b.getMeasuredWidth() + paramInt3;
+      i4 = b.getMeasuredHeight() + paramInt1;
+      b.layout(paramInt3, paramInt1, i3, i4);
+      i3 += q;
+      paramInt1 = i4 + bottomMargin;
+    }
+    else
+    {
+      i3 = paramInt3;
+    }
+    if (paramBoolean)
+    {
+      localObject1 = (b)c.getLayoutParams();
+      paramInt1 += topMargin;
+      i4 = c.getMeasuredWidth() + paramInt3;
+      i7 = c.getMeasuredHeight();
+      c.layout(paramInt3, paramInt1, i4, i7 + paramInt1);
+      i4 += q;
+      paramInt1 = bottomMargin;
+    }
+    else
+    {
+      i4 = paramInt3;
+    }
+    paramInt1 = paramInt3;
+    paramInt3 = paramInt2;
+    if (i2 != 0)
+    {
+      paramInt1 = Math.max(i3, i4);
+      paramInt3 = paramInt2;
+    }
+    label1330:
+    i2 = i1;
+    i1 = 0;
+    a(D, 3);
+    int i3 = D.size();
+    paramInt2 = 0;
+    while (paramInt2 < i3)
+    {
+      paramInt1 = a((View)D.get(paramInt2), paramInt1, arrayOfInt, paramInt4);
+      paramInt2 += 1;
+    }
+    a(D, 5);
+    i3 = D.size();
+    paramInt2 = 0;
+    while (paramInt2 < i3)
+    {
+      paramInt3 = b((View)D.get(paramInt2), paramInt3, arrayOfInt, paramInt4);
+      paramInt2 += 1;
+    }
+    a(D, 1);
+    i3 = a(D, arrayOfInt);
+    paramInt2 = i2 + (i5 - i2 - i6) / 2 - i3 / 2;
+    i2 = i3 + paramInt2;
+    if (paramInt2 >= paramInt1) {
+      if (i2 > paramInt3) {
+        paramInt1 = paramInt2 - (i2 - paramInt3);
+      } else {
+        paramInt1 = paramInt2;
+      }
+    }
+    paramInt3 = D.size();
+    paramInt2 = i1;
+    while (paramInt2 < paramInt3)
+    {
+      paramInt1 = a((View)D.get(paramInt2), paramInt1, arrayOfInt, paramInt4);
+      paramInt2 += 1;
+    }
+    D.clear();
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    int[] arrayOfInt = F;
+    if (Ha.a(this))
+    {
+      i6 = 1;
+      i5 = 0;
+    }
+    else
+    {
+      i6 = 0;
+      i5 = 1;
+    }
+    if (d(d))
+    {
+      a(d, paramInt1, 0, paramInt2, 0, o);
+      i1 = d.getMeasuredWidth() + a(d);
+      i4 = Math.max(0, d.getMeasuredHeight() + b(d));
+      i3 = View.combineMeasuredStates(0, d.getMeasuredState());
+    }
+    else
+    {
+      i1 = 0;
+      i4 = 0;
+      i3 = 0;
+    }
+    int i7 = i1;
+    int i2 = i4;
+    int i1 = i3;
+    if (d(h))
+    {
+      a(h, paramInt1, 0, paramInt2, 0, o);
+      i7 = h.getMeasuredWidth() + a(h);
+      i2 = Math.max(i4, h.getMeasuredHeight() + b(h));
+      i1 = View.combineMeasuredStates(i3, h.getMeasuredState());
+    }
+    int i3 = getCurrentContentInsetStart();
+    int i4 = 0 + Math.max(i3, i7);
+    arrayOfInt[i6] = Math.max(0, i3 - i7);
+    if (d(a))
+    {
+      a(a, paramInt1, i4, paramInt2, 0, o);
+      i3 = a.getMeasuredWidth() + a(a);
+      i2 = Math.max(i2, a.getMeasuredHeight() + b(a));
+      i1 = View.combineMeasuredStates(i1, a.getMeasuredState());
+    }
+    else
+    {
+      i3 = 0;
+    }
+    i7 = getCurrentContentInsetEnd();
+    int i6 = i4 + Math.max(i7, i3);
+    arrayOfInt[i5] = Math.max(0, i7 - i3);
+    int i5 = i6;
+    i4 = i2;
+    i3 = i1;
+    if (d(i))
+    {
+      i5 = i6 + a(i, paramInt1, i6, paramInt2, 0, arrayOfInt);
+      i4 = Math.max(i2, i.getMeasuredHeight() + b(i));
+      i3 = View.combineMeasuredStates(i1, i.getMeasuredState());
+    }
+    i2 = i5;
+    i6 = i4;
+    i1 = i3;
+    if (d(e))
+    {
+      i2 = i5 + a(e, paramInt1, i5, paramInt2, 0, arrayOfInt);
+      i6 = Math.max(i4, e.getMeasuredHeight() + b(e));
+      i1 = View.combineMeasuredStates(i3, e.getMeasuredState());
+    }
+    int i8 = getChildCount();
+    i5 = i6;
+    i3 = 0;
+    i4 = i2;
+    i2 = i3;
+    while (i2 < i8)
+    {
+      View localView = getChildAt(i2);
+      i7 = i4;
+      i6 = i1;
+      i3 = i5;
+      if (getLayoutParamsb == 0) {
+        if (!d(localView))
+        {
+          i7 = i4;
+          i6 = i1;
+          i3 = i5;
+        }
+        else
+        {
+          i7 = i4 + a(localView, paramInt1, i4, paramInt2, 0, arrayOfInt);
+          i3 = Math.max(i5, localView.getMeasuredHeight() + b(localView));
+          i6 = View.combineMeasuredStates(i1, localView.getMeasuredState());
+        }
+      }
+      i2 += 1;
+      i4 = i7;
+      i1 = i6;
+      i5 = i3;
+    }
+    i6 = r + s;
+    i7 = p + q;
+    if (d(b))
+    {
+      a(b, paramInt1, i4 + i7, paramInt2, i6, arrayOfInt);
+      i2 = b.getMeasuredWidth();
+      i8 = a(b);
+      i3 = b.getMeasuredHeight();
+      int i9 = b(b);
+      i1 = View.combineMeasuredStates(i1, b.getMeasuredState());
+      i3 += i9;
+      i2 += i8;
+    }
+    else
+    {
+      i2 = 0;
+      i3 = 0;
+    }
+    if (d(c))
+    {
+      i2 = Math.max(i2, a(c, paramInt1, i4 + i7, paramInt2, i3 + i6, arrayOfInt));
+      i3 += c.getMeasuredHeight() + b(c);
+      i1 = View.combineMeasuredStates(i1, c.getMeasuredState());
+    }
+    i3 = Math.max(i5, i3);
+    i7 = getPaddingLeft();
+    i8 = getPaddingRight();
+    i5 = getPaddingTop();
+    i6 = getPaddingBottom();
+    i2 = View.resolveSizeAndState(Math.max(i4 + i2 + (i7 + i8), getSuggestedMinimumWidth()), paramInt1, 0xFF000000 & i1);
+    paramInt1 = View.resolveSizeAndState(Math.max(i3 + (i5 + i6), getSuggestedMinimumHeight()), paramInt2, i1 << 16);
+    if (r()) {
+      paramInt1 = 0;
+    }
+    setMeasuredDimension(i2, paramInt1);
+  }
+  
+  protected void onRestoreInstanceState(Parcelable paramParcelable)
+  {
+    if (!(paramParcelable instanceof d))
+    {
+      super.onRestoreInstanceState(paramParcelable);
+      return;
+    }
+    d localD = (d)paramParcelable;
+    super.onRestoreInstanceState(localD.a());
+    paramParcelable = a;
+    if (paramParcelable != null) {
+      paramParcelable = paramParcelable.g();
+    } else {
+      paramParcelable = null;
+    }
+    int i1 = c;
+    if ((i1 != 0) && (K != null) && (paramParcelable != null))
+    {
+      paramParcelable = paramParcelable.findItem(i1);
+      if (paramParcelable != null) {
+        paramParcelable.expandActionView();
+      }
+    }
+    if (d) {
+      q();
+    }
+  }
+  
+  public void onRtlPropertiesChanged(int paramInt)
+  {
+    if (Build.VERSION.SDK_INT >= 17) {
+      super.onRtlPropertiesChanged(paramInt);
+    }
+    l();
+    Y localY = t;
+    boolean bool = true;
+    if (paramInt != 1) {
+      bool = false;
+    }
+    localY.a(bool);
+  }
+  
+  protected Parcelable onSaveInstanceState()
+  {
+    d localD = new d(super.onSaveInstanceState());
+    Object localObject = K;
+    if (localObject != null)
+    {
+      localObject = b;
+      if (localObject != null) {
+        c = ((p)localObject).getItemId();
+      }
+    }
+    d = i();
+    return localD;
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    int i1 = paramMotionEvent.getActionMasked();
+    if (i1 == 0) {
+      B = false;
+    }
+    if (!B)
+    {
+      boolean bool = super.onTouchEvent(paramMotionEvent);
+      if ((i1 == 0) && (!bool)) {
+        B = true;
+      }
+    }
+    if ((i1 == 1) || (i1 == 3)) {
+      B = false;
+    }
+    return true;
+  }
+  
+  public void setCollapsible(boolean paramBoolean)
+  {
+    N = paramBoolean;
+    requestLayout();
+  }
+  
+  public void setContentInsetEndWithActions(int paramInt)
+  {
+    int i1 = paramInt;
+    if (paramInt < 0) {
+      i1 = Integer.MIN_VALUE;
+    }
+    if (i1 != v)
+    {
+      v = i1;
+      if (getNavigationIcon() != null) {
+        requestLayout();
+      }
+    }
+  }
+  
+  public void setContentInsetStartWithNavigation(int paramInt)
+  {
+    int i1 = paramInt;
+    if (paramInt < 0) {
+      i1 = Integer.MIN_VALUE;
+    }
+    if (i1 != u)
+    {
+      u = i1;
+      if (getNavigationIcon() != null) {
+        requestLayout();
+      }
+    }
+  }
+  
+  public void setLogo(int paramInt)
+  {
+    setLogo(a.a.d.b.a.a.b(getContext(), paramInt));
+  }
+  
+  public void setLogo(Drawable paramDrawable)
+  {
+    if (paramDrawable != null)
+    {
+      m();
+      if (!c(e)) {
+        a(e, true);
+      }
+    }
+    else
+    {
+      localImageView = e;
+      if ((localImageView != null) && (c(localImageView)))
+      {
+        removeView(e);
+        E.remove(e);
+      }
+    }
+    ImageView localImageView = e;
+    if (localImageView != null) {
+      localImageView.setImageDrawable(paramDrawable);
+    }
+  }
+  
+  public void setLogoDescription(int paramInt)
+  {
+    setLogoDescription(getContext().getText(paramInt));
+  }
+  
+  public void setLogoDescription(CharSequence paramCharSequence)
+  {
+    if (!TextUtils.isEmpty(paramCharSequence)) {
+      m();
+    }
+    ImageView localImageView = e;
+    if (localImageView != null) {
+      localImageView.setContentDescription(paramCharSequence);
+    }
+  }
+  
+  public void setNavigationContentDescription(int paramInt)
+  {
+    CharSequence localCharSequence;
+    if (paramInt != 0) {
+      localCharSequence = getContext().getText(paramInt);
+    } else {
+      localCharSequence = null;
+    }
+    setNavigationContentDescription(localCharSequence);
+  }
+  
+  public void setNavigationContentDescription(CharSequence paramCharSequence)
+  {
+    if (!TextUtils.isEmpty(paramCharSequence)) {
+      p();
+    }
+    ImageButton localImageButton = d;
+    if (localImageButton != null) {
+      localImageButton.setContentDescription(paramCharSequence);
+    }
+  }
+  
+  public void setNavigationIcon(int paramInt)
+  {
+    setNavigationIcon(a.a.d.b.a.a.b(getContext(), paramInt));
+  }
+  
+  public void setNavigationIcon(Drawable paramDrawable)
+  {
+    if (paramDrawable != null)
+    {
+      p();
+      if (!c(d)) {
+        a(d, true);
+      }
+    }
+    else
+    {
+      localImageButton = d;
+      if ((localImageButton != null) && (c(localImageButton)))
+      {
+        removeView(d);
+        E.remove(d);
+      }
+    }
+    ImageButton localImageButton = d;
+    if (localImageButton != null) {
+      localImageButton.setImageDrawable(paramDrawable);
+    }
+  }
+  
+  public void setNavigationOnClickListener(View.OnClickListener paramOnClickListener)
+  {
+    p();
+    d.setOnClickListener(paramOnClickListener);
+  }
+  
+  public void setOnMenuItemClickListener(c paramC)
+  {
+    G = paramC;
+  }
+  
+  public void setOverflowIcon(Drawable paramDrawable)
+  {
+    n();
+    a.setOverflowIcon(paramDrawable);
+  }
+  
+  public void setPopupTheme(int paramInt)
+  {
+    if (k != paramInt)
+    {
+      k = paramInt;
+      if (paramInt == 0)
+      {
+        j = getContext();
+        return;
+      }
+      j = new ContextThemeWrapper(getContext(), paramInt);
+    }
+  }
+  
+  public void setSubtitle(int paramInt)
+  {
+    setSubtitle(getContext().getText(paramInt));
+  }
+  
+  public void setSubtitle(CharSequence paramCharSequence)
+  {
+    if (!TextUtils.isEmpty(paramCharSequence))
+    {
+      if (c == null)
+      {
+        localObject = getContext();
+        c = new I((Context)localObject);
+        c.setSingleLine();
+        c.setEllipsize(TextUtils.TruncateAt.END);
+        int i1 = m;
+        if (i1 != 0) {
+          c.setTextAppearance((Context)localObject, i1);
+        }
+        i1 = A;
+        if (i1 != 0) {
+          c.setTextColor(i1);
+        }
+      }
+      if (!c(c)) {
+        a(c, true);
+      }
+    }
+    else
+    {
+      localObject = c;
+      if ((localObject != null) && (c((View)localObject)))
+      {
+        removeView(c);
+        E.remove(c);
+      }
+    }
+    Object localObject = c;
+    if (localObject != null) {
+      ((TextView)localObject).setText(paramCharSequence);
+    }
+    y = paramCharSequence;
+  }
+  
+  public void setSubtitleTextColor(int paramInt)
+  {
+    A = paramInt;
+    TextView localTextView = c;
+    if (localTextView != null) {
+      localTextView.setTextColor(paramInt);
+    }
+  }
+  
+  public void setTitle(int paramInt)
+  {
+    setTitle(getContext().getText(paramInt));
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    if (!TextUtils.isEmpty(paramCharSequence))
+    {
+      if (b == null)
+      {
+        localObject = getContext();
+        b = new I((Context)localObject);
+        b.setSingleLine();
+        b.setEllipsize(TextUtils.TruncateAt.END);
+        int i1 = l;
+        if (i1 != 0) {
+          b.setTextAppearance((Context)localObject, i1);
+        }
+        i1 = z;
+        if (i1 != 0) {
+          b.setTextColor(i1);
+        }
+      }
+      if (!c(b)) {
+        a(b, true);
+      }
+    }
+    else
+    {
+      localObject = b;
+      if ((localObject != null) && (c((View)localObject)))
+      {
+        removeView(b);
+        E.remove(b);
+      }
+    }
+    Object localObject = b;
+    if (localObject != null) {
+      ((TextView)localObject).setText(paramCharSequence);
+    }
+    x = paramCharSequence;
+  }
+  
+  public void setTitleMarginBottom(int paramInt)
+  {
+    s = paramInt;
+    requestLayout();
+  }
+  
+  public void setTitleMarginEnd(int paramInt)
+  {
+    q = paramInt;
+    requestLayout();
+  }
+  
+  public void setTitleMarginStart(int paramInt)
+  {
+    p = paramInt;
+    requestLayout();
+  }
+  
+  public void setTitleMarginTop(int paramInt)
+  {
+    r = paramInt;
+    requestLayout();
+  }
+  
+  public void setTitleTextColor(int paramInt)
+  {
+    z = paramInt;
+    TextView localTextView = b;
+    if (localTextView != null) {
+      localTextView.setTextColor(paramInt);
+    }
+  }
+  
+  private class a
+    implements v
+  {
+    l a;
+    p b;
+    
+    a() {}
+    
+    public void a(Context paramContext, l paramL)
+    {
+      paramContext = a;
+      if (paramContext != null)
+      {
+        p localP = b;
+        if (localP != null) {
+          paramContext.a(localP);
+        }
+      }
+      a = paramL;
+    }
+    
+    public void a(l paramL, boolean paramBoolean) {}
+    
+    public void a(boolean paramBoolean)
+    {
+      if (b != null)
+      {
+        l localL = a;
+        int k = 0;
+        int j = k;
+        if (localL != null)
+        {
+          int m = localL.size();
+          int i = 0;
+          for (;;)
+          {
+            j = k;
+            if (i >= m) {
+              break;
+            }
+            if (a.getItem(i) == b)
+            {
+              j = 1;
+              break;
+            }
+            i += 1;
+          }
+        }
+        if (j == 0) {
+          b(a, b);
+        }
+      }
+    }
+    
+    public boolean a()
+    {
+      return false;
+    }
+    
+    public boolean a(D paramD)
+    {
+      return false;
+    }
+    
+    public boolean a(l paramL, p paramP)
+    {
+      e();
+      paramL = h.getParent();
+      Toolbar localToolbar = Toolbar.this;
+      if (paramL != localToolbar)
+      {
+        if ((paramL instanceof ViewGroup)) {
+          ((ViewGroup)paramL).removeView(h);
+        }
+        paramL = Toolbar.this;
+        paramL.addView(h);
+      }
+      i = paramP.getActionView();
+      b = paramP;
+      paramL = i.getParent();
+      localToolbar = Toolbar.this;
+      if (paramL != localToolbar)
+      {
+        if ((paramL instanceof ViewGroup)) {
+          ((ViewGroup)paramL).removeView(i);
+        }
+        paramL = generateDefaultLayoutParams();
+        localToolbar = Toolbar.this;
+        a = (0x800003 | n & 0x70);
+        b = 2;
+        i.setLayoutParams(paramL);
+        paramL = Toolbar.this;
+        paramL.addView(i);
+      }
+      j();
+      requestLayout();
+      paramP.a(true);
+      paramL = i;
+      if ((paramL instanceof a.a.d.d.c)) {
+        ((a.a.d.d.c)paramL).onActionViewExpanded();
+      }
+      return true;
+    }
+    
+    public boolean b(l paramL, p paramP)
+    {
+      paramL = i;
+      if ((paramL instanceof a.a.d.d.c)) {
+        ((a.a.d.d.c)paramL).onActionViewCollapsed();
+      }
+      paramL = Toolbar.this;
+      paramL.removeView(i);
+      paramL = Toolbar.this;
+      paramL.removeView(h);
+      paramL = Toolbar.this;
+      i = null;
+      paramL.a();
+      b = null;
+      requestLayout();
+      paramP.a(false);
+      return true;
+    }
+  }
+  
+  public static class b
+    extends a.a
+  {
+    int b = 0;
+    
+    public b(int paramInt1, int paramInt2)
+    {
+      super(paramInt2);
+      a = 8388627;
+    }
+    
+    public b(Context paramContext, AttributeSet paramAttributeSet)
+    {
+      super(paramAttributeSet);
+    }
+    
+    public b(a.a paramA)
+    {
+      super();
+    }
+    
+    public b(b paramB)
+    {
+      super();
+      b = b;
+    }
+    
+    public b(ViewGroup.LayoutParams paramLayoutParams)
+    {
+      super();
+    }
+    
+    public b(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      super();
+      a(paramMarginLayoutParams);
+    }
+    
+    void a(ViewGroup.MarginLayoutParams paramMarginLayoutParams)
+    {
+      leftMargin = leftMargin;
+      topMargin = topMargin;
+      rightMargin = rightMargin;
+      bottomMargin = bottomMargin;
+    }
+  }
+  
+  public static abstract interface c
+  {
+    public abstract boolean onMenuItemClick(MenuItem paramMenuItem);
+  }
+  
+  public static class d
+    extends a.a.c.g.c
+  {
+    public static final Parcelable.Creator<d> CREATOR = new xa();
+    int c;
+    boolean d;
+    
+    public d(Parcel paramParcel, ClassLoader paramClassLoader)
+    {
+      super(paramClassLoader);
+      c = paramParcel.readInt();
+      boolean bool;
+      if (paramParcel.readInt() != 0) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      d = bool;
+    }
+    
+    public d(Parcelable paramParcelable)
+    {
+      super();
+    }
+    
+    public void writeToParcel(Parcel paramParcel, int paramInt)
+    {
+      throw new Runtime("d2j fail translate: java.lang.RuntimeException: can not merge I and Z\n\tat com.googlecode.dex2jar.ir.TypeClass.merge(TypeClass.java:100)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeRef.updateTypeClass(TypeTransformer.java:174)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.provideAs(TypeTransformer.java:780)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.e1expr(TypeTransformer.java:496)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:713)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.enexpr(TypeTransformer.java:698)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:719)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.exExpr(TypeTransformer.java:703)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.s1stmt(TypeTransformer.java:810)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.sxStmt(TypeTransformer.java:840)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer$TypeAnalyze.analyze(TypeTransformer.java:206)\n\tat com.googlecode.dex2jar.ir.ts.TypeTransformer.transform(TypeTransformer.java:44)\n\tat com.googlecode.d2j.dex.Dex2jar$2.optimize(Dex2jar.java:162)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertCode(Dex2Asm.java:414)\n\tat com.googlecode.d2j.dex.ExDex2Asm.convertCode(ExDex2Asm.java:42)\n\tat com.googlecode.d2j.dex.Dex2jar$2.convertCode(Dex2jar.java:128)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertMethod(Dex2Asm.java:509)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertClass(Dex2Asm.java:406)\n\tat com.googlecode.d2j.dex.Dex2Asm.convertDex(Dex2Asm.java:422)\n\tat com.googlecode.d2j.dex.Dex2jar.doTranslate(Dex2jar.java:172)\n\tat com.googlecode.d2j.dex.Dex2jar.to(Dex2jar.java:272)\n\tat com.googlecode.dex2jar.tools.Dex2jarCmd.doCommandLine(Dex2jarCmd.java:108)\n\tat com.googlecode.dex2jar.tools.BaseCmd.doMain(BaseCmd.java:288)\n\tat com.googlecode.dex2jar.tools.Dex2jarCmd.main(Dex2jarCmd.java:32)\n");
+    }
+  }
+}

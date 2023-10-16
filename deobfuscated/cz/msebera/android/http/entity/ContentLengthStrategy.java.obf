@@ -1,0 +1,8 @@
+package c.a.a.a.g;
+
+import c.a.a.a.q;
+
+public abstract interface d
+{
+  public abstract long a(q paramQ);
+}

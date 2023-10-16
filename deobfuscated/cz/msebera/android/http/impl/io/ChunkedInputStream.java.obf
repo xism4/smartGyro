@@ -1,0 +1,234 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.I;
+import c.a.a.a.d.b;
+import c.a.a.a.j.f;
+import c.a.a.a.n;
+import c.a.a.a.p.d;
+import c.a.a.a.x;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class e
+  extends InputStream
+{
+  private final f a;
+  private final d b;
+  private final b c;
+  private int d;
+  private int e;
+  private int f;
+  private boolean g = false;
+  private boolean h = false;
+  private c.a.a.a.e[] i = new c.a.a.a.e[0];
+  
+  public e(f paramF)
+  {
+    this(paramF, null);
+  }
+  
+  public e(f paramF, b paramB)
+  {
+    c.a.a.a.p.a.a(paramF, "Session input buffer");
+    a = ((f)paramF);
+    f = 0;
+    b = new d(16);
+    if (paramB == null) {
+      paramB = b.a;
+    }
+    c = paramB;
+    d = 1;
+  }
+  
+  private int a()
+  {
+    int j = d;
+    if (j != 1) {
+      if (j == 3)
+      {
+        b.clear();
+        if (a.a(b) != -1)
+        {
+          if (b.b()) {
+            d = 1;
+          } else {
+            throw new x("Unexpected content at the end of chunk");
+          }
+        }
+        else {
+          throw new x("CRLF expected at end of chunk");
+        }
+      }
+      else
+      {
+        throw new IllegalStateException("Inconsistent codec state");
+      }
+    }
+    b.clear();
+    if (a.a(b) != -1)
+    {
+      int k = b.b(59);
+      j = k;
+      if (k < 0) {
+        j = b.length();
+      }
+    }
+    try
+    {
+      j = Integer.parseInt(b.b(0, j), 16);
+      return j;
+    }
+    catch (NumberFormatException localNumberFormatException)
+    {
+      for (;;) {}
+    }
+    throw new x("Bad chunk header");
+    throw new c.a.a.a.a("Premature end of chunk coded message body: closing chunk expected");
+  }
+  
+  private void b()
+  {
+    if (d != Integer.MAX_VALUE) {
+      try
+      {
+        e = a();
+        if (e >= 0)
+        {
+          d = 2;
+          f = 0;
+          if (e != 0) {
+            return;
+          }
+          g = true;
+          c();
+          return;
+        }
+        throw new x("Negative chunk size");
+      }
+      catch (x localX)
+      {
+        d = Integer.MAX_VALUE;
+        throw localX;
+      }
+    }
+    throw new x("Corrupt data stream");
+  }
+  
+  private void c()
+  {
+    try
+    {
+      i = a.a(a, c.b(), c.c(), null);
+      return;
+    }
+    catch (n localN)
+    {
+      Object localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Invalid footer: ");
+      ((StringBuilder)localObject).append(localN.getMessage());
+      localObject = new x(((StringBuilder)localObject).toString());
+      ((IOException)localObject).initCause(localN);
+      throw ((Throwable)localObject);
+    }
+  }
+  
+  public int available()
+  {
+    f localF = a;
+    if ((localF instanceof c.a.a.a.j.a)) {
+      return Math.min(((c.a.a.a.j.a)localF).length(), e - f);
+    }
+    return 0;
+  }
+  
+  public void close()
+  {
+    if (!h) {
+      try
+      {
+        if ((!g) && (d != Integer.MAX_VALUE))
+        {
+          byte[] arrayOfByte = new byte['?'];
+          int j;
+          do
+          {
+            j = read(arrayOfByte);
+          } while (j >= 0);
+        }
+        return;
+      }
+      finally
+      {
+        g = true;
+        h = true;
+      }
+    }
+  }
+  
+  public int read()
+  {
+    if (!h)
+    {
+      if (g) {
+        return -1;
+      }
+      if (d != 2)
+      {
+        b();
+        if (g) {
+          return -1;
+        }
+      }
+      int j = a.read();
+      if (j != -1)
+      {
+        f += 1;
+        if (f >= e) {
+          d = 3;
+        }
+      }
+      return j;
+    }
+    throw new IOException("Attempted read from closed stream.");
+  }
+  
+  public int read(byte[] paramArrayOfByte)
+  {
+    return read(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    if (!h)
+    {
+      if (g) {
+        return -1;
+      }
+      if (d != 2)
+      {
+        b();
+        if (g) {
+          return -1;
+        }
+      }
+      paramInt1 = a.read(paramArrayOfByte, paramInt1, Math.min(paramInt2, e - f));
+      if (paramInt1 != -1)
+      {
+        f += paramInt1;
+        if (f >= e) {
+          d = 3;
+        }
+        return paramInt1;
+      }
+      g = true;
+      paramArrayOfByte = new StringBuilder();
+      paramArrayOfByte.append("Truncated chunk ( expected size: ");
+      paramArrayOfByte.append(e);
+      paramArrayOfByte.append("; actual size: ");
+      paramArrayOfByte.append(f);
+      paramArrayOfByte.append(")");
+      throw new I(paramArrayOfByte.toString());
+    }
+    throw new IOException("Attempted read from closed stream.");
+  }
+}

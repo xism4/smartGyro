@@ -1,0 +1,52 @@
+package c.a.a.a.k;
+
+import c.a.a.a.D;
+import c.a.a.a.F;
+import c.a.a.a.r;
+import c.a.a.a.w;
+
+public class h
+  extends a
+  implements r
+{
+  private final String c;
+  private final String d;
+  private F e;
+  
+  public h(F paramF)
+  {
+    c.a.a.a.p.a.a(paramF, "Request line");
+    e = ((F)paramF);
+    c = paramF.getMethod();
+    d = paramF.getUri();
+  }
+  
+  public h(String paramString1, String paramString2, D paramD)
+  {
+    this(new n(paramString1, paramString2, paramD));
+  }
+  
+  public D getProtocolVersion()
+  {
+    return getRequestLine().getProtocolVersion();
+  }
+  
+  public F getRequestLine()
+  {
+    if (e == null) {
+      e = new n(c, d, w.f);
+    }
+    return e;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(c);
+    localStringBuilder.append(' ');
+    localStringBuilder.append(d);
+    localStringBuilder.append(' ');
+    localStringBuilder.append(a);
+    return localStringBuilder.toString();
+  }
+}

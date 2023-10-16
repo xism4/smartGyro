@@ -1,0 +1,32 @@
+package b.c.a.a;
+
+import c.a.a.a.e;
+import c.a.a.a.t;
+import java.net.URI;
+
+public abstract interface s
+{
+  public abstract void a(int paramInt);
+  
+  public abstract void a(int paramInt, e[] paramArrayOfE, byte[] paramArrayOfByte, Throwable paramThrowable);
+  
+  public abstract void a(s paramS, t paramT);
+  
+  public abstract void a(t paramT);
+  
+  public abstract void a(URI paramURI);
+  
+  public abstract void a(e[] paramArrayOfE);
+  
+  public abstract boolean a();
+  
+  public abstract void b(s paramS, t paramT);
+  
+  public abstract boolean b();
+  
+  public abstract void c();
+  
+  public abstract void d();
+  
+  public abstract void e();
+}

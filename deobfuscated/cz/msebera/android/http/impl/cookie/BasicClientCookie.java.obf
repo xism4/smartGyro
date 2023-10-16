@@ -1,0 +1,158 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.p;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+public class d
+  implements p, c.a.a.a.f.a, Cloneable, Serializable
+{
+  private final String a;
+  private Map<String, String> b;
+  private String c;
+  private String d;
+  private String e;
+  private Date f;
+  private String g;
+  private boolean h;
+  private int i;
+  
+  public d(String paramString1, String paramString2)
+  {
+    c.a.a.a.p.a.a(paramString1, "Name");
+    a = paramString1;
+    b = new HashMap();
+    c = paramString2;
+  }
+  
+  public void a(String paramString1, String paramString2)
+  {
+    b.put(paramString1, paramString2);
+  }
+  
+  public Object clone()
+  {
+    d localD = (d)super.clone();
+    b = new HashMap(b);
+    return localD;
+  }
+  
+  public boolean containsAttribute(String paramString)
+  {
+    return b.containsKey(paramString);
+  }
+  
+  public String getAttribute(String paramString)
+  {
+    return (String)b.get(paramString);
+  }
+  
+  public String getDomain()
+  {
+    return e;
+  }
+  
+  public Date getExpiryDate()
+  {
+    return f;
+  }
+  
+  public String getName()
+  {
+    return a;
+  }
+  
+  public String getPath()
+  {
+    return g;
+  }
+  
+  public int[] getPorts()
+  {
+    return null;
+  }
+  
+  public String getValue()
+  {
+    return c;
+  }
+  
+  public int getVersion()
+  {
+    return i;
+  }
+  
+  public boolean isExpired(Date paramDate)
+  {
+    c.a.a.a.p.a.a(paramDate, "Date");
+    Date localDate = f;
+    return (localDate != null) && (localDate.getTime() <= paramDate.getTime());
+  }
+  
+  public boolean isSecure()
+  {
+    return h;
+  }
+  
+  public void setComment(String paramString)
+  {
+    d = paramString;
+  }
+  
+  public void setDomain(String paramString)
+  {
+    if (paramString != null) {
+      paramString = paramString.toLowerCase(Locale.ROOT);
+    } else {
+      paramString = null;
+    }
+    e = paramString;
+  }
+  
+  public void setExpiryDate(Date paramDate)
+  {
+    f = paramDate;
+  }
+  
+  public void setPath(String paramString)
+  {
+    g = paramString;
+  }
+  
+  public void setSecure(boolean paramBoolean)
+  {
+    h = paramBoolean;
+  }
+  
+  public void setVersion(int paramInt)
+  {
+    i = paramInt;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("[version: ");
+    localStringBuilder.append(Integer.toString(i));
+    localStringBuilder.append("]");
+    localStringBuilder.append("[name: ");
+    localStringBuilder.append(a);
+    localStringBuilder.append("]");
+    localStringBuilder.append("[value: ");
+    localStringBuilder.append(c);
+    localStringBuilder.append("]");
+    localStringBuilder.append("[domain: ");
+    localStringBuilder.append(e);
+    localStringBuilder.append("]");
+    localStringBuilder.append("[path: ");
+    localStringBuilder.append(g);
+    localStringBuilder.append("]");
+    localStringBuilder.append("[expiry: ");
+    localStringBuilder.append(f);
+    localStringBuilder.append("]");
+    return localStringBuilder.toString();
+  }
+}

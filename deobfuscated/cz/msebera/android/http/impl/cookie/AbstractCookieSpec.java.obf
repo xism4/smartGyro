@@ -1,0 +1,41 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.d;
+import c.a.a.a.f.i;
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public abstract class b
+  implements i
+{
+  private final Map<String, d> a;
+  
+  public b()
+  {
+    a = new ConcurrentHashMap(10);
+  }
+  
+  protected b(c.a.a.a.f.b... paramVarArgs)
+  {
+    a = new ConcurrentHashMap(paramVarArgs.length);
+    int j = paramVarArgs.length;
+    int i = 0;
+    while (i < j)
+    {
+      c.a.a.a.f.b localB = paramVarArgs[i];
+      a.put(localB.a(), localB);
+      i += 1;
+    }
+  }
+  
+  protected d a(String paramString)
+  {
+    return (d)a.get(paramString);
+  }
+  
+  protected Collection<d> a()
+  {
+    return a.values();
+  }
+}

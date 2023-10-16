@@ -1,0 +1,17 @@
+package org.cocos2dx.lib;
+
+import android.util.SparseArray;
+
+final class t
+  implements Runnable
+{
+  t(int paramInt1, int paramInt2) {}
+  
+  public void run()
+  {
+    Cocos2dxEditBox localCocos2dxEditBox = (Cocos2dxEditBox)Cocos2dxEditBoxHelper.access$400().get(a);
+    if (localCocos2dxEditBox != null) {
+      localCocos2dxEditBox.setReturnType(b);
+    }
+  }
+}

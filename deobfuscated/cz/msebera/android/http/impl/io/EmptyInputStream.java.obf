@@ -1,0 +1,47 @@
+package c.a.a.a.i.f;
+
+import java.io.InputStream;
+
+public final class i
+  extends InputStream
+{
+  public static final i a = new i();
+  
+  private i() {}
+  
+  public int available()
+  {
+    return 0;
+  }
+  
+  public void close() {}
+  
+  public void mark(int paramInt) {}
+  
+  public boolean markSupported()
+  {
+    return true;
+  }
+  
+  public int read()
+  {
+    return -1;
+  }
+  
+  public int read(byte[] paramArrayOfByte)
+  {
+    return -1;
+  }
+  
+  public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    return -1;
+  }
+  
+  public void reset() {}
+  
+  public long skip(long paramLong)
+  {
+    return 0L;
+  }
+}

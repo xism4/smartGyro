@@ -1,0 +1,495 @@
+package a.a.c.g;
+
+import a.a.a.b;
+import android.animation.ValueAnimator;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.util.SparseArray;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.WindowInsets;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class u
+{
+  private static final AtomicInteger a = new AtomicInteger(1);
+  private static Field b;
+  private static boolean c;
+  private static WeakHashMap<View, z> d = null;
+  private static boolean e = false;
+  
+  public static D a(View paramView, D paramD)
+  {
+    if (Build.VERSION.SDK_INT >= 21)
+    {
+      paramD = (WindowInsets)D.a(paramD);
+      WindowInsets localWindowInsets = paramView.onApplyWindowInsets(paramD);
+      paramView = paramD;
+      if (localWindowInsets != paramD) {
+        paramView = new WindowInsets(localWindowInsets);
+      }
+      return D.a(paramView);
+    }
+    return paramD;
+  }
+  
+  public static z a(View paramView)
+  {
+    if (d == null) {
+      d = new WeakHashMap();
+    }
+    z localZ2 = (z)d.get(paramView);
+    z localZ1 = localZ2;
+    if (localZ2 == null)
+    {
+      localZ1 = new z(paramView);
+      d.put(paramView, localZ1);
+    }
+    return localZ1;
+  }
+  
+  public static void a(View paramView, float paramFloat)
+  {
+    if (Build.VERSION.SDK_INT >= 21) {
+      paramView.setElevation(paramFloat);
+    }
+  }
+  
+  public static void a(View paramView, int paramInt1, int paramInt2)
+  {
+    if (Build.VERSION.SDK_INT >= 23) {
+      paramView.setScrollIndicators(paramInt1, paramInt2);
+    }
+  }
+  
+  public static void a(View paramView, d paramD)
+  {
+    if (paramD == null) {
+      paramD = null;
+    } else {
+      paramD = paramD.a();
+    }
+    paramView.setAccessibilityDelegate(paramD);
+  }
+  
+  public static void a(View paramView, q paramQ)
+  {
+    if (Build.VERSION.SDK_INT >= 21)
+    {
+      if (paramQ == null)
+      {
+        paramView.setOnApplyWindowInsetsListener(null);
+        return;
+      }
+      paramView.setOnApplyWindowInsetsListener(new t(paramQ));
+    }
+  }
+  
+  public static void a(View paramView, ColorStateList paramColorStateList)
+  {
+    if (Build.VERSION.SDK_INT >= 21)
+    {
+      paramView.setBackgroundTintList(paramColorStateList);
+      if (Build.VERSION.SDK_INT == 21)
+      {
+        paramColorStateList = paramView.getBackground();
+        int i;
+        if ((paramView.getBackgroundTintList() == null) && (paramView.getBackgroundTintMode() == null)) {
+          i = 0;
+        } else {
+          i = 1;
+        }
+        if ((paramColorStateList != null) && (i != 0))
+        {
+          if (paramColorStateList.isStateful()) {
+            paramColorStateList.setState(paramView.getDrawableState());
+          }
+          paramView.setBackground(paramColorStateList);
+        }
+      }
+    }
+    else if ((paramView instanceof s))
+    {
+      ((s)paramView).setSupportBackgroundTintList(paramColorStateList);
+    }
+  }
+  
+  public static void a(View paramView, PorterDuff.Mode paramMode)
+  {
+    if (Build.VERSION.SDK_INT >= 21)
+    {
+      paramView.setBackgroundTintMode(paramMode);
+      if (Build.VERSION.SDK_INT == 21)
+      {
+        paramMode = paramView.getBackground();
+        int i;
+        if ((paramView.getBackgroundTintList() == null) && (paramView.getBackgroundTintMode() == null)) {
+          i = 0;
+        } else {
+          i = 1;
+        }
+        if ((paramMode != null) && (i != 0))
+        {
+          if (paramMode.isStateful()) {
+            paramMode.setState(paramView.getDrawableState());
+          }
+          paramView.setBackground(paramMode);
+        }
+      }
+    }
+    else if ((paramView instanceof s))
+    {
+      ((s)paramView).setSupportBackgroundTintMode(paramMode);
+    }
+  }
+  
+  public static void a(View paramView, Drawable paramDrawable)
+  {
+    if (Build.VERSION.SDK_INT >= 16)
+    {
+      paramView.setBackground(paramDrawable);
+      return;
+    }
+    paramView.setBackgroundDrawable(paramDrawable);
+  }
+  
+  public static void a(View paramView, Runnable paramRunnable)
+  {
+    if (Build.VERSION.SDK_INT >= 16)
+    {
+      paramView.postOnAnimation(paramRunnable);
+      return;
+    }
+    paramView.postDelayed(paramRunnable, ValueAnimator.getFrameDelay());
+  }
+  
+  public static void a(View paramView, Runnable paramRunnable, long paramLong)
+  {
+    if (Build.VERSION.SDK_INT >= 16)
+    {
+      paramView.postOnAnimationDelayed(paramRunnable, paramLong);
+      return;
+    }
+    paramView.postDelayed(paramRunnable, ValueAnimator.getFrameDelay() + paramLong);
+  }
+  
+  static boolean a(View paramView, KeyEvent paramKeyEvent)
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return false;
+    }
+    return b.a(paramView).a(paramView, paramKeyEvent);
+  }
+  
+  public static ColorStateList b(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 21) {
+      return paramView.getBackgroundTintList();
+    }
+    if ((paramView instanceof s)) {
+      return ((s)paramView).getSupportBackgroundTintList();
+    }
+    return null;
+  }
+  
+  static boolean b(View paramView, KeyEvent paramKeyEvent)
+  {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return false;
+    }
+    return b.a(paramView).a(paramKeyEvent);
+  }
+  
+  public static PorterDuff.Mode c(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 21) {
+      return paramView.getBackgroundTintMode();
+    }
+    if ((paramView instanceof s)) {
+      return ((s)paramView).getSupportBackgroundTintMode();
+    }
+    return null;
+  }
+  
+  public static int d(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 17) {
+      return paramView.getLayoutDirection();
+    }
+    return 0;
+  }
+  
+  public static int e(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 16) {
+      return paramView.getMinimumHeight();
+    }
+    if (!c) {}
+    try
+    {
+      b = View.class.getDeclaredField("mMinHeight");
+      b.setAccessible(true);
+      c = true;
+      Field localField = b;
+      if (localField != null) {}
+      try
+      {
+        int i = ((Integer)localField.get(paramView)).intValue();
+        return i;
+      }
+      catch (Exception paramView)
+      {
+        for (;;) {}
+      }
+      return 0;
+    }
+    catch (NoSuchFieldException localNoSuchFieldException)
+    {
+      for (;;) {}
+    }
+  }
+  
+  public static int f(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 16) {
+      return paramView.getWindowSystemUiVisibility();
+    }
+    return 0;
+  }
+  
+  public static boolean g(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 15) {
+      return paramView.hasOnClickListeners();
+    }
+    return false;
+  }
+  
+  public static boolean h(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 19) {
+      return paramView.isAttachedToWindow();
+    }
+    return paramView.getWindowToken() != null;
+  }
+  
+  public static boolean i(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 19) {
+      return paramView.isLaidOut();
+    }
+    return (paramView.getWidth() > 0) && (paramView.getHeight() > 0);
+  }
+  
+  public static void j(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 16)
+    {
+      paramView.postInvalidateOnAnimation();
+      return;
+    }
+    paramView.postInvalidate();
+  }
+  
+  public static void k(View paramView)
+  {
+    int i = Build.VERSION.SDK_INT;
+    if (i >= 20)
+    {
+      paramView.requestApplyInsets();
+      return;
+    }
+    if (i >= 16) {
+      paramView.requestFitSystemWindows();
+    }
+  }
+  
+  public static void l(View paramView)
+  {
+    if (Build.VERSION.SDK_INT >= 21)
+    {
+      paramView.stopNestedScroll();
+      return;
+    }
+    if ((paramView instanceof l)) {
+      ((l)paramView).stopNestedScroll();
+    }
+  }
+  
+  public static abstract interface a
+  {
+    public abstract boolean onUnhandledKeyEvent(View paramView, KeyEvent paramKeyEvent);
+  }
+  
+  static class b
+  {
+    private static final ArrayList<WeakReference<View>> a = new ArrayList();
+    private WeakHashMap<View, Boolean> b = null;
+    private SparseArray<WeakReference<View>> c = null;
+    private WeakReference<KeyEvent> d = null;
+    
+    b() {}
+    
+    static b a(View paramView)
+    {
+      b localB2 = (b)paramView.getTag(b.tag_unhandled_key_event_manager);
+      b localB1 = localB2;
+      if (localB2 == null)
+      {
+        localB1 = new b();
+        paramView.setTag(b.tag_unhandled_key_event_manager, localB1);
+      }
+      return localB1;
+    }
+    
+    private SparseArray<WeakReference<View>> a()
+    {
+      if (c == null) {
+        c = new SparseArray();
+      }
+      return c;
+    }
+    
+    private View b(View paramView, KeyEvent paramKeyEvent)
+    {
+      Object localObject = b;
+      if (localObject != null)
+      {
+        if (!((WeakHashMap)localObject).containsKey(paramView)) {
+          return null;
+        }
+        if ((paramView instanceof ViewGroup))
+        {
+          localObject = (ViewGroup)paramView;
+          int i = ((ViewGroup)localObject).getChildCount() - 1;
+          while (i >= 0)
+          {
+            View localView = b(((ViewGroup)localObject).getChildAt(i), paramKeyEvent);
+            if (localView != null) {
+              return localView;
+            }
+            i -= 1;
+          }
+        }
+        if (c(paramView, paramKeyEvent)) {
+          return paramView;
+        }
+      }
+      return null;
+    }
+    
+    private void b()
+    {
+      Object localObject1 = b;
+      if (localObject1 != null) {
+        ((WeakHashMap)localObject1).clear();
+      }
+      if (a.isEmpty()) {
+        return;
+      }
+      int i;
+      synchronized (a)
+      {
+        if (b == null) {
+          b = new WeakHashMap();
+        }
+        i = a.size() - 1;
+        if (i >= 0)
+        {
+          localObject1 = (View)((WeakReference)a.get(i)).get();
+          if (localObject1 == null)
+          {
+            a.remove(i);
+          }
+          else
+          {
+            b.put(localObject1, Boolean.TRUE);
+            for (localObject1 = ((View)localObject1).getParent(); (localObject1 instanceof View); localObject1 = ((ViewParent)localObject1).getParent()) {
+              b.put((View)localObject1, Boolean.TRUE);
+            }
+          }
+        }
+        else
+        {
+          return;
+        }
+      }
+    }
+    
+    private boolean c(View paramView, KeyEvent paramKeyEvent)
+    {
+      ArrayList localArrayList = (ArrayList)paramView.getTag(b.tag_unhandled_key_listeners);
+      if (localArrayList != null)
+      {
+        int i = localArrayList.size() - 1;
+        while (i >= 0)
+        {
+          if (((u.a)localArrayList.get(i)).onUnhandledKeyEvent(paramView, paramKeyEvent)) {
+            return true;
+          }
+          i -= 1;
+        }
+      }
+      return false;
+    }
+    
+    boolean a(KeyEvent paramKeyEvent)
+    {
+      Object localObject1 = d;
+      if ((localObject1 != null) && (((WeakReference)localObject1).get() == paramKeyEvent)) {
+        return false;
+      }
+      d = new WeakReference(paramKeyEvent);
+      Object localObject2 = null;
+      SparseArray localSparseArray = a();
+      localObject1 = localObject2;
+      if (paramKeyEvent.getAction() == 1)
+      {
+        int i = localSparseArray.indexOfKey(paramKeyEvent.getKeyCode());
+        localObject1 = localObject2;
+        if (i >= 0)
+        {
+          localObject1 = (WeakReference)localSparseArray.valueAt(i);
+          localSparseArray.removeAt(i);
+        }
+      }
+      localObject2 = localObject1;
+      if (localObject1 == null) {
+        localObject2 = (WeakReference)localSparseArray.get(paramKeyEvent.getKeyCode());
+      }
+      if (localObject2 != null)
+      {
+        localObject1 = (View)((WeakReference)localObject2).get();
+        if ((localObject1 != null) && (u.h((View)localObject1))) {
+          c((View)localObject1, paramKeyEvent);
+        }
+        return true;
+      }
+      return false;
+    }
+    
+    boolean a(View paramView, KeyEvent paramKeyEvent)
+    {
+      if (paramKeyEvent.getAction() == 0) {
+        b();
+      }
+      paramView = b(paramView, paramKeyEvent);
+      if (paramKeyEvent.getAction() == 0)
+      {
+        int i = paramKeyEvent.getKeyCode();
+        if ((paramView != null) && (!KeyEvent.isModifierKey(i))) {
+          a().put(i, new WeakReference(paramView));
+        }
+      }
+      return paramView != null;
+    }
+  }
+}

@@ -1,0 +1,229 @@
+package c.a.a.a.e.b;
+
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+import c.a.a.a.p.h;
+import java.net.InetAddress;
+
+public final class f
+  implements e, Cloneable
+{
+  private final o a;
+  private final InetAddress b;
+  private boolean c;
+  private o[] d;
+  private e.b e;
+  private e.a f;
+  private boolean g;
+  
+  public f(b paramB)
+  {
+    this(paramB.getTargetHost(), paramB.getLocalAddress());
+  }
+  
+  public f(o paramO, InetAddress paramInetAddress)
+  {
+    a.a(paramO, "Target host");
+    a = paramO;
+    b = paramInetAddress;
+    e = e.b.a;
+    f = e.a.a;
+  }
+  
+  public final void a(o paramO, boolean paramBoolean)
+  {
+    a.a(paramO, "Proxy host");
+    c.a.a.a.p.b.a(c ^ true, "Already connected");
+    c = true;
+    d = new o[] { paramO };
+    g = paramBoolean;
+  }
+  
+  public final void a(boolean paramBoolean)
+  {
+    c.a.a.a.p.b.a(c ^ true, "Already connected");
+    c = true;
+    g = paramBoolean;
+  }
+  
+  public final boolean a()
+  {
+    return c;
+  }
+  
+  public void b()
+  {
+    c = false;
+    d = null;
+    e = e.b.a;
+    f = e.a.a;
+    g = false;
+  }
+  
+  public final void b(boolean paramBoolean)
+  {
+    c.a.a.a.p.b.a(c, "No layered protocol unless connected");
+    f = e.a.b;
+    g = paramBoolean;
+  }
+  
+  public final b c()
+  {
+    if (!c) {
+      return null;
+    }
+    return new b(a, b, d, g, e, f);
+  }
+  
+  public final void c(boolean paramBoolean)
+  {
+    c.a.a.a.p.b.a(c, "No tunnel unless connected");
+    c.a.a.a.p.b.a(d, "No tunnel without proxy");
+    e = e.b.b;
+    g = paramBoolean;
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (paramObject == this) {
+      return true;
+    }
+    if (!(paramObject instanceof f)) {
+      return false;
+    }
+    paramObject = (f)paramObject;
+    return (c == c) && (g == g) && (e == e) && (f == f) && (h.a(a, a)) && (h.a(b, b)) && (h.a(d, d));
+  }
+  
+  public final int getHopCount()
+  {
+    if (c)
+    {
+      o[] arrayOfO = d;
+      if (arrayOfO == null) {
+        return 1;
+      }
+      return 1 + arrayOfO.length;
+    }
+    return 0;
+  }
+  
+  public final o getHopTarget(int paramInt)
+  {
+    a.a(paramInt, "Hop index");
+    int i = getHopCount();
+    boolean bool;
+    if (paramInt < i) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    a.a(bool, "Hop index exceeds tracked route length");
+    if (paramInt < i - 1) {
+      return d[paramInt];
+    }
+    return a;
+  }
+  
+  public final InetAddress getLocalAddress()
+  {
+    return b;
+  }
+  
+  public final o getProxyHost()
+  {
+    o[] arrayOfO = d;
+    if (arrayOfO == null) {
+      return null;
+    }
+    return arrayOfO[0];
+  }
+  
+  public final o getTargetHost()
+  {
+    return a;
+  }
+  
+  public final int hashCode()
+  {
+    int i = h.a(h.a(17, a), b);
+    o[] arrayOfO = d;
+    int k = i;
+    if (arrayOfO != null)
+    {
+      int m = arrayOfO.length;
+      int j = 0;
+      for (;;)
+      {
+        k = i;
+        if (j >= m) {
+          break;
+        }
+        i = h.a(i, arrayOfO[j]);
+        j += 1;
+      }
+    }
+    return h.a(h.a(h.a(h.a(k, c), g), e), f);
+  }
+  
+  public final boolean isLayered()
+  {
+    return f == e.a.b;
+  }
+  
+  public final boolean isSecure()
+  {
+    return g;
+  }
+  
+  public final boolean isTunnelled()
+  {
+    return e == e.b.b;
+  }
+  
+  public final String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder(getHopCount() * 30 + 50);
+    localStringBuilder.append("RouteTracker[");
+    Object localObject = b;
+    if (localObject != null)
+    {
+      localStringBuilder.append(localObject);
+      localStringBuilder.append("->");
+    }
+    localStringBuilder.append('{');
+    if (c) {
+      localStringBuilder.append('c');
+    }
+    if (e == e.b.b) {
+      localStringBuilder.append('t');
+    }
+    if (f == e.a.b) {
+      localStringBuilder.append('l');
+    }
+    if (g) {
+      localStringBuilder.append('s');
+    }
+    localStringBuilder.append("}->");
+    localObject = d;
+    if (localObject != null)
+    {
+      int j = localObject.length;
+      int i = 0;
+      while (i < j)
+      {
+        localStringBuilder.append(localObject[i]);
+        localStringBuilder.append("->");
+        i += 1;
+      }
+    }
+    localStringBuilder.append(a);
+    localStringBuilder.append(']');
+    return localStringBuilder.toString();
+  }
+}

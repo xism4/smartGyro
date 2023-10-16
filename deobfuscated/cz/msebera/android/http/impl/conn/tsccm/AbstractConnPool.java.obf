@@ -1,0 +1,18 @@
+package c.a.a.a.i.c.a;
+
+import c.a.a.a.i.c.m;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+@Deprecated
+public abstract class a
+{
+  public c.a.a.a.h.b a = new c.a.a.a.h.b(getClass());
+  protected final Lock b = new ReentrantLock();
+  protected Set<b> c = new HashSet();
+  protected m d = new m();
+  
+  protected a() {}
+}

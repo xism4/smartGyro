@@ -1,0 +1,30 @@
+package c.a.a.a.a;
+
+public final class a
+{
+  private final c a;
+  private final n b;
+  
+  public a(c paramC, n paramN)
+  {
+    c.a.a.a.p.a.a(paramC, "Auth scheme");
+    c.a.a.a.p.a.a(paramN, "User credentials");
+    a = paramC;
+    b = paramN;
+  }
+  
+  public c a()
+  {
+    return a;
+  }
+  
+  public n b()
+  {
+    return b;
+  }
+  
+  public String toString()
+  {
+    return a.toString();
+  }
+}

@@ -1,0 +1,44 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.b.c.l;
+import c.a.a.a.b.f;
+import c.a.a.a.b.j;
+import c.a.a.a.h.b;
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+import c.a.a.a.r;
+import java.io.Closeable;
+import java.net.URI;
+
+public abstract class h
+  implements j, Closeable
+{
+  public b a = new b(getClass());
+  
+  public h() {}
+  
+  private static o a(l paramL)
+  {
+    paramL = paramL.getURI();
+    if (paramL.isAbsolute())
+    {
+      Object localObject = c.a.a.a.b.f.e.a(paramL);
+      if (localObject != null) {
+        return localObject;
+      }
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("URI does not specify a valid host name: ");
+      ((StringBuilder)localObject).append(paramL);
+      throw new f(((StringBuilder)localObject).toString());
+    }
+    return null;
+  }
+  
+  public c.a.a.a.b.c.e a(l paramL, c.a.a.a.n.e paramE)
+  {
+    a.a(paramL, "HTTP request");
+    return a(a(paramL), paramL, paramE);
+  }
+  
+  protected abstract c.a.a.a.b.c.e a(o paramO, r paramR, c.a.a.a.n.e paramE);
+}

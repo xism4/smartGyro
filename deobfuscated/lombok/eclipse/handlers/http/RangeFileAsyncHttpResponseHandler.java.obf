@@ -1,0 +1,103 @@
+package b.c.a.a;
+
+import c.a.a.a.G;
+import c.a.a.a.e;
+import c.a.a.a.q;
+import c.a.a.a.t;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
+public abstract class o
+  extends h
+{
+  private long m;
+  private boolean n;
+  
+  public void a(c.a.a.a.b.c.l paramL)
+  {
+    if ((i.exists()) && (i.canWrite())) {
+      m = i.length();
+    }
+    if (m > 0L)
+    {
+      n = true;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("bytes=");
+      localStringBuilder.append(m);
+      localStringBuilder.append("-");
+      paramL.setHeader("Range", localStringBuilder.toString());
+    }
+  }
+  
+  public void a(t paramT)
+  {
+    if (!Thread.currentThread().isInterrupted())
+    {
+      G localG = paramT.getStatusLine();
+      if (localG.getStatusCode() == 416)
+      {
+        if (!Thread.currentThread().isInterrupted()) {
+          b(localG.getStatusCode(), paramT.getAllHeaders(), null);
+        }
+      }
+      else if (localG.getStatusCode() >= 300)
+      {
+        if (!Thread.currentThread().isInterrupted()) {
+          a(localG.getStatusCode(), paramT.getAllHeaders(), null, new c.a.a.a.b.l(localG.getStatusCode(), localG.getReasonPhrase()));
+        }
+      }
+      else if (!Thread.currentThread().isInterrupted())
+      {
+        e localE = paramT.getFirstHeader("Content-Range");
+        if (localE == null)
+        {
+          n = false;
+          m = 0L;
+        }
+        else
+        {
+          k localK = d.a;
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("Content-Range: ");
+          localStringBuilder.append(localE.getValue());
+          localK.c("RangeFileAsyncHttpRH", localStringBuilder.toString());
+        }
+        b(localG.getStatusCode(), paramT.getAllHeaders(), a(paramT.getEntity()));
+      }
+    }
+  }
+  
+  protected byte[] a(c.a.a.a.l paramL)
+  {
+    if (paramL != null)
+    {
+      InputStream localInputStream = paramL.getContent();
+      long l = paramL.getContentLength() + m;
+      paramL = new FileOutputStream(k(), n);
+      if (localInputStream != null) {
+        try
+        {
+          byte[] arrayOfByte = new byte['?'];
+          while (m < l)
+          {
+            int i = localInputStream.read(arrayOfByte);
+            if ((i == -1) || (Thread.currentThread().isInterrupted())) {
+              break;
+            }
+            m += i;
+            paramL.write(arrayOfByte, 0, i);
+            b(m, l);
+          }
+        }
+        finally
+        {
+          localInputStream.close();
+          paramL.flush();
+          paramL.close();
+        }
+      }
+    }
+    return null;
+  }
+}

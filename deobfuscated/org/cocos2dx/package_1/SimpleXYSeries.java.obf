@@ -1,0 +1,12 @@
+package org.cocos2dx.lib;
+
+final class Y
+  implements Runnable
+{
+  Y(float paramFloat1, float paramFloat2, float paramFloat3, long paramLong) {}
+  
+  public void run()
+  {
+    Cocos2dxAccelerometer.onSensorChanged(a, b, c, d);
+  }
+}

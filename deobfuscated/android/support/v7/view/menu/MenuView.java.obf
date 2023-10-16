@@ -1,0 +1,15 @@
+package android.support.v7.view.menu;
+
+public abstract interface w
+{
+  public abstract void a(l paramL);
+  
+  public static abstract interface a
+  {
+    public abstract void a(p paramP, int paramInt);
+    
+    public abstract boolean c();
+    
+    public abstract p getItemData();
+  }
+}

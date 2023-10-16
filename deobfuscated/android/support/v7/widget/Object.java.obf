@@ -1,0 +1,11 @@
+package android.support.v7.widget;
+
+import android.support.v7.view.menu.l;
+import android.view.MenuItem;
+
+public abstract interface V
+{
+  public abstract void a(l paramL, MenuItem paramMenuItem);
+  
+  public abstract void b(l paramL, MenuItem paramMenuItem);
+}

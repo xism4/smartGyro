@@ -1,0 +1,33 @@
+package c.a.a.a.e.b;
+
+import c.a.a.a.o;
+import java.net.InetAddress;
+
+public abstract interface e
+{
+  public abstract int getHopCount();
+  
+  public abstract o getHopTarget(int paramInt);
+  
+  public abstract InetAddress getLocalAddress();
+  
+  public abstract o getProxyHost();
+  
+  public abstract o getTargetHost();
+  
+  public abstract boolean isLayered();
+  
+  public abstract boolean isSecure();
+  
+  public abstract boolean isTunnelled();
+  
+  public static enum a
+  {
+    private a() {}
+  }
+  
+  public static enum b
+  {
+    private b() {}
+  }
+}

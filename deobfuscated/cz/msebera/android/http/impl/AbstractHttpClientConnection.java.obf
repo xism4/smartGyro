@@ -1,0 +1,160 @@
+package c.a.a.a.i;
+
+import c.a.a.a.G;
+import c.a.a.a.i;
+import c.a.a.a.j.f;
+import c.a.a.a.m;
+import c.a.a.a.r;
+import c.a.a.a.t;
+import c.a.a.a.u;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+
+@Deprecated
+public abstract class a
+  implements i
+{
+  private final c.a.a.a.i.e.b a = c();
+  private final c.a.a.a.i.e.a b = b();
+  private f c = null;
+  private c.a.a.a.j.g d = null;
+  private c.a.a.a.j.b e = null;
+  private c.a.a.a.j.c<t> f = null;
+  private c.a.a.a.j.d<r> g = null;
+  private e h = null;
+  
+  public a() {}
+  
+  protected e a(c.a.a.a.j.e paramE1, c.a.a.a.j.e paramE2)
+  {
+    return new e(paramE1, paramE2);
+  }
+  
+  protected abstract c.a.a.a.j.c<t> a(f paramF, u paramU, c.a.a.a.l.g paramG);
+  
+  protected c.a.a.a.j.d<r> a(c.a.a.a.j.g paramG, c.a.a.a.l.g paramG1)
+  {
+    return new c.a.a.a.i.f.j(paramG, null, paramG1);
+  }
+  
+  protected abstract void a();
+  
+  protected void a(f paramF, c.a.a.a.j.g paramG, c.a.a.a.l.g paramG1)
+  {
+    c.a.a.a.p.a.a(paramF, "Input session buffer");
+    c = ((f)paramF);
+    c.a.a.a.p.a.a(paramG, "Output session buffer");
+    d = ((c.a.a.a.j.g)paramG);
+    if ((paramF instanceof c.a.a.a.j.b)) {
+      e = ((c.a.a.a.j.b)paramF);
+    }
+    f = a(paramF, d(), paramG1);
+    g = a(paramG, paramG1);
+    h = a(paramF.getMetrics(), paramG.getMetrics());
+  }
+  
+  public void a(m paramM)
+  {
+    c.a.a.a.p.a.a(paramM, "HTTP request");
+    a();
+    if (paramM.getEntity() == null) {
+      return;
+    }
+    a.a(d, paramM, paramM.getEntity());
+  }
+  
+  public void a(r paramR)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    a();
+    g.a(paramR);
+    h.a();
+  }
+  
+  public void a(t paramT)
+  {
+    c.a.a.a.p.a.a(paramT, "HTTP response");
+    a();
+    paramT.a(b.a(c, paramT));
+  }
+  
+  protected c.a.a.a.i.e.a b()
+  {
+    return new c.a.a.a.i.e.a(new c.a.a.a.i.e.c());
+  }
+  
+  protected c.a.a.a.i.e.b c()
+  {
+    return new c.a.a.a.i.e.b(new c.a.a.a.i.e.d());
+  }
+  
+  protected u d()
+  {
+    return c.a;
+  }
+  
+  protected void e()
+  {
+    d.flush();
+  }
+  
+  protected boolean f()
+  {
+    c.a.a.a.j.b localB = e;
+    return (localB != null) && (localB.a());
+  }
+  
+  public void flush()
+  {
+    a();
+    e();
+  }
+  
+  public boolean isResponseAvailable(int paramInt)
+  {
+    a();
+    try
+    {
+      boolean bool = c.isDataAvailable(paramInt);
+      return bool;
+    }
+    catch (SocketTimeoutException localSocketTimeoutException)
+    {
+      for (;;) {}
+    }
+    return false;
+  }
+  
+  public boolean isStale()
+  {
+    if (!isOpen()) {
+      return true;
+    }
+    if (f()) {
+      return true;
+    }
+    try
+    {
+      c.isDataAvailable(1);
+      boolean bool = f();
+      return bool;
+    }
+    catch (SocketTimeoutException localSocketTimeoutException)
+    {
+      for (;;) {}
+    }
+    catch (IOException localIOException) {}
+    return false;
+    return true;
+  }
+  
+  public t receiveResponseHeader()
+  {
+    a();
+    t localT = (t)f.parse();
+    if (localT.getStatusLine().getStatusCode() >= 200) {
+      h.b();
+    }
+    return localT;
+  }
+}

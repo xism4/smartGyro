@@ -1,0 +1,16 @@
+package c.a.a.a.e;
+
+import c.a.a.a.e.c.i;
+import java.util.concurrent.TimeUnit;
+
+@Deprecated
+public abstract interface b
+{
+  public abstract e a(c.a.a.a.e.b.b paramB, Object paramObject);
+  
+  public abstract void a(o paramO, long paramLong, TimeUnit paramTimeUnit);
+  
+  public abstract i getSchemeRegistry();
+  
+  public abstract void shutdown();
+}

@@ -1,0 +1,76 @@
+package c.a.a.a.i.e;
+
+import c.a.a.a.C;
+import c.a.a.a.D;
+import c.a.a.a.e;
+import c.a.a.a.p.a;
+import c.a.a.a.q;
+import c.a.a.a.w;
+
+public class d
+  implements c.a.a.a.g.d
+{
+  public static final d a = new d();
+  private final int b;
+  
+  public d()
+  {
+    this(-1);
+  }
+  
+  public d(int paramInt)
+  {
+    b = paramInt;
+  }
+  
+  public long a(q paramQ)
+  {
+    a.a(paramQ, "HTTP message");
+    Object localObject = paramQ.getFirstHeader("Transfer-Encoding");
+    if (localObject != null)
+    {
+      localObject = ((e)localObject).getValue();
+      if ("chunked".equalsIgnoreCase((String)localObject))
+      {
+        if (!paramQ.getProtocolVersion().c(w.e)) {
+          return -2L;
+        }
+        localObject = new StringBuilder();
+        ((StringBuilder)localObject).append("Chunked transfer encoding not allowed for ");
+        ((StringBuilder)localObject).append(paramQ.getProtocolVersion());
+        throw new C(((StringBuilder)localObject).toString());
+      }
+      if ("identity".equalsIgnoreCase((String)localObject)) {
+        return -1L;
+      }
+      paramQ = new StringBuilder();
+      paramQ.append("Unsupported transfer encoding: ");
+      paramQ.append((String)localObject);
+      throw new C(paramQ.toString());
+    }
+    paramQ = paramQ.getFirstHeader("Content-Length");
+    if (paramQ != null) {
+      paramQ = paramQ.getValue();
+    }
+    try
+    {
+      long l = Long.parseLong(paramQ);
+      if (l >= 0L) {
+        return l;
+      }
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Negative content length: ");
+      ((StringBuilder)localObject).append(paramQ);
+      throw new C(((StringBuilder)localObject).toString());
+    }
+    catch (NumberFormatException localNumberFormatException)
+    {
+      for (;;) {}
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Invalid content length: ");
+    ((StringBuilder)localObject).append(paramQ);
+    throw new C(((StringBuilder)localObject).toString());
+    return b;
+  }
+}

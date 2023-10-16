@@ -1,0 +1,13 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.b.o;
+import c.a.a.a.h.b;
+
+@Deprecated
+public class m
+  implements o
+{
+  public b a = new b(getClass());
+  
+  public m() {}
+}

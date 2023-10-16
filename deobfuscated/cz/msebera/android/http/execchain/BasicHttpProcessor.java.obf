@@ -1,0 +1,115 @@
+package c.a.a.a.n;
+
+import c.a.a.a.r;
+import c.a.a.a.s;
+import c.a.a.a.t;
+import c.a.a.a.v;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+@Deprecated
+public final class b
+  implements g, i, j, Cloneable
+{
+  protected final List<s> a = new ArrayList();
+  protected final List<v> b = new ArrayList();
+  
+  public b() {}
+  
+  public int a()
+  {
+    return a.size();
+  }
+  
+  public s a(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < a.size())) {
+      return (s)a.get(paramInt);
+    }
+    return null;
+  }
+  
+  protected void a(b paramB)
+  {
+    a.clear();
+    a.addAll(a);
+    b.clear();
+    b.addAll(b);
+  }
+  
+  public void a(r paramR, e paramE)
+  {
+    Iterator localIterator = a.iterator();
+    while (localIterator.hasNext()) {
+      ((s)localIterator.next()).a(paramR, paramE);
+    }
+  }
+  
+  public final void a(s paramS)
+  {
+    b(paramS);
+  }
+  
+  public final void a(s paramS, int paramInt)
+  {
+    b(paramS, paramInt);
+  }
+  
+  public void a(t paramT, e paramE)
+  {
+    Iterator localIterator = b.iterator();
+    while (localIterator.hasNext()) {
+      ((v)localIterator.next()).a(paramT, paramE);
+    }
+  }
+  
+  public final void a(v paramV)
+  {
+    b(paramV);
+  }
+  
+  public int b()
+  {
+    return b.size();
+  }
+  
+  public v b(int paramInt)
+  {
+    if ((paramInt >= 0) && (paramInt < b.size())) {
+      return (v)b.get(paramInt);
+    }
+    return null;
+  }
+  
+  public void b(s paramS)
+  {
+    if (paramS == null) {
+      return;
+    }
+    a.add(paramS);
+  }
+  
+  public void b(s paramS, int paramInt)
+  {
+    if (paramS == null) {
+      return;
+    }
+    a.add(paramInt, paramS);
+  }
+  
+  public void b(v paramV)
+  {
+    if (paramV == null) {
+      return;
+    }
+    b.add(paramV);
+  }
+  
+  public Object clone()
+  {
+    b localB = (b)super.clone();
+    a(localB);
+    return localB;
+  }
+}

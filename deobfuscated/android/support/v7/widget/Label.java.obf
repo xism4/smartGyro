@@ -1,0 +1,206 @@
+package android.support.v7.widget;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build.VERSION;
+import android.support.v7.view.menu.ListMenuItemView;
+import android.support.v7.view.menu.k;
+import android.support.v7.view.menu.l;
+import android.support.v7.view.menu.p;
+import android.transition.Transition;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.widget.HeaderViewListAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import java.lang.reflect.Method;
+
+public class W
+  extends U
+  implements V
+{
+  private static Method K;
+  private V L;
+  
+  static
+  {
+    try
+    {
+      Class localClass = Boolean.TYPE;
+      K = PopupWindow.class.getDeclaredMethod("setTouchModal", new Class[] { localClass });
+      return;
+    }
+    catch (NoSuchMethodException localNoSuchMethodException)
+    {
+      for (;;) {}
+    }
+    Log.i("MenuPopupWindow", "Could not find method setTouchModal() on PopupWindow. Oh well.");
+  }
+  
+  public W(Context paramContext, AttributeSet paramAttributeSet, int paramInt1, int paramInt2)
+  {
+    super(paramContext, paramAttributeSet, paramInt1, paramInt2);
+  }
+  
+  N a(Context paramContext, boolean paramBoolean)
+  {
+    paramContext = new a(paramContext, paramBoolean);
+    paramContext.setHoverListener(this);
+    return paramContext;
+  }
+  
+  public void a(l paramL, MenuItem paramMenuItem)
+  {
+    V localV = L;
+    if (localV != null) {
+      localV.a(paramL, paramMenuItem);
+    }
+  }
+  
+  public void a(V paramV)
+  {
+    L = paramV;
+  }
+  
+  public void a(Object paramObject)
+  {
+    if (Build.VERSION.SDK_INT >= 23) {
+      J.setEnterTransition((Transition)paramObject);
+    }
+  }
+  
+  public void b(l paramL, MenuItem paramMenuItem)
+  {
+    V localV = L;
+    if (localV != null) {
+      localV.b(paramL, paramMenuItem);
+    }
+  }
+  
+  public void b(Object paramObject)
+  {
+    if (Build.VERSION.SDK_INT >= 23) {
+      J.setExitTransition((Transition)paramObject);
+    }
+  }
+  
+  public void c(boolean paramBoolean)
+  {
+    Method localMethod = K;
+    if (localMethod != null) {}
+    try
+    {
+      localMethod.invoke(J, new Object[] { Boolean.valueOf(paramBoolean) });
+      return;
+    }
+    catch (Exception localException)
+    {
+      for (;;) {}
+    }
+    Log.i("MenuPopupWindow", "Could not invoke setTouchModal() on PopupWindow. Oh well.");
+  }
+  
+  public static class a
+    extends N
+  {
+    final int o;
+    final int p;
+    private V q;
+    private MenuItem r;
+    
+    public a(Context paramContext, boolean paramBoolean)
+    {
+      super(paramBoolean);
+      paramContext = paramContext.getResources().getConfiguration();
+      if ((Build.VERSION.SDK_INT >= 17) && (1 == paramContext.getLayoutDirection()))
+      {
+        o = 21;
+        p = 22;
+        return;
+      }
+      o = 22;
+      p = 21;
+    }
+    
+    public boolean onHoverEvent(MotionEvent paramMotionEvent)
+    {
+      if (q != null)
+      {
+        Object localObject1 = getAdapter();
+        int i;
+        if ((localObject1 instanceof HeaderViewListAdapter))
+        {
+          localObject1 = (HeaderViewListAdapter)localObject1;
+          i = ((HeaderViewListAdapter)localObject1).getHeadersCount();
+          localObject1 = ((HeaderViewListAdapter)localObject1).getWrappedAdapter();
+        }
+        else
+        {
+          i = 0;
+        }
+        Object localObject2 = (k)localObject1;
+        MenuItem localMenuItem = null;
+        localObject1 = localMenuItem;
+        if (paramMotionEvent.getAction() != 10)
+        {
+          int j = pointToPosition((int)paramMotionEvent.getX(), (int)paramMotionEvent.getY());
+          localObject1 = localMenuItem;
+          if (j != -1)
+          {
+            i = j - i;
+            localObject1 = localMenuItem;
+            if (i >= 0)
+            {
+              localObject1 = localMenuItem;
+              if (i < ((k)localObject2).getCount()) {
+                localObject1 = ((k)localObject2).getItem(i);
+              }
+            }
+          }
+        }
+        localMenuItem = r;
+        if (localMenuItem != localObject1)
+        {
+          localObject2 = ((k)localObject2).b();
+          if (localMenuItem != null) {
+            q.b((l)localObject2, localMenuItem);
+          }
+          r = ((MenuItem)localObject1);
+          if (localObject1 != null) {
+            q.a((l)localObject2, (MenuItem)localObject1);
+          }
+        }
+      }
+      return super.onHoverEvent(paramMotionEvent);
+    }
+    
+    public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
+    {
+      ListMenuItemView localListMenuItemView = (ListMenuItemView)getSelectedView();
+      if ((localListMenuItemView != null) && (paramInt == o))
+      {
+        if ((localListMenuItemView.isEnabled()) && (localListMenuItemView.getItemData().hasSubMenu())) {
+          performItemClick(localListMenuItemView, getSelectedItemPosition(), getSelectedItemId());
+        }
+        return true;
+      }
+      if ((localListMenuItemView != null) && (paramInt == p))
+      {
+        setSelection(-1);
+        ((k)getAdapter()).b().a(false);
+        return true;
+      }
+      return super.onKeyDown(paramInt, paramKeyEvent);
+    }
+    
+    public void setHoverListener(V paramV)
+    {
+      q = paramV;
+    }
+  }
+}

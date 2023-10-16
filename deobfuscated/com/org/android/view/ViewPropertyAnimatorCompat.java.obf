@@ -1,0 +1,207 @@
+package a.a.c.g;
+
+import android.os.Build.VERSION;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Interpolator;
+import java.lang.ref.WeakReference;
+
+public final class z
+{
+  private WeakReference<View> a;
+  Runnable b = null;
+  Runnable c = null;
+  int d = -1;
+  
+  z(View paramView)
+  {
+    a = new WeakReference(paramView);
+  }
+  
+  private void a(View paramView, A paramA)
+  {
+    if (paramA != null)
+    {
+      paramView.animate().setListener(new x(this, paramA, paramView));
+      return;
+    }
+    paramView.animate().setListener(null);
+  }
+  
+  public z a(float paramFloat)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().alpha(paramFloat);
+    }
+    return this;
+  }
+  
+  public z a(long paramLong)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().setDuration(paramLong);
+    }
+    return this;
+  }
+  
+  public z a(A paramA)
+  {
+    View localView = (View)a.get();
+    if (localView != null)
+    {
+      if (Build.VERSION.SDK_INT < 16)
+      {
+        localView.setTag(2113929216, paramA);
+        paramA = new a(this);
+      }
+      a(localView, paramA);
+    }
+    return this;
+  }
+  
+  public z a(C paramC)
+  {
+    View localView = (View)a.get();
+    if ((localView != null) && (Build.VERSION.SDK_INT >= 19))
+    {
+      y localY = null;
+      if (paramC != null) {
+        localY = new y(this, paramC, localView);
+      }
+      localView.animate().setUpdateListener(localY);
+    }
+    return this;
+  }
+  
+  public z a(Interpolator paramInterpolator)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().setInterpolator(paramInterpolator);
+    }
+    return this;
+  }
+  
+  public void a()
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().cancel();
+    }
+  }
+  
+  public long b()
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      return localView.animate().getDuration();
+    }
+    return 0L;
+  }
+  
+  public z b(float paramFloat)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().translationY(paramFloat);
+    }
+    return this;
+  }
+  
+  public z b(long paramLong)
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().setStartDelay(paramLong);
+    }
+    return this;
+  }
+  
+  public void c()
+  {
+    View localView = (View)a.get();
+    if (localView != null) {
+      localView.animate().start();
+    }
+  }
+  
+  static class a
+    implements A
+  {
+    z a;
+    boolean b;
+    
+    a(z paramZ)
+    {
+      a = paramZ;
+    }
+    
+    public void a(View paramView)
+    {
+      Object localObject = paramView.getTag(2113929216);
+      if ((localObject instanceof A)) {
+        localObject = (A)localObject;
+      } else {
+        localObject = null;
+      }
+      if (localObject != null) {
+        ((A)localObject).a(paramView);
+      }
+    }
+    
+    public void b(View paramView)
+    {
+      int i = a.d;
+      A localA = null;
+      if (i > -1)
+      {
+        paramView.setLayerType(i, null);
+        a.d = -1;
+      }
+      if ((Build.VERSION.SDK_INT >= 16) || (!b))
+      {
+        Object localObject = a;
+        Runnable localRunnable = c;
+        if (localRunnable != null)
+        {
+          c = null;
+          localRunnable.run();
+        }
+        localObject = paramView.getTag(2113929216);
+        if ((localObject instanceof A)) {
+          localA = (A)localObject;
+        }
+        if (localA != null) {
+          localA.b(paramView);
+        }
+        b = true;
+      }
+    }
+    
+    public void c(View paramView)
+    {
+      b = false;
+      int i = a.d;
+      A localA = null;
+      if (i > -1) {
+        paramView.setLayerType(2, null);
+      }
+      Object localObject = a;
+      Runnable localRunnable = b;
+      if (localRunnable != null)
+      {
+        b = null;
+        localRunnable.run();
+      }
+      localObject = paramView.getTag(2113929216);
+      if ((localObject instanceof A)) {
+        localA = (A)localObject;
+      }
+      if (localA != null) {
+        localA.c(paramView);
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+package android.support.v7.view.menu;
+
+import android.os.Handler;
+import android.os.SystemClock;
+import android.support.v7.widget.V;
+import android.view.MenuItem;
+import java.util.List;
+
+class h
+  implements V
+{
+  h(i paramI) {}
+  
+  public void a(l paramL, MenuItem paramMenuItem)
+  {
+    Handler localHandler = a.h;
+    i.a localA = null;
+    localHandler.removeCallbacksAndMessages(null);
+    int j = a.j.size();
+    int i = 0;
+    while (i < j)
+    {
+      if (paramL == a.j.get(i)).b) {
+        break label75;
+      }
+      i += 1;
+    }
+    i = -1;
+    label75:
+    if (i == -1) {
+      return;
+    }
+    i += 1;
+    if (i < a.j.size()) {
+      localA = (i.a)a.j.get(i);
+    }
+    paramMenuItem = new g(this, localA, paramMenuItem, paramL);
+    long l = SystemClock.uptimeMillis();
+    a.h.postAtTime(paramMenuItem, paramL, l + 200L);
+  }
+  
+  public void b(l paramL, MenuItem paramMenuItem)
+  {
+    a.h.removeCallbacksAndMessages(paramL);
+  }
+}

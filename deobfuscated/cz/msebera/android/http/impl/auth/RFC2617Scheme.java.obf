@@ -1,0 +1,81 @@
+package c.a.a.a.i.a;
+
+import c.a.a.a.c;
+import c.a.a.a.f;
+import c.a.a.a.k.t;
+import c.a.a.a.k.w;
+import c.a.a.a.p.d;
+import c.a.a.a.q;
+import c.a.a.a.r;
+import java.io.Serializable;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+public abstract class m
+  extends a
+  implements Serializable
+{
+  private final Map<String, String> b = new HashMap();
+  private transient Charset c;
+  
+  public m(Charset paramCharset)
+  {
+    if (paramCharset == null) {
+      paramCharset = c.b;
+    }
+    c = paramCharset;
+  }
+  
+  String a(r paramR)
+  {
+    String str = (String)paramR.getParams().getParameter("http.auth.credential-charset");
+    paramR = str;
+    if (str == null) {
+      paramR = b().name();
+    }
+    return paramR;
+  }
+  
+  public String a(String paramString)
+  {
+    if (paramString == null) {
+      return null;
+    }
+    return (String)b.get(paramString.toLowerCase(Locale.ROOT));
+  }
+  
+  protected void a(d paramD, int paramInt1, int paramInt2)
+  {
+    paramD = c.a.a.a.k.g.b.a(paramD, new w(paramInt1, paramD.length()));
+    b.clear();
+    paramInt2 = paramD.length;
+    paramInt1 = 0;
+    while (paramInt1 < paramInt2)
+    {
+      Object localObject = paramD[paramInt1];
+      b.put(localObject.getName().toLowerCase(Locale.ROOT), localObject.getValue());
+      paramInt1 += 1;
+    }
+  }
+  
+  public Charset b()
+  {
+    Charset localCharset = c;
+    if (localCharset != null) {
+      return localCharset;
+    }
+    return c.b;
+  }
+  
+  protected Map<String, String> c()
+  {
+    return b;
+  }
+  
+  public String getRealm()
+  {
+    return a("realm");
+  }
+}

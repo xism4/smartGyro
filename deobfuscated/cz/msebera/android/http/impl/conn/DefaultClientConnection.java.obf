@@ -1,0 +1,249 @@
+package c.a.a.a.i.c;
+
+import c.a.a.a.e.p;
+import c.a.a.a.h.b;
+import c.a.a.a.j.c;
+import c.a.a.a.n.e;
+import c.a.a.a.r;
+import c.a.a.a.t;
+import c.a.a.a.u;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+
+@Deprecated
+public class g
+  extends c.a.a.a.i.f
+  implements c.a.a.a.e.q, p, e
+{
+  public b k = new b(g.class);
+  public b l = new b("cz.msebera.android.httpclient.headers");
+  public b m = new b("cz.msebera.android.httpclient.wire");
+  private volatile Socket n;
+  private c.a.a.a.o o;
+  private boolean p;
+  private volatile boolean q;
+  private final Map<String, Object> r = new HashMap();
+  
+  public g() {}
+  
+  protected c<t> a(c.a.a.a.j.f paramF, u paramU, c.a.a.a.l.g paramG)
+  {
+    return new i(paramF, null, paramU, paramG);
+  }
+  
+  protected c.a.a.a.j.f a(Socket paramSocket, int paramInt, c.a.a.a.l.g paramG)
+  {
+    if (paramInt <= 0) {
+      paramInt = 8192;
+    }
+    c.a.a.a.j.f localF = super.a(paramSocket, paramInt, paramG);
+    paramSocket = localF;
+    if (m.a()) {
+      paramSocket = new n(localF, new s(m), c.a.a.a.l.i.a(paramG));
+    }
+    return paramSocket;
+  }
+  
+  public void a(r paramR)
+  {
+    b localB;
+    Object localObject;
+    if (k.a())
+    {
+      localB = k;
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Sending request: ");
+      ((StringBuilder)localObject).append(paramR.getRequestLine());
+      localB.a(((StringBuilder)localObject).toString());
+    }
+    super.a(paramR);
+    if (l.a())
+    {
+      localB = l;
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append(">> ");
+      ((StringBuilder)localObject).append(paramR.getRequestLine().toString());
+      localB.a(((StringBuilder)localObject).toString());
+      paramR = paramR.getAllHeaders();
+      int j = paramR.length;
+      int i = 0;
+      while (i < j)
+      {
+        localB = paramR[i];
+        localObject = l;
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append(">> ");
+        localStringBuilder.append(localB.toString());
+        ((b)localObject).a(localStringBuilder.toString());
+        i += 1;
+      }
+    }
+  }
+  
+  public void a(Socket paramSocket, c.a.a.a.o paramO)
+  {
+    g();
+    n = paramSocket;
+    o = paramO;
+    if (!q) {
+      return;
+    }
+    paramSocket.close();
+    throw new InterruptedIOException("Connection already shutdown");
+  }
+  
+  public void a(Socket paramSocket, c.a.a.a.o paramO, boolean paramBoolean, c.a.a.a.l.g paramG)
+  {
+    a();
+    c.a.a.a.p.a.a(paramO, "Target host");
+    c.a.a.a.p.a.a(paramG, "Parameters");
+    if (paramSocket != null)
+    {
+      n = paramSocket;
+      a(paramSocket, paramG);
+    }
+    o = paramO;
+    p = paramBoolean;
+  }
+  
+  protected c.a.a.a.j.g b(Socket paramSocket, int paramInt, c.a.a.a.l.g paramG)
+  {
+    if (paramInt <= 0) {
+      paramInt = 8192;
+    }
+    c.a.a.a.j.g localG = super.b(paramSocket, paramInt, paramG);
+    paramSocket = localG;
+    if (m.a()) {
+      paramSocket = new o(localG, new s(m), c.a.a.a.l.i.a(paramG));
+    }
+    return paramSocket;
+  }
+  
+  public void b(boolean paramBoolean, c.a.a.a.l.g paramG)
+  {
+    c.a.a.a.p.a.a(paramG, "Parameters");
+    g();
+    p = paramBoolean;
+    a(n, paramG);
+  }
+  
+  public void close()
+  {
+    try
+    {
+      super.close();
+      if (k.a())
+      {
+        b localB = k;
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Connection ");
+        localStringBuilder.append(this);
+        localStringBuilder.append(" closed");
+        localB.a(localStringBuilder.toString());
+        return;
+      }
+    }
+    catch (IOException localIOException)
+    {
+      k.a("I/O error closing connection", localIOException);
+    }
+  }
+  
+  public Object getAttribute(String paramString)
+  {
+    return r.get(paramString);
+  }
+  
+  public SSLSession getSSLSession()
+  {
+    if ((n instanceof SSLSocket)) {
+      return ((SSLSocket)n).getSession();
+    }
+    return null;
+  }
+  
+  public final Socket getSocket()
+  {
+    return n;
+  }
+  
+  public final boolean isSecure()
+  {
+    return p;
+  }
+  
+  public t receiveResponseHeader()
+  {
+    t localT = super.receiveResponseHeader();
+    Object localObject;
+    StringBuilder localStringBuilder1;
+    if (k.a())
+    {
+      localObject = k;
+      localStringBuilder1 = new StringBuilder();
+      localStringBuilder1.append("Receiving response: ");
+      localStringBuilder1.append(localT.getStatusLine());
+      ((b)localObject).a(localStringBuilder1.toString());
+    }
+    if (l.a())
+    {
+      localObject = l;
+      localStringBuilder1 = new StringBuilder();
+      localStringBuilder1.append("<< ");
+      localStringBuilder1.append(localT.getStatusLine().toString());
+      ((b)localObject).a(localStringBuilder1.toString());
+      localObject = localT.getAllHeaders();
+      int j = localObject.length;
+      int i = 0;
+      while (i < j)
+      {
+        localStringBuilder1 = localObject[i];
+        b localB = l;
+        StringBuilder localStringBuilder2 = new StringBuilder();
+        localStringBuilder2.append("<< ");
+        localStringBuilder2.append(localStringBuilder1.toString());
+        localB.a(localStringBuilder2.toString());
+        i += 1;
+      }
+    }
+    return localT;
+  }
+  
+  public void setAttribute(String paramString, Object paramObject)
+  {
+    r.put(paramString, paramObject);
+  }
+  
+  public void shutdown()
+  {
+    q = true;
+    try
+    {
+      super.shutdown();
+      if (k.a())
+      {
+        localObject = k;
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Connection ");
+        localStringBuilder.append(this);
+        localStringBuilder.append(" shut down");
+        ((b)localObject).a(localStringBuilder.toString());
+      }
+      Object localObject = n;
+      if (localObject != null)
+      {
+        ((Socket)localObject).close();
+        return;
+      }
+    }
+    catch (IOException localIOException)
+    {
+      k.a("I/O error shutting down connection", localIOException);
+    }
+  }
+}

@@ -1,0 +1,230 @@
+package c.a.a.a.e.b;
+
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+import c.a.a.a.p.h;
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public final class b
+  implements e, Cloneable
+{
+  private final o a;
+  private final InetAddress b;
+  private final List<o> c;
+  private final e.b d;
+  private final e.a e;
+  private final boolean f;
+  
+  public b(o paramO)
+  {
+    this(paramO, null, Collections.emptyList(), false, e.b.a, e.a.a);
+  }
+  
+  public b(o paramO1, InetAddress paramInetAddress, o paramO2, boolean paramBoolean)
+  {
+    this(paramO1, paramInetAddress, localList, paramBoolean, paramO2, localA);
+  }
+  
+  private b(o paramO, InetAddress paramInetAddress, List<o> paramList, boolean paramBoolean, e.b paramB, e.a paramA)
+  {
+    a.a(paramO, "Target host");
+    a = a(paramO);
+    b = paramInetAddress;
+    if ((paramList != null) && (!paramList.isEmpty())) {
+      paramO = new ArrayList(paramList);
+    } else {
+      paramO = null;
+    }
+    c = paramO;
+    if (paramB == e.b.b)
+    {
+      boolean bool;
+      if (c != null) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      a.a(bool, "Proxy required if tunnelled");
+    }
+    f = paramBoolean;
+    if (paramB == null) {
+      paramB = e.b.a;
+    }
+    d = paramB;
+    if (paramA == null) {
+      paramA = e.a.a;
+    }
+    e = paramA;
+  }
+  
+  public b(o paramO, InetAddress paramInetAddress, boolean paramBoolean)
+  {
+    this(paramO, paramInetAddress, Collections.emptyList(), paramBoolean, e.b.a, e.a.a);
+  }
+  
+  public b(o paramO, InetAddress paramInetAddress, o[] paramArrayOfO, boolean paramBoolean, e.b paramB, e.a paramA)
+  {
+    this(paramO, paramInetAddress, paramArrayOfO, paramBoolean, paramB, paramA);
+  }
+  
+  private static int a(String paramString)
+  {
+    if ("http".equalsIgnoreCase(paramString)) {
+      return 80;
+    }
+    if ("https".equalsIgnoreCase(paramString)) {
+      return 443;
+    }
+    return -1;
+  }
+  
+  private static o a(o paramO)
+  {
+    if (paramO.c() >= 0) {
+      return paramO;
+    }
+    InetAddress localInetAddress = paramO.a();
+    String str = paramO.d();
+    if (localInetAddress != null) {
+      return new o(localInetAddress, a(str), str);
+    }
+    return new o(paramO.b(), a(str), str);
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public final boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if ((paramObject instanceof b))
+    {
+      paramObject = (b)paramObject;
+      return (f == f) && (d == d) && (e == e) && (h.a(a, a)) && (h.a(b, b)) && (h.a(c, c));
+    }
+    return false;
+  }
+  
+  public final int getHopCount()
+  {
+    List localList = c;
+    int i = 1;
+    if (localList != null) {
+      i = 1 + localList.size();
+    }
+    return i;
+  }
+  
+  public final o getHopTarget(int paramInt)
+  {
+    a.a(paramInt, "Hop index");
+    int i = getHopCount();
+    boolean bool;
+    if (paramInt < i) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    a.a(bool, "Hop index exceeds tracked route length");
+    if (paramInt < i - 1) {
+      return (o)c.get(paramInt);
+    }
+    return a;
+  }
+  
+  public final InetAddress getLocalAddress()
+  {
+    return b;
+  }
+  
+  public final o getProxyHost()
+  {
+    List localList = c;
+    if ((localList != null) && (!localList.isEmpty())) {
+      return (o)c.get(0);
+    }
+    return null;
+  }
+  
+  public final o getTargetHost()
+  {
+    return a;
+  }
+  
+  public final int hashCode()
+  {
+    int i = h.a(h.a(17, a), b);
+    Object localObject = c;
+    int j = i;
+    if (localObject != null)
+    {
+      localObject = ((List)localObject).iterator();
+      for (;;)
+      {
+        j = i;
+        if (!((Iterator)localObject).hasNext()) {
+          break;
+        }
+        i = h.a(i, (o)((Iterator)localObject).next());
+      }
+    }
+    return h.a(h.a(h.a(j, f), d), e);
+  }
+  
+  public final boolean isLayered()
+  {
+    return e == e.a.b;
+  }
+  
+  public final boolean isSecure()
+  {
+    return f;
+  }
+  
+  public final boolean isTunnelled()
+  {
+    return d == e.b.b;
+  }
+  
+  public final String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder(getHopCount() * 30 + 50);
+    Object localObject = b;
+    if (localObject != null)
+    {
+      localStringBuilder.append(localObject);
+      localStringBuilder.append("->");
+    }
+    localStringBuilder.append('{');
+    if (d == e.b.b) {
+      localStringBuilder.append('t');
+    }
+    if (e == e.a.b) {
+      localStringBuilder.append('l');
+    }
+    if (f) {
+      localStringBuilder.append('s');
+    }
+    localStringBuilder.append("}->");
+    localObject = c;
+    if (localObject != null)
+    {
+      localObject = ((List)localObject).iterator();
+      while (((Iterator)localObject).hasNext())
+      {
+        localStringBuilder.append((o)((Iterator)localObject).next());
+        localStringBuilder.append("->");
+      }
+    }
+    localStringBuilder.append(a);
+    return localStringBuilder.toString();
+  }
+}

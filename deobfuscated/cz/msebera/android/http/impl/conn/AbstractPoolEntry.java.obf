@@ -1,0 +1,99 @@
+package c.a.a.a.i.c;
+
+import c.a.a.a.e.b.f;
+import c.a.a.a.e.d;
+import c.a.a.a.e.q;
+import c.a.a.a.l.g;
+import c.a.a.a.n.e;
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+import java.io.InterruptedIOException;
+
+@Deprecated
+public abstract class b
+{
+  protected final d a;
+  protected final q b;
+  protected volatile c.a.a.a.e.b.b c;
+  protected volatile Object d;
+  protected volatile f e;
+  
+  protected b(d paramD, c.a.a.a.e.b.b paramB)
+  {
+    a.a(paramD, "Connection operator");
+    a = paramD;
+    b = paramD.createConnection();
+    c = paramB;
+    e = null;
+  }
+  
+  public Object a()
+  {
+    return d;
+  }
+  
+  public void a(c.a.a.a.e.b.b paramB, e paramE, g paramG)
+  {
+    a.a(paramB, "Route");
+    a.a(paramG, "HTTP parameters");
+    if (e != null) {
+      c.a.a.a.p.b.a(e.a() ^ true, "Connection already open");
+    }
+    e = new f(paramB);
+    o localO2 = paramB.getProxyHost();
+    d localD = a;
+    q localQ = b;
+    o localO1;
+    if (localO2 != null) {
+      localO1 = localO2;
+    } else {
+      localO1 = paramB.getTargetHost();
+    }
+    localD.a(localQ, localO1, paramB.getLocalAddress(), paramE, paramG);
+    paramB = e;
+    if (paramB != null)
+    {
+      if (localO2 == null)
+      {
+        paramB.a(b.isSecure());
+        return;
+      }
+      paramB.a(localO2, b.isSecure());
+      return;
+    }
+    throw new InterruptedIOException("Request aborted");
+  }
+  
+  public void a(e paramE, g paramG)
+  {
+    a.a(paramG, "HTTP parameters");
+    c.a.a.a.p.b.a(e, "Route tracker");
+    c.a.a.a.p.b.a(e.a(), "Connection not open");
+    c.a.a.a.p.b.a(e.isTunnelled(), "Protocol layering without a tunnel not supported");
+    c.a.a.a.p.b.a(e.isLayered() ^ true, "Multiple protocol layering not supported");
+    o localO = e.getTargetHost();
+    a.a(b, localO, paramE, paramG);
+    e.b(b.isSecure());
+  }
+  
+  public void a(Object paramObject)
+  {
+    d = paramObject;
+  }
+  
+  public void a(boolean paramBoolean, g paramG)
+  {
+    a.a(paramG, "HTTP parameters");
+    c.a.a.a.p.b.a(e, "Route tracker");
+    c.a.a.a.p.b.a(e.a(), "Connection not open");
+    c.a.a.a.p.b.a(e.isTunnelled() ^ true, "Connection is already tunnelled");
+    b.a(null, e.getTargetHost(), paramBoolean, paramG);
+    e.c(paramBoolean);
+  }
+  
+  protected void b()
+  {
+    e = null;
+    d = null;
+  }
+}

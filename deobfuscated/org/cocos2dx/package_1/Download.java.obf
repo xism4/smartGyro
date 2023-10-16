@@ -1,0 +1,13 @@
+package org.cocos2dx.lib;
+
+class i
+  implements Runnable
+{
+  i(Cocos2dxDownloader paramCocos2dxDownloader, int paramInt1, int paramInt2, String paramString, byte[] paramArrayOfByte) {}
+  
+  public void run()
+  {
+    Cocos2dxDownloader localCocos2dxDownloader = e;
+    localCocos2dxDownloader.nativeOnFinish(Cocos2dxDownloader.access$000(localCocos2dxDownloader), a, b, c, d);
+  }
+}

@@ -1,0 +1,10 @@
+package c.a.a.a.b;
+
+import c.a.a.a.t;
+
+public abstract interface g
+{
+  public abstract boolean a(t paramT);
+  
+  public abstract boolean a(Throwable paramThrowable);
+}

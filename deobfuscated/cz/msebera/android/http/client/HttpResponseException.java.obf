@@ -1,0 +1,13 @@
+package c.a.a.a.b;
+
+public class l
+  extends f
+{
+  private final int a;
+  
+  public l(int paramInt, String paramString)
+  {
+    super(paramString);
+    a = paramInt;
+  }
+}

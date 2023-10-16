@@ -1,0 +1,110 @@
+package c.a.a.a.i.c;
+
+import c.a.a.a.h.b;
+import c.a.a.a.p.a;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+public class s
+{
+  public b a;
+  private final String b;
+  
+  public s(b paramB)
+  {
+    this(paramB, "");
+  }
+  
+  public s(b paramB, String paramString)
+  {
+    a = paramB;
+    b = paramString;
+  }
+  
+  private void a(String paramString, InputStream paramInputStream)
+  {
+    StringBuilder localStringBuilder1 = new StringBuilder();
+    int i = paramInputStream.read();
+    if (i != -1)
+    {
+      if (i == 13) {}
+      for (Object localObject = "[\\r]";; localObject = "]")
+      {
+        localStringBuilder1.append((String)localObject);
+        break;
+        if (i == 10)
+        {
+          localStringBuilder1.append("[\\n]\"");
+          localStringBuilder1.insert(0, "\"");
+          localStringBuilder1.insert(0, paramString);
+          localObject = a;
+          StringBuilder localStringBuilder2 = new StringBuilder();
+          localStringBuilder2.append(b);
+          localStringBuilder2.append(" ");
+          localStringBuilder2.append(localStringBuilder1.toString());
+          ((b)localObject).a(localStringBuilder2.toString());
+          localStringBuilder1.setLength(0);
+          break;
+        }
+        if ((i >= 32) && (i <= 127))
+        {
+          localStringBuilder1.append((char)i);
+          break;
+        }
+        localStringBuilder1.append("[0x");
+        localStringBuilder1.append(Integer.toHexString(i));
+      }
+    }
+    if (localStringBuilder1.length() > 0)
+    {
+      localStringBuilder1.append('"');
+      localStringBuilder1.insert(0, '"');
+      localStringBuilder1.insert(0, paramString);
+      paramString = a;
+      paramInputStream = new StringBuilder();
+      paramInputStream.append(b);
+      paramInputStream.append(" ");
+      paramInputStream.append(localStringBuilder1.toString());
+      paramString.a(paramInputStream.toString());
+    }
+  }
+  
+  public void a(int paramInt)
+  {
+    a(new byte[] { (byte)paramInt });
+  }
+  
+  public void a(byte[] paramArrayOfByte)
+  {
+    a.a(paramArrayOfByte, "Input");
+    a("<< ", new ByteArrayInputStream(paramArrayOfByte));
+  }
+  
+  public void a(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    a.a(paramArrayOfByte, "Input");
+    a("<< ", new ByteArrayInputStream(paramArrayOfByte, paramInt1, paramInt2));
+  }
+  
+  public boolean a()
+  {
+    return a.a();
+  }
+  
+  public void b(int paramInt)
+  {
+    b(new byte[] { (byte)paramInt });
+  }
+  
+  public void b(byte[] paramArrayOfByte)
+  {
+    a.a(paramArrayOfByte, "Output");
+    a(">> ", new ByteArrayInputStream(paramArrayOfByte));
+  }
+  
+  public void b(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    a.a(paramArrayOfByte, "Output");
+    a(">> ", new ByteArrayInputStream(paramArrayOfByte, paramInt1, paramInt2));
+  }
+}

@@ -1,0 +1,238 @@
+package c.a.a.a.b.a;
+
+import c.a.a.a.o;
+import java.net.InetAddress;
+import java.util.Collection;
+
+public class a
+  implements Cloneable
+{
+  public static final a a = new a().a();
+  private final boolean b;
+  private final o c;
+  private final InetAddress d;
+  private final boolean e;
+  private final String f;
+  private final boolean g;
+  private final boolean h;
+  private final boolean i;
+  private final int j;
+  private final boolean k;
+  private final Collection<String> l;
+  private final Collection<String> m;
+  private final int n;
+  private final int o;
+  private final int p;
+  private final boolean q;
+  
+  a(boolean paramBoolean1, o paramO, InetAddress paramInetAddress, boolean paramBoolean2, String paramString, boolean paramBoolean3, boolean paramBoolean4, boolean paramBoolean5, int paramInt1, boolean paramBoolean6, Collection<String> paramCollection1, Collection<String> paramCollection2, int paramInt2, int paramInt3, int paramInt4, boolean paramBoolean7)
+  {
+    b = paramBoolean1;
+    c = paramO;
+    d = paramInetAddress;
+    e = paramBoolean2;
+    f = paramString;
+    g = paramBoolean3;
+    h = paramBoolean4;
+    i = paramBoolean5;
+    j = paramInt1;
+    k = paramBoolean6;
+    l = paramCollection1;
+    m = paramCollection2;
+    n = paramInt2;
+    o = paramInt3;
+    p = paramInt4;
+    q = paramBoolean7;
+  }
+  
+  public static a a()
+  {
+    return new a();
+  }
+  
+  public String b()
+  {
+    return f;
+  }
+  
+  public Collection<String> c()
+  {
+    return m;
+  }
+  
+  protected a clone()
+  {
+    return (a)super.clone();
+  }
+  
+  public Collection<String> d()
+  {
+    return l;
+  }
+  
+  public boolean e()
+  {
+    return i;
+  }
+  
+  public boolean f()
+  {
+    return h;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("[");
+    localStringBuilder.append("expectContinueEnabled=");
+    localStringBuilder.append(b);
+    localStringBuilder.append(", proxy=");
+    localStringBuilder.append(c);
+    localStringBuilder.append(", localAddress=");
+    localStringBuilder.append(d);
+    localStringBuilder.append(", cookieSpec=");
+    localStringBuilder.append(f);
+    localStringBuilder.append(", redirectsEnabled=");
+    localStringBuilder.append(g);
+    localStringBuilder.append(", relativeRedirectsAllowed=");
+    localStringBuilder.append(h);
+    localStringBuilder.append(", maxRedirects=");
+    localStringBuilder.append(j);
+    localStringBuilder.append(", circularRedirectsAllowed=");
+    localStringBuilder.append(i);
+    localStringBuilder.append(", authenticationEnabled=");
+    localStringBuilder.append(k);
+    localStringBuilder.append(", targetPreferredAuthSchemes=");
+    localStringBuilder.append(l);
+    localStringBuilder.append(", proxyPreferredAuthSchemes=");
+    localStringBuilder.append(m);
+    localStringBuilder.append(", connectionRequestTimeout=");
+    localStringBuilder.append(n);
+    localStringBuilder.append(", connectTimeout=");
+    localStringBuilder.append(o);
+    localStringBuilder.append(", socketTimeout=");
+    localStringBuilder.append(p);
+    localStringBuilder.append(", decompressionEnabled=");
+    localStringBuilder.append(q);
+    localStringBuilder.append("]");
+    return localStringBuilder.toString();
+  }
+  
+  public static class a
+  {
+    private boolean a;
+    private o b;
+    private InetAddress c;
+    private boolean d = false;
+    private String e;
+    private boolean f = true;
+    private boolean g = true;
+    private boolean h;
+    private int i = 50;
+    private boolean j = true;
+    private Collection<String> k;
+    private Collection<String> l;
+    private int m = -1;
+    private int n = -1;
+    private int o = -1;
+    private boolean p = true;
+    
+    a() {}
+    
+    public a a(int paramInt)
+    {
+      n = paramInt;
+      return this;
+    }
+    
+    public a a(o paramO)
+    {
+      b = paramO;
+      return this;
+    }
+    
+    public a a(String paramString)
+    {
+      e = paramString;
+      return this;
+    }
+    
+    public a a(InetAddress paramInetAddress)
+    {
+      c = paramInetAddress;
+      return this;
+    }
+    
+    public a a(Collection<String> paramCollection)
+    {
+      l = paramCollection;
+      return this;
+    }
+    
+    public a a(boolean paramBoolean)
+    {
+      j = paramBoolean;
+      return this;
+    }
+    
+    public a a()
+    {
+      return new a(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
+    }
+    
+    public a b(int paramInt)
+    {
+      m = paramInt;
+      return this;
+    }
+    
+    public a b(Collection<String> paramCollection)
+    {
+      k = paramCollection;
+      return this;
+    }
+    
+    public a b(boolean paramBoolean)
+    {
+      h = paramBoolean;
+      return this;
+    }
+    
+    public a c(int paramInt)
+    {
+      i = paramInt;
+      return this;
+    }
+    
+    public a c(boolean paramBoolean)
+    {
+      a = paramBoolean;
+      return this;
+    }
+    
+    public a d(int paramInt)
+    {
+      o = paramInt;
+      return this;
+    }
+    
+    public a d(boolean paramBoolean)
+    {
+      f = paramBoolean;
+      return this;
+    }
+    
+    public a e(boolean paramBoolean)
+    {
+      g = paramBoolean;
+      return this;
+    }
+    
+    @Deprecated
+    public a f(boolean paramBoolean)
+    {
+      d = paramBoolean;
+      return this;
+    }
+  }
+}

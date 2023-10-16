@@ -1,0 +1,204 @@
+package c.a.a.a.n;
+
+import c.a.a.a.C;
+import c.a.a.a.D;
+import c.a.a.a.F;
+import c.a.a.a.G;
+import c.a.a.a.i;
+import c.a.a.a.j;
+import c.a.a.a.m;
+import c.a.a.a.n;
+import c.a.a.a.p.a;
+import c.a.a.a.r;
+import c.a.a.a.s;
+import c.a.a.a.t;
+import c.a.a.a.v;
+import c.a.a.a.w;
+import java.io.IOException;
+
+public class h
+{
+  private final int a;
+  
+  public h()
+  {
+    this(3000);
+  }
+  
+  public h(int paramInt)
+  {
+    a.b(paramInt, "Wait for continue time");
+    a = paramInt;
+  }
+  
+  private static void a(i paramI)
+  {
+    try
+    {
+      paramI.close();
+      return;
+    }
+    catch (IOException paramI) {}
+  }
+  
+  protected t a(r paramR, i paramI, e paramE)
+  {
+    a.a(paramR, "HTTP request");
+    a.a(paramI, "Client connection");
+    a.a(paramE, "HTTP context");
+    paramE = null;
+    for (int i = 0;; i = paramE.getStatusLine().getStatusCode())
+    {
+      if ((paramE != null) && (i >= 200)) {
+        return paramE;
+      }
+      paramE = paramI.receiveResponseHeader();
+      if (a(paramR, paramE)) {
+        paramI.a(paramE);
+      }
+    }
+  }
+  
+  public void a(r paramR, g paramG, e paramE)
+  {
+    a.a(paramR, "HTTP request");
+    a.a(paramG, "HTTP processor");
+    a.a(paramE, "HTTP context");
+    paramE.setAttribute("http.request", paramR);
+    paramG.a(paramR, paramE);
+  }
+  
+  public void a(t paramT, g paramG, e paramE)
+  {
+    a.a(paramT, "HTTP response");
+    a.a(paramG, "HTTP processor");
+    a.a(paramE, "HTTP context");
+    paramE.setAttribute("http.response", paramT);
+    paramG.a(paramT, paramE);
+  }
+  
+  protected boolean a(r paramR, t paramT)
+  {
+    boolean bool1 = "HEAD".equalsIgnoreCase(paramR.getRequestLine().getMethod());
+    boolean bool2 = false;
+    if (bool1) {
+      return false;
+    }
+    int i = paramT.getStatusLine().getStatusCode();
+    bool1 = bool2;
+    if (i >= 200)
+    {
+      bool1 = bool2;
+      if (i != 204)
+      {
+        bool1 = bool2;
+        if (i != 304)
+        {
+          bool1 = bool2;
+          if (i != 205) {
+            bool1 = true;
+          }
+        }
+      }
+    }
+    return bool1;
+  }
+  
+  protected t b(r paramR, i paramI, e paramE)
+  {
+    a.a(paramR, "HTTP request");
+    a.a(paramI, "Client connection");
+    a.a(paramE, "HTTP context");
+    paramE.setAttribute("http.connection", paramI);
+    paramE.setAttribute("http.request_sent", Boolean.FALSE);
+    paramI.a(paramR);
+    boolean bool = paramR instanceof m;
+    Object localObject2 = null;
+    Object localObject3 = null;
+    if (bool)
+    {
+      int j = 1;
+      localObject2 = paramR.getRequestLine().getProtocolVersion();
+      m localM = (m)paramR;
+      int i = j;
+      Object localObject1 = localObject3;
+      if (localM.expectContinue())
+      {
+        i = j;
+        localObject1 = localObject3;
+        if (!((D)localObject2).c(w.e))
+        {
+          paramI.flush();
+          i = j;
+          localObject1 = localObject3;
+          if (paramI.isResponseAvailable(a))
+          {
+            localObject1 = paramI.receiveResponseHeader();
+            if (a(paramR, (t)localObject1)) {
+              paramI.a((t)localObject1);
+            }
+            i = ((t)localObject1).getStatusLine().getStatusCode();
+            if (i < 200)
+            {
+              if (i == 100)
+              {
+                i = j;
+                localObject1 = localObject3;
+              }
+              else
+              {
+                paramR = new StringBuilder();
+                paramR.append("Unexpected response: ");
+                paramR.append(((t)localObject1).getStatusLine());
+                throw new C(paramR.toString());
+              }
+            }
+            else {
+              i = 0;
+            }
+          }
+        }
+      }
+      localObject2 = localObject1;
+      if (i != 0)
+      {
+        paramI.a(localM);
+        localObject2 = localObject1;
+      }
+    }
+    paramI.flush();
+    paramE.setAttribute("http.request_sent", Boolean.TRUE);
+    return localObject2;
+  }
+  
+  public t c(r paramR, i paramI, e paramE)
+  {
+    a.a(paramR, "HTTP request");
+    a.a(paramI, "Client connection");
+    a.a(paramE, "HTTP context");
+    try
+    {
+      t localT2 = b(paramR, paramI, paramE);
+      t localT1 = localT2;
+      if (localT2 == null) {
+        localT1 = a(paramR, paramI, paramE);
+      }
+      return localT1;
+    }
+    catch (RuntimeException paramR)
+    {
+      a(paramI);
+      throw paramR;
+    }
+    catch (n paramR)
+    {
+      a(paramI);
+      throw paramR;
+    }
+    catch (IOException paramR)
+    {
+      a(paramI);
+      throw paramR;
+    }
+  }
+}

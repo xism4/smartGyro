@@ -1,0 +1,10 @@
+package c.a.a.a.e.b;
+
+import c.a.a.a.n.e;
+import c.a.a.a.o;
+import c.a.a.a.r;
+
+public abstract interface d
+{
+  public abstract b a(o paramO, r paramR, e paramE);
+}

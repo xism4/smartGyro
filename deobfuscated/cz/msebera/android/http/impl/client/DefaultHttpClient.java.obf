@@ -1,0 +1,61 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.b.e.c;
+import c.a.a.a.b.e.f;
+import c.a.a.a.b.e.h;
+import c.a.a.a.l.e;
+import c.a.a.a.n.d;
+import c.a.a.a.n.l;
+import c.a.a.a.n.m;
+import c.a.a.a.n.n;
+import c.a.a.a.n.o;
+import c.a.a.a.w;
+import java.nio.charset.Charset;
+
+@Deprecated
+public class k
+  extends a
+{
+  public k()
+  {
+    super(null, null);
+  }
+  
+  public k(c.a.a.a.e.b paramB, c.a.a.a.l.g paramG)
+  {
+    super(paramB, paramG);
+  }
+  
+  public static void a(c.a.a.a.l.g paramG)
+  {
+    c.a.a.a.l.i.a(paramG, w.f);
+    c.a.a.a.l.i.a(paramG, d.a.name());
+    e.a(paramG, true);
+    e.c(paramG, 8192);
+    c.a.a.a.l.i.b(paramG, c.a.a.a.p.j.a("Apache-HttpClient", "cz.msebera.android.httpclient.client", k.class));
+  }
+  
+  protected c.a.a.a.l.g i()
+  {
+    c.a.a.a.l.j localJ = new c.a.a.a.l.j();
+    a(localJ);
+    return localJ;
+  }
+  
+  protected c.a.a.a.n.b j()
+  {
+    c.a.a.a.n.b localB = new c.a.a.a.n.b();
+    localB.a(new c.a.a.a.b.e.g());
+    localB.a(new l());
+    localB.a(new n());
+    localB.a(new f());
+    localB.a(new o());
+    localB.a(new m());
+    localB.a(new c.a.a.a.b.e.b());
+    localB.a(new c.a.a.a.b.e.j());
+    localB.a(new c());
+    localB.a(new c.a.a.a.b.e.i());
+    localB.a(new h());
+    return localB;
+  }
+}

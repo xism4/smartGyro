@@ -1,0 +1,17 @@
+package c.a.a.a.j;
+
+import c.a.a.a.p.d;
+
+public abstract interface f
+{
+  public abstract int a(d paramD);
+  
+  public abstract e getMetrics();
+  
+  @Deprecated
+  public abstract boolean isDataAvailable(int paramInt);
+  
+  public abstract int read();
+  
+  public abstract int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2);
+}

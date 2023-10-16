@@ -1,0 +1,67 @@
+package b.c.a.a;
+
+import c.a.a.a.e.e.i;
+import java.net.Socket;
+import java.security.KeyStore;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+
+public class n
+  extends i
+{
+  final SSLContext i = SSLContext.getInstance("TLS");
+  
+  public n(KeyStore paramKeyStore)
+  {
+    super(paramKeyStore);
+    paramKeyStore = new m(this);
+    i.init(null, new TrustManager[] { paramKeyStore }, null);
+  }
+  
+  public static i b()
+  {
+    try
+    {
+      n localN = new n(c());
+      localN.a(i.a);
+      return localN;
+    }
+    catch (Throwable localThrowable)
+    {
+      localThrowable.printStackTrace();
+    }
+    return i.a();
+  }
+  
+  public static KeyStore c()
+  {
+    Object localObject = null;
+    try
+    {
+      KeyStore localKeyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+      try
+      {
+        localKeyStore.load(null, null);
+        return localKeyStore;
+      }
+      catch (Throwable localThrowable1)
+      {
+        localObject = localKeyStore;
+      }
+      localThrowable2.printStackTrace();
+    }
+    catch (Throwable localThrowable2) {}
+    return localObject;
+  }
+  
+  public Socket createSocket()
+  {
+    return i.getSocketFactory().createSocket();
+  }
+  
+  public Socket createSocket(Socket paramSocket, String paramString, int paramInt, boolean paramBoolean)
+  {
+    return i.getSocketFactory().createSocket(paramSocket, paramString, paramInt, paramBoolean);
+  }
+}

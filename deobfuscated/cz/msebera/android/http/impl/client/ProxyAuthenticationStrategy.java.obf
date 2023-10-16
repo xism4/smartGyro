@@ -1,0 +1,20 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.b.a.a;
+import java.util.Collection;
+
+public class x
+  extends c
+{
+  public static final x e = new x();
+  
+  public x()
+  {
+    super(401, "WWW-Authenticate");
+  }
+  
+  Collection<String> a(a paramA)
+  {
+    return paramA.d();
+  }
+}

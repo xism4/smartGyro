@@ -1,0 +1,351 @@
+package c.a.a.a.b.f;
+
+import c.a.a.a.c;
+import c.a.a.a.g.e;
+import c.a.a.a.k.m;
+import c.a.a.a.k.w;
+import c.a.a.a.k.x;
+import c.a.a.a.l;
+import c.a.a.a.p.a;
+import c.a.a.a.z;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public class f
+{
+  private static final BitSet a = new BitSet(256);
+  private static final BitSet b = new BitSet(256);
+  private static final BitSet c = new BitSet(256);
+  private static final BitSet d = new BitSet(256);
+  private static final BitSet e = new BitSet(256);
+  private static final BitSet f = new BitSet(256);
+  private static final BitSet g = new BitSet(256);
+  
+  static
+  {
+    int i = 97;
+    while (i <= 122)
+    {
+      a.set(i);
+      i += 1;
+    }
+    i = 65;
+    while (i <= 90)
+    {
+      a.set(i);
+      i += 1;
+    }
+    i = 48;
+    while (i <= 57)
+    {
+      a.set(i);
+      i += 1;
+    }
+    a.set(95);
+    a.set(45);
+    a.set(46);
+    a.set(42);
+    g.or(a);
+    a.set(33);
+    a.set(126);
+    a.set(39);
+    a.set(40);
+    a.set(41);
+    b.set(44);
+    b.set(59);
+    b.set(58);
+    b.set(36);
+    b.set(38);
+    b.set(43);
+    b.set(61);
+    c.or(a);
+    c.or(b);
+    d.or(a);
+    d.set(47);
+    d.set(59);
+    d.set(58);
+    d.set(64);
+    d.set(38);
+    d.set(61);
+    d.set(43);
+    d.set(36);
+    d.set(44);
+    f.set(59);
+    f.set(47);
+    f.set(63);
+    f.set(58);
+    f.set(64);
+    f.set(38);
+    f.set(61);
+    f.set(43);
+    f.set(36);
+    f.set(44);
+    f.set(91);
+    f.set(93);
+    e.or(f);
+    e.or(a);
+  }
+  
+  public static String a(Iterable<? extends z> paramIterable, char paramChar, Charset paramCharset)
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    paramIterable = paramIterable.iterator();
+    while (paramIterable.hasNext())
+    {
+      Object localObject = (z)paramIterable.next();
+      String str = f(((z)localObject).getName(), paramCharset);
+      localObject = f(((z)localObject).getValue(), paramCharset);
+      if (localStringBuilder.length() > 0) {
+        localStringBuilder.append(paramChar);
+      }
+      localStringBuilder.append(str);
+      if (localObject != null)
+      {
+        localStringBuilder.append("=");
+        localStringBuilder.append((String)localObject);
+      }
+    }
+    return localStringBuilder.toString();
+  }
+  
+  public static String a(Iterable<? extends z> paramIterable, Charset paramCharset)
+  {
+    return a(paramIterable, '&', paramCharset);
+  }
+  
+  static String a(String paramString, Charset paramCharset)
+  {
+    return a(paramString, paramCharset, d, false);
+  }
+  
+  private static String a(String paramString, Charset paramCharset, BitSet paramBitSet, boolean paramBoolean)
+  {
+    if (paramString == null) {
+      return null;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    paramString = paramCharset.encode(paramString);
+    if (paramString.hasRemaining())
+    {
+      int i = paramString.get() & 0xFF;
+      char c1;
+      if (paramBitSet.get(i)) {
+        c1 = (char)i;
+      }
+      for (;;)
+      {
+        localStringBuilder.append(c1);
+        break;
+        if ((paramBoolean) && (i == 32))
+        {
+          c1 = '+';
+        }
+        else
+        {
+          localStringBuilder.append("%");
+          char c2 = Character.toUpperCase(Character.forDigit(i >> 4 & 0xF, 16));
+          c1 = Character.toUpperCase(Character.forDigit(i & 0xF, 16));
+          localStringBuilder.append(c2);
+        }
+      }
+    }
+    return localStringBuilder.toString();
+  }
+  
+  private static String a(String paramString, Charset paramCharset, boolean paramBoolean)
+  {
+    if (paramString == null) {
+      return null;
+    }
+    ByteBuffer localByteBuffer = ByteBuffer.allocate(paramString.length());
+    paramString = CharBuffer.wrap(paramString);
+    if (paramString.hasRemaining())
+    {
+      int j = paramString.get();
+      char c2;
+      int i;
+      if ((j == 37) && (paramString.remaining() >= 2))
+      {
+        char c1 = paramString.get();
+        c2 = paramString.get();
+        i = Character.digit(c1, 16);
+        j = Character.digit(c2, 16);
+        if ((i != -1) && (j != -1))
+        {
+          i = (i << 4) + j;
+          label99:
+          b1 = (byte)i;
+        }
+        else
+        {
+          localByteBuffer.put((byte)37);
+          localByteBuffer.put((byte)c1);
+        }
+      }
+      for (byte b1 = (byte)c2;; b1 = 32)
+      {
+        localByteBuffer.put(b1);
+        break;
+        i = j;
+        if (!paramBoolean) {
+          break label99;
+        }
+        i = j;
+        if (j != 43) {
+          break label99;
+        }
+      }
+    }
+    localByteBuffer.flip();
+    return paramCharset.decode(localByteBuffer).toString();
+  }
+  
+  public static List<z> a(l paramL)
+  {
+    Object localObject1 = e.a(paramL);
+    int i;
+    if ((localObject1 != null) && (((e)localObject1).b().equalsIgnoreCase("application/x-www-form-urlencoded")))
+    {
+      long l = paramL.getContentLength();
+      boolean bool;
+      if (l <= 2147483647L) {
+        bool = true;
+      } else {
+        bool = false;
+      }
+      a.a(bool, "HTTP entity is too large");
+      if (((e)localObject1).a() != null) {
+        localObject1 = ((e)localObject1).a();
+      } else {
+        localObject1 = c.a.a.a.n.d.a;
+      }
+      paramL = paramL.getContent();
+      if (paramL == null) {
+        return Collections.emptyList();
+      }
+      if (l <= 0L) {
+        break label207;
+      }
+      i = (int)l;
+    }
+    for (;;)
+    {
+      try
+      {
+        c.a.a.a.p.d localD = new c.a.a.a.p.d(i);
+        InputStreamReader localInputStreamReader = new InputStreamReader(paramL, (Charset)localObject1);
+        char[] arrayOfChar = new char['?'];
+        i = localInputStreamReader.read(arrayOfChar);
+        if (i != -1)
+        {
+          localD.a(arrayOfChar, 0, i);
+          continue;
+        }
+        paramL.close();
+        if (localD.length() == 0) {
+          return Collections.emptyList();
+        }
+        return a(localD, (Charset)localObject1, new char[] { '&' });
+      }
+      finally
+      {
+        paramL.close();
+      }
+      return Collections.emptyList();
+      label207:
+      i = 1024;
+    }
+  }
+  
+  public static List<z> a(c.a.a.a.p.d paramD, Charset paramCharset, char... paramVarArgs)
+  {
+    a.a(paramD, "Char array buffer");
+    x localX = x.a;
+    BitSet localBitSet = new BitSet();
+    int j = paramVarArgs.length;
+    int i = 0;
+    while (i < j)
+    {
+      localBitSet.set(paramVarArgs[i]);
+      i += 1;
+    }
+    w localW = new w(0, paramD.length());
+    ArrayList localArrayList = new ArrayList();
+    while (!localW.a())
+    {
+      localBitSet.set(61);
+      String str2 = localX.a(paramD, localW, localBitSet);
+      String str1 = null;
+      paramVarArgs = str1;
+      if (!localW.a())
+      {
+        i = paramD.charAt(localW.b());
+        localW.a(localW.b() + 1);
+        paramVarArgs = str1;
+        if (i == 61)
+        {
+          localBitSet.clear(61);
+          str1 = localX.b(paramD, localW, localBitSet);
+          paramVarArgs = str1;
+          if (!localW.a())
+          {
+            localW.a(localW.b() + 1);
+            paramVarArgs = str1;
+          }
+        }
+      }
+      if (!str2.isEmpty()) {
+        localArrayList.add(new m(e(str2, paramCharset), e(paramVarArgs, paramCharset)));
+      }
+    }
+    return localArrayList;
+  }
+  
+  static String b(String paramString, Charset paramCharset)
+  {
+    return a(paramString, paramCharset, e, false);
+  }
+  
+  static String c(String paramString, Charset paramCharset)
+  {
+    return a(paramString, paramCharset, c, false);
+  }
+  
+  public static List<z> d(String paramString, Charset paramCharset)
+  {
+    c.a.a.a.p.d localD = new c.a.a.a.p.d(paramString.length());
+    localD.a(paramString);
+    return a(localD, paramCharset, new char[] { 38, 59 });
+  }
+  
+  private static String e(String paramString, Charset paramCharset)
+  {
+    if (paramString == null) {
+      return null;
+    }
+    if (paramCharset == null) {
+      paramCharset = c.a;
+    }
+    return a(paramString, paramCharset, true);
+  }
+  
+  private static String f(String paramString, Charset paramCharset)
+  {
+    if (paramString == null) {
+      return null;
+    }
+    if (paramCharset == null) {
+      paramCharset = c.a;
+    }
+    return a(paramString, paramCharset, g, true);
+  }
+}

@@ -1,0 +1,70 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.j.b;
+import c.a.a.a.l.g;
+import c.a.a.a.p.a;
+import java.net.Socket;
+
+@Deprecated
+public class n
+  extends c
+  implements b
+{
+  private final Socket o;
+  private boolean p;
+  
+  public n(Socket paramSocket, int paramInt, g paramG)
+  {
+    a.a(paramSocket, "Socket");
+    o = paramSocket;
+    p = false;
+    int i = paramInt;
+    if (paramInt < 0) {
+      i = paramSocket.getReceiveBufferSize();
+    }
+    paramInt = i;
+    if (i < 1024) {
+      paramInt = 1024;
+    }
+    a(paramSocket.getInputStream(), paramInt, paramG);
+  }
+  
+  public boolean a()
+  {
+    return p;
+  }
+  
+  protected int c()
+  {
+    int i = super.c();
+    boolean bool;
+    if (i == -1) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    p = bool;
+    return i;
+  }
+  
+  public boolean isDataAvailable(int paramInt)
+  {
+    boolean bool = d();
+    if (!bool)
+    {
+      int i = o.getSoTimeout();
+      try
+      {
+        o.setSoTimeout(paramInt);
+        c();
+        bool = d();
+        return bool;
+      }
+      finally
+      {
+        o.setSoTimeout(i);
+      }
+    }
+    return bool;
+  }
+}

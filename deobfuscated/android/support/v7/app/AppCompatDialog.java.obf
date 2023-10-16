@@ -1,0 +1,131 @@
+package android.support.v7.app;
+
+import a.a.c.g.g;
+import a.a.c.g.g.a;
+import a.a.d.a.a;
+import a.a.d.d.b;
+import a.a.d.d.b.a;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+
+public class z
+  extends Dialog
+  implements l
+{
+  private m a;
+  private final g.a b = new y(this);
+  
+  public z(Context paramContext, int paramInt)
+  {
+    super(paramContext, a(paramContext, paramInt));
+    a().a(null);
+    a().a();
+  }
+  
+  private static int a(Context paramContext, int paramInt)
+  {
+    int i = paramInt;
+    if (paramInt == 0)
+    {
+      TypedValue localTypedValue = new TypedValue();
+      paramContext.getTheme().resolveAttribute(a.dialogTheme, localTypedValue, true);
+      i = resourceId;
+    }
+    return i;
+  }
+  
+  public b a(b.a paramA)
+  {
+    return null;
+  }
+  
+  public m a()
+  {
+    if (a == null) {
+      a = m.a(this, this);
+    }
+    return a;
+  }
+  
+  public void a(b paramB) {}
+  
+  public boolean a(int paramInt)
+  {
+    return a().b(paramInt);
+  }
+  
+  boolean a(KeyEvent paramKeyEvent)
+  {
+    return super.dispatchKeyEvent(paramKeyEvent);
+  }
+  
+  public void addContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    a().a(paramView, paramLayoutParams);
+  }
+  
+  public void b(b paramB) {}
+  
+  public boolean dispatchKeyEvent(KeyEvent paramKeyEvent)
+  {
+    View localView = getWindow().getDecorView();
+    return g.a(b, localView, this, paramKeyEvent);
+  }
+  
+  public <T extends View> T findViewById(int paramInt)
+  {
+    return a().a(paramInt);
+  }
+  
+  public void invalidateOptionsMenu()
+  {
+    a().d();
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    a().c();
+    super.onCreate(paramBundle);
+    a().a(paramBundle);
+  }
+  
+  protected void onStop()
+  {
+    super.onStop();
+    a().e();
+  }
+  
+  public void setContentView(int paramInt)
+  {
+    a().c(paramInt);
+  }
+  
+  public void setContentView(View paramView)
+  {
+    a().a(paramView);
+  }
+  
+  public void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
+  {
+    a().b(paramView, paramLayoutParams);
+  }
+  
+  public void setTitle(int paramInt)
+  {
+    super.setTitle(paramInt);
+    a().a(getContext().getString(paramInt));
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    super.setTitle(paramCharSequence);
+    a().a(paramCharSequence);
+  }
+}

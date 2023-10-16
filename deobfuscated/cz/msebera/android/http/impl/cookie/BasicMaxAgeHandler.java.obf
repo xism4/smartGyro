@@ -1,0 +1,22 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.p;
+
+public class e
+  extends a
+  implements b
+{
+  public e() {}
+  
+  public String a()
+  {
+    return "comment";
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    c.a.a.a.p.a.a(paramP, "Cookie");
+    paramP.setComment(paramString);
+  }
+}

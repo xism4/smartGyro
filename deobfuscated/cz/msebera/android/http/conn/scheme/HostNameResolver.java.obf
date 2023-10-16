@@ -1,0 +1,9 @@
+package c.a.a.a.e.c;
+
+import java.net.InetAddress;
+
+@Deprecated
+public abstract interface a
+{
+  public abstract InetAddress resolve(String paramString);
+}

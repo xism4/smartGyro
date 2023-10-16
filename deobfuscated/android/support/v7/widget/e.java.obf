@@ -1,0 +1,18 @@
+package android.support.v7.widget;
+
+import a.a.c.a.a.h.a;
+import android.graphics.Typeface;
+import java.lang.ref.WeakReference;
+
+class G
+  extends h.a
+{
+  G(H paramH, WeakReference paramWeakReference) {}
+  
+  public void a(int paramInt) {}
+  
+  public void a(Typeface paramTypeface)
+  {
+    b.a(a, paramTypeface);
+  }
+}

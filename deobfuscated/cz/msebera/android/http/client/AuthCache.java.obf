@@ -1,0 +1,13 @@
+package c.a.a.a.b;
+
+import c.a.a.a.a.c;
+import c.a.a.a.o;
+
+public abstract interface a
+{
+  public abstract void a(o paramO);
+  
+  public abstract void a(o paramO, c paramC);
+  
+  public abstract c b(o paramO);
+}

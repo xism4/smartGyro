@@ -1,0 +1,9 @@
+package c.a.a.a.b;
+
+import c.a.a.a.n.e;
+import java.io.IOException;
+
+public abstract interface k
+{
+  public abstract boolean a(IOException paramIOException, int paramInt, e paramE);
+}

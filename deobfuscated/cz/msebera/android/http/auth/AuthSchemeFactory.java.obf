@@ -1,0 +1,9 @@
+package c.a.a.a.a;
+
+import c.a.a.a.l.g;
+
+@Deprecated
+public abstract interface d
+{
+  public abstract c a(g paramG);
+}

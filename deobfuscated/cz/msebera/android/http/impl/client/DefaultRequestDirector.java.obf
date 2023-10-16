@@ -1,0 +1,824 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.A;
+import c.a.a.a.C;
+import c.a.a.a.F;
+import c.a.a.a.G;
+import c.a.a.a.b.k;
+import c.a.a.a.e.b.d;
+import c.a.a.a.i.c.f;
+import c.a.a.a.j;
+import c.a.a.a.t;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
+
+@Deprecated
+public class p
+  implements c.a.a.a.b.q
+{
+  public c.a.a.a.h.b a;
+  protected final c.a.a.a.e.b b;
+  protected final d c;
+  protected final c.a.a.a.b d;
+  protected final c.a.a.a.e.g e;
+  protected final c.a.a.a.n.h f;
+  protected final c.a.a.a.n.g g;
+  protected final k h;
+  @Deprecated
+  protected final c.a.a.a.b.o i;
+  protected final c.a.a.a.b.p j;
+  @Deprecated
+  protected final c.a.a.a.b.b k;
+  protected final c.a.a.a.b.c l;
+  @Deprecated
+  protected final c.a.a.a.b.b m;
+  protected final c.a.a.a.b.c n;
+  protected final c.a.a.a.b.r o;
+  protected final c.a.a.a.l.g p;
+  protected c.a.a.a.e.o q;
+  protected final c.a.a.a.a.i r;
+  protected final c.a.a.a.a.i s;
+  private final s t;
+  private int u;
+  private int v;
+  private final int w;
+  private c.a.a.a.o x;
+  
+  public p(c.a.a.a.h.b paramB, c.a.a.a.n.h paramH, c.a.a.a.e.b paramB1, c.a.a.a.b paramB2, c.a.a.a.e.g paramG, d paramD, c.a.a.a.n.g paramG1, k paramK, c.a.a.a.b.p paramP, c.a.a.a.b.c paramC1, c.a.a.a.b.c paramC2, c.a.a.a.b.r paramR, c.a.a.a.l.g paramG2)
+  {
+    c.a.a.a.p.a.a(paramB, "Log");
+    c.a.a.a.p.a.a(paramH, "Request executor");
+    c.a.a.a.p.a.a(paramB1, "Client connection manager");
+    c.a.a.a.p.a.a(paramB2, "Connection reuse strategy");
+    c.a.a.a.p.a.a(paramG, "Connection keep alive strategy");
+    c.a.a.a.p.a.a(paramD, "Route planner");
+    c.a.a.a.p.a.a(paramG1, "HTTP protocol processor");
+    c.a.a.a.p.a.a(paramK, "HTTP request retry handler");
+    c.a.a.a.p.a.a(paramP, "Redirect strategy");
+    c.a.a.a.p.a.a(paramC1, "Target authentication strategy");
+    c.a.a.a.p.a.a(paramC2, "Proxy authentication strategy");
+    c.a.a.a.p.a.a(paramR, "User token handler");
+    c.a.a.a.p.a.a(paramG2, "HTTP parameters");
+    a = paramB;
+    t = new s(paramB);
+    f = paramH;
+    b = paramB1;
+    d = paramB2;
+    e = paramG;
+    c = paramD;
+    g = paramG1;
+    h = paramK;
+    j = paramP;
+    l = paramC1;
+    n = paramC2;
+    o = paramR;
+    p = paramG2;
+    if ((paramP instanceof o)) {
+      i = ((o)paramP).a();
+    } else {
+      i = null;
+    }
+    if ((paramC1 instanceof b)) {
+      k = ((b)paramC1).a();
+    } else {
+      k = null;
+    }
+    if ((paramC2 instanceof b)) {
+      m = ((b)paramC2).a();
+    } else {
+      m = null;
+    }
+    q = null;
+    u = 0;
+    v = 0;
+    r = new c.a.a.a.a.i();
+    s = new c.a.a.a.a.i();
+    w = p.getIntParameter("http.protocol.max-redirects", 100);
+  }
+  
+  private v a(c.a.a.a.r paramR)
+  {
+    if ((paramR instanceof c.a.a.a.m)) {
+      return new r((c.a.a.a.m)paramR);
+    }
+    return new v(paramR);
+  }
+  
+  private void a(w paramW, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.e.b.b localB = paramW.b();
+    paramW = paramW.a();
+    int i1 = 0;
+    for (;;)
+    {
+      paramE.setAttribute("http.request", paramW);
+      int i2 = i1 + 1;
+      try
+      {
+        if (!q.isOpen()) {
+          q.a(localB, paramE, p);
+        } else {
+          q.setSocketTimeout(c.a.a.a.l.e.d(p));
+        }
+        c(localB, paramE);
+        return;
+      }
+      catch (IOException localIOException1) {}
+      try
+      {
+        q.close();
+        c.a.a.a.h.b localB1;
+        if (h.a(localIOException1, i2, paramE))
+        {
+          i1 = i2;
+          if (!a.c()) {
+            continue;
+          }
+          Object localObject = a;
+          StringBuilder localStringBuilder = new StringBuilder();
+          localStringBuilder.append("I/O exception (");
+          localStringBuilder.append(localIOException1.getClass().getName());
+          localStringBuilder.append(") caught when connecting to ");
+          localStringBuilder.append(localB);
+          localStringBuilder.append(": ");
+          localStringBuilder.append(localIOException1.getMessage());
+          ((c.a.a.a.h.b)localObject).c(localStringBuilder.toString());
+          if (a.a()) {
+            a.a(localIOException1.getMessage(), localIOException1);
+          }
+          localB1 = a;
+          localObject = new StringBuilder();
+          ((StringBuilder)localObject).append("Retrying connect to ");
+          ((StringBuilder)localObject).append(localB);
+          localB1.c(((StringBuilder)localObject).toString());
+          i1 = i2;
+          continue;
+        }
+        for (;;)
+        {
+          throw localB1;
+        }
+      }
+      catch (IOException localIOException2)
+      {
+        for (;;) {}
+      }
+    }
+  }
+  
+  private t b(w paramW, c.a.a.a.n.e paramE)
+  {
+    v localV = paramW.a();
+    c.a.a.a.e.b.b localB = paramW.b();
+    paramW = null;
+    for (;;)
+    {
+      u += 1;
+      localV.d();
+      if (!localV.e())
+      {
+        a.a("Cannot retry non-repeatable request");
+        if (paramW != null) {
+          throw new c.a.a.a.b.m("Cannot retry request with a non-repeatable request entity.  The cause lists the reason the original request failed.", paramW);
+        }
+        throw new c.a.a.a.b.m("Cannot retry request with a non-repeatable request entity.");
+      }
+      try
+      {
+        if (!q.isOpen()) {
+          if (!localB.isTunnelled())
+          {
+            a.a("Reopening the direct connection.");
+            q.a(localB, paramE, p);
+          }
+          else
+          {
+            a.a("Proxied connection. Need to start over.");
+            return null;
+          }
+        }
+        if (a.a())
+        {
+          paramW = a;
+          StringBuilder localStringBuilder1 = new StringBuilder();
+          localStringBuilder1.append("Attempt ");
+          localStringBuilder1.append(u);
+          localStringBuilder1.append(" to execute request");
+          paramW.a(localStringBuilder1.toString());
+        }
+        paramW = f.c(localV, q, paramE);
+        return paramW;
+      }
+      catch (IOException localIOException)
+      {
+        a.a("Closing the connection.");
+      }
+      try
+      {
+        q.close();
+        if (h.a(localIOException, localV.b(), paramE))
+        {
+          if (a.c())
+          {
+            paramW = a;
+            localStringBuilder2 = new StringBuilder();
+            localStringBuilder2.append("I/O exception (");
+            localStringBuilder2.append(localIOException.getClass().getName());
+            localStringBuilder2.append(") caught when processing request to ");
+            localStringBuilder2.append(localB);
+            localStringBuilder2.append(": ");
+            localStringBuilder2.append(localIOException.getMessage());
+            paramW.c(localStringBuilder2.toString());
+          }
+          if (a.a()) {
+            a.a(localIOException.getMessage(), localIOException);
+          }
+          paramW = localIOException;
+          if (!a.c()) {
+            continue;
+          }
+          paramW = a;
+          StringBuilder localStringBuilder2 = new StringBuilder();
+          localStringBuilder2.append("Retrying request to ");
+          localStringBuilder2.append(localB);
+          paramW.c(localStringBuilder2.toString());
+          paramW = localIOException;
+          continue;
+        }
+        if ((localIOException instanceof A))
+        {
+          paramW = new StringBuilder();
+          paramW.append(localB.getTargetHost().e());
+          paramW.append(" failed to respond");
+          paramW = new A(paramW.toString());
+          paramW.setStackTrace(localIOException.getStackTrace());
+          throw paramW;
+        }
+        for (;;)
+        {
+          throw localIOException;
+        }
+      }
+      catch (IOException paramW)
+      {
+        for (;;) {}
+      }
+    }
+  }
+  
+  private void b()
+  {
+    c.a.a.a.e.o localO = q;
+    if (localO != null)
+    {
+      q = null;
+      try
+      {
+        localO.abortConnection();
+      }
+      catch (IOException localIOException2)
+      {
+        if (a.a()) {
+          a.a(localIOException2.getMessage(), localIOException2);
+        }
+      }
+      try
+      {
+        localO.releaseConnection();
+        return;
+      }
+      catch (IOException localIOException1)
+      {
+        a.a("Error releasing connection", localIOException1);
+      }
+    }
+  }
+  
+  protected w a(w paramW, t paramT, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.e.b.b localB = paramW.b();
+    v localV = paramW.a();
+    c.a.a.a.l.g localG = localV.getParams();
+    Object localObject2;
+    Object localObject1;
+    if (c.a.a.a.b.d.b.b(localG))
+    {
+      localObject2 = (c.a.a.a.o)paramE.getAttribute("http.target_host");
+      localObject1 = localObject2;
+      if (localObject2 == null) {
+        localObject1 = localB.getTargetHost();
+      }
+      if (((c.a.a.a.o)localObject1).c() < 0)
+      {
+        localObject2 = b.getSchemeRegistry().a((c.a.a.a.o)localObject1);
+        localObject1 = new c.a.a.a.o(((c.a.a.a.o)localObject1).b(), ((c.a.a.a.e.c.e)localObject2).a(), ((c.a.a.a.o)localObject1).d());
+      }
+      boolean bool1 = t.b((c.a.a.a.o)localObject1, paramT, l, r, paramE);
+      c.a.a.a.o localO = localB.getProxyHost();
+      localObject2 = localO;
+      if (localO == null) {
+        localObject2 = localB.getTargetHost();
+      }
+      boolean bool2 = t.b((c.a.a.a.o)localObject2, paramT, n, s, paramE);
+      if ((bool1) && (t.c((c.a.a.a.o)localObject1, paramT, l, r, paramE))) {
+        return paramW;
+      }
+      if ((bool2) && (t.c((c.a.a.a.o)localObject2, paramT, n, s, paramE))) {
+        return paramW;
+      }
+    }
+    if ((c.a.a.a.b.d.b.c(localG)) && (j.b(localV, paramT, paramE)))
+    {
+      int i1 = v;
+      if (i1 < w)
+      {
+        v = (i1 + 1);
+        x = null;
+        paramT = j.a(localV, paramT, paramE);
+        paramT.a(localV.c().getAllHeaders());
+        paramW = paramT.getURI();
+        localObject1 = c.a.a.a.b.f.e.a(paramW);
+        if (localObject1 != null)
+        {
+          if (!localB.getTargetHost().equals(localObject1))
+          {
+            a.a("Resetting target auth state");
+            r.e();
+            localObject2 = s.b();
+            if ((localObject2 != null) && (((c.a.a.a.a.c)localObject2).isConnectionBased()))
+            {
+              a.a("Resetting proxy auth state");
+              s.e();
+            }
+          }
+          paramT = a(paramT);
+          paramT.a(localG);
+          paramE = b((c.a.a.a.o)localObject1, paramT, paramE);
+          paramT = new w(paramT, paramE);
+          if (a.a())
+          {
+            localObject1 = a;
+            localObject2 = new StringBuilder();
+            ((StringBuilder)localObject2).append("Redirecting to '");
+            ((StringBuilder)localObject2).append(paramW);
+            ((StringBuilder)localObject2).append("' via ");
+            ((StringBuilder)localObject2).append(paramE);
+            ((c.a.a.a.h.b)localObject1).a(((StringBuilder)localObject2).toString());
+          }
+          return paramT;
+        }
+        paramT = new StringBuilder();
+        paramT.append("Redirect URI does not specify a valid host name: ");
+        paramT.append(paramW);
+        throw new C(paramT.toString());
+      }
+      paramW = new StringBuilder();
+      paramW.append("Maximum redirects (");
+      paramW.append(w);
+      paramW.append(") exceeded");
+      throw new c.a.a.a.b.n(paramW.toString());
+    }
+    return null;
+  }
+  
+  protected c.a.a.a.r a(c.a.a.a.e.b.b paramB, c.a.a.a.n.e paramE)
+  {
+    paramE = paramB.getTargetHost();
+    paramB = paramE.b();
+    int i2 = paramE.c();
+    int i1 = i2;
+    if (i2 < 0) {
+      i1 = b.getSchemeRegistry().b(paramE.d()).a();
+    }
+    paramE = new StringBuilder(paramB.length() + 6);
+    paramE.append(paramB);
+    paramE.append(':');
+    paramE.append(Integer.toString(i1));
+    return new c.a.a.a.k.h("CONNECT", paramE.toString(), c.a.a.a.l.i.b(p));
+  }
+  
+  public t a(c.a.a.a.o paramO, c.a.a.a.r paramR, c.a.a.a.n.e paramE)
+  {
+    paramE.setAttribute("http.auth.target-scope", r);
+    paramE.setAttribute("http.auth.proxy-scope", s);
+    Object localObject2 = a(paramR);
+    ((c.a.a.a.k.a)localObject2).a(p);
+    Object localObject3 = b(paramO, (c.a.a.a.r)localObject2, paramE);
+    x = ((c.a.a.a.o)((c.a.a.a.k.a)localObject2).getParams().getParameter("http.virtual-host"));
+    Object localObject1 = x;
+    if ((localObject1 != null) && (((c.a.a.a.o)localObject1).c() == -1))
+    {
+      if (paramO != null) {
+        localObject1 = paramO;
+      } else {
+        localObject1 = ((c.a.a.a.e.b.b)localObject3).getTargetHost();
+      }
+      i1 = ((c.a.a.a.o)localObject1).c();
+      if (i1 != -1) {
+        x = new c.a.a.a.o(x.b(), i1, x.d());
+      }
+    }
+    localObject3 = new w((v)localObject2, (c.a.a.a.e.b.b)localObject3);
+    localObject2 = null;
+    i1 = 0;
+    boolean bool1 = false;
+    for (;;)
+    {
+      if (i1 == 0) {}
+      for (;;)
+      {
+        try
+        {
+          localObject2 = ((w)localObject3).a();
+          localObject4 = ((w)localObject3).b();
+          localObject6 = paramE.getAttribute("http.user-token");
+          if (q == null)
+          {
+            localObject1 = b.a((c.a.a.a.e.b.b)localObject4, localObject6);
+            if ((paramR instanceof c.a.a.a.b.c.a)) {
+              ((c.a.a.a.b.c.a)paramR).a((c.a.a.a.e.e)localObject1);
+            }
+            l1 = c.a.a.a.b.d.b.a(p);
+          }
+        }
+        catch (RuntimeException paramO)
+        {
+          Object localObject4;
+          Object localObject6;
+          long l1;
+          t localT;
+          boolean bool2;
+          int i2;
+          Object localObject5;
+          continue;
+        }
+        catch (IOException paramO)
+        {
+          continue;
+        }
+        catch (c.a.a.a.n paramO)
+        {
+          continue;
+        }
+        catch (f paramR)
+        {
+          continue;
+        }
+        try
+        {
+          q = ((c.a.a.a.e.e)localObject1).getConnection(l1, TimeUnit.MILLISECONDS);
+          if ((!c.a.a.a.l.e.f(p)) || (!q.isOpen())) {
+            continue;
+          }
+          a.a("Stale connection check");
+          if (!q.isStale()) {
+            continue;
+          }
+          a.a("Stale connection detected");
+          q.close();
+        }
+        catch (InterruptedException paramO)
+        {
+          continue;
+          paramO = "indefinitely";
+          continue;
+          i2 = i1;
+        }
+      }
+      Thread.currentThread().interrupt();
+      throw new InterruptedIOException();
+      if ((paramR instanceof c.a.a.a.b.c.a)) {
+        ((c.a.a.a.b.c.a)paramR).a(q);
+      }
+      try
+      {
+        a((w)localObject3, paramE);
+        localObject1 = ((v)localObject2).getURI().getUserInfo();
+        if (localObject1 != null) {
+          r.a(new c.a.a.a.i.a.b(), new c.a.a.a.a.s((String)localObject1));
+        }
+        if (x != null)
+        {
+          paramO = x;
+        }
+        else
+        {
+          localObject1 = ((v)localObject2).getURI();
+          if (((URI)localObject1).isAbsolute()) {
+            paramO = c.a.a.a.b.f.e.a((URI)localObject1);
+          }
+        }
+        localObject1 = paramO;
+        if (paramO == null) {
+          localObject1 = ((c.a.a.a.e.b.b)localObject4).getTargetHost();
+        }
+        ((v)localObject2).f();
+        a((v)localObject2, (c.a.a.a.e.b.b)localObject4);
+        paramE.setAttribute("http.target_host", localObject1);
+        paramE.setAttribute("http.route", localObject4);
+        paramE.setAttribute("http.connection", q);
+        f.a((c.a.a.a.r)localObject2, g, paramE);
+        localT = b((w)localObject3, paramE);
+        if (localT == null)
+        {
+          localObject2 = localT;
+          paramO = (c.a.a.a.o)localObject1;
+        }
+        else
+        {
+          localT.a(p);
+          f.a(localT, g, paramE);
+          bool2 = d.a(localT, paramE);
+          if (bool2)
+          {
+            l1 = e.a(localT, paramE);
+            if (a.a())
+            {
+              if (l1 <= 0L) {
+                break label1202;
+              }
+              paramO = new StringBuilder();
+              paramO.append("for ");
+              paramO.append(l1);
+              paramO.append(" ");
+              paramO.append(TimeUnit.MILLISECONDS);
+              paramO = paramO.toString();
+              localObject2 = a;
+              localObject4 = new StringBuilder();
+              ((StringBuilder)localObject4).append("Connection can be kept alive ");
+              ((StringBuilder)localObject4).append(paramO);
+              ((c.a.a.a.h.b)localObject2).a(((StringBuilder)localObject4).toString());
+            }
+            q.setIdleDuration(l1, TimeUnit.MILLISECONDS);
+          }
+          localObject4 = a((w)localObject3, localT, paramE);
+          if (localObject4 == null)
+          {
+            i2 = 1;
+            localObject4 = localObject3;
+          }
+          else
+          {
+            if (bool2)
+            {
+              c.a.a.a.p.g.a(localT.getEntity());
+              q.markReusable();
+            }
+            else
+            {
+              q.close();
+              if ((s.d().compareTo(c.a.a.a.a.b.b) > 0) && (s.b() != null) && (s.b().isConnectionBased()))
+              {
+                a.a("Resetting proxy auth state");
+                s.e();
+              }
+              if ((r.d().compareTo(c.a.a.a.a.b.b) > 0) && (r.b() != null) && (r.b().isConnectionBased()))
+              {
+                a.a("Resetting target auth state");
+                r.e();
+              }
+            }
+            if (((w)localObject4).b().equals(((w)localObject3).b())) {
+              break label1209;
+            }
+            a();
+            break label1209;
+          }
+          localObject2 = localT;
+          i1 = i2;
+          localObject3 = localObject4;
+          paramO = (c.a.a.a.o)localObject1;
+          bool1 = bool2;
+          if (q != null)
+          {
+            localObject5 = localObject6;
+            if (localObject6 == null)
+            {
+              localObject5 = o.a(paramE);
+              paramE.setAttribute("http.user-token", localObject5);
+            }
+            localObject2 = localT;
+            i1 = i2;
+            localObject3 = localObject4;
+            paramO = (c.a.a.a.o)localObject1;
+            bool1 = bool2;
+            if (localObject5 != null)
+            {
+              q.setState(localObject5);
+              localObject2 = localT;
+              i1 = i2;
+              localObject3 = localObject4;
+              paramO = (c.a.a.a.o)localObject1;
+              bool1 = bool2;
+            }
+          }
+        }
+      }
+      catch (y paramO)
+      {
+        if (a.a()) {
+          a.a(paramO.getMessage());
+        }
+        localObject2 = paramO.a();
+      }
+    }
+    if ((localObject2 != null) && (((t)localObject2).getEntity() != null) && (((t)localObject2).getEntity().isStreaming()))
+    {
+      ((t)localObject2).a(new c.a.a.a.e.a(((t)localObject2).getEntity(), q, bool1));
+      return localObject2;
+    }
+    if (bool1) {
+      q.markReusable();
+    }
+    a();
+    return localObject2;
+    b();
+    throw paramO;
+    b();
+    throw paramO;
+    b();
+    throw paramO;
+    paramO = new InterruptedIOException("Connection has been shut down");
+    paramO.initCause(paramR);
+    for (;;)
+    {
+      throw paramO;
+    }
+  }
+  
+  protected void a()
+  {
+    try
+    {
+      q.releaseConnection();
+    }
+    catch (IOException localIOException)
+    {
+      a.a("IOException releasing connection", localIOException);
+    }
+    q = null;
+  }
+  
+  protected void a(v paramV, c.a.a.a.e.b.b paramB)
+  {
+    try
+    {
+      localObject = paramV.getURI();
+      if ((paramB.getProxyHost() != null) && (!paramB.isTunnelled())) {
+        if (!((URI)localObject).isAbsolute())
+        {
+          paramB = c.a.a.a.b.f.e.a((URI)localObject, paramB.getTargetHost(), true);
+          break label61;
+        }
+      }
+      while (!((URI)localObject).isAbsolute())
+      {
+        paramB = c.a.a.a.b.f.e.b((URI)localObject);
+        break;
+      }
+      paramB = c.a.a.a.b.f.e.a((URI)localObject, null, true);
+      label61:
+      paramV.a(paramB);
+      return;
+    }
+    catch (URISyntaxException paramB)
+    {
+      Object localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Invalid URI: ");
+      ((StringBuilder)localObject).append(paramV.getRequestLine().getUri());
+      paramV = new C(((StringBuilder)localObject).toString(), paramB);
+    }
+    for (;;)
+    {
+      throw paramV;
+    }
+  }
+  
+  protected boolean a(c.a.a.a.e.b.b paramB, int paramInt, c.a.a.a.n.e paramE)
+  {
+    throw new c.a.a.a.n("Proxy chains are not supported.");
+  }
+  
+  protected c.a.a.a.e.b.b b(c.a.a.a.o paramO, c.a.a.a.r paramR, c.a.a.a.n.e paramE)
+  {
+    d localD = c;
+    if (paramO == null) {
+      paramO = (c.a.a.a.o)paramR.getParams().getParameter("http.default-host");
+    }
+    return localD.a(paramO, paramR, paramE);
+  }
+  
+  protected boolean b(c.a.a.a.e.b.b paramB, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.o localO1 = paramB.getProxyHost();
+    c.a.a.a.o localO2 = paramB.getTargetHost();
+    Object localObject;
+    for (;;)
+    {
+      if (!q.isOpen()) {
+        q.a(paramB, paramE, p);
+      }
+      localObject = a(paramB, paramE);
+      ((c.a.a.a.q)localObject).a(p);
+      paramE.setAttribute("http.target_host", localO2);
+      paramE.setAttribute("http.route", paramB);
+      paramE.setAttribute("http.proxy_host", localO1);
+      paramE.setAttribute("http.connection", q);
+      paramE.setAttribute("http.request", localObject);
+      f.a((c.a.a.a.r)localObject, g, paramE);
+      localObject = f.c((c.a.a.a.r)localObject, q, paramE);
+      ((c.a.a.a.q)localObject).a(p);
+      f.a((t)localObject, g, paramE);
+      if (((t)localObject).getStatusLine().getStatusCode() < 200) {
+        break label381;
+      }
+      if (c.a.a.a.b.d.b.b(p))
+      {
+        if ((!t.b(localO1, (t)localObject, n, s, paramE)) || (!t.c(localO1, (t)localObject, n, s, paramE))) {
+          break;
+        }
+        if (d.a((t)localObject, paramE))
+        {
+          a.a("Connection kept alive");
+          c.a.a.a.p.g.a(((t)localObject).getEntity());
+        }
+        else
+        {
+          q.close();
+        }
+      }
+    }
+    if (((t)localObject).getStatusLine().getStatusCode() > 299)
+    {
+      paramB = ((t)localObject).getEntity();
+      if (paramB != null) {
+        ((t)localObject).a(new c.a.a.a.g.c(paramB));
+      }
+      q.close();
+      paramB = new StringBuilder();
+      paramB.append("CONNECT refused by proxy: ");
+      paramB.append(((t)localObject).getStatusLine());
+      throw new y(paramB.toString(), (t)localObject);
+    }
+    q.markReusable();
+    return false;
+    label381:
+    paramB = new StringBuilder();
+    paramB.append("Unexpected response to CONNECT request: ");
+    paramB.append(((t)localObject).getStatusLine());
+    paramB = new c.a.a.a.n(paramB.toString());
+    for (;;)
+    {
+      throw paramB;
+    }
+  }
+  
+  protected void c(c.a.a.a.e.b.b paramB, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.e.b.a localA = new c.a.a.a.e.b.a();
+    c.a.a.a.e.b.b localB;
+    int i1;
+    do
+    {
+      localB = q.getRoute();
+      i1 = localA.a(paramB, localB);
+      switch (i1)
+      {
+      default: 
+        paramB = new StringBuilder();
+        paramB.append("Unknown step indicator ");
+        paramB.append(i1);
+        paramB.append(" from RouteDirector.");
+        throw new IllegalStateException(paramB.toString());
+      case 5: 
+        q.a(paramE, p);
+        break;
+      case 4: 
+        a(paramB, localB.getHopCount() - 1, paramE);
+        throw null;
+      case 3: 
+        boolean bool = b(paramB, paramE);
+        a.a("Tunnel to target created.");
+        q.a(bool, p);
+        break;
+      case 1: 
+      case 2: 
+        q.a(paramB, paramE, p);
+      }
+    } while (i1 > 0);
+    return;
+    paramE = new StringBuilder();
+    paramE.append("Unable to establish route: planned = ");
+    paramE.append(paramB);
+    paramE.append("; current = ");
+    paramE.append(localB);
+    paramB = new c.a.a.a.n(paramE.toString());
+    for (;;)
+    {
+      throw paramB;
+    }
+  }
+}

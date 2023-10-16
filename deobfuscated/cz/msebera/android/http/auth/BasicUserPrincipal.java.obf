@@ -1,0 +1,52 @@
+package c.a.a.a.a;
+
+import c.a.a.a.p.a;
+import c.a.a.a.p.h;
+import java.io.Serializable;
+import java.security.Principal;
+
+public final class k
+  implements Principal, Serializable
+{
+  private final String a;
+  
+  public k(String paramString)
+  {
+    a.a(paramString, "User name");
+    a = paramString;
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (this == paramObject) {
+      return true;
+    }
+    if ((paramObject instanceof k))
+    {
+      paramObject = (k)paramObject;
+      if (h.a(a, a)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public String getName()
+  {
+    return a;
+  }
+  
+  public int hashCode()
+  {
+    return h.a(17, a);
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("[principal: ");
+    localStringBuilder.append(a);
+    localStringBuilder.append("]");
+    return localStringBuilder.toString();
+  }
+}

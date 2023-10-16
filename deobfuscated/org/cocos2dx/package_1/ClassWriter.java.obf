@@ -1,0 +1,19 @@
+package org.cocos2dx.lib;
+
+import android.graphics.Color;
+import android.util.SparseArray;
+import android.widget.EditText;
+
+final class D
+  implements Runnable
+{
+  D(int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5) {}
+  
+  public void run()
+  {
+    Cocos2dxEditBox localCocos2dxEditBox = (Cocos2dxEditBox)Cocos2dxEditBoxHelper.access$400().get(a);
+    if (localCocos2dxEditBox != null) {
+      localCocos2dxEditBox.setTextColor(Color.argb(b, c, d, e));
+    }
+  }
+}

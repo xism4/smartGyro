@@ -1,0 +1,10 @@
+package c.a.a.a.f;
+
+public abstract interface d
+{
+  public abstract void a(c paramC, f paramF);
+  
+  public abstract void a(p paramP, String paramString);
+  
+  public abstract boolean b(c paramC, f paramF);
+}

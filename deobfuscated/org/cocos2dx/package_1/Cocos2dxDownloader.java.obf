@@ -1,0 +1,116 @@
+package org.cocos2dx.lib;
+
+import android.app.Activity;
+import b.c.a.a.d;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+import javax.net.ssl.SSLException;
+
+public class Cocos2dxDownloader
+{
+  private static HashMap<String, Boolean> _resumingSupport = new HashMap();
+  private int _countOfMaxProcessingTasks;
+  private d _httpClient = new d();
+  private int _id;
+  private int _runningTaskCount = 0;
+  private HashMap _taskMap = new HashMap();
+  private Queue<Runnable> _taskQueue = new LinkedList();
+  private String _tempFileNameSufix;
+  
+  public Cocos2dxDownloader() {}
+  
+  public static void cancelAllRequests(Cocos2dxDownloader paramCocos2dxDownloader)
+  {
+    Cocos2dxHelper.getActivity().runOnUiThread(new l(paramCocos2dxDownloader));
+  }
+  
+  public static Cocos2dxDownloader createDownloader(int paramInt1, int paramInt2, String paramString, int paramInt3)
+  {
+    Cocos2dxDownloader localCocos2dxDownloader = new Cocos2dxDownloader();
+    _id = paramInt1;
+    _httpClient.a(true);
+    if (paramInt2 > 0) {
+      _httpClient.c(paramInt2 * 1000);
+    }
+    d localD = _httpClient;
+    d.a(SSLException.class);
+    _tempFileNameSufix = paramString;
+    _countOfMaxProcessingTasks = paramInt3;
+    return localCocos2dxDownloader;
+  }
+  
+  public static void createTask(Cocos2dxDownloader paramCocos2dxDownloader, int paramInt, String paramString1, String paramString2)
+  {
+    paramCocos2dxDownloader.enqueueTask(new k(paramString2, paramCocos2dxDownloader, paramInt, paramString1));
+  }
+  
+  public static void setResumingSupport(String paramString, Boolean paramBoolean)
+  {
+    _resumingSupport.put(paramString, paramBoolean);
+  }
+  
+  public void enqueueTask(Runnable paramRunnable)
+  {
+    synchronized (_taskQueue)
+    {
+      if (_runningTaskCount < _countOfMaxProcessingTasks)
+      {
+        Cocos2dxHelper.getActivity().runOnUiThread(paramRunnable);
+        _runningTaskCount += 1;
+      }
+      else
+      {
+        _taskQueue.add(paramRunnable);
+      }
+      return;
+    }
+  }
+  
+  native void nativeOnFinish(int paramInt1, int paramInt2, int paramInt3, String paramString, byte[] paramArrayOfByte);
+  
+  native void nativeOnProgress(int paramInt1, int paramInt2, long paramLong1, long paramLong2, long paramLong3);
+  
+  public void onFinish(int paramInt1, int paramInt2, String paramString, byte[] paramArrayOfByte)
+  {
+    if ((Ra)_taskMap.get(Integer.valueOf(paramInt1)) == null) {
+      return;
+    }
+    _taskMap.remove(Integer.valueOf(paramInt1));
+    Cocos2dxHelper.runOnGLThread(new i(this, paramInt1, paramInt2, paramString, paramArrayOfByte));
+  }
+  
+  void onProgress(int paramInt, long paramLong1, long paramLong2, long paramLong3)
+  {
+    Ra localRa = (Ra)_taskMap.get(Integer.valueOf(paramInt));
+    if (localRa != null)
+    {
+      c = paramLong1;
+      d = paramLong2;
+      e = paramLong3;
+    }
+    Cocos2dxHelper.runOnGLThread(new h(this, paramInt, paramLong1, paramLong2, paramLong3));
+  }
+  
+  public void onStart(int paramInt)
+  {
+    Ra localRa = (Ra)_taskMap.get(Integer.valueOf(paramInt));
+    if (localRa != null) {
+      localRa.a();
+    }
+  }
+  
+  public void runNextTaskIfExists()
+  {
+    synchronized (_taskQueue)
+    {
+      Runnable localRunnable = (Runnable)_taskQueue.poll();
+      if (localRunnable != null) {
+        Cocos2dxHelper.getActivity().runOnUiThread(localRunnable);
+      } else {
+        _runningTaskCount -= 1;
+      }
+      return;
+    }
+  }
+}

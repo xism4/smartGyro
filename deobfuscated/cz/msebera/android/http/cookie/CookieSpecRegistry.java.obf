@@ -1,0 +1,39 @@
+package c.a.a.a.f;
+
+import c.a.a.a.l.g;
+import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
+
+@Deprecated
+public final class m
+  implements c.a.a.a.d.a<k>
+{
+  private final ConcurrentHashMap<String, j> a = new ConcurrentHashMap();
+  
+  public m() {}
+  
+  public i a(String paramString, g paramG)
+  {
+    c.a.a.a.p.a.a(paramString, "Name");
+    j localJ = (j)a.get(paramString.toLowerCase(Locale.ENGLISH));
+    if (localJ != null) {
+      return localJ.a(paramG);
+    }
+    paramG = new StringBuilder();
+    paramG.append("Unsupported cookie spec: ");
+    paramG.append(paramString);
+    throw new IllegalStateException(paramG.toString());
+  }
+  
+  public void a(String paramString, j paramJ)
+  {
+    c.a.a.a.p.a.a(paramString, "Name");
+    c.a.a.a.p.a.a(paramJ, "Cookie spec factory");
+    a.put(paramString.toLowerCase(Locale.ENGLISH), paramJ);
+  }
+  
+  public k lookup(String paramString)
+  {
+    return new l(this, paramString);
+  }
+}

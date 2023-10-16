@@ -1,0 +1,18 @@
+package c.a.a.a;
+
+public class n
+  extends Exception
+{
+  public n() {}
+  
+  public n(String paramString)
+  {
+    super(paramString);
+  }
+  
+  public n(String paramString, Throwable paramThrowable)
+  {
+    super(paramString);
+    initCause(paramThrowable);
+  }
+}

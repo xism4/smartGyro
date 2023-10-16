@@ -1,0 +1,251 @@
+package c.a.a.a.e.e;
+
+import c.a.a.a.h.b;
+import java.io.InputStream;
+import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+
+@Deprecated
+public abstract class a
+  implements l
+{
+  static final String[] a = { "ac", "co", "com", "ed", "edu", "go", "gouv", "gov", "info", "lg", "ne", "net", "or", "org" };
+  public b b = new b(getClass());
+  
+  static
+  {
+    Arrays.sort(a);
+  }
+  
+  public a() {}
+  
+  public static int a(String paramString)
+  {
+    int i = 0;
+    int k;
+    for (int j = 0; i < paramString.length(); j = k)
+    {
+      k = j;
+      if (paramString.charAt(i) == '.') {
+        k = j + 1;
+      }
+      i += 1;
+    }
+    return j;
+  }
+  
+  private static boolean a(String paramString1, String paramString2, boolean paramBoolean)
+  {
+    boolean bool3 = false;
+    if (paramString1 == null) {
+      return false;
+    }
+    paramString1 = paramString1.toLowerCase(Locale.ROOT);
+    paramString2 = paramString2.toLowerCase(Locale.ROOT);
+    Object localObject = paramString2.split("\\.");
+    int i;
+    if ((localObject.length >= 3) && (localObject[0].endsWith("*")) && ((!paramBoolean) || (a((String[])localObject)))) {
+      i = 1;
+    } else {
+      i = 0;
+    }
+    if (i != 0)
+    {
+      String str1 = localObject[0];
+      boolean bool1;
+      if (str1.length() > 1)
+      {
+        localObject = str1.substring(0, str1.length() - 1);
+        str1 = paramString2.substring(str1.length());
+        String str2 = paramString1.substring(((String)localObject).length());
+        if ((paramString1.startsWith((String)localObject)) && (str2.endsWith(str1))) {
+          bool1 = true;
+        } else {
+          bool1 = false;
+        }
+      }
+      else
+      {
+        bool1 = paramString1.endsWith(paramString2.substring(1));
+      }
+      boolean bool2 = bool3;
+      if (bool1) {
+        if (paramBoolean)
+        {
+          bool2 = bool3;
+          if (a(paramString1) != a(paramString2)) {}
+        }
+        else
+        {
+          bool2 = true;
+        }
+      }
+      return bool2;
+    }
+    return paramString1.equals(paramString2);
+  }
+  
+  private static boolean a(String[] paramArrayOfString)
+  {
+    int i = paramArrayOfString.length;
+    boolean bool = true;
+    if (i == 3)
+    {
+      if (paramArrayOfString[2].length() != 2) {
+        return true;
+      }
+      if (Arrays.binarySearch(a, paramArrayOfString[1]) < 0) {
+        return true;
+      }
+      bool = false;
+    }
+    return bool;
+  }
+  
+  public final void a(String paramString, X509Certificate paramX509Certificate)
+  {
+    boolean bool1 = c.a.a.a.e.f.a.a(paramString);
+    boolean bool2 = c.a.a.a.e.f.a.b(paramString);
+    int i;
+    if ((!bool1) && (!bool2)) {
+      i = 2;
+    } else {
+      i = 7;
+    }
+    List localList = d.a(paramX509Certificate, i);
+    Object localObject1 = new e(paramX509Certificate.getSubjectX500Principal()).a("cn");
+    Object localObject2 = null;
+    if (localObject1 != null)
+    {
+      paramX509Certificate = new String[1];
+      paramX509Certificate[0] = localObject1;
+    }
+    else
+    {
+      paramX509Certificate = null;
+    }
+    localObject1 = localObject2;
+    if (localList != null)
+    {
+      localObject1 = localObject2;
+      if (!localList.isEmpty()) {
+        localObject1 = (String[])localList.toArray(new String[localList.size()]);
+      }
+    }
+    verify(paramString, paramX509Certificate, (String[])localObject1);
+  }
+  
+  public final void a(String paramString, String[] paramArrayOfString1, String[] paramArrayOfString2, boolean paramBoolean)
+  {
+    String str = null;
+    if ((paramArrayOfString1 != null) && (paramArrayOfString1.length > 0)) {
+      paramArrayOfString1 = paramArrayOfString1[0];
+    } else {
+      paramArrayOfString1 = null;
+    }
+    Object localObject = str;
+    if (paramArrayOfString2 != null)
+    {
+      localObject = str;
+      if (paramArrayOfString2.length > 0) {
+        localObject = Arrays.asList(paramArrayOfString2);
+      }
+    }
+    if (c.a.a.a.e.f.a.b(paramString)) {
+      paramArrayOfString2 = d.a(paramString.toLowerCase(Locale.ROOT));
+    } else {
+      paramArrayOfString2 = paramString;
+    }
+    if (localObject != null)
+    {
+      Iterator localIterator = ((List)localObject).iterator();
+      while (localIterator.hasNext())
+      {
+        str = (String)localIterator.next();
+        paramArrayOfString1 = str;
+        if (c.a.a.a.e.f.a.b(str)) {
+          paramArrayOfString1 = d.a(str);
+        }
+        if (a(paramArrayOfString2, paramArrayOfString1, paramBoolean)) {
+          return;
+        }
+      }
+      paramArrayOfString1 = new StringBuilder();
+      paramArrayOfString1.append("Certificate for <");
+      paramArrayOfString1.append(paramString);
+      paramArrayOfString1.append("> doesn't match any ");
+      paramArrayOfString1.append("of the subject alternative names: ");
+      paramArrayOfString1.append(localObject);
+      throw new SSLException(paramArrayOfString1.toString());
+    }
+    if (paramArrayOfString1 != null)
+    {
+      if (c.a.a.a.e.f.a.b(paramArrayOfString1)) {
+        localObject = d.a(paramArrayOfString1);
+      } else {
+        localObject = paramArrayOfString1;
+      }
+      if (a(paramArrayOfString2, (String)localObject, paramBoolean)) {
+        return;
+      }
+      paramArrayOfString2 = new StringBuilder();
+      paramArrayOfString2.append("Certificate for <");
+      paramArrayOfString2.append(paramString);
+      paramArrayOfString2.append("> doesn't match ");
+      paramArrayOfString2.append("common name of the certificate subject: ");
+      paramArrayOfString2.append(paramArrayOfString1);
+      throw new SSLException(paramArrayOfString2.toString());
+    }
+    paramArrayOfString1 = new StringBuilder();
+    paramArrayOfString1.append("Certificate subject for <");
+    paramArrayOfString1.append(paramString);
+    paramArrayOfString1.append("> doesn't contain ");
+    paramArrayOfString1.append("a common name and does not have alternative names");
+    paramString = new SSLException(paramArrayOfString1.toString());
+    for (;;)
+    {
+      throw paramString;
+    }
+  }
+  
+  public final void verify(String paramString, SSLSocket paramSSLSocket)
+  {
+    c.a.a.a.p.a.a(paramString, "Host");
+    SSLSession localSSLSession2 = paramSSLSocket.getSession();
+    SSLSession localSSLSession1 = localSSLSession2;
+    if (localSSLSession2 == null)
+    {
+      paramSSLSocket.getInputStream().available();
+      localSSLSession2 = paramSSLSocket.getSession();
+      localSSLSession1 = localSSLSession2;
+      if (localSSLSession2 == null)
+      {
+        paramSSLSocket.startHandshake();
+        localSSLSession1 = paramSSLSocket.getSession();
+      }
+    }
+    a(paramString, (X509Certificate)localSSLSession1.getPeerCertificates()[0]);
+  }
+  
+  public final boolean verify(String paramString, SSLSession paramSSLSession)
+  {
+    try
+    {
+      a(paramString, (X509Certificate)paramSSLSession.getPeerCertificates()[0]);
+      return true;
+    }
+    catch (SSLException paramString)
+    {
+      if (b.a()) {
+        b.a(paramString.getMessage(), paramString);
+      }
+    }
+    return false;
+  }
+}

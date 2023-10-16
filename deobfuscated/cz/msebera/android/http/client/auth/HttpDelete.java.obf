@@ -1,0 +1,22 @@
+package c.a.a.a.b.c;
+
+import java.net.URI;
+
+public class j
+  extends k
+{
+  public j(String paramString)
+  {
+    a(URI.create(paramString));
+  }
+  
+  public j(URI paramURI)
+  {
+    a(paramURI);
+  }
+  
+  public String getMethod()
+  {
+    return "HEAD";
+  }
+}

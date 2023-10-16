@@ -1,0 +1,87 @@
+package c.a.a.a.g;
+
+import c.a.a.a.e;
+import c.a.a.a.k.b;
+import c.a.a.a.l;
+
+public abstract class a
+  implements l
+{
+  protected e a;
+  protected e b;
+  protected boolean c;
+  
+  protected a() {}
+  
+  public void a(e paramE)
+  {
+    b = paramE;
+  }
+  
+  public void a(String paramString)
+  {
+    if (paramString != null) {
+      paramString = new b("Content-Type", paramString);
+    } else {
+      paramString = null;
+    }
+    b(paramString);
+  }
+  
+  public void a(boolean paramBoolean)
+  {
+    c = paramBoolean;
+  }
+  
+  public void b(e paramE)
+  {
+    a = paramE;
+  }
+  
+  @Deprecated
+  public void consumeContent() {}
+  
+  public e getContentEncoding()
+  {
+    return b;
+  }
+  
+  public e getContentType()
+  {
+    return a;
+  }
+  
+  public boolean isChunked()
+  {
+    return c;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append('[');
+    if (a != null)
+    {
+      localStringBuilder.append("Content-Type: ");
+      localStringBuilder.append(a.getValue());
+      localStringBuilder.append(',');
+    }
+    if (b != null)
+    {
+      localStringBuilder.append("Content-Encoding: ");
+      localStringBuilder.append(b.getValue());
+      localStringBuilder.append(',');
+    }
+    long l = getContentLength();
+    if (l >= 0L)
+    {
+      localStringBuilder.append("Content-Length: ");
+      localStringBuilder.append(l);
+      localStringBuilder.append(',');
+    }
+    localStringBuilder.append("Chunked: ");
+    localStringBuilder.append(c);
+    localStringBuilder.append(']');
+    return localStringBuilder.toString();
+  }
+}

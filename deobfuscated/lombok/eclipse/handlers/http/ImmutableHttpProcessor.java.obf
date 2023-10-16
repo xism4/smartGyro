@@ -1,0 +1,36 @@
+package b.c.a.a;
+
+import c.a.a.a.f;
+import c.a.a.a.l;
+import c.a.a.a.t;
+import c.a.a.a.v;
+
+class b
+  implements v
+{
+  b(d paramD) {}
+  
+  public void a(t paramT, c.a.a.a.n.e paramE)
+  {
+    paramE = paramT.getEntity();
+    if (paramE == null) {
+      return;
+    }
+    Object localObject = paramE.getContentEncoding();
+    if (localObject != null)
+    {
+      localObject = ((c.a.a.a.e)localObject).getElements();
+      int j = localObject.length;
+      int i = 0;
+      while (i < j)
+      {
+        if (localObject[i].getName().equalsIgnoreCase("gzip"))
+        {
+          paramT.a(new d.a(paramE));
+          return;
+        }
+        i += 1;
+      }
+    }
+  }
+}

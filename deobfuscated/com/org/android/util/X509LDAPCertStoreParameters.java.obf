@@ -1,0 +1,16 @@
+package a.a.c.f;
+
+import android.os.Build.VERSION;
+import java.util.Arrays;
+import java.util.Objects;
+
+public class g
+{
+  public static int a(Object... paramVarArgs)
+  {
+    if (Build.VERSION.SDK_INT >= 19) {
+      return Objects.hash(paramVarArgs);
+    }
+    return Arrays.hashCode(paramVarArgs);
+  }
+}
