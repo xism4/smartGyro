@@ -10,7 +10,7 @@ I've been looking at how to do it, and the only hardware way would be to get a d
 ![lcd-display-sw-rw-co](https://github.com/xism4/smartGyro/assets/76608233/dd115c19-01fc-47d8-a594-3e65f714602f)
 SmartGyro speedway v3 for example uses this type of LCD-DISPLAY with some firmware i guess
 
-![Uploading Controladora-S866-48V-800W-para-Smartgyro-Rockway-Speedway-Conector-waterproof-5-pines-1.jpg…]()
+![Controladora-S866-48V-800W-para-Smartgyro-Rockway-Speedway-Conector-waterproof-5-pines-1](https://github.com/xism4/smartGyro/assets/76608233/610d1506-1d73-42a3-8399-de56c20bf930)
 Same as the controllator of the e-scooter
 
 
