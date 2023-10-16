@@ -8,9 +8,11 @@ I would like to research and get this done, I have seen stores that sold a dispa
 I've been looking at how to do it, and the only hardware way would be to get a display of the V3 version of smartGyro and its old brusless 800W (1200w pick) controller, which if it can be used, it can be used in the same way as the V3 version of smartGyro.
 
 ![lcd-display-sw-rw-co](https://github.com/xism4/smartGyro/assets/76608233/dd115c19-01fc-47d8-a594-3e65f714602f)
+
 SmartGyro speedway v3 for example uses this type of LCD-DISPLAY with some firmware i guess
 
 ![Controladora-S866-48V-800W-para-Smartgyro-Rockway-Speedway-Conector-waterproof-5-pines-1](https://github.com/xism4/smartGyro/assets/76608233/610d1506-1d73-42a3-8399-de56c20bf930)
+
 Same as the controllator of the e-scooter
 
 
