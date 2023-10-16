@@ -1,0 +1,492 @@
+package c.a.a.a.e.e;
+
+import javax.security.auth.x500.X500Principal;
+
+public final class e
+{
+  private final String a;
+  private final int b;
+  private int c;
+  private int d;
+  private int e;
+  private int f;
+  private char[] g;
+  
+  public e(X500Principal paramX500Principal)
+  {
+    a = paramX500Principal.getName("RFC2253");
+    b = a.length();
+  }
+  
+  private int a(int paramInt)
+  {
+    int i = paramInt + 1;
+    if (i < b)
+    {
+      paramInt = g[paramInt];
+      if ((paramInt >= 48) && (paramInt <= 57))
+      {
+        paramInt -= 48;
+      }
+      else if ((paramInt >= 97) && (paramInt <= 102))
+      {
+        paramInt -= 87;
+      }
+      else
+      {
+        if ((paramInt < 65) || (paramInt > 70)) {
+          break label182;
+        }
+        paramInt -= 55;
+      }
+      i = g[i];
+      if ((i >= 48) && (i <= 57))
+      {
+        i -= 48;
+      }
+      else if ((i >= 97) && (i <= 102))
+      {
+        i -= 87;
+      }
+      else
+      {
+        if ((i < 65) || (i > 70)) {
+          break label146;
+        }
+        i -= 55;
+      }
+      return (paramInt << 4) + i;
+      label146:
+      localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Malformed DN: ");
+      localStringBuilder.append(a);
+      throw new IllegalStateException(localStringBuilder.toString());
+      label182:
+      localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Malformed DN: ");
+      localStringBuilder.append(a);
+      throw new IllegalStateException(localStringBuilder.toString());
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Malformed DN: ");
+    localStringBuilder.append(a);
+    throw new IllegalStateException(localStringBuilder.toString());
+  }
+  
+  private String a()
+  {
+    int i = c;
+    d = i;
+    e = i;
+    do
+    {
+      i = c;
+      if (i >= b)
+      {
+        arrayOfChar = g;
+        i = d;
+        return new String(arrayOfChar, i, e - i);
+      }
+      arrayOfChar = g;
+      int j = arrayOfChar[i];
+      if (j != 32)
+      {
+        if (j != 59) {
+          if (j != 92)
+          {
+            if ((j != 43) && (j != 44))
+            {
+              j = e;
+              e = (j + 1);
+              arrayOfChar[j] = arrayOfChar[i];
+            }
+          }
+          else {
+            for (;;)
+            {
+              c = (i + 1);
+              break;
+              i = e;
+              e = (i + 1);
+              arrayOfChar[i] = b();
+              i = c;
+            }
+          }
+        }
+        arrayOfChar = g;
+        i = d;
+        return new String(arrayOfChar, i, e - i);
+      }
+      j = e;
+      f = j;
+      c = (i + 1);
+      e = (j + 1);
+      arrayOfChar[j] = ' ';
+      for (;;)
+      {
+        i = c;
+        if (i >= b) {
+          break;
+        }
+        arrayOfChar = g;
+        if (arrayOfChar[i] != ' ') {
+          break;
+        }
+        j = e;
+        e = (j + 1);
+        arrayOfChar[j] = ' ';
+        c = (i + 1);
+      }
+      i = c;
+      if (i == b) {
+        break;
+      }
+      arrayOfChar = g;
+    } while ((arrayOfChar[i] != ',') && (arrayOfChar[i] != '+') && (arrayOfChar[i] != ';'));
+    char[] arrayOfChar = g;
+    i = d;
+    return new String(arrayOfChar, i, f - i);
+  }
+  
+  private char b()
+  {
+    c += 1;
+    int i = c;
+    if (i != b)
+    {
+      i = g[i];
+      if ((i != 32) && (i != 37) && (i != 92) && (i != 95) && (i != 34) && (i != 35)) {
+        switch (i)
+        {
+        default: 
+          switch (i)
+          {
+          default: 
+            return c();
+          }
+          break;
+        }
+      }
+      return g[c];
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("Unexpected end of DN: ");
+    localStringBuilder.append(a);
+    throw new IllegalStateException(localStringBuilder.toString());
+  }
+  
+  private char c()
+  {
+    int i = a(c);
+    c += 1;
+    if (i < 128) {
+      return (char)i;
+    }
+    if ((i >= 192) && (i <= 247))
+    {
+      int j;
+      if (i <= 223)
+      {
+        i &= 0x1F;
+        j = 1;
+      }
+      else if (i <= 239)
+      {
+        j = 2;
+        i &= 0xF;
+      }
+      else
+      {
+        j = 3;
+        i &= 0x7;
+      }
+      int k = 0;
+      while (k < j)
+      {
+        c += 1;
+        int m = c;
+        if (m != b)
+        {
+          if (g[m] != '\\') {
+            return '?';
+          }
+          c = (m + 1);
+          m = a(c);
+          c += 1;
+          if ((m & 0xC0) != 128) {
+            return '?';
+          }
+          i = (i << 6) + (m & 0x3F);
+          k += 1;
+        }
+        else
+        {
+          return '?';
+        }
+      }
+      return (char)i;
+    }
+    return '?';
+  }
+  
+  private String d()
+  {
+    int i = c;
+    if (i + 4 < b)
+    {
+      d = i;
+      for (;;)
+      {
+        c = (i + 1);
+        i = c;
+        if (i == b) {
+          break;
+        }
+        localObject = g;
+        if ((localObject[i] == '+') || (localObject[i] == ',') || (localObject[i] == ';')) {
+          break;
+        }
+        if (localObject[i] == ' ')
+        {
+          e = i;
+          for (;;)
+          {
+            c = (i + 1);
+            i = c;
+            if ((i >= b) || (g[i] != ' ')) {
+              break;
+            }
+          }
+        }
+        if ((localObject[i] >= 'A') && (localObject[i] <= 'F')) {
+          localObject[i] = ((char)(localObject[i] + ' '));
+        }
+        i = c;
+      }
+      e = c;
+      i = e;
+      int j = d;
+      int k = i - j;
+      if ((k >= 5) && ((k & 0x1) != 0))
+      {
+        localObject = new byte[k / 2];
+        i = 0;
+        j += 1;
+        while (i < localObject.length)
+        {
+          localObject[i] = ((byte)a(j));
+          j += 2;
+          i += 1;
+        }
+        return new String(g, d, k);
+      }
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Unexpected end of DN: ");
+      ((StringBuilder)localObject).append(a);
+      throw new IllegalStateException(((StringBuilder)localObject).toString());
+    }
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Unexpected end of DN: ");
+    ((StringBuilder)localObject).append(a);
+    localObject = new IllegalStateException(((StringBuilder)localObject).toString());
+    for (;;)
+    {
+      throw ((Throwable)localObject);
+    }
+  }
+  
+  private String e()
+  {
+    for (;;)
+    {
+      i = c;
+      if ((i >= b) || (g[i] != ' ')) {
+        break;
+      }
+      c = (i + 1);
+    }
+    int i = c;
+    if (i == b) {
+      return null;
+    }
+    d = i;
+    do
+    {
+      c = (i + 1);
+      i = c;
+      if (i >= b) {
+        break;
+      }
+      localObject = g;
+    } while ((localObject[i] != '=') && (localObject[i] != ' '));
+    i = c;
+    if (i < b)
+    {
+      e = i;
+      if (g[i] == ' ')
+      {
+        for (;;)
+        {
+          i = c;
+          if (i >= b) {
+            break;
+          }
+          localObject = g;
+          if ((localObject[i] == '=') || (localObject[i] != ' ')) {
+            break;
+          }
+          c = (i + 1);
+        }
+        localObject = g;
+        i = c;
+        if ((localObject[i] != '=') || (i == b))
+        {
+          localObject = new StringBuilder();
+          ((StringBuilder)localObject).append("Unexpected end of DN: ");
+          ((StringBuilder)localObject).append(a);
+          throw new IllegalStateException(((StringBuilder)localObject).toString());
+        }
+      }
+      i = c;
+      do
+      {
+        c = (i + 1);
+        i = c;
+      } while ((i < b) && (g[i] == ' '));
+      i = e;
+      int j = d;
+      if (i - j > 4)
+      {
+        localObject = g;
+        if ((localObject[(j + 3)] == '.') && ((localObject[j] == 'O') || (localObject[j] == 'o')))
+        {
+          localObject = g;
+          i = d;
+          if ((localObject[(i + 1)] == 'I') || (localObject[(i + 1)] == 'i'))
+          {
+            localObject = g;
+            i = d;
+            if ((localObject[(i + 2)] == 'D') || (localObject[(i + 2)] == 'd')) {
+              d += 4;
+            }
+          }
+        }
+      }
+      localObject = g;
+      i = d;
+      return new String((char[])localObject, i, e - i);
+    }
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Unexpected end of DN: ");
+    ((StringBuilder)localObject).append(a);
+    localObject = new IllegalStateException(((StringBuilder)localObject).toString());
+    for (;;)
+    {
+      throw ((Throwable)localObject);
+    }
+  }
+  
+  private String f()
+  {
+    c += 1;
+    d = c;
+    for (int i = d;; i = e + 1)
+    {
+      e = i;
+      i = c;
+      if (i == b) {
+        break;
+      }
+      localObject = g;
+      if (localObject[i] == '"')
+      {
+        do
+        {
+          c = (i + 1);
+          i = c;
+        } while ((i < b) && (g[i] == ' '));
+        localObject = g;
+        i = d;
+        return new String((char[])localObject, i, e - i);
+      }
+      if (localObject[i] == '\\') {
+        localObject[e] = b();
+      } else {
+        localObject[e] = localObject[i];
+      }
+      c += 1;
+    }
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Unexpected end of DN: ");
+    ((StringBuilder)localObject).append(a);
+    localObject = new IllegalStateException(((StringBuilder)localObject).toString());
+    for (;;)
+    {
+      throw ((Throwable)localObject);
+    }
+  }
+  
+  public String a(String paramString)
+  {
+    c = 0;
+    d = 0;
+    e = 0;
+    f = 0;
+    g = a.toCharArray();
+    Object localObject1 = e();
+    Object localObject2 = localObject1;
+    if (localObject1 == null) {
+      return null;
+    }
+    do
+    {
+      int i = c;
+      if (i == b) {
+        return null;
+      }
+      i = g[i];
+      if (i != 34)
+      {
+        if (i != 35)
+        {
+          if ((i != 43) && (i != 44) && (i != 59)) {
+            localObject1 = a();
+          } else {
+            localObject1 = "";
+          }
+        }
+        else {
+          localObject1 = d();
+        }
+      }
+      else {
+        localObject1 = f();
+      }
+      if (paramString.equalsIgnoreCase((String)localObject2)) {
+        return localObject1;
+      }
+      i = c;
+      if (i >= b) {
+        return null;
+      }
+      localObject1 = g;
+      if ((localObject1[i] != ',') && (localObject1[i] != ';') && (localObject1[i] != '+'))
+      {
+        paramString = new StringBuilder();
+        paramString.append("Malformed DN: ");
+        paramString.append(a);
+        throw new IllegalStateException(paramString.toString());
+      }
+      c += 1;
+      localObject2 = e();
+    } while (localObject2 != null);
+    paramString = new StringBuilder();
+    paramString.append("Malformed DN: ");
+    paramString.append(a);
+    paramString = new IllegalStateException(paramString.toString());
+    for (;;)
+    {
+      throw paramString;
+    }
+  }
+}

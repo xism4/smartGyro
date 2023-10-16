@@ -1,0 +1,20 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.k.u;
+import c.a.a.a.r;
+
+@Deprecated
+public class j
+  extends b<r>
+{
+  public j(c.a.a.a.j.g paramG, u paramU, c.a.a.a.l.g paramG1)
+  {
+    super(paramG, paramU, paramG1);
+  }
+  
+  protected void a(r paramR)
+  {
+    c.a(b, paramR.getRequestLine());
+    a.a(b);
+  }
+}

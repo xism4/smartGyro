@@ -1,0 +1,146 @@
+package android.support.v7.widget;
+
+import a.a.d.a.j;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import java.lang.ref.WeakReference;
+
+public final class ViewStubCompat
+  extends View
+{
+  private int a = 0;
+  private int b;
+  private WeakReference<View> c;
+  private LayoutInflater d;
+  private a e;
+  
+  public ViewStubCompat(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  public ViewStubCompat(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    paramContext = paramContext.obtainStyledAttributes(paramAttributeSet, j.ViewStubCompat, paramInt, 0);
+    b = paramContext.getResourceId(j.ViewStubCompat_android_inflatedId, -1);
+    a = paramContext.getResourceId(j.ViewStubCompat_android_layout, 0);
+    setId(paramContext.getResourceId(j.ViewStubCompat_android_id, -1));
+    paramContext.recycle();
+    setVisibility(8);
+    setWillNotDraw(true);
+  }
+  
+  public View a()
+  {
+    Object localObject1 = getParent();
+    if ((localObject1 != null) && ((localObject1 instanceof ViewGroup)))
+    {
+      if (a != 0)
+      {
+        Object localObject2 = (ViewGroup)localObject1;
+        localObject1 = d;
+        if (localObject1 == null) {
+          localObject1 = LayoutInflater.from(getContext());
+        }
+        localObject1 = ((LayoutInflater)localObject1).inflate(a, (ViewGroup)localObject2, false);
+        int i = b;
+        if (i != -1) {
+          ((View)localObject1).setId(i);
+        }
+        i = ((ViewGroup)localObject2).indexOfChild(this);
+        ((ViewGroup)localObject2).removeViewInLayout(this);
+        ViewGroup.LayoutParams localLayoutParams = getLayoutParams();
+        if (localLayoutParams != null) {
+          ((ViewGroup)localObject2).addView((View)localObject1, i, localLayoutParams);
+        } else {
+          ((ViewGroup)localObject2).addView((View)localObject1, i);
+        }
+        c = new WeakReference(localObject1);
+        localObject2 = e;
+        if (localObject2 != null) {
+          ((a)localObject2).a(this, (View)localObject1);
+        }
+        return localObject1;
+      }
+      throw new IllegalArgumentException("ViewStub must have a valid layoutResource");
+    }
+    throw new IllegalStateException("ViewStub must have a non-null ViewGroup viewParent");
+  }
+  
+  protected void dispatchDraw(Canvas paramCanvas) {}
+  
+  @SuppressLint({"MissingSuperCall"})
+  public void draw(Canvas paramCanvas) {}
+  
+  public int getInflatedId()
+  {
+    return b;
+  }
+  
+  public LayoutInflater getLayoutInflater()
+  {
+    return d;
+  }
+  
+  public int getLayoutResource()
+  {
+    return a;
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    setMeasuredDimension(0, 0);
+  }
+  
+  public void setInflatedId(int paramInt)
+  {
+    b = paramInt;
+  }
+  
+  public void setLayoutInflater(LayoutInflater paramLayoutInflater)
+  {
+    d = paramLayoutInflater;
+  }
+  
+  public void setLayoutResource(int paramInt)
+  {
+    a = paramInt;
+  }
+  
+  public void setOnInflateListener(a paramA)
+  {
+    e = paramA;
+  }
+  
+  public void setVisibility(int paramInt)
+  {
+    Object localObject = c;
+    if (localObject != null)
+    {
+      localObject = (View)((WeakReference)localObject).get();
+      if (localObject != null)
+      {
+        ((View)localObject).setVisibility(paramInt);
+        return;
+      }
+      throw new IllegalStateException("setVisibility called on un-referenced view");
+    }
+    super.setVisibility(paramInt);
+    if ((paramInt == 0) || (paramInt == 4)) {
+      a();
+    }
+  }
+  
+  public static abstract interface a
+  {
+    public abstract void a(ViewStubCompat paramViewStubCompat, View paramView);
+  }
+}

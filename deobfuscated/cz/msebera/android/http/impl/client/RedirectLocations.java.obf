@@ -1,0 +1,74 @@
+package c.a.a.a.i.b;
+
+import java.net.URI;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class u
+  extends AbstractList<Object>
+{
+  private final Set<URI> a = new HashSet();
+  private final List<URI> b = new ArrayList();
+  
+  public u() {}
+  
+  public void a(URI paramURI)
+  {
+    a.add(paramURI);
+    b.add(paramURI);
+  }
+  
+  public void add(int paramInt, Object paramObject)
+  {
+    List localList = b;
+    paramObject = (URI)paramObject;
+    localList.add(paramInt, paramObject);
+    a.add(paramObject);
+  }
+  
+  public boolean b(URI paramURI)
+  {
+    return a.contains(paramURI);
+  }
+  
+  public boolean contains(Object paramObject)
+  {
+    return a.contains(paramObject);
+  }
+  
+  public URI get(int paramInt)
+  {
+    return (URI)b.get(paramInt);
+  }
+  
+  public URI remove(int paramInt)
+  {
+    URI localURI = (URI)b.remove(paramInt);
+    a.remove(localURI);
+    if (b.size() != a.size()) {
+      a.addAll(b);
+    }
+    return localURI;
+  }
+  
+  public Object set(int paramInt, Object paramObject)
+  {
+    Object localObject = b;
+    paramObject = (URI)paramObject;
+    localObject = (URI)((List)localObject).set(paramInt, paramObject);
+    a.remove(localObject);
+    a.add(paramObject);
+    if (b.size() != a.size()) {
+      a.addAll(b);
+    }
+    return localObject;
+  }
+  
+  public int size()
+  {
+    return b.size();
+  }
+}

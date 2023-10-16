@@ -1,0 +1,162 @@
+package android.support.v7.widget;
+
+import a.a.c.a.a.h;
+import a.a.c.a.a.h.a;
+import a.a.d.b.a.a;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.util.TypedValue;
+
+public class ta
+{
+  private final Context a;
+  private final TypedArray b;
+  private TypedValue c;
+  
+  private ta(Context paramContext, TypedArray paramTypedArray)
+  {
+    a = paramContext;
+    b = paramTypedArray;
+  }
+  
+  public static ta a(Context paramContext, int paramInt, int[] paramArrayOfInt)
+  {
+    return new ta(paramContext, paramContext.obtainStyledAttributes(paramInt, paramArrayOfInt));
+  }
+  
+  public static ta a(Context paramContext, AttributeSet paramAttributeSet, int[] paramArrayOfInt)
+  {
+    return new ta(paramContext, paramContext.obtainStyledAttributes(paramAttributeSet, paramArrayOfInt));
+  }
+  
+  public static ta a(Context paramContext, AttributeSet paramAttributeSet, int[] paramArrayOfInt, int paramInt1, int paramInt2)
+  {
+    return new ta(paramContext, paramContext.obtainStyledAttributes(paramAttributeSet, paramArrayOfInt, paramInt1, paramInt2));
+  }
+  
+  public float a(int paramInt, float paramFloat)
+  {
+    return b.getFloat(paramInt, paramFloat);
+  }
+  
+  public int a(int paramInt1, int paramInt2)
+  {
+    return b.getColor(paramInt1, paramInt2);
+  }
+  
+  public ColorStateList a(int paramInt)
+  {
+    if (b.hasValue(paramInt))
+    {
+      int i = b.getResourceId(paramInt, 0);
+      if (i != 0)
+      {
+        ColorStateList localColorStateList = a.a(a, i);
+        if (localColorStateList != null) {
+          return localColorStateList;
+        }
+      }
+    }
+    return b.getColorStateList(paramInt);
+  }
+  
+  public Typeface a(int paramInt1, int paramInt2, h.a paramA)
+  {
+    paramInt1 = b.getResourceId(paramInt1, 0);
+    if (paramInt1 == 0) {
+      return null;
+    }
+    if (c == null) {
+      c = new TypedValue();
+    }
+    return h.a(a, paramInt1, c, paramInt2, paramA);
+  }
+  
+  public void a()
+  {
+    b.recycle();
+  }
+  
+  public boolean a(int paramInt, boolean paramBoolean)
+  {
+    return b.getBoolean(paramInt, paramBoolean);
+  }
+  
+  public int b(int paramInt1, int paramInt2)
+  {
+    return b.getDimensionPixelOffset(paramInt1, paramInt2);
+  }
+  
+  public Drawable b(int paramInt)
+  {
+    if (b.hasValue(paramInt))
+    {
+      int i = b.getResourceId(paramInt, 0);
+      if (i != 0) {
+        return a.b(a, i);
+      }
+    }
+    return b.getDrawable(paramInt);
+  }
+  
+  public int c(int paramInt1, int paramInt2)
+  {
+    return b.getDimensionPixelSize(paramInt1, paramInt2);
+  }
+  
+  public Drawable c(int paramInt)
+  {
+    if (b.hasValue(paramInt))
+    {
+      paramInt = b.getResourceId(paramInt, 0);
+      if (paramInt != 0) {
+        return o.a().a(a, paramInt, true);
+      }
+    }
+    return null;
+  }
+  
+  public int d(int paramInt1, int paramInt2)
+  {
+    return b.getInt(paramInt1, paramInt2);
+  }
+  
+  public String d(int paramInt)
+  {
+    return b.getString(paramInt);
+  }
+  
+  public int e(int paramInt1, int paramInt2)
+  {
+    return b.getInteger(paramInt1, paramInt2);
+  }
+  
+  public CharSequence e(int paramInt)
+  {
+    return b.getText(paramInt);
+  }
+  
+  public int f(int paramInt1, int paramInt2)
+  {
+    return b.getLayoutDimension(paramInt1, paramInt2);
+  }
+  
+  public CharSequence[] f(int paramInt)
+  {
+    return b.getTextArray(paramInt);
+  }
+  
+  public int g(int paramInt1, int paramInt2)
+  {
+    return b.getResourceId(paramInt1, paramInt2);
+  }
+  
+  public boolean g(int paramInt)
+  {
+    return b.hasValue(paramInt);
+  }
+}

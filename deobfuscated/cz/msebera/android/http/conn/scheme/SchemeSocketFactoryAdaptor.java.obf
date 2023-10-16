@@ -1,0 +1,71 @@
+package c.a.a.a.e.c;
+
+import c.a.a.a.l.g;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+@Deprecated
+class k
+  implements j
+{
+  private final l a;
+  
+  k(l paramL)
+  {
+    a = paramL;
+  }
+  
+  public Socket a(g paramG)
+  {
+    return a.createSocket();
+  }
+  
+  public Socket a(Socket paramSocket, InetSocketAddress paramInetSocketAddress1, InetSocketAddress paramInetSocketAddress2, g paramG)
+  {
+    String str = paramInetSocketAddress1.getHostName();
+    int j = paramInetSocketAddress1.getPort();
+    int i;
+    if (paramInetSocketAddress2 != null)
+    {
+      paramInetSocketAddress1 = paramInetSocketAddress2.getAddress();
+      i = paramInetSocketAddress2.getPort();
+    }
+    else
+    {
+      paramInetSocketAddress1 = null;
+      i = 0;
+    }
+    return a.a(paramSocket, str, j, paramInetSocketAddress1, i, paramG);
+  }
+  
+  public boolean equals(Object paramObject)
+  {
+    if (paramObject == null) {
+      return false;
+    }
+    if (this == paramObject) {
+      return true;
+    }
+    l localL;
+    if ((paramObject instanceof k))
+    {
+      localL = a;
+      paramObject = a;
+    }
+    for (;;)
+    {
+      return localL.equals(paramObject);
+      localL = a;
+    }
+  }
+  
+  public int hashCode()
+  {
+    return a.hashCode();
+  }
+  
+  public boolean isSecure(Socket paramSocket)
+  {
+    return a.isSecure(paramSocket);
+  }
+}

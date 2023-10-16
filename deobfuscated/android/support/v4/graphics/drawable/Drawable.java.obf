@@ -1,0 +1,10 @@
+package android.support.v4.graphics.drawable;
+
+import android.graphics.drawable.Drawable;
+
+public abstract interface c
+{
+  public abstract Drawable a();
+  
+  public abstract void a(Drawable paramDrawable);
+}

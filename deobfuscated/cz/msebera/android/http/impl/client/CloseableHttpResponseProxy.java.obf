@@ -1,0 +1,84 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.b.c.e;
+import c.a.a.a.p.g;
+import c.a.a.a.t;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+@Deprecated
+class i
+  implements InvocationHandler
+{
+  private static final Constructor<?> a;
+  private final t b;
+  
+  static
+  {
+    try
+    {
+      a = Proxy.getProxyClass(i.class.getClassLoader(), new Class[] { e.class }).getConstructor(new Class[] { InvocationHandler.class });
+      return;
+    }
+    catch (NoSuchMethodException localNoSuchMethodException)
+    {
+      throw new IllegalStateException(localNoSuchMethodException);
+    }
+  }
+  
+  i(t paramT)
+  {
+    b = paramT;
+  }
+  
+  public static e a(t paramT)
+  {
+    try
+    {
+      paramT = (e)a.newInstance(new Object[] { new i(paramT) });
+      return paramT;
+    }
+    catch (IllegalAccessException paramT)
+    {
+      throw new IllegalStateException(paramT);
+    }
+    catch (InvocationTargetException paramT)
+    {
+      throw new IllegalStateException(paramT);
+    }
+    catch (InstantiationException paramT)
+    {
+      throw new IllegalStateException(paramT);
+    }
+  }
+  
+  public void a()
+  {
+    g.a(b.getEntity());
+  }
+  
+  public Object invoke(Object paramObject, Method paramMethod, Object[] paramArrayOfObject)
+  {
+    if (paramMethod.getName().equals("close"))
+    {
+      a();
+      return null;
+    }
+    try
+    {
+      paramObject = paramMethod.invoke(b, paramArrayOfObject);
+      return paramObject;
+    }
+    catch (InvocationTargetException paramObject)
+    {
+      paramMethod = paramObject.getCause();
+      if (paramMethod != null) {
+        throw paramMethod;
+      }
+      throw paramObject;
+    }
+  }
+}

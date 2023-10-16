@@ -1,0 +1,165 @@
+package c.a.a.a.p;
+
+import java.io.Serializable;
+
+public final class c
+  implements Serializable
+{
+  private byte[] a;
+  private int b;
+  
+  public c(int paramInt)
+  {
+    a.a(paramInt, "Buffer capacity");
+    a = new byte[paramInt];
+  }
+  
+  private void c(int paramInt)
+  {
+    byte[] arrayOfByte = new byte[Math.max(a.length << 1, paramInt)];
+    System.arraycopy(a, 0, arrayOfByte, 0, b);
+    a = arrayOfByte;
+  }
+  
+  public void a(int paramInt)
+  {
+    int i = b + 1;
+    if (i > a.length) {
+      c(i);
+    }
+    a[b] = ((byte)paramInt);
+    b = i;
+  }
+  
+  public void a(d paramD, int paramInt1, int paramInt2)
+  {
+    if (paramD == null) {
+      return;
+    }
+    a(paramD.a(), paramInt1, paramInt2);
+  }
+  
+  public void a(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    if (paramArrayOfByte == null) {
+      return;
+    }
+    if ((paramInt1 >= 0) && (paramInt1 <= paramArrayOfByte.length) && (paramInt2 >= 0))
+    {
+      int i = paramInt1 + paramInt2;
+      if ((i >= 0) && (i <= paramArrayOfByte.length))
+      {
+        if (paramInt2 == 0) {
+          return;
+        }
+        i = b + paramInt2;
+        if (i > a.length) {
+          c(i);
+        }
+        System.arraycopy(paramArrayOfByte, paramInt1, a, b, paramInt2);
+        b = i;
+        return;
+      }
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("off: ");
+    localStringBuilder.append(paramInt1);
+    localStringBuilder.append(" len: ");
+    localStringBuilder.append(paramInt2);
+    localStringBuilder.append(" b.length: ");
+    localStringBuilder.append(paramArrayOfByte.length);
+    throw new IndexOutOfBoundsException(localStringBuilder.toString());
+  }
+  
+  public void a(char[] paramArrayOfChar, int paramInt1, int paramInt2)
+  {
+    if (paramArrayOfChar == null) {
+      return;
+    }
+    if ((paramInt1 >= 0) && (paramInt1 <= paramArrayOfChar.length) && (paramInt2 >= 0))
+    {
+      int i = paramInt1 + paramInt2;
+      if ((i >= 0) && (i <= paramArrayOfChar.length))
+      {
+        if (paramInt2 == 0) {
+          return;
+        }
+        int j = b;
+        int k = paramInt2 + j;
+        paramInt2 = j;
+        i = paramInt1;
+        if (k > a.length)
+        {
+          c(k);
+          i = paramInt1;
+          paramInt2 = j;
+        }
+        while (paramInt2 < k)
+        {
+          a[paramInt2] = ((byte)paramArrayOfChar[i]);
+          i += 1;
+          paramInt2 += 1;
+        }
+        b = k;
+        return;
+      }
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("off: ");
+    localStringBuilder.append(paramInt1);
+    localStringBuilder.append(" len: ");
+    localStringBuilder.append(paramInt2);
+    localStringBuilder.append(" b.length: ");
+    localStringBuilder.append(paramArrayOfChar.length);
+    paramArrayOfChar = new IndexOutOfBoundsException(localStringBuilder.toString());
+    for (;;)
+    {
+      throw paramArrayOfChar;
+    }
+  }
+  
+  public byte[] a()
+  {
+    return a;
+  }
+  
+  public int b()
+  {
+    return a.length;
+  }
+  
+  public int b(int paramInt)
+  {
+    return a[paramInt];
+  }
+  
+  public void c()
+  {
+    b = 0;
+  }
+  
+  public boolean d()
+  {
+    return b == 0;
+  }
+  
+  public boolean e()
+  {
+    return b == a.length;
+  }
+  
+  public int f()
+  {
+    return b;
+  }
+  
+  public byte[] g()
+  {
+    int i = b;
+    byte[] arrayOfByte = new byte[i];
+    if (i > 0) {
+      System.arraycopy(a, 0, arrayOfByte, 0, i);
+    }
+    return arrayOfByte;
+  }
+}

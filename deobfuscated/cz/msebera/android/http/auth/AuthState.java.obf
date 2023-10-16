@@ -1,0 +1,103 @@
+package c.a.a.a.a;
+
+import java.util.Queue;
+
+public class i
+{
+  private b a = b.a;
+  private c b;
+  private h c;
+  private n d;
+  private Queue<a> e;
+  
+  public i() {}
+  
+  public Queue<a> a()
+  {
+    return e;
+  }
+  
+  public void a(b paramB)
+  {
+    if (paramB == null) {
+      paramB = b.a;
+    }
+    a = paramB;
+  }
+  
+  @Deprecated
+  public void a(c paramC)
+  {
+    if (paramC == null)
+    {
+      e();
+      return;
+    }
+    b = paramC;
+  }
+  
+  public void a(c paramC, n paramN)
+  {
+    c.a.a.a.p.a.a(paramC, "Auth scheme");
+    c.a.a.a.p.a.a(paramN, "Credentials");
+    b = paramC;
+    d = paramN;
+    e = null;
+  }
+  
+  @Deprecated
+  public void a(n paramN)
+  {
+    d = paramN;
+  }
+  
+  public void a(Queue<a> paramQueue)
+  {
+    c.a.a.a.p.a.a(paramQueue, "Queue of auth options");
+    e = paramQueue;
+    b = null;
+    d = null;
+  }
+  
+  public c b()
+  {
+    return b;
+  }
+  
+  public n c()
+  {
+    return d;
+  }
+  
+  public b d()
+  {
+    return a;
+  }
+  
+  public void e()
+  {
+    a = b.a;
+    e = null;
+    b = null;
+    c = null;
+    d = null;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("state:");
+    localStringBuilder.append(a);
+    localStringBuilder.append(";");
+    if (b != null)
+    {
+      localStringBuilder.append("auth scheme:");
+      localStringBuilder.append(b.getSchemeName());
+      localStringBuilder.append(";");
+    }
+    if (d != null) {
+      localStringBuilder.append("credentials present");
+    }
+    return localStringBuilder.toString();
+  }
+}

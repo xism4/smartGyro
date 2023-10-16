@@ -1,0 +1,61 @@
+package c.a.a.a.i.e;
+
+import c.a.a.a.g.b;
+import c.a.a.a.g.d;
+import c.a.a.a.i.f.e;
+import c.a.a.a.i.f.g;
+import c.a.a.a.j.f;
+import c.a.a.a.q;
+
+@Deprecated
+public class a
+{
+  private final d a;
+  
+  public a(d paramD)
+  {
+    c.a.a.a.p.a.a(paramD, "Content length strategy");
+    a = ((d)paramD);
+  }
+  
+  public c.a.a.a.l a(f paramF, q paramQ)
+  {
+    c.a.a.a.p.a.a(paramF, "Session input buffer");
+    c.a.a.a.p.a.a(paramQ, "HTTP message");
+    return b(paramF, paramQ);
+  }
+  
+  protected b b(f paramF, q paramQ)
+  {
+    b localB = new b();
+    long l = a.a(paramQ);
+    if (l == -2L)
+    {
+      localB.a(true);
+      localB.a(-1L);
+    }
+    for (paramF = new e(paramF);; paramF = new c.a.a.a.i.f.l(paramF))
+    {
+      localB.a(paramF);
+      break label120;
+      if (l != -1L) {
+        break;
+      }
+      localB.a(false);
+      localB.a(-1L);
+    }
+    localB.a(false);
+    localB.a(l);
+    localB.a(new g(paramF, l));
+    label120:
+    paramF = paramQ.getFirstHeader("Content-Type");
+    if (paramF != null) {
+      localB.b(paramF);
+    }
+    paramF = paramQ.getFirstHeader("Content-Encoding");
+    if (paramF != null) {
+      localB.a(paramF);
+    }
+    return localB;
+  }
+}

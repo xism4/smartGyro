@@ -1,0 +1,148 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.C;
+import c.a.a.a.D;
+import c.a.a.a.F;
+import c.a.a.a.b.c.l;
+import c.a.a.a.k.n;
+import c.a.a.a.l.i;
+import c.a.a.a.q;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+@Deprecated
+public class v
+  extends c.a.a.a.k.a
+  implements l
+{
+  private final c.a.a.a.r c;
+  private URI d;
+  private String e;
+  private D f;
+  private int g;
+  
+  public v(c.a.a.a.r paramR)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    c = paramR;
+    a(paramR.getParams());
+    a(paramR.getAllHeaders());
+    if ((paramR instanceof l))
+    {
+      paramR = (l)paramR;
+      d = paramR.getURI();
+      e = paramR.getMethod();
+      paramR = null;
+    }
+    for (;;)
+    {
+      f = paramR;
+      break label122;
+      F localF = paramR.getRequestLine();
+      try
+      {
+        d = new URI(localF.getUri());
+        e = localF.getMethod();
+        paramR = paramR.getProtocolVersion();
+      }
+      catch (URISyntaxException paramR)
+      {
+        label122:
+        localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Invalid request URI: ");
+        localStringBuilder.append(localF.getUri());
+        paramR = new C(localStringBuilder.toString(), paramR);
+        break label173;
+      }
+    }
+    g = 0;
+    return;
+    label173:
+    for (;;)
+    {
+      StringBuilder localStringBuilder;
+      throw paramR;
+    }
+  }
+  
+  public void a(URI paramURI)
+  {
+    d = paramURI;
+  }
+  
+  public void abort()
+  {
+    throw new UnsupportedOperationException();
+  }
+  
+  public int b()
+  {
+    return g;
+  }
+  
+  public c.a.a.a.r c()
+  {
+    return c;
+  }
+  
+  public void d()
+  {
+    g += 1;
+  }
+  
+  public boolean e()
+  {
+    return true;
+  }
+  
+  public void f()
+  {
+    a.a();
+    a(c.getAllHeaders());
+  }
+  
+  public String getMethod()
+  {
+    return e;
+  }
+  
+  public D getProtocolVersion()
+  {
+    if (f == null) {
+      f = i.b(getParams());
+    }
+    return f;
+  }
+  
+  public F getRequestLine()
+  {
+    D localD = getProtocolVersion();
+    Object localObject1 = d;
+    if (localObject1 != null) {
+      localObject1 = ((URI)localObject1).toASCIIString();
+    } else {
+      localObject1 = null;
+    }
+    Object localObject2;
+    if (localObject1 != null)
+    {
+      localObject2 = localObject1;
+      if (!((String)localObject1).isEmpty()) {}
+    }
+    else
+    {
+      localObject2 = "/";
+    }
+    return new n(getMethod(), (String)localObject2, localD);
+  }
+  
+  public URI getURI()
+  {
+    return d;
+  }
+  
+  public boolean isAborted()
+  {
+    return false;
+  }
+}

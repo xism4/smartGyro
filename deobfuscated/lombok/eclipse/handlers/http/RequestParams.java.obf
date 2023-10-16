@@ -1,0 +1,12 @@
+package b.c.a.a;
+
+import java.io.Serializable;
+
+public class r
+  implements Serializable
+{
+  protected String a()
+  {
+    throw null;
+  }
+}

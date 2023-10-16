@@ -1,0 +1,41 @@
+package c.a.a.a.b.e;
+
+import c.a.a.a.F;
+import c.a.a.a.h.b;
+import c.a.a.a.p.a;
+import c.a.a.a.q;
+import c.a.a.a.r;
+
+@Deprecated
+public class i
+  extends e
+{
+  public i() {}
+  
+  public void a(r paramR, c.a.a.a.n.e paramE)
+  {
+    a.a(paramR, "HTTP request");
+    a.a(paramE, "HTTP context");
+    if (paramR.getRequestLine().getMethod().equalsIgnoreCase("CONNECT")) {
+      return;
+    }
+    if (paramR.containsHeader("Authorization")) {
+      return;
+    }
+    c.a.a.a.a.i localI = (c.a.a.a.a.i)paramE.getAttribute("http.auth.target-scope");
+    if (localI == null)
+    {
+      a.a("Target auth state not set in the context");
+      return;
+    }
+    if (a.a())
+    {
+      b localB = a;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Target auth state: ");
+      localStringBuilder.append(localI.d());
+      localB.a(localStringBuilder.toString());
+    }
+    a(localI, paramR, paramE);
+  }
+}

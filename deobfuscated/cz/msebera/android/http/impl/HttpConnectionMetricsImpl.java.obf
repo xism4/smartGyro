@@ -1,0 +1,28 @@
+package c.a.a.a.i;
+
+import c.a.a.a.k;
+
+public class e
+  implements k
+{
+  private final c.a.a.a.j.e a;
+  private final c.a.a.a.j.e b;
+  private long c = 0L;
+  private long d = 0L;
+  
+  public e(c.a.a.a.j.e paramE1, c.a.a.a.j.e paramE2)
+  {
+    a = paramE1;
+    b = paramE2;
+  }
+  
+  public void a()
+  {
+    c += 1L;
+  }
+  
+  public void b()
+  {
+    d += 1L;
+  }
+}

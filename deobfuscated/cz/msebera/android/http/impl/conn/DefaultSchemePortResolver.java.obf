@@ -1,0 +1,34 @@
+package c.a.a.a.i.c;
+
+import c.a.a.a.e.r;
+import c.a.a.a.e.s;
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+
+public class k
+  implements r
+{
+  public static final k a = new k();
+  
+  public k() {}
+  
+  public int a(o paramO)
+  {
+    a.a(paramO, "HTTP host");
+    int i = paramO.c();
+    if (i > 0) {
+      return i;
+    }
+    paramO = paramO.d();
+    if (paramO.equalsIgnoreCase("http")) {
+      return 80;
+    }
+    if (paramO.equalsIgnoreCase("https")) {
+      return 443;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramO);
+    localStringBuilder.append(" protocol is not supported");
+    throw new s(localStringBuilder.toString());
+  }
+}

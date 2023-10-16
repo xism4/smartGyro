@@ -1,0 +1,42 @@
+package org.cocos2dx.lib;
+
+import android.util.SparseArray;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+
+final class A
+  implements Runnable
+{
+  A(float paramFloat, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5) {}
+  
+  public void run()
+  {
+    Cocos2dxEditBox localCocos2dxEditBox = new Cocos2dxEditBox(Cocos2dxEditBoxHelper.access$000());
+    localCocos2dxEditBox.setFocusable(true);
+    localCocos2dxEditBox.setFocusableInTouchMode(true);
+    localCocos2dxEditBox.setInputFlag(5);
+    localCocos2dxEditBox.setInputMode(6);
+    localCocos2dxEditBox.setReturnType(0);
+    localCocos2dxEditBox.setHintTextColor(-7829368);
+    localCocos2dxEditBox.setVisibility(8);
+    localCocos2dxEditBox.setBackgroundColor(0);
+    localCocos2dxEditBox.setTextColor(-1);
+    localCocos2dxEditBox.setSingleLine();
+    localCocos2dxEditBox.setOpenGLViewScaleX(a);
+    localCocos2dxEditBox.setPadding(Cocos2dxEditBoxHelper.getPadding(a), 0, 0, 0);
+    FrameLayout.LayoutParams localLayoutParams = new FrameLayout.LayoutParams(-2, -2);
+    leftMargin = b;
+    topMargin = c;
+    width = d;
+    height = e;
+    gravity = 51;
+    Cocos2dxEditBoxHelper.access$100().addView(localCocos2dxEditBox, localLayoutParams);
+    localCocos2dxEditBox.setTag(Boolean.valueOf(false));
+    localCocos2dxEditBox.addTextChangedListener(new n(this, localCocos2dxEditBox));
+    localCocos2dxEditBox.setOnFocusChangeListener(new q(this, localCocos2dxEditBox));
+    localCocos2dxEditBox.setOnKeyListener(new r(this, localCocos2dxEditBox));
+    localCocos2dxEditBox.setOnEditorActionListener(new s(this, localCocos2dxEditBox));
+    Cocos2dxEditBoxHelper.access$400().put(f, localCocos2dxEditBox);
+  }
+}

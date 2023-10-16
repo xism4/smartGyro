@@ -1,0 +1,45 @@
+package org.cocos2dx.lib;
+
+import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.content.res.Resources;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnErrorListener;
+import android.util.Log;
+import android.view.SurfaceView;
+
+class pa
+  implements MediaPlayer.OnErrorListener
+{
+  pa(Cocos2dxVideoView paramCocos2dxVideoView) {}
+  
+  public boolean onError(MediaPlayer paramMediaPlayer, int paramInt1, int paramInt2)
+  {
+    paramMediaPlayer = Cocos2dxVideoView.access$1000(a);
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Error: ");
+    ((StringBuilder)localObject).append(paramInt1);
+    ((StringBuilder)localObject).append(",");
+    ((StringBuilder)localObject).append(paramInt2);
+    Log.d(paramMediaPlayer, ((StringBuilder)localObject).toString());
+    Cocos2dxVideoView.access$202(a, -1);
+    Cocos2dxVideoView.access$602(a, -1);
+    if ((Cocos2dxVideoView.access$1100(a) != null) && (Cocos2dxVideoView.access$1100(a).onError(Cocos2dxVideoView.access$400(a), paramInt1, paramInt2))) {
+      return true;
+    }
+    if (a.getWindowToken() != null)
+    {
+      localObject = a.mCocos2dxActivity.getResources();
+      if (paramInt1 == 200) {
+        paramMediaPlayer = "VideoView_error_text_invalid_progressive_playback";
+      } else {
+        paramMediaPlayer = "VideoView_error_text_unknown";
+      }
+      paramInt1 = ((Resources)localObject).getIdentifier(paramMediaPlayer, "string", "android");
+      paramInt2 = ((Resources)localObject).getIdentifier("VideoView_error_title", "string", "android");
+      int i = ((Resources)localObject).getIdentifier("VideoView_error_button", "string", "android");
+      new AlertDialog.Builder(a.mCocos2dxActivity).setTitle(((Resources)localObject).getString(paramInt2)).setMessage(paramInt1).setPositiveButton(((Resources)localObject).getString(i), new oa(this)).setCancelable(false).show();
+    }
+    return true;
+  }
+}

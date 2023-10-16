@@ -1,0 +1,176 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.C;
+import c.a.a.a.F;
+import c.a.a.a.G;
+import c.a.a.a.b.c.j;
+import c.a.a.a.b.c.l;
+import c.a.a.a.b.c.m;
+import c.a.a.a.b.f.d;
+import c.a.a.a.b.p;
+import c.a.a.a.n.f;
+import c.a.a.a.q;
+import c.a.a.a.r;
+import c.a.a.a.t;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Locale;
+
+public class n
+  implements p
+{
+  public static final n a = new n();
+  private static final String[] b = { "GET", "HEAD" };
+  public c.a.a.a.h.b c = new c.a.a.a.h.b(n.class);
+  
+  public n() {}
+  
+  public l a(r paramR, t paramT, c.a.a.a.n.e paramE)
+  {
+    paramE = c(paramR, paramT, paramE);
+    String str = paramR.getRequestLine().getMethod();
+    if (str.equalsIgnoreCase("HEAD")) {
+      return new j(paramE);
+    }
+    if (str.equalsIgnoreCase("GET")) {
+      return new c.a.a.a.b.c.i(paramE);
+    }
+    if (paramT.getStatusLine().getStatusCode() == 307)
+    {
+      paramR = m.a(paramR);
+      paramR.a(paramE);
+      return paramR.a();
+    }
+    return new c.a.a.a.b.c.i(paramE);
+  }
+  
+  protected URI a(String paramString)
+  {
+    try
+    {
+      Object localObject1 = new d(new URI(paramString).normalize());
+      localObject2 = ((d)localObject1).c();
+      if (localObject2 != null) {
+        ((d)localObject1).b(((String)localObject2).toLowerCase(Locale.ROOT));
+      }
+      if (c.a.a.a.p.i.c(((d)localObject1).d())) {
+        ((d)localObject1).c("/");
+      }
+      localObject1 = ((d)localObject1).a();
+      return localObject1;
+    }
+    catch (URISyntaxException localURISyntaxException)
+    {
+      Object localObject2 = new StringBuilder();
+      ((StringBuilder)localObject2).append("Invalid redirect URI: ");
+      ((StringBuilder)localObject2).append(paramString);
+      throw new C(((StringBuilder)localObject2).toString(), localURISyntaxException);
+    }
+  }
+  
+  public boolean b(r paramR, t paramT, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    c.a.a.a.p.a.a(paramT, "HTTP response");
+    int i = paramT.getStatusLine().getStatusCode();
+    paramR = paramR.getRequestLine().getMethod();
+    paramT = paramT.getFirstHeader("location");
+    if (i != 307) {
+      switch (i)
+      {
+      default: 
+        return false;
+      case 303: 
+        return true;
+      case 302: 
+        return (b(paramR)) && (paramT != null);
+      }
+    }
+    return b(paramR);
+  }
+  
+  protected boolean b(String paramString)
+  {
+    String[] arrayOfString = b;
+    int j = arrayOfString.length;
+    int i = 0;
+    while (i < j)
+    {
+      if (arrayOfString[i].equalsIgnoreCase(paramString)) {
+        return true;
+      }
+      i += 1;
+    }
+    return false;
+  }
+  
+  public URI c(r paramR, t paramT, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    c.a.a.a.p.a.a(paramT, "HTTP response");
+    c.a.a.a.p.a.a(paramE, "HTTP context");
+    c.a.a.a.b.e.a localA = c.a.a.a.b.e.a.a(paramE);
+    Object localObject1 = paramT.getFirstHeader("location");
+    if (localObject1 != null)
+    {
+      paramT = ((c.a.a.a.e)localObject1).getValue();
+      if (c.a())
+      {
+        localObject1 = c;
+        localObject2 = new StringBuilder();
+        ((StringBuilder)localObject2).append("Redirect requested to location '");
+        ((StringBuilder)localObject2).append(paramT);
+        ((StringBuilder)localObject2).append("'");
+        ((c.a.a.a.h.b)localObject1).a(((StringBuilder)localObject2).toString());
+      }
+      Object localObject2 = localA.n();
+      localObject1 = a(paramT);
+      paramT = (t)localObject1;
+      try
+      {
+        if (!((URI)localObject1).isAbsolute()) {
+          if (((c.a.a.a.b.a.a)localObject2).f())
+          {
+            paramT = localA.c();
+            c.a.a.a.p.b.a(paramT, "Target host");
+            paramT = c.a.a.a.b.f.e.a(c.a.a.a.b.f.e.a(new URI(paramR.getRequestLine().getUri()), paramT, false), (URI)localObject1);
+          }
+          else
+          {
+            paramR = new StringBuilder();
+            paramR.append("Relative redirect location '");
+            paramR.append(localObject1);
+            paramR.append("' not allowed");
+            throw new C(paramR.toString());
+          }
+        }
+        localObject1 = (u)localA.getAttribute("http.protocol.redirect-locations");
+        paramR = (r)localObject1;
+        if (localObject1 == null)
+        {
+          paramR = new u();
+          paramE.setAttribute("http.protocol.redirect-locations", paramR);
+        }
+        if ((!((c.a.a.a.b.a.a)localObject2).e()) && (paramR.b(paramT)))
+        {
+          paramR = new StringBuilder();
+          paramR.append("Circular redirect to '");
+          paramR.append(paramT);
+          paramR.append("'");
+          throw new c.a.a.a.b.e(paramR.toString());
+        }
+        paramR.a(paramT);
+        return paramT;
+      }
+      catch (URISyntaxException paramR)
+      {
+        throw new C(paramR.getMessage(), paramR);
+      }
+    }
+    paramR = new StringBuilder();
+    paramR.append("Received redirect response ");
+    paramR.append(paramT.getStatusLine());
+    paramR.append(" but no location header");
+    throw new C(paramR.toString());
+  }
+}

@@ -1,0 +1,259 @@
+package c.a.a.a.b.f;
+
+import c.a.a.a.o;
+import c.a.a.a.p.a;
+import c.a.a.a.p.i;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Stack;
+
+public class e
+{
+  public static o a(URI paramURI)
+  {
+    Object localObject3 = null;
+    if (paramURI == null) {
+      return null;
+    }
+    Object localObject2 = localObject3;
+    int j;
+    int i;
+    Object localObject1;
+    int k;
+    int n;
+    int m;
+    if (paramURI.isAbsolute())
+    {
+      j = paramURI.getPort();
+      localObject2 = paramURI.getHost();
+      i = j;
+      localObject1 = localObject2;
+      if (localObject2 == null)
+      {
+        String str = paramURI.getAuthority();
+        i = j;
+        localObject1 = str;
+        if (str != null)
+        {
+          k = str.indexOf('@');
+          localObject2 = str;
+          if (k >= 0)
+          {
+            i = str.length();
+            k += 1;
+            if (i > k) {
+              localObject2 = str.substring(k);
+            } else {
+              localObject2 = null;
+            }
+          }
+          i = j;
+          localObject1 = localObject2;
+          if (localObject2 != null)
+          {
+            n = ((String)localObject2).indexOf(':');
+            i = j;
+            localObject1 = localObject2;
+            if (n >= 0)
+            {
+              m = n + 1;
+              i = m;
+              k = 0;
+              while ((i < ((String)localObject2).length()) && (Character.isDigit(((String)localObject2).charAt(i))))
+              {
+                k += 1;
+                i += 1;
+              }
+              i = j;
+              if (k <= 0) {}
+            }
+          }
+        }
+      }
+    }
+    try
+    {
+      i = Integer.parseInt(((String)localObject2).substring(m, k + m));
+      localObject1 = ((String)localObject2).substring(0, n);
+      paramURI = paramURI.getScheme();
+      localObject2 = localObject3;
+      if (i.b((CharSequence)localObject1)) {}
+    }
+    catch (NumberFormatException localNumberFormatException)
+    {
+      for (;;)
+      {
+        try
+        {
+          localObject2 = new o((String)localObject1, i, paramURI);
+          return localObject2;
+        }
+        catch (IllegalArgumentException paramURI) {}
+        localNumberFormatException = localNumberFormatException;
+        i = j;
+      }
+    }
+    return null;
+  }
+  
+  public static URI a(URI paramURI, o paramO, boolean paramBoolean)
+  {
+    a.a(paramURI, "URI");
+    if (paramURI.isOpaque()) {
+      return paramURI;
+    }
+    paramURI = new d(paramURI);
+    int i;
+    if (paramO != null)
+    {
+      paramURI.d(paramO.d());
+      paramURI.b(paramO.b());
+      i = paramO.c();
+    }
+    else
+    {
+      paramURI.d(null);
+      paramURI.b(null);
+      i = -1;
+    }
+    paramURI.a(i);
+    if (paramBoolean) {
+      paramURI.a(null);
+    }
+    if (i.c(paramURI.d())) {
+      paramURI.c("/");
+    }
+    return paramURI.a();
+  }
+  
+  public static URI a(URI paramURI1, URI paramURI2)
+  {
+    a.a(paramURI1, "Base URI");
+    a.a(paramURI2, "Reference URI");
+    String str = paramURI2.toString();
+    if (str.startsWith("?")) {
+      return b(paramURI1, paramURI2);
+    }
+    boolean bool = str.isEmpty();
+    if (bool) {
+      paramURI2 = URI.create("#");
+    }
+    paramURI2 = paramURI1.resolve(paramURI2);
+    paramURI1 = paramURI2;
+    if (bool)
+    {
+      paramURI1 = paramURI2.toString();
+      paramURI1 = URI.create(paramURI1.substring(0, paramURI1.indexOf('#')));
+    }
+    return c(paramURI1);
+  }
+  
+  public static URI b(URI paramURI)
+  {
+    a.a(paramURI, "URI");
+    if (paramURI.isOpaque()) {
+      return paramURI;
+    }
+    paramURI = new d(paramURI);
+    if (paramURI.f() != null) {
+      paramURI.e(null);
+    }
+    if (i.c(paramURI.d())) {
+      paramURI.c("/");
+    }
+    if (paramURI.c() != null) {
+      paramURI.b(paramURI.c().toLowerCase(Locale.ROOT));
+    }
+    paramURI.a(null);
+    return paramURI.a();
+  }
+  
+  private static URI b(URI paramURI1, URI paramURI2)
+  {
+    Object localObject = paramURI1.toString();
+    paramURI1 = (URI)localObject;
+    if (((String)localObject).indexOf('?') > -1) {
+      paramURI1 = ((String)localObject).substring(0, ((String)localObject).indexOf('?'));
+    }
+    localObject = new StringBuilder();
+    ((StringBuilder)localObject).append(paramURI1);
+    ((StringBuilder)localObject).append(paramURI2.toString());
+    return URI.create(((StringBuilder)localObject).toString());
+  }
+  
+  private static URI c(URI paramURI)
+  {
+    if (!paramURI.isOpaque())
+    {
+      if (paramURI.getAuthority() == null) {
+        return paramURI;
+      }
+      a.a(paramURI.isAbsolute(), "Base URI must be absolute");
+      Object localObject1;
+      if (paramURI.getPath() == null) {
+        localObject1 = "";
+      } else {
+        localObject1 = paramURI.getPath();
+      }
+      Object localObject3 = ((String)localObject1).split("/");
+      Object localObject2 = new Stack();
+      int j = localObject3.length;
+      int i = 0;
+      Object localObject4;
+      while (i < j)
+      {
+        localObject4 = localObject3[i];
+        if ((!((String)localObject4).isEmpty()) && (!".".equals(localObject4))) {
+          if ("..".equals(localObject4))
+          {
+            if (!((Stack)localObject2).isEmpty()) {
+              ((Stack)localObject2).pop();
+            }
+          }
+          else {
+            ((Stack)localObject2).push(localObject4);
+          }
+        }
+        i += 1;
+      }
+      localObject3 = new StringBuilder();
+      localObject2 = ((Stack)localObject2).iterator();
+      while (((Iterator)localObject2).hasNext())
+      {
+        localObject4 = (String)((Iterator)localObject2).next();
+        ((StringBuilder)localObject3).append('/');
+        ((StringBuilder)localObject3).append((String)localObject4);
+      }
+      if (((String)localObject1).lastIndexOf('/') == ((String)localObject1).length() - 1) {
+        ((StringBuilder)localObject3).append('/');
+      }
+      try
+      {
+        localObject1 = new URI(paramURI.getScheme().toLowerCase(Locale.ROOT), paramURI.getAuthority().toLowerCase(Locale.ROOT), ((StringBuilder)localObject3).toString(), null, null);
+        if ((paramURI.getQuery() == null) && (paramURI.getFragment() == null)) {
+          return localObject1;
+        }
+        localObject1 = new StringBuilder(((URI)localObject1).toASCIIString());
+        if (paramURI.getQuery() != null)
+        {
+          ((StringBuilder)localObject1).append('?');
+          ((StringBuilder)localObject1).append(paramURI.getRawQuery());
+        }
+        if (paramURI.getFragment() != null)
+        {
+          ((StringBuilder)localObject1).append('#');
+          ((StringBuilder)localObject1).append(paramURI.getRawFragment());
+        }
+        paramURI = URI.create(((StringBuilder)localObject1).toString());
+        return paramURI;
+      }
+      catch (URISyntaxException paramURI)
+      {
+        throw new IllegalArgumentException(paramURI);
+      }
+    }
+    return paramURI;
+  }
+}

@@ -1,0 +1,172 @@
+package android.support.v7.app;
+
+import a.a.d.a.a;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface.OnKeyListener;
+import android.content.res.Resources.Theme;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ListAdapter;
+
+public class k
+  extends z
+  implements DialogInterface
+{
+  final AlertController c = new AlertController(getContext(), this, getWindow());
+  
+  protected k(Context paramContext, int paramInt)
+  {
+    super(paramContext, a(paramContext, paramInt));
+  }
+  
+  static int a(Context paramContext, int paramInt)
+  {
+    if ((paramInt >>> 24 & 0xFF) >= 1) {
+      return paramInt;
+    }
+    TypedValue localTypedValue = new TypedValue();
+    paramContext.getTheme().resolveAttribute(a.alertDialogTheme, localTypedValue, true);
+    return resourceId;
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    c.a();
+  }
+  
+  public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (c.a(paramInt, paramKeyEvent)) {
+      return true;
+    }
+    return super.onKeyDown(paramInt, paramKeyEvent);
+  }
+  
+  public boolean onKeyUp(int paramInt, KeyEvent paramKeyEvent)
+  {
+    if (c.b(paramInt, paramKeyEvent)) {
+      return true;
+    }
+    return super.onKeyUp(paramInt, paramKeyEvent);
+  }
+  
+  public void setTitle(CharSequence paramCharSequence)
+  {
+    super.setTitle(paramCharSequence);
+    c.b(paramCharSequence);
+  }
+  
+  public static class a
+  {
+    private final AlertController.a a;
+    private final int b;
+    
+    public a(Context paramContext)
+    {
+      this(paramContext, k.a(paramContext, 0));
+    }
+    
+    public a(Context paramContext, int paramInt)
+    {
+      a = new AlertController.a(new ContextThemeWrapper(paramContext, k.a(paramContext, paramInt)));
+      b = paramInt;
+    }
+    
+    public a a(DialogInterface.OnKeyListener paramOnKeyListener)
+    {
+      a.u = paramOnKeyListener;
+      return this;
+    }
+    
+    public a a(Drawable paramDrawable)
+    {
+      a.d = paramDrawable;
+      return this;
+    }
+    
+    public a a(View paramView)
+    {
+      a.g = paramView;
+      return this;
+    }
+    
+    public a a(ListAdapter paramListAdapter, DialogInterface.OnClickListener paramOnClickListener)
+    {
+      AlertController.a localA = a;
+      w = paramListAdapter;
+      x = paramOnClickListener;
+      return this;
+    }
+    
+    public a a(CharSequence paramCharSequence)
+    {
+      a.h = paramCharSequence;
+      return this;
+    }
+    
+    public a a(CharSequence paramCharSequence, DialogInterface.OnClickListener paramOnClickListener)
+    {
+      AlertController.a localA = a;
+      l = paramCharSequence;
+      n = paramOnClickListener;
+      return this;
+    }
+    
+    public a a(boolean paramBoolean)
+    {
+      a.r = paramBoolean;
+      return this;
+    }
+    
+    public k a()
+    {
+      k localK = new k(a.a, b);
+      a.a(c);
+      localK.setCancelable(a.r);
+      if (a.r) {
+        localK.setCanceledOnTouchOutside(true);
+      }
+      localK.setOnCancelListener(a.s);
+      localK.setOnDismissListener(a.t);
+      DialogInterface.OnKeyListener localOnKeyListener = a.u;
+      if (localOnKeyListener != null) {
+        localK.setOnKeyListener(localOnKeyListener);
+      }
+      return localK;
+    }
+    
+    public Context b()
+    {
+      return a.a;
+    }
+    
+    public a b(CharSequence paramCharSequence)
+    {
+      a.f = paramCharSequence;
+      return this;
+    }
+    
+    public a b(CharSequence paramCharSequence, DialogInterface.OnClickListener paramOnClickListener)
+    {
+      AlertController.a localA = a;
+      i = paramCharSequence;
+      k = paramOnClickListener;
+      return this;
+    }
+    
+    public k c()
+    {
+      k localK = a();
+      localK.show();
+      return localK;
+    }
+  }
+}

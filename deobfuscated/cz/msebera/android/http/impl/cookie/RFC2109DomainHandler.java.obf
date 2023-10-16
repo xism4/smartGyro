@@ -1,0 +1,60 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import c.a.a.a.f.h;
+import c.a.a.a.f.n;
+import c.a.a.a.f.o;
+import c.a.a.a.f.p;
+
+public class I
+  implements b
+{
+  public I() {}
+  
+  public String a()
+  {
+    return "version";
+  }
+  
+  public void a(c paramC, f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    if (((paramC instanceof o)) && ((paramC instanceof c.a.a.a.f.a)))
+    {
+      if (((c.a.a.a.f.a)paramC).containsAttribute("version")) {
+        return;
+      }
+      throw new h("Violates RFC 2965. Version attribute is required.");
+    }
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    c.a.a.a.p.a.a(paramP, "Cookie");
+    if (paramString != null) {}
+    try
+    {
+      i = Integer.parseInt(paramString);
+    }
+    catch (NumberFormatException paramString)
+    {
+      int i;
+      for (;;) {}
+    }
+    i = -1;
+    if (i >= 0)
+    {
+      paramP.setVersion(i);
+      return;
+    }
+    throw new n("Invalid cookie version.");
+    throw new n("Missing value for version attribute");
+  }
+  
+  public boolean b(c paramC, f paramF)
+  {
+    return true;
+  }
+}

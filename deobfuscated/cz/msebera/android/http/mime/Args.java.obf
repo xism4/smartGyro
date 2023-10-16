@@ -1,0 +1,138 @@
+package c.a.a.a.p;
+
+import java.util.Collection;
+
+public class a
+{
+  public static int a(int paramInt, String paramString)
+  {
+    if (paramInt >= 0) {
+      return paramInt;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramString);
+    localStringBuilder.append(" may not be negative");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public static long a(long paramLong, String paramString)
+  {
+    if (paramLong >= 0L) {
+      return paramLong;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramString);
+    localStringBuilder.append(" may not be negative");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public static <T extends CharSequence> T a(T paramT, String paramString)
+  {
+    if (paramT != null)
+    {
+      if (!i.a(paramT)) {
+        return paramT;
+      }
+      paramT = new StringBuilder();
+      paramT.append(paramString);
+      paramT.append(" may not contain blanks");
+      throw new IllegalArgumentException(paramT.toString());
+    }
+    paramT = new StringBuilder();
+    paramT.append(paramString);
+    paramT.append(" may not be null");
+    throw new IllegalArgumentException(paramT.toString());
+  }
+  
+  public static <T> T a(T paramT, String paramString)
+  {
+    if (paramT != null) {
+      return paramT;
+    }
+    paramT = new StringBuilder();
+    paramT.append(paramString);
+    paramT.append(" may not be null");
+    throw new IllegalArgumentException(paramT.toString());
+  }
+  
+  public static <E, T extends Collection<E>> T a(T paramT, String paramString)
+  {
+    if (paramT != null)
+    {
+      if (!paramT.isEmpty()) {
+        return paramT;
+      }
+      paramT = new StringBuilder();
+      paramT.append(paramString);
+      paramT.append(" may not be empty");
+      throw new IllegalArgumentException(paramT.toString());
+    }
+    paramT = new StringBuilder();
+    paramT.append(paramString);
+    paramT.append(" may not be null");
+    throw new IllegalArgumentException(paramT.toString());
+  }
+  
+  public static void a(boolean paramBoolean, String paramString)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalArgumentException(paramString);
+  }
+  
+  public static void a(boolean paramBoolean, String paramString, Object... paramVarArgs)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalArgumentException(String.format(paramString, paramVarArgs));
+  }
+  
+  public static int b(int paramInt, String paramString)
+  {
+    if (paramInt > 0) {
+      return paramInt;
+    }
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append(paramString);
+    localStringBuilder.append(" may not be negative or zero");
+    throw new IllegalArgumentException(localStringBuilder.toString());
+  }
+  
+  public static <T extends CharSequence> T b(T paramT, String paramString)
+  {
+    if (paramT != null)
+    {
+      if (!i.b(paramT)) {
+        return paramT;
+      }
+      paramT = new StringBuilder();
+      paramT.append(paramString);
+      paramT.append(" may not be blank");
+      throw new IllegalArgumentException(paramT.toString());
+    }
+    paramT = new StringBuilder();
+    paramT.append(paramString);
+    paramT.append(" may not be null");
+    throw new IllegalArgumentException(paramT.toString());
+  }
+  
+  public static <T extends CharSequence> T c(T paramT, String paramString)
+  {
+    if (paramT != null)
+    {
+      if (!i.c(paramT)) {
+        return paramT;
+      }
+      paramT = new StringBuilder();
+      paramT.append(paramString);
+      paramT.append(" may not be empty");
+      throw new IllegalArgumentException(paramT.toString());
+    }
+    paramT = new StringBuilder();
+    paramT.append(paramString);
+    paramT.append(" may not be null");
+    throw new IllegalArgumentException(paramT.toString());
+  }
+}

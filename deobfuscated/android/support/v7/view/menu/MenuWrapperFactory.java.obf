@@ -1,0 +1,31 @@
+package android.support.v7.view.menu;
+
+import a.a.c.c.a.a;
+import a.a.c.c.a.b;
+import a.a.c.c.a.c;
+import android.content.Context;
+import android.os.Build.VERSION;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
+
+public final class x
+{
+  public static Menu a(Context paramContext, a paramA)
+  {
+    return new y(paramContext, paramA);
+  }
+  
+  public static MenuItem a(Context paramContext, b paramB)
+  {
+    if (Build.VERSION.SDK_INT >= 16) {
+      return new r(paramContext, paramB);
+    }
+    return new q(paramContext, paramB);
+  }
+  
+  public static SubMenu a(Context paramContext, c paramC)
+  {
+    return new E(paramContext, paramC);
+  }
+}

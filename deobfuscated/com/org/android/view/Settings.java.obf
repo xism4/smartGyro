@@ -1,0 +1,55 @@
+package a.a.c.g;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+
+public abstract class c
+  implements Parcelable
+{
+  public static final Parcelable.Creator<c> CREATOR = new b();
+  public static final c a = new a();
+  private final Parcelable b;
+  
+  private c()
+  {
+    b = null;
+  }
+  
+  protected c(Parcel paramParcel, ClassLoader paramClassLoader)
+  {
+    paramParcel = paramParcel.readParcelable(paramClassLoader);
+    if (paramParcel == null) {
+      paramParcel = a;
+    }
+    b = paramParcel;
+  }
+  
+  protected c(Parcelable paramParcelable)
+  {
+    if (paramParcelable != null)
+    {
+      if (paramParcelable == a) {
+        paramParcelable = null;
+      }
+      b = paramParcelable;
+      return;
+    }
+    throw new IllegalArgumentException("superState must not be null");
+  }
+  
+  public final Parcelable a()
+  {
+    return b;
+  }
+  
+  public int describeContents()
+  {
+    return 0;
+  }
+  
+  public void writeToParcel(Parcel paramParcel, int paramInt)
+  {
+    paramParcel.writeParcelable(b, paramInt);
+  }
+}

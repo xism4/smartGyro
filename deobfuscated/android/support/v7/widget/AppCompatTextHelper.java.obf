@@ -1,0 +1,137 @@
+package android.support.v7.widget;
+
+import a.a.c.g.u;
+import a.a.d.a.j;
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.a;
+import android.util.AttributeSet;
+import android.widget.SeekBar;
+
+class A
+  extends w
+{
+  private final SeekBar d;
+  private Drawable e;
+  private ColorStateList f = null;
+  private PorterDuff.Mode g = null;
+  private boolean h = false;
+  private boolean i = false;
+  
+  A(SeekBar paramSeekBar)
+  {
+    super(paramSeekBar);
+    d = paramSeekBar;
+  }
+  
+  private void d()
+  {
+    if ((e != null) && ((h) || (i)))
+    {
+      e = a.g(e.mutate());
+      if (h) {
+        a.a(e, f);
+      }
+      if (i) {
+        a.a(e, g);
+      }
+      if (e.isStateful()) {
+        e.setState(d.getDrawableState());
+      }
+    }
+  }
+  
+  void a(Canvas paramCanvas)
+  {
+    if (e != null)
+    {
+      int m = d.getMax();
+      int k = 1;
+      if (m > 1)
+      {
+        int j = e.getIntrinsicWidth();
+        int n = e.getIntrinsicHeight();
+        if (j >= 0) {
+          j /= 2;
+        } else {
+          j = 1;
+        }
+        if (n >= 0) {
+          k = n / 2;
+        }
+        e.setBounds(-j, -k, j, k);
+        float f1 = (d.getWidth() - d.getPaddingLeft() - d.getPaddingRight()) / m;
+        k = paramCanvas.save();
+        paramCanvas.translate(d.getPaddingLeft(), d.getHeight() / 2);
+        j = 0;
+        while (j <= m)
+        {
+          e.draw(paramCanvas);
+          paramCanvas.translate(f1, 0.0F);
+          j += 1;
+        }
+        paramCanvas.restoreToCount(k);
+      }
+    }
+  }
+  
+  void a(Drawable paramDrawable)
+  {
+    Drawable localDrawable = e;
+    if (localDrawable != null) {
+      localDrawable.setCallback(null);
+    }
+    e = paramDrawable;
+    if (paramDrawable != null)
+    {
+      paramDrawable.setCallback(d);
+      a.a(paramDrawable, u.d(d));
+      if (paramDrawable.isStateful()) {
+        paramDrawable.setState(d.getDrawableState());
+      }
+      d();
+    }
+    d.invalidate();
+  }
+  
+  void a(AttributeSet paramAttributeSet, int paramInt)
+  {
+    super.a(paramAttributeSet, paramInt);
+    paramAttributeSet = ta.a(d.getContext(), paramAttributeSet, j.AppCompatSeekBar, paramInt, 0);
+    Drawable localDrawable = paramAttributeSet.c(j.AppCompatSeekBar_android_thumb);
+    if (localDrawable != null) {
+      d.setThumb(localDrawable);
+    }
+    a(paramAttributeSet.b(j.AppCompatSeekBar_tickMark));
+    if (paramAttributeSet.g(j.AppCompatSeekBar_tickMarkTintMode))
+    {
+      g = M.a(paramAttributeSet.d(j.AppCompatSeekBar_tickMarkTintMode, -1), g);
+      i = true;
+    }
+    if (paramAttributeSet.g(j.AppCompatSeekBar_tickMarkTint))
+    {
+      f = paramAttributeSet.a(j.AppCompatSeekBar_tickMarkTint);
+      h = true;
+    }
+    paramAttributeSet.a();
+    d();
+  }
+  
+  void b()
+  {
+    Drawable localDrawable = e;
+    if ((localDrawable != null) && (localDrawable.isStateful()) && (localDrawable.setState(d.getDrawableState()))) {
+      d.invalidateDrawable(localDrawable);
+    }
+  }
+  
+  void c()
+  {
+    Drawable localDrawable = e;
+    if (localDrawable != null) {
+      localDrawable.jumpToCurrentState();
+    }
+  }
+}

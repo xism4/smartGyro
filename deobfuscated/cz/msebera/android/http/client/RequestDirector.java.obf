@@ -1,0 +1,12 @@
+package c.a.a.a.b;
+
+import c.a.a.a.n.e;
+import c.a.a.a.o;
+import c.a.a.a.r;
+import c.a.a.a.t;
+
+@Deprecated
+public abstract interface q
+{
+  public abstract t a(o paramO, r paramR, e paramE);
+}

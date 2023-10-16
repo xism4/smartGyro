@@ -1,0 +1,317 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.j.e;
+import c.a.a.a.j.f;
+import c.a.a.a.l.g;
+import c.a.a.a.p.d;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CoderResult;
+import java.nio.charset.CodingErrorAction;
+
+@Deprecated
+public abstract class c
+  implements f, c.a.a.a.j.a
+{
+  private InputStream a;
+  private byte[] b;
+  private c.a.a.a.p.c c;
+  private Charset d;
+  private boolean e;
+  private int f;
+  private int g;
+  private k h;
+  private CodingErrorAction i;
+  private CodingErrorAction j;
+  private int k;
+  private int l;
+  private CharsetDecoder m;
+  private CharBuffer n;
+  
+  public c() {}
+  
+  private int a(d paramD, int paramInt)
+  {
+    int i2 = k;
+    k = (paramInt + 1);
+    int i1 = paramInt;
+    if (paramInt > i2)
+    {
+      i1 = paramInt;
+      if (b[(paramInt - 1)] == 13) {
+        i1 = paramInt - 1;
+      }
+    }
+    paramInt = i1 - i2;
+    if (e)
+    {
+      paramD.a(b, i2, paramInt);
+      return paramInt;
+    }
+    return a(paramD, ByteBuffer.wrap(b, i2, paramInt));
+  }
+  
+  private int a(d paramD, ByteBuffer paramByteBuffer)
+  {
+    boolean bool = paramByteBuffer.hasRemaining();
+    int i1 = 0;
+    if (!bool) {
+      return 0;
+    }
+    if (m == null)
+    {
+      m = d.newDecoder();
+      m.onMalformedInput(i);
+      m.onUnmappableCharacter(j);
+    }
+    if (n == null) {
+      n = CharBuffer.allocate(1024);
+    }
+    m.reset();
+    while (paramByteBuffer.hasRemaining()) {
+      i1 += a(m.decode(paramByteBuffer, n, true), paramD, paramByteBuffer);
+    }
+    int i2 = a(m.flush(n), paramD, paramByteBuffer);
+    n.clear();
+    return i1 + i2;
+  }
+  
+  private int a(CoderResult paramCoderResult, d paramD, ByteBuffer paramByteBuffer)
+  {
+    if (paramCoderResult.isError()) {
+      paramCoderResult.throwException();
+    }
+    n.flip();
+    int i1 = n.remaining();
+    while (n.hasRemaining()) {
+      paramD.append(n.get());
+    }
+    n.compact();
+    return i1;
+  }
+  
+  private int b(d paramD)
+  {
+    int i3 = c.f();
+    int i1 = i3;
+    if (i3 > 0)
+    {
+      int i2 = i3;
+      if (c.b(i3 - 1) == 10) {
+        i2 = i3 - 1;
+      }
+      i1 = i2;
+      if (i2 > 0)
+      {
+        i1 = i2;
+        if (c.b(i2 - 1) == 13) {
+          i1 = i2 - 1;
+        }
+      }
+    }
+    if (e) {
+      paramD.a(c, 0, i1);
+    } else {
+      i1 = a(paramD, ByteBuffer.wrap(c.a(), 0, i1));
+    }
+    c.c();
+    return i1;
+  }
+  
+  private int e()
+  {
+    int i1 = k;
+    while (i1 < l)
+    {
+      if (b[i1] == 10) {
+        return i1;
+      }
+      i1 += 1;
+    }
+    return -1;
+  }
+  
+  public int a(d paramD)
+  {
+    c.a.a.a.p.a.a(paramD, "Char array buffer");
+    int i3 = 1;
+    int i1 = 0;
+    while (i3 != 0)
+    {
+      int i2 = e();
+      if (i2 != -1)
+      {
+        if (c.d()) {
+          return a(paramD, i2);
+        }
+        i2 += 1;
+        i3 = k;
+        c.a(b, i3, i2 - i3);
+        k = i2;
+      }
+      int i4;
+      do
+      {
+        i4 = 0;
+        i2 = i1;
+        break;
+        if (d())
+        {
+          i1 = l;
+          i2 = k;
+          c.a(b, i2, i1 - i2);
+          k = l;
+        }
+        i1 = c();
+        i4 = i3;
+        i2 = i1;
+      } while (i1 == -1);
+      i3 = i4;
+      i1 = i2;
+      if (f > 0) {
+        if (c.f() < f)
+        {
+          i3 = i4;
+          i1 = i2;
+        }
+        else
+        {
+          throw new IOException("Maximum line length limit exceeded");
+        }
+      }
+    }
+    if ((i1 == -1) && (c.d())) {
+      return -1;
+    }
+    return b(paramD);
+  }
+  
+  protected void a(InputStream paramInputStream, int paramInt, g paramG)
+  {
+    c.a.a.a.p.a.a(paramInputStream, "Input stream");
+    c.a.a.a.p.a.a(paramInt, "Buffer size");
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    a = paramInputStream;
+    b = new byte[paramInt];
+    k = 0;
+    l = 0;
+    c = new c.a.a.a.p.c(paramInt);
+    paramInputStream = (String)paramG.getParameter("http.protocol.element-charset");
+    if (paramInputStream != null) {
+      paramInputStream = Charset.forName(paramInputStream);
+    } else {
+      paramInputStream = c.a.a.a.c.b;
+    }
+    d = paramInputStream;
+    e = d.equals(c.a.a.a.c.b);
+    m = null;
+    f = paramG.getIntParameter("http.connection.max-line-length", -1);
+    g = paramG.getIntParameter("http.connection.min-chunk-limit", 512);
+    h = b();
+    paramInputStream = (CodingErrorAction)paramG.getParameter("http.malformed.input.action");
+    if (paramInputStream == null) {
+      paramInputStream = CodingErrorAction.REPORT;
+    }
+    i = paramInputStream;
+    paramInputStream = (CodingErrorAction)paramG.getParameter("http.unmappable.input.action");
+    if (paramInputStream == null) {
+      paramInputStream = CodingErrorAction.REPORT;
+    }
+    j = paramInputStream;
+  }
+  
+  protected k b()
+  {
+    return new k();
+  }
+  
+  protected int c()
+  {
+    int i1 = k;
+    if (i1 > 0)
+    {
+      i2 = l - i1;
+      if (i2 > 0)
+      {
+        arrayOfByte = b;
+        System.arraycopy(arrayOfByte, i1, arrayOfByte, 0, i2);
+      }
+      k = 0;
+      l = i2;
+    }
+    i1 = l;
+    byte[] arrayOfByte = b;
+    int i2 = arrayOfByte.length;
+    i2 = a.read(arrayOfByte, i1, i2 - i1);
+    if (i2 == -1) {
+      return -1;
+    }
+    l = (i1 + i2);
+    h.a(i2);
+    return i2;
+  }
+  
+  protected boolean d()
+  {
+    return k < l;
+  }
+  
+  public e getMetrics()
+  {
+    return h;
+  }
+  
+  public int length()
+  {
+    return l - k;
+  }
+  
+  public int read()
+  {
+    while (!d()) {
+      if (c() == -1) {
+        return -1;
+      }
+    }
+    byte[] arrayOfByte = b;
+    int i1 = k;
+    k = (i1 + 1);
+    return arrayOfByte[i1] & 0xFF;
+  }
+  
+  public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    if (paramArrayOfByte == null) {
+      return 0;
+    }
+    if (d())
+    {
+      paramInt2 = Math.min(paramInt2, l - k);
+      System.arraycopy(b, k, paramArrayOfByte, paramInt1, paramInt2);
+    }
+    for (paramInt1 = paramInt2;; paramInt1 = paramInt2)
+    {
+      k += paramInt1;
+      return paramInt1;
+      if (paramInt2 > g)
+      {
+        paramInt1 = a.read(paramArrayOfByte, paramInt1, paramInt2);
+        if (paramInt1 > 0) {
+          h.a(paramInt1);
+        }
+        return paramInt1;
+      }
+      while (!d()) {
+        if (c() == -1) {
+          return -1;
+        }
+      }
+      paramInt2 = Math.min(paramInt2, l - k);
+      System.arraycopy(b, k, paramArrayOfByte, paramInt1, paramInt2);
+    }
+  }
+}

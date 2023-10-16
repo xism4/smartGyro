@@ -1,0 +1,58 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.j.g;
+import c.a.a.a.p.a;
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class m
+  extends OutputStream
+{
+  private final g a;
+  private boolean b = false;
+  
+  public m(g paramG)
+  {
+    a.a(paramG, "Session output buffer");
+    a = ((g)paramG);
+  }
+  
+  public void close()
+  {
+    if (!b)
+    {
+      b = true;
+      a.flush();
+    }
+  }
+  
+  public void flush()
+  {
+    a.flush();
+  }
+  
+  public void write(int paramInt)
+  {
+    if (!b)
+    {
+      a.write(paramInt);
+      return;
+    }
+    throw new IOException("Attempted write to closed stream.");
+  }
+  
+  public void write(byte[] paramArrayOfByte)
+  {
+    write(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public void write(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    if (!b)
+    {
+      a.write(paramArrayOfByte, paramInt1, paramInt2);
+      return;
+    }
+    throw new IOException("Attempted write to closed stream.");
+  }
+}

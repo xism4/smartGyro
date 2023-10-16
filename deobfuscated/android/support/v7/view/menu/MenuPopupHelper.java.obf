@@ -1,0 +1,27 @@
+package android.support.v7.view.menu;
+
+import android.view.View;
+import android.view.View.OnAttachStateChangeListener;
+import android.view.ViewTreeObserver;
+
+class f
+  implements View.OnAttachStateChangeListener
+{
+  f(i paramI) {}
+  
+  public void onViewAttachedToWindow(View paramView) {}
+  
+  public void onViewDetachedFromWindow(View paramView)
+  {
+    Object localObject = a.z;
+    if (localObject != null)
+    {
+      if (!((ViewTreeObserver)localObject).isAlive()) {
+        a.z = paramView.getViewTreeObserver();
+      }
+      localObject = a;
+      z.removeGlobalOnLayoutListener(k);
+    }
+    paramView.removeOnAttachStateChangeListener(this);
+  }
+}

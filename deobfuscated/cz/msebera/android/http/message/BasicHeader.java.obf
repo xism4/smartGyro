@@ -1,0 +1,50 @@
+package c.a.a.a.k;
+
+import c.a.a.a.e;
+import c.a.a.a.f;
+import c.a.a.a.p.a;
+import c.a.a.a.p.d;
+import java.io.Serializable;
+
+public class b
+  implements e, Cloneable, Serializable
+{
+  private final String a;
+  private final String b;
+  
+  public b(String paramString1, String paramString2)
+  {
+    a.a(paramString1, "Name");
+    a = ((String)paramString1);
+    b = paramString2;
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public f[] getElements()
+  {
+    String str = b;
+    if (str != null) {
+      return g.a(str, null);
+    }
+    return new f[0];
+  }
+  
+  public String getName()
+  {
+    return a;
+  }
+  
+  public String getValue()
+  {
+    return b;
+  }
+  
+  public String toString()
+  {
+    return j.b.a(null, this).toString();
+  }
+}

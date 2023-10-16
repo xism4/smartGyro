@@ -1,0 +1,399 @@
+package b.c.a.a;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import c.a.a.a.G;
+import c.a.a.a.e;
+import c.a.a.a.p.c;
+import c.a.a.a.q;
+import c.a.a.a.t;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.net.URI;
+
+public abstract class f
+  implements s
+{
+  private String a = "UTF-8";
+  private Handler b;
+  private boolean c;
+  private boolean d;
+  private URI e = null;
+  private e[] f = null;
+  private Looper g = null;
+  private WeakReference<Object> h = new WeakReference(null);
+  
+  public f()
+  {
+    this(null);
+  }
+  
+  public f(Looper paramLooper)
+  {
+    Looper localLooper = paramLooper;
+    if (paramLooper == null) {
+      localLooper = Looper.myLooper();
+    }
+    g = localLooper;
+    b(false);
+    a(false);
+  }
+  
+  public f(boolean paramBoolean)
+  {
+    a(paramBoolean);
+    if (!a())
+    {
+      g = Looper.myLooper();
+      b(false);
+    }
+  }
+  
+  protected Message a(int paramInt, Object paramObject)
+  {
+    return Message.obtain(b, paramInt, paramObject);
+  }
+  
+  public final void a(int paramInt)
+  {
+    b(a(5, new Object[] { Integer.valueOf(paramInt) }));
+  }
+  
+  public abstract void a(int paramInt, e[] paramArrayOfE, byte[] paramArrayOfByte);
+  
+  public final void a(int paramInt, e[] paramArrayOfE, byte[] paramArrayOfByte, Throwable paramThrowable)
+  {
+    b(a(1, new Object[] { Integer.valueOf(paramInt), paramArrayOfE, paramArrayOfByte, paramThrowable }));
+  }
+  
+  public void a(long paramLong1, long paramLong2)
+  {
+    k localK = d.a;
+    double d1;
+    if (paramLong2 > 0L)
+    {
+      d1 = paramLong1;
+      Double.isNaN(d1);
+      double d2 = paramLong2;
+      Double.isNaN(d2);
+      d1 = d1 * 1.0D / d2 * 100.0D;
+    }
+    else
+    {
+      d1 = -1.0D;
+    }
+    localK.c("AsyncHttpRH", String.format("Progress %d from %d (%2.0f%%)", new Object[] { Long.valueOf(paramLong1), Long.valueOf(paramLong2), Double.valueOf(d1) }));
+  }
+  
+  protected void a(Message paramMessage)
+  {
+    try
+    {
+      int i = what;
+      k localK;
+      switch (i)
+      {
+      default: 
+        return;
+      case 6: 
+        g();
+        return;
+      case 5: 
+        paramMessage = (Object[])obj;
+        if ((paramMessage != null) && (paramMessage.length == 1))
+        {
+          b(((Integer)paramMessage[0]).intValue());
+          return;
+        }
+        localK = d.a;
+        paramMessage = "RETRY_MESSAGE didn't get enough params";
+      }
+      for (;;)
+      {
+        localK.b("AsyncHttpRH", paramMessage);
+        return;
+        paramMessage = (Object[])obj;
+        if (paramMessage != null)
+        {
+          i = paramMessage.length;
+          if (i >= 2) {
+            try
+            {
+              a(((Long)paramMessage[0]).longValue(), ((Long)paramMessage[1]).longValue());
+              return;
+            }
+            catch (Throwable paramMessage)
+            {
+              d.a.b("AsyncHttpRH", "custom onProgress contains an error", paramMessage);
+              return;
+            }
+          }
+        }
+        localK = d.a;
+        paramMessage = "PROGRESS_MESSAGE didn't got enough params";
+        continue;
+        h();
+        return;
+        i();
+        return;
+        paramMessage = (Object[])obj;
+        if ((paramMessage != null) && (paramMessage.length >= 4))
+        {
+          b(((Integer)paramMessage[0]).intValue(), (e[])paramMessage[1], (byte[])paramMessage[2], (Throwable)paramMessage[3]);
+          return;
+        }
+        localK = d.a;
+        paramMessage = "FAILURE_MESSAGE didn't got enough params";
+        continue;
+        paramMessage = (Object[])obj;
+        if ((paramMessage != null) && (paramMessage.length >= 3))
+        {
+          a(((Integer)paramMessage[0]).intValue(), (e[])paramMessage[1], (byte[])paramMessage[2]);
+          return;
+        }
+        localK = d.a;
+        paramMessage = "SUCCESS_MESSAGE didn't got enough params";
+      }
+      throw null;
+    }
+    catch (Throwable paramMessage)
+    {
+      a(paramMessage);
+    }
+    for (;;) {}
+  }
+  
+  public void a(s paramS, t paramT) {}
+  
+  public void a(t paramT)
+  {
+    if (!Thread.currentThread().isInterrupted())
+    {
+      G localG = paramT.getStatusLine();
+      byte[] arrayOfByte = a(paramT.getEntity());
+      if (!Thread.currentThread().isInterrupted())
+      {
+        if (localG.getStatusCode() >= 300)
+        {
+          a(localG.getStatusCode(), paramT.getAllHeaders(), arrayOfByte, new c.a.a.a.b.l(localG.getStatusCode(), localG.getReasonPhrase()));
+          return;
+        }
+        b(localG.getStatusCode(), paramT.getAllHeaders(), arrayOfByte);
+      }
+    }
+  }
+  
+  public void a(Throwable paramThrowable)
+  {
+    d.a.b("AsyncHttpRH", "User-space exception detected!", paramThrowable);
+    throw new RuntimeException(paramThrowable);
+  }
+  
+  public void a(URI paramURI)
+  {
+    e = paramURI;
+  }
+  
+  public void a(boolean paramBoolean)
+  {
+    if (paramBoolean)
+    {
+      g = null;
+      b = null;
+    }
+    d = paramBoolean;
+  }
+  
+  public void a(e[] paramArrayOfE)
+  {
+    f = paramArrayOfE;
+  }
+  
+  public boolean a()
+  {
+    return d;
+  }
+  
+  byte[] a(c.a.a.a.l paramL)
+  {
+    if (paramL != null)
+    {
+      InputStream localInputStream = paramL.getContent();
+      if (localInputStream != null)
+      {
+        l2 = paramL.getContentLength();
+        if (l2 <= 2147483647L)
+        {
+          int i;
+          if (l2 <= 0L) {
+            i = 4096;
+          } else {
+            i = (int)l2;
+          }
+          for (;;)
+          {
+            try
+            {
+              localC = new c(i);
+            }
+            catch (OutOfMemoryError paramL)
+            {
+              c localC;
+              byte[] arrayOfByte;
+              continue;
+              long l1 = l2;
+              continue;
+            }
+            try
+            {
+              arrayOfByte = new byte['?'];
+              l1 = 0L;
+              i = localInputStream.read(arrayOfByte);
+              if ((i != -1) && (!Thread.currentThread().isInterrupted()))
+              {
+                long l3 = l1 + i;
+                localC.a(arrayOfByte, 0, i);
+                if (l2 > 0L) {
+                  continue;
+                }
+                l1 = 1L;
+                b(l3, l1);
+                l1 = l3;
+              }
+              else
+              {
+                return localC.g();
+              }
+            }
+            finally
+            {
+              d.a(localInputStream);
+              d.a(paramL);
+            }
+          }
+          System.gc();
+          throw new IOException("File too large to fit into available memory");
+        }
+        throw new IllegalArgumentException("HTTP entity too large to be buffered in memory");
+      }
+    }
+    return null;
+  }
+  
+  public void b(int paramInt)
+  {
+    d.a.d("AsyncHttpRH", String.format("Request retry no. %d", new Object[] { Integer.valueOf(paramInt) }));
+  }
+  
+  public final void b(int paramInt, e[] paramArrayOfE, byte[] paramArrayOfByte)
+  {
+    b(a(0, new Object[] { Integer.valueOf(paramInt), paramArrayOfE, paramArrayOfByte }));
+  }
+  
+  public abstract void b(int paramInt, e[] paramArrayOfE, byte[] paramArrayOfByte, Throwable paramThrowable);
+  
+  public final void b(long paramLong1, long paramLong2)
+  {
+    b(a(4, new Object[] { Long.valueOf(paramLong1), Long.valueOf(paramLong2) }));
+  }
+  
+  protected void b(Message paramMessage)
+  {
+    if ((!b()) && (b != null))
+    {
+      if (!Thread.currentThread().isInterrupted())
+      {
+        boolean bool;
+        if (b != null) {
+          bool = true;
+        } else {
+          bool = false;
+        }
+        u.a(bool, "handler should not be null!");
+        b.sendMessage(paramMessage);
+      }
+    }
+    else {
+      a(paramMessage);
+    }
+  }
+  
+  public void b(s paramS, t paramT) {}
+  
+  public void b(boolean paramBoolean)
+  {
+    boolean bool = paramBoolean;
+    if (!paramBoolean)
+    {
+      bool = paramBoolean;
+      if (g == null)
+      {
+        bool = true;
+        d.a.a("AsyncHttpRH", "Current thread has not called Looper.prepare(). Forcing synchronous mode.");
+      }
+    }
+    if ((!bool) && (b == null)) {}
+    for (a localA = new a(this, g);; localA = null)
+    {
+      b = localA;
+      break;
+      if ((!bool) || (b == null)) {
+        break;
+      }
+    }
+    c = bool;
+  }
+  
+  public boolean b()
+  {
+    return c;
+  }
+  
+  public final void c()
+  {
+    b(a(2, null));
+  }
+  
+  public final void d()
+  {
+    b(a(3, null));
+  }
+  
+  public final void e()
+  {
+    b(a(6, null));
+  }
+  
+  public URI f()
+  {
+    return e;
+  }
+  
+  public void g()
+  {
+    d.a.d("AsyncHttpRH", "Request got cancelled");
+  }
+  
+  public void h() {}
+  
+  public void i() {}
+  
+  private static class a
+    extends Handler
+  {
+    private final f a;
+    
+    a(f paramF, Looper paramLooper)
+    {
+      super();
+      a = paramF;
+    }
+    
+    public void handleMessage(Message paramMessage)
+    {
+      a.a(paramMessage);
+    }
+  }
+}

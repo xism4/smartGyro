@@ -1,0 +1,87 @@
+package c.a.a.a.i.c;
+
+import c.a.a.a.c;
+import c.a.a.a.j.b;
+import c.a.a.a.j.e;
+import c.a.a.a.j.f;
+import c.a.a.a.p.d;
+import java.nio.charset.Charset;
+
+@Deprecated
+public class n
+  implements f, b
+{
+  private final f a;
+  private final b b;
+  private final s c;
+  private final String d;
+  
+  public n(f paramF, s paramS, String paramString)
+  {
+    a = paramF;
+    if ((paramF instanceof b)) {
+      paramF = (b)paramF;
+    } else {
+      paramF = null;
+    }
+    b = paramF;
+    c = paramS;
+    if (paramString == null) {
+      paramString = c.b.name();
+    }
+    d = paramString;
+  }
+  
+  public int a(d paramD)
+  {
+    int i = a.a(paramD);
+    if ((c.a()) && (i >= 0))
+    {
+      int j = paramD.length();
+      paramD = new String(paramD.a(), j - i, i);
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append(paramD);
+      localStringBuilder.append("\r\n");
+      paramD = localStringBuilder.toString();
+      c.a(paramD.getBytes(d));
+    }
+    return i;
+  }
+  
+  public boolean a()
+  {
+    b localB = b;
+    if (localB != null) {
+      return localB.a();
+    }
+    return false;
+  }
+  
+  public e getMetrics()
+  {
+    return a.getMetrics();
+  }
+  
+  public boolean isDataAvailable(int paramInt)
+  {
+    return a.isDataAvailable(paramInt);
+  }
+  
+  public int read()
+  {
+    int i = a.read();
+    if ((c.a()) && (i != -1)) {
+      c.a(i);
+    }
+    return i;
+  }
+  
+  public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    paramInt2 = a.read(paramArrayOfByte, paramInt1, paramInt2);
+    if ((c.a()) && (paramInt2 > 0)) {
+      c.a(paramArrayOfByte, paramInt1, paramInt2);
+    }
+    return paramInt2;
+  }
+}

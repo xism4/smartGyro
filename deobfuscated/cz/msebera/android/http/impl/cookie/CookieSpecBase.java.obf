@@ -1,0 +1,106 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.c;
+import c.a.a.a.f.n;
+import c.a.a.a.f.p;
+import c.a.a.a.p.a;
+import c.a.a.a.z;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+public abstract class q
+  extends b
+{
+  public q() {}
+  
+  protected q(c.a.a.a.f.b... paramVarArgs)
+  {
+    super(paramVarArgs);
+  }
+  
+  protected static String a(c.a.a.a.f.f paramF)
+  {
+    return paramF.a();
+  }
+  
+  protected static String b(c.a.a.a.f.f paramF)
+  {
+    String str = paramF.b();
+    int j = str.lastIndexOf('/');
+    paramF = str;
+    if (j >= 0)
+    {
+      int i = j;
+      if (j == 0) {
+        i = 1;
+      }
+      paramF = str.substring(0, i);
+    }
+    return paramF;
+  }
+  
+  protected List<c> a(c.a.a.a.f[] paramArrayOfF, c.a.a.a.f.f paramF)
+  {
+    ArrayList localArrayList = new ArrayList(paramArrayOfF.length);
+    int k = paramArrayOfF.length;
+    int i = 0;
+    while (i < k)
+    {
+      Object localObject2 = paramArrayOfF[i];
+      Object localObject1 = ((c.a.a.a.f)localObject2).getName();
+      String str = ((c.a.a.a.f)localObject2).getValue();
+      if ((localObject1 != null) && (!((String)localObject1).isEmpty()))
+      {
+        localObject1 = new d((String)localObject1, str);
+        ((d)localObject1).setPath(b(paramF));
+        ((d)localObject1).setDomain(a(paramF));
+        localObject2 = ((c.a.a.a.f)localObject2).getParameters();
+        int j = localObject2.length - 1;
+        while (j >= 0)
+        {
+          str = localObject2[j];
+          Object localObject3 = str.getName().toLowerCase(Locale.ROOT);
+          ((d)localObject1).a((String)localObject3, str.getValue());
+          localObject3 = a((String)localObject3);
+          if (localObject3 != null) {
+            ((c.a.a.a.f.d)localObject3).a((p)localObject1, str.getValue());
+          }
+          j -= 1;
+        }
+        localArrayList.add(localObject1);
+        i += 1;
+      }
+      else
+      {
+        throw new n("Cookie name may not be empty");
+      }
+    }
+    return localArrayList;
+  }
+  
+  public void a(c paramC, c.a.a.a.f.f paramF)
+  {
+    a.a(paramC, "Cookie");
+    a.a(paramF, "Cookie origin");
+    Iterator localIterator = a().iterator();
+    while (localIterator.hasNext()) {
+      ((c.a.a.a.f.d)localIterator.next()).a(paramC, paramF);
+    }
+  }
+  
+  public boolean b(c paramC, c.a.a.a.f.f paramF)
+  {
+    a.a(paramC, "Cookie");
+    a.a(paramF, "Cookie origin");
+    Iterator localIterator = a().iterator();
+    while (localIterator.hasNext()) {
+      if (!((c.a.a.a.f.d)localIterator.next()).b(paramC, paramF)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}

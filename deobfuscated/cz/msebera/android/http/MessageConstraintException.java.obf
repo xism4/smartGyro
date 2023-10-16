@@ -1,0 +1,19 @@
+package c.a.a.a;
+
+import java.nio.charset.CharacterCodingException;
+
+public class y
+  extends CharacterCodingException
+{
+  private final String a;
+  
+  public y(String paramString)
+  {
+    a = paramString;
+  }
+  
+  public String getMessage()
+  {
+    return a;
+  }
+}

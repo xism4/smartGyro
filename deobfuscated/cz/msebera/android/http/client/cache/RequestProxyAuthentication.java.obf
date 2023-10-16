@@ -1,0 +1,49 @@
+package c.a.a.a.b.e;
+
+import c.a.a.a.a.i;
+import c.a.a.a.e.n;
+import c.a.a.a.p.a;
+import c.a.a.a.q;
+import c.a.a.a.r;
+
+@Deprecated
+public class h
+  extends e
+{
+  public h() {}
+  
+  public void a(r paramR, c.a.a.a.n.e paramE)
+  {
+    a.a(paramR, "HTTP request");
+    a.a(paramE, "HTTP context");
+    if (paramR.containsHeader("Proxy-Authorization")) {
+      return;
+    }
+    Object localObject = (n)paramE.getAttribute("http.connection");
+    if (localObject == null) {
+      paramR = a;
+    }
+    for (paramE = "HTTP connection not set in the context";; paramE = "Proxy auth state not set in the context")
+    {
+      paramR.a(paramE);
+      return;
+      if (((n)localObject).getRoute().isTunnelled()) {
+        return;
+      }
+      localObject = (i)paramE.getAttribute("http.auth.proxy-scope");
+      if (localObject != null) {
+        break;
+      }
+      paramR = a;
+    }
+    if (a.a())
+    {
+      c.a.a.a.h.b localB = a;
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Proxy auth state: ");
+      localStringBuilder.append(((i)localObject).d());
+      localB.a(localStringBuilder.toString());
+    }
+    a((i)localObject, paramR, paramE);
+  }
+}

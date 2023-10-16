@@ -1,0 +1,23 @@
+package c.a.a.a.p;
+
+public class b
+{
+  public static void a(Object paramObject, String paramString)
+  {
+    if (paramObject != null) {
+      return;
+    }
+    paramObject = new StringBuilder();
+    paramObject.append(paramString);
+    paramObject.append(" is null");
+    throw new IllegalStateException(paramObject.toString());
+  }
+  
+  public static void a(boolean paramBoolean, String paramString)
+  {
+    if (paramBoolean) {
+      return;
+    }
+    throw new IllegalStateException(paramString);
+  }
+}

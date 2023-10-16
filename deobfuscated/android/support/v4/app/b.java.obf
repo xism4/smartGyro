@@ -1,0 +1,46 @@
+package android.support.v4.app;
+
+import android.app.Activity;
+import android.os.Build.VERSION;
+import android.os.Handler;
+import android.os.Looper;
+
+public class b
+  extends a.a.c.a.a
+{
+  private static b c;
+  
+  public static void a(Activity paramActivity, String[] paramArrayOfString, int paramInt)
+  {
+    b localB = c;
+    if ((localB != null) && (localB.a(paramActivity, paramArrayOfString, paramInt))) {
+      return;
+    }
+    if (Build.VERSION.SDK_INT >= 23)
+    {
+      if ((paramActivity instanceof c)) {
+        ((c)paramActivity).a(paramInt);
+      }
+      paramActivity.requestPermissions(paramArrayOfString, paramInt);
+      return;
+    }
+    if ((paramActivity instanceof a)) {
+      new Handler(Looper.getMainLooper()).post(new a(paramArrayOfString, paramActivity, paramInt));
+    }
+  }
+  
+  public static abstract interface a
+  {
+    public abstract void a(int paramInt, String[] paramArrayOfString, int[] paramArrayOfInt);
+  }
+  
+  public static abstract interface b
+  {
+    public abstract boolean a(Activity paramActivity, String[] paramArrayOfString, int paramInt);
+  }
+  
+  public static abstract interface c
+  {
+    public abstract void a(int paramInt);
+  }
+}

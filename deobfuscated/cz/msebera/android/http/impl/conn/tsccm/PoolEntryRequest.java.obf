@@ -1,0 +1,11 @@
+package c.a.a.a.i.c.a;
+
+import java.util.concurrent.TimeUnit;
+
+@Deprecated
+public abstract interface f
+{
+  public abstract void abortRequest();
+  
+  public abstract b getPoolEntry(long paramLong, TimeUnit paramTimeUnit);
+}

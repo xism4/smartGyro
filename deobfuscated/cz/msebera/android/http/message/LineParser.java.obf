@@ -1,0 +1,14 @@
+package c.a.a.a.k;
+
+import c.a.a.a.G;
+import c.a.a.a.e;
+import c.a.a.a.p.d;
+
+public abstract interface v
+{
+  public abstract G a(d paramD, w paramW);
+  
+  public abstract e a(d paramD);
+  
+  public abstract boolean b(d paramD, w paramW);
+}

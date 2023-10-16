@@ -1,0 +1,16 @@
+package a.a.c.g.a;
+
+public class b
+{
+  private final Object a;
+  
+  public b(Object paramObject)
+  {
+    a = paramObject;
+  }
+  
+  public Object a()
+  {
+    return a;
+  }
+}

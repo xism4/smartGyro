@@ -1,0 +1,159 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.B;
+import c.a.a.a.C;
+import c.a.a.a.d.b;
+import c.a.a.a.e;
+import c.a.a.a.j.c;
+import c.a.a.a.k.k;
+import c.a.a.a.k.v;
+import c.a.a.a.l.g;
+import c.a.a.a.p.d;
+import c.a.a.a.q;
+import c.a.a.a.y;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class a<T extends q>
+  implements c<T>
+{
+  private final c.a.a.a.j.f a;
+  private final b b;
+  private final List<d> c;
+  protected final v d;
+  private int e;
+  private T f;
+  
+  @Deprecated
+  public a(c.a.a.a.j.f paramF, v paramV, g paramG)
+  {
+    c.a.a.a.p.a.a(paramF, "Session input buffer");
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    a = paramF;
+    b = c.a.a.a.l.f.a(paramG);
+    if (paramV == null) {
+      paramV = k.b;
+    }
+    d = paramV;
+    c = new ArrayList();
+    e = 0;
+  }
+  
+  public static e[] a(c.a.a.a.j.f paramF, int paramInt1, int paramInt2, v paramV)
+  {
+    ArrayList localArrayList = new ArrayList();
+    if (paramV == null) {
+      paramV = k.b;
+    }
+    return a(paramF, paramInt1, paramInt2, paramV, localArrayList);
+  }
+  
+  public static e[] a(c.a.a.a.j.f paramF, int paramInt1, int paramInt2, v paramV, List<d> paramList)
+  {
+    c.a.a.a.p.a.a(paramF, "Session input buffer");
+    c.a.a.a.p.a.a(paramV, "Line parser");
+    c.a.a.a.p.a.a(paramList, "Header line list");
+    Object localObject1 = null;
+    Object localObject3 = localObject1;
+    int j;
+    for (;;)
+    {
+      if (localObject1 == null) {
+        localObject1 = new d(64);
+      } else {
+        ((d)localObject1).clear();
+      }
+      int k = paramF.a((d)localObject1);
+      j = 0;
+      int i = 0;
+      if ((k == -1) || (((d)localObject1).length() < 1)) {
+        break label292;
+      }
+      Object localObject2;
+      Object localObject4;
+      if (((((d)localObject1).charAt(0) == ' ') || (((d)localObject1).charAt(0) == '\t')) && (localObject3 != null))
+      {
+        while (i < ((d)localObject1).length())
+        {
+          j = ((d)localObject1).charAt(i);
+          if ((j != 32) && (j != 9)) {
+            break;
+          }
+          i += 1;
+        }
+        if ((paramInt2 > 0) && (localObject3.length() + 1 + ((d)localObject1).length() - i > paramInt2)) {
+          throw new y("Maximum line length limit exceeded");
+        }
+        localObject3.append(' ');
+        localObject3.a((d)localObject1, i, ((d)localObject1).length() - i);
+        localObject2 = localObject1;
+        localObject4 = localObject3;
+      }
+      else
+      {
+        paramList.add(localObject1);
+        localObject2 = null;
+        localObject4 = localObject1;
+      }
+      localObject1 = localObject2;
+      localObject3 = localObject4;
+      if (paramInt1 > 0)
+      {
+        if (paramList.size() >= paramInt1) {
+          break;
+        }
+        localObject1 = localObject2;
+        localObject3 = localObject4;
+      }
+    }
+    throw new y("Maximum header count exceeded");
+    label292:
+    paramF = new e[paramList.size()];
+    paramInt1 = j;
+    while (paramInt1 < paramList.size())
+    {
+      localObject1 = (d)paramList.get(paramInt1);
+      try
+      {
+        paramF[paramInt1] = paramV.a((d)localObject1);
+        paramInt1 += 1;
+      }
+      catch (B paramF)
+      {
+        throw new C(paramF.getMessage());
+      }
+    }
+    return paramF;
+  }
+  
+  protected abstract T a(c.a.a.a.j.f paramF);
+  
+  public T parse()
+  {
+    int i = e;
+    if (i != 0)
+    {
+      if (i == 1) {
+        break label44;
+      }
+      throw new IllegalStateException("Inconsistent parser state");
+    }
+    try
+    {
+      f = a(a);
+      e = 1;
+      label44:
+      Object localObject = a(a, b.b(), b.c(), d, c);
+      f.a((e[])localObject);
+      localObject = f;
+      f = null;
+      c.clear();
+      e = 0;
+      return localObject;
+    }
+    catch (B localB)
+    {
+      throw new C(localB.getMessage(), localB);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+package android.support.v7.view.menu;
+
+abstract interface MenuItem {}

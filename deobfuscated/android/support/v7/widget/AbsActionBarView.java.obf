@@ -1,0 +1,229 @@
+package android.support.v7.widget;
+
+import a.a.c.g.A;
+import a.a.c.g.u;
+import a.a.c.g.z;
+import a.a.d.a.j;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources.Theme;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+
+abstract class a
+  extends ViewGroup
+{
+  protected final a a = new a();
+  protected final Context b;
+  protected ActionMenuView c;
+  protected g d;
+  protected int e;
+  protected z f;
+  private boolean g;
+  private boolean h;
+  
+  a(Context paramContext)
+  {
+    this(paramContext, null);
+  }
+  
+  a(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  a(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    paramAttributeSet = new TypedValue();
+    if (paramContext.getTheme().resolveAttribute(a.a.d.a.a.actionBarPopupTheme, paramAttributeSet, true))
+    {
+      paramInt = resourceId;
+      if (paramInt != 0)
+      {
+        b = new ContextThemeWrapper(paramContext, paramInt);
+        return;
+      }
+    }
+    b = paramContext;
+  }
+  
+  protected static int a(int paramInt1, int paramInt2, boolean paramBoolean)
+  {
+    if (paramBoolean) {
+      return paramInt1 - paramInt2;
+    }
+    return paramInt1 + paramInt2;
+  }
+  
+  protected int a(View paramView, int paramInt1, int paramInt2, int paramInt3)
+  {
+    paramView.measure(View.MeasureSpec.makeMeasureSpec(paramInt1, Integer.MIN_VALUE), paramInt2);
+    return Math.max(0, paramInt1 - paramView.getMeasuredWidth() - paramInt3);
+  }
+  
+  protected int a(View paramView, int paramInt1, int paramInt2, int paramInt3, boolean paramBoolean)
+  {
+    int i = paramView.getMeasuredWidth();
+    int j = paramView.getMeasuredHeight();
+    paramInt2 += (paramInt3 - j) / 2;
+    if (paramBoolean) {
+      paramView.layout(paramInt1 - i, paramInt2, paramInt1, j + paramInt2);
+    } else {
+      paramView.layout(paramInt1, paramInt2, paramInt1 + i, j + paramInt2);
+    }
+    paramInt1 = i;
+    if (paramBoolean) {
+      paramInt1 = -i;
+    }
+    return paramInt1;
+  }
+  
+  public z a(int paramInt, long paramLong)
+  {
+    z localZ = f;
+    if (localZ != null) {
+      localZ.a();
+    }
+    if (paramInt == 0)
+    {
+      if (getVisibility() != 0) {
+        setAlpha(0.0F);
+      }
+      localZ = u.a(this);
+      localZ.a(1.0F);
+      localZ.a(paramLong);
+      localA = a;
+      localA.a(localZ, paramInt);
+      localZ.a(localA);
+      return localZ;
+    }
+    localZ = u.a(this);
+    localZ.a(0.0F);
+    localZ.a(paramLong);
+    a localA = a;
+    localA.a(localZ, paramInt);
+    localZ.a(localA);
+    return localZ;
+  }
+  
+  public int getAnimatedVisibility()
+  {
+    if (f != null) {
+      return a.b;
+    }
+    return getVisibility();
+  }
+  
+  public int getContentHeight()
+  {
+    return e;
+  }
+  
+  protected void onConfigurationChanged(Configuration paramConfiguration)
+  {
+    super.onConfigurationChanged(paramConfiguration);
+    Object localObject = getContext().obtainStyledAttributes(null, j.ActionBar, a.a.d.a.a.actionBarStyle, 0);
+    setContentHeight(((TypedArray)localObject).getLayoutDimension(j.ActionBar_height, 0));
+    ((TypedArray)localObject).recycle();
+    localObject = d;
+    if (localObject != null) {
+      ((g)localObject).a(paramConfiguration);
+    }
+  }
+  
+  public boolean onHoverEvent(MotionEvent paramMotionEvent)
+  {
+    int i = paramMotionEvent.getActionMasked();
+    if (i == 9) {
+      h = false;
+    }
+    if (!h)
+    {
+      boolean bool = super.onHoverEvent(paramMotionEvent);
+      if ((i == 9) && (!bool)) {
+        h = true;
+      }
+    }
+    if ((i == 10) || (i == 3)) {
+      h = false;
+    }
+    return true;
+  }
+  
+  public boolean onTouchEvent(MotionEvent paramMotionEvent)
+  {
+    int i = paramMotionEvent.getActionMasked();
+    if (i == 0) {
+      g = false;
+    }
+    if (!g)
+    {
+      boolean bool = super.onTouchEvent(paramMotionEvent);
+      if ((i == 0) && (!bool)) {
+        g = true;
+      }
+    }
+    if ((i == 1) || (i == 3)) {
+      g = false;
+    }
+    return true;
+  }
+  
+  public abstract void setContentHeight(int paramInt);
+  
+  public void setVisibility(int paramInt)
+  {
+    if (paramInt != getVisibility())
+    {
+      z localZ = f;
+      if (localZ != null) {
+        localZ.a();
+      }
+      super.setVisibility(paramInt);
+    }
+  }
+  
+  protected class a
+    implements A
+  {
+    private boolean a = false;
+    int b;
+    
+    protected a() {}
+    
+    public a a(z paramZ, int paramInt)
+    {
+      f = paramZ;
+      b = paramInt;
+      return this;
+    }
+    
+    public void a(View paramView)
+    {
+      a = true;
+    }
+    
+    public void b(View paramView)
+    {
+      if (a) {
+        return;
+      }
+      paramView = a.this;
+      f = null;
+      a.b(paramView, b);
+    }
+    
+    public void c(View paramView)
+    {
+      a.a(a.this, 0);
+      a = false;
+    }
+  }
+}

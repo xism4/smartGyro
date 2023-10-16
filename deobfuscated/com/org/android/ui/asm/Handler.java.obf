@@ -1,0 +1,136 @@
+package a.a.c.a.a;
+
+import a.a.a.c;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.content.res.Resources.Theme;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.util.StateSet;
+import android.util.Xml;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+public final class a
+{
+  private static int a(int paramInt, float paramFloat)
+  {
+    return paramInt & 0xFFFFFF | Math.round(Color.alpha(paramInt) * paramFloat) << 24;
+  }
+  
+  public static ColorStateList a(Resources paramResources, XmlPullParser paramXmlPullParser, Resources.Theme paramTheme)
+  {
+    AttributeSet localAttributeSet = Xml.asAttributeSet(paramXmlPullParser);
+    int i;
+    do
+    {
+      i = paramXmlPullParser.next();
+    } while ((i != 2) && (i != 1));
+    if (i == 2) {
+      return a(paramResources, paramXmlPullParser, localAttributeSet, paramTheme);
+    }
+    paramResources = new XmlPullParserException("No start tag found");
+    for (;;)
+    {
+      throw paramResources;
+    }
+  }
+  
+  public static ColorStateList a(Resources paramResources, XmlPullParser paramXmlPullParser, AttributeSet paramAttributeSet, Resources.Theme paramTheme)
+  {
+    String str = paramXmlPullParser.getName();
+    if (str.equals("selector")) {
+      return b(paramResources, paramXmlPullParser, paramAttributeSet, paramTheme);
+    }
+    paramResources = new StringBuilder();
+    paramResources.append(paramXmlPullParser.getPositionDescription());
+    paramResources.append(": invalid color state list tag ");
+    paramResources.append(str);
+    throw new XmlPullParserException(paramResources.toString());
+  }
+  
+  private static TypedArray a(Resources paramResources, Resources.Theme paramTheme, AttributeSet paramAttributeSet, int[] paramArrayOfInt)
+  {
+    if (paramTheme == null) {
+      return paramResources.obtainAttributes(paramAttributeSet, paramArrayOfInt);
+    }
+    return paramTheme.obtainStyledAttributes(paramAttributeSet, paramArrayOfInt, 0, 0);
+  }
+  
+  private static ColorStateList b(Resources paramResources, XmlPullParser paramXmlPullParser, AttributeSet paramAttributeSet, Resources.Theme paramTheme)
+  {
+    int i1 = paramXmlPullParser.getDepth() + 1;
+    Object localObject1 = new int[20][];
+    int[] arrayOfInt = new int[localObject1.length];
+    int i = 0;
+    for (;;)
+    {
+      int j = paramXmlPullParser.next();
+      if (j == 1) {
+        break;
+      }
+      int k = paramXmlPullParser.getDepth();
+      if ((k < i1) && (j == 3)) {
+        break;
+      }
+      if ((j == 2) && (k <= i1) && (paramXmlPullParser.getName().equals("item")))
+      {
+        Object localObject2 = a(paramResources, paramTheme, paramAttributeSet, c.ColorStateListItem);
+        int i2 = ((TypedArray)localObject2).getColor(c.ColorStateListItem_android_color, -65281);
+        float f = 1.0F;
+        if (((TypedArray)localObject2).hasValue(c.ColorStateListItem_android_alpha)) {}
+        for (j = c.ColorStateListItem_android_alpha;; j = c.ColorStateListItem_alpha)
+        {
+          f = ((TypedArray)localObject2).getFloat(j, 1.0F);
+          break;
+          if (!((TypedArray)localObject2).hasValue(c.ColorStateListItem_alpha)) {
+            break;
+          }
+        }
+        ((TypedArray)localObject2).recycle();
+        int i3 = paramAttributeSet.getAttributeCount();
+        localObject2 = new int[i3];
+        j = 0;
+        int m;
+        for (k = 0; j < i3; k = m)
+        {
+          int n = paramAttributeSet.getAttributeNameResource(j);
+          m = k;
+          if (n != 16843173)
+          {
+            m = k;
+            if (n != 16843551)
+            {
+              m = k;
+              if (n != a.a.a.a.alpha)
+              {
+                if (paramAttributeSet.getAttributeBooleanValue(j, false)) {
+                  m = n;
+                } else {
+                  m = -n;
+                }
+                localObject2[k] = m;
+                m = k + 1;
+              }
+            }
+          }
+          j += 1;
+        }
+        localObject2 = StateSet.trimStateSet((int[])localObject2, k);
+        j = a(i2, f);
+        if (i != 0) {
+          k = localObject2.length;
+        }
+        arrayOfInt = e.a(arrayOfInt, i, j);
+        localObject1 = (int[][])e.a((Object[])localObject1, i, localObject2);
+        i += 1;
+      }
+    }
+    paramResources = new int[i];
+    paramXmlPullParser = new int[i][];
+    System.arraycopy(arrayOfInt, 0, paramResources, 0, i);
+    System.arraycopy(localObject1, 0, paramXmlPullParser, 0, i);
+    return new ColorStateList(paramXmlPullParser, paramResources);
+  }
+}

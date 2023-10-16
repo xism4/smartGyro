@@ -1,0 +1,102 @@
+package a.a.d.d;
+
+import a.a.c.g.A;
+import a.a.c.g.B;
+import a.a.c.g.z;
+import android.view.animation.Interpolator;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class i
+{
+  final ArrayList<z> a = new ArrayList();
+  private long b = -1L;
+  private Interpolator c;
+  A d;
+  private boolean e;
+  private final B f = new h(this);
+  
+  public i() {}
+  
+  public i a(long paramLong)
+  {
+    if (!e) {
+      b = paramLong;
+    }
+    return this;
+  }
+  
+  public i a(A paramA)
+  {
+    if (!e) {
+      d = paramA;
+    }
+    return this;
+  }
+  
+  public i a(z paramZ)
+  {
+    if (!e) {
+      a.add(paramZ);
+    }
+    return this;
+  }
+  
+  public i a(z paramZ1, z paramZ2)
+  {
+    a.add(paramZ1);
+    paramZ2.b(paramZ1.b());
+    a.add(paramZ2);
+    return this;
+  }
+  
+  public i a(Interpolator paramInterpolator)
+  {
+    if (!e) {
+      c = paramInterpolator;
+    }
+    return this;
+  }
+  
+  public void a()
+  {
+    if (!e) {
+      return;
+    }
+    Iterator localIterator = a.iterator();
+    while (localIterator.hasNext()) {
+      ((z)localIterator.next()).a();
+    }
+    e = false;
+  }
+  
+  void b()
+  {
+    e = false;
+  }
+  
+  public void c()
+  {
+    if (e) {
+      return;
+    }
+    Iterator localIterator = a.iterator();
+    while (localIterator.hasNext())
+    {
+      z localZ = (z)localIterator.next();
+      long l = b;
+      if (l >= 0L) {
+        localZ.a(l);
+      }
+      Interpolator localInterpolator = c;
+      if (localInterpolator != null) {
+        localZ.a(localInterpolator);
+      }
+      if (d != null) {
+        localZ.a(f);
+      }
+      localZ.c();
+    }
+    e = true;
+  }
+}

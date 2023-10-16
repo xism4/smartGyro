@@ -1,0 +1,33 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.e;
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import java.util.Collections;
+import java.util.List;
+
+public class s
+  extends q
+{
+  public s() {}
+  
+  public List<c> a(e paramE, f paramF)
+  {
+    return Collections.emptyList();
+  }
+  
+  public List<e> formatCookies(List<c> paramList)
+  {
+    return Collections.emptyList();
+  }
+  
+  public int getVersion()
+  {
+    return 0;
+  }
+  
+  public e getVersionHeader()
+  {
+    return null;
+  }
+}

@@ -1,0 +1,109 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import c.a.a.a.f.h;
+import c.a.a.a.f.n;
+import c.a.a.a.f.o;
+import c.a.a.a.f.p;
+import java.util.StringTokenizer;
+
+public class F
+  implements b
+{
+  public F() {}
+  
+  private static boolean a(int paramInt, int[] paramArrayOfInt)
+  {
+    int j = paramArrayOfInt.length;
+    int i = 0;
+    while (i < j)
+    {
+      if (paramInt == paramArrayOfInt[i]) {
+        return true;
+      }
+      i += 1;
+    }
+    return false;
+  }
+  
+  private static int[] a(String paramString)
+  {
+    paramString = new StringTokenizer(paramString, ",");
+    Object localObject = new int[paramString.countTokens()];
+    int i = 0;
+    try
+    {
+      while (paramString.hasMoreTokens())
+      {
+        localObject[i] = Integer.parseInt(paramString.nextToken().trim());
+        if (localObject[i] >= 0) {
+          i += 1;
+        } else {
+          throw new n("Invalid Port attribute.");
+        }
+      }
+      return localObject;
+    }
+    catch (NumberFormatException paramString)
+    {
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Invalid Port attribute: ");
+      ((StringBuilder)localObject).append(paramString.getMessage());
+      paramString = new n(((StringBuilder)localObject).toString());
+    }
+    for (;;)
+    {
+      throw paramString;
+    }
+  }
+  
+  public String a()
+  {
+    return "port";
+  }
+  
+  public void a(c paramC, f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    int i = paramF.c();
+    if (((paramC instanceof c.a.a.a.f.a)) && (((c.a.a.a.f.a)paramC).containsAttribute("port")))
+    {
+      if (a(i, paramC.getPorts())) {
+        return;
+      }
+      throw new h("Port attribute violates RFC 2965: Request port not found in cookie's port list.");
+    }
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    c.a.a.a.p.a.a(paramP, "Cookie");
+    if ((paramP instanceof o))
+    {
+      paramP = (o)paramP;
+      if ((paramString != null) && (!paramString.trim().isEmpty())) {
+        paramP.setPorts(a(paramString));
+      }
+    }
+  }
+  
+  public boolean b(c paramC, f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    int i = paramF.c();
+    if (((paramC instanceof c.a.a.a.f.a)) && (((c.a.a.a.f.a)paramC).containsAttribute("port")))
+    {
+      if (paramC.getPorts() == null) {
+        return false;
+      }
+      if (!a(i, paramC.getPorts())) {
+        return false;
+      }
+    }
+    return true;
+  }
+}

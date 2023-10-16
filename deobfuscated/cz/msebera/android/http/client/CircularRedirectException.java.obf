@@ -1,0 +1,10 @@
+package c.a.a.a.b;
+
+public class e
+  extends n
+{
+  public e(String paramString)
+  {
+    super(paramString);
+  }
+}

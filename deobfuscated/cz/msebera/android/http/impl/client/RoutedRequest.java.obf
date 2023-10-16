@@ -1,0 +1,26 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.e.b.b;
+
+@Deprecated
+public class w
+{
+  protected final v a;
+  protected final b b;
+  
+  public w(v paramV, b paramB)
+  {
+    a = paramV;
+    b = paramB;
+  }
+  
+  public final v a()
+  {
+    return a;
+  }
+  
+  public final b b()
+  {
+    return b;
+  }
+}

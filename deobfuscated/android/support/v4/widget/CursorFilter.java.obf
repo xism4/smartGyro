@@ -1,0 +1,58 @@
+package android.support.v4.widget;
+
+import android.database.Cursor;
+import android.widget.Filter;
+import android.widget.Filter.FilterResults;
+
+class e
+  extends Filter
+{
+  a a;
+  
+  e(a paramA)
+  {
+    a = paramA;
+  }
+  
+  public CharSequence convertResultToString(Object paramObject)
+  {
+    return a.convertToString((Cursor)paramObject);
+  }
+  
+  protected Filter.FilterResults performFiltering(CharSequence paramCharSequence)
+  {
+    paramCharSequence = a.a(paramCharSequence);
+    Filter.FilterResults localFilterResults = new Filter.FilterResults();
+    if (paramCharSequence != null)
+    {
+      count = paramCharSequence.getCount();
+    }
+    else
+    {
+      count = 0;
+      paramCharSequence = null;
+    }
+    values = paramCharSequence;
+    return localFilterResults;
+  }
+  
+  protected void publishResults(CharSequence paramCharSequence, Filter.FilterResults paramFilterResults)
+  {
+    paramCharSequence = a.a();
+    paramFilterResults = values;
+    if ((paramFilterResults != null) && (paramFilterResults != paramCharSequence)) {
+      a.a((Cursor)paramFilterResults);
+    }
+  }
+  
+  static abstract interface a
+  {
+    public abstract Cursor a();
+    
+    public abstract Cursor a(CharSequence paramCharSequence);
+    
+    public abstract void a(Cursor paramCursor);
+    
+    public abstract CharSequence convertToString(Cursor paramCursor);
+  }
+}

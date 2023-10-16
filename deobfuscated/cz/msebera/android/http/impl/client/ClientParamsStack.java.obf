@@ -1,0 +1,64 @@
+package c.a.a.a.i.b;
+
+@Deprecated
+public class g
+  extends c.a.a.a.l.a
+{
+  protected final c.a.a.a.l.g a;
+  protected final c.a.a.a.l.g b;
+  protected final c.a.a.a.l.g c;
+  protected final c.a.a.a.l.g d;
+  
+  public g(c.a.a.a.l.g paramG1, c.a.a.a.l.g paramG2, c.a.a.a.l.g paramG3, c.a.a.a.l.g paramG4)
+  {
+    a = paramG1;
+    b = paramG2;
+    c = paramG3;
+    d = paramG4;
+  }
+  
+  public Object getParameter(String paramString)
+  {
+    c.a.a.a.p.a.a(paramString, "Parameter name");
+    Object localObject1 = d;
+    if (localObject1 != null) {
+      localObject2 = ((c.a.a.a.l.g)localObject1).getParameter(paramString);
+    } else {
+      localObject2 = null;
+    }
+    localObject1 = localObject2;
+    c.a.a.a.l.g localG;
+    if (localObject2 == null)
+    {
+      localG = c;
+      localObject1 = localObject2;
+      if (localG != null) {
+        localObject1 = localG.getParameter(paramString);
+      }
+    }
+    Object localObject2 = localObject1;
+    if (localObject1 == null)
+    {
+      localG = b;
+      localObject2 = localObject1;
+      if (localG != null) {
+        localObject2 = localG.getParameter(paramString);
+      }
+    }
+    localObject1 = localObject2;
+    if (localObject2 == null)
+    {
+      localG = a;
+      localObject1 = localObject2;
+      if (localG != null) {
+        localObject1 = localG.getParameter(paramString);
+      }
+    }
+    return localObject1;
+  }
+  
+  public c.a.a.a.l.g setParameter(String paramString, Object paramObject)
+  {
+    throw new UnsupportedOperationException("Setting parameters in a stack is not supported.");
+  }
+}

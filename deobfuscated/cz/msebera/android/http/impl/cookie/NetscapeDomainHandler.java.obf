@@ -1,0 +1,90 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.c;
+import c.a.a.a.f.h;
+import c.a.a.a.f.n;
+import c.a.a.a.f.p;
+import c.a.a.a.p.a;
+import c.a.a.a.p.i;
+import java.util.Locale;
+import java.util.StringTokenizer;
+
+public class u
+  extends f
+{
+  public u() {}
+  
+  private static boolean a(String paramString)
+  {
+    paramString = paramString.toUpperCase(Locale.ROOT);
+    return (paramString.endsWith(".COM")) || (paramString.endsWith(".EDU")) || (paramString.endsWith(".NET")) || (paramString.endsWith(".GOV")) || (paramString.endsWith(".MIL")) || (paramString.endsWith(".ORG")) || (paramString.endsWith(".INT"));
+  }
+  
+  public String a()
+  {
+    return "domain";
+  }
+  
+  public void a(c paramC, c.a.a.a.f.f paramF)
+  {
+    paramF = paramF.a();
+    paramC = paramC.getDomain();
+    if ((!paramF.equals(paramC)) && (!f.a(paramC, paramF)))
+    {
+      StringBuilder localStringBuilder = new StringBuilder();
+      localStringBuilder.append("Illegal domain attribute \"");
+      localStringBuilder.append(paramC);
+      localStringBuilder.append("\". Domain of origin: \"");
+      localStringBuilder.append(paramF);
+      localStringBuilder.append("\"");
+      throw new h(localStringBuilder.toString());
+    }
+    if (paramF.contains("."))
+    {
+      int i = new StringTokenizer(paramC, ".").countTokens();
+      if (a(paramC))
+      {
+        if (i >= 2) {
+          return;
+        }
+        paramF = new StringBuilder();
+        paramF.append("Domain attribute \"");
+        paramF.append(paramC);
+        paramF.append("\" violates the Netscape cookie specification for ");
+        paramF.append("special domains");
+        throw new h(paramF.toString());
+      }
+      if (i >= 3) {
+        return;
+      }
+      paramF = new StringBuilder();
+      paramF.append("Domain attribute \"");
+      paramF.append(paramC);
+      paramF.append("\" violates the Netscape cookie specification");
+      throw new h(paramF.toString());
+    }
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    a.a(paramP, "Cookie");
+    if (!i.b(paramString))
+    {
+      paramP.setDomain(paramString);
+      return;
+    }
+    throw new n("Blank or null value for domain attribute");
+  }
+  
+  public boolean b(c paramC, c.a.a.a.f.f paramF)
+  {
+    a.a(paramC, "Cookie");
+    a.a(paramF, "Cookie origin");
+    paramF = paramF.a();
+    paramC = paramC.getDomain();
+    if (paramC == null) {
+      return false;
+    }
+    return paramF.endsWith(paramC);
+  }
+}

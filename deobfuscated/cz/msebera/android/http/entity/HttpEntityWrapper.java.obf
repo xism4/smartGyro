@@ -1,0 +1,65 @@
+package c.a.a.a.g;
+
+import c.a.a.a.e;
+import c.a.a.a.l;
+import c.a.a.a.p.a;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class f
+  implements l
+{
+  protected l a;
+  
+  public f(l paramL)
+  {
+    a.a(paramL, "Wrapped entity");
+    a = ((l)paramL);
+  }
+  
+  @Deprecated
+  public void consumeContent()
+  {
+    a.consumeContent();
+  }
+  
+  public InputStream getContent()
+  {
+    return a.getContent();
+  }
+  
+  public e getContentEncoding()
+  {
+    return a.getContentEncoding();
+  }
+  
+  public long getContentLength()
+  {
+    return a.getContentLength();
+  }
+  
+  public e getContentType()
+  {
+    return a.getContentType();
+  }
+  
+  public boolean isChunked()
+  {
+    return a.isChunked();
+  }
+  
+  public boolean isRepeatable()
+  {
+    return a.isRepeatable();
+  }
+  
+  public boolean isStreaming()
+  {
+    return a.isStreaming();
+  }
+  
+  public void writeTo(OutputStream paramOutputStream)
+  {
+    a.writeTo(paramOutputStream);
+  }
+}

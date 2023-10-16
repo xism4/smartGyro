@@ -1,0 +1,51 @@
+package android.support.v7.widget;
+
+import a.a.d.a.a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.widget.SeekBar;
+
+public class z
+  extends SeekBar
+{
+  private final A a = new A(this);
+  
+  public z(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, a.seekBarStyle);
+  }
+  
+  public z(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    a.a(paramAttributeSet, paramInt);
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    a.b();
+  }
+  
+  public void jumpDrawablesToCurrentState()
+  {
+    super.jumpDrawablesToCurrentState();
+    a.c();
+  }
+  
+  protected void onDraw(Canvas paramCanvas)
+  {
+    try
+    {
+      super.onDraw(paramCanvas);
+      a.a(paramCanvas);
+      return;
+    }
+    finally
+    {
+      paramCanvas = finally;
+      throw paramCanvas;
+    }
+  }
+}

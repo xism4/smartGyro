@@ -1,0 +1,184 @@
+package c.a.a.a.p;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Properties;
+
+public class j
+{
+  private final String a;
+  private final String b;
+  private final String c;
+  private final String d;
+  private final String e;
+  
+  protected j(String paramString1, String paramString2, String paramString3, String paramString4, String paramString5)
+  {
+    a.a(paramString1, "Package identifier");
+    a = paramString1;
+    paramString1 = "UNAVAILABLE";
+    if (paramString2 == null) {
+      paramString2 = "UNAVAILABLE";
+    }
+    b = paramString2;
+    if (paramString3 == null) {
+      paramString3 = "UNAVAILABLE";
+    }
+    c = paramString3;
+    if (paramString4 == null) {
+      paramString4 = "UNAVAILABLE";
+    }
+    d = paramString4;
+    if (paramString5 != null) {
+      paramString1 = paramString5;
+    }
+    e = paramString1;
+  }
+  
+  public static j a(String paramString, ClassLoader paramClassLoader)
+  {
+    a.a(paramString, "Package identifier");
+    if (paramClassLoader == null) {
+      paramClassLoader = Thread.currentThread().getContextClassLoader();
+    }
+    j localJ = null;
+    for (;;)
+    {
+      try
+      {
+        localObject1 = new StringBuilder();
+        ((StringBuilder)localObject1).append(paramString.replace('.', '/'));
+        ((StringBuilder)localObject1).append("/");
+        ((StringBuilder)localObject1).append("version.properties");
+        localInputStream = paramClassLoader.getResourceAsStream(((StringBuilder)localObject1).toString());
+        if (localInputStream == null) {}
+      }
+      catch (IOException localIOException1)
+      {
+        Object localObject1;
+        InputStream localInputStream;
+        Map localMap;
+        continue;
+      }
+      try
+      {
+        localObject1 = new Properties();
+        ((Properties)localObject1).load(localInputStream);
+        if (localMap == null) {
+          continue;
+        }
+      }
+      finally
+      {
+        try
+        {
+          localInputStream.close();
+        }
+        catch (IOException localIOException2)
+        {
+          continue;
+        }
+        localObject2 = finally;
+        localInputStream.close();
+        throw localObject2;
+        localMap = null;
+      }
+    }
+    localJ = a(paramString, localMap, paramClassLoader);
+    return localJ;
+  }
+  
+  protected static j a(String paramString, Map<?, ?> paramMap, ClassLoader paramClassLoader)
+  {
+    a.a(paramString, "Package identifier");
+    Object localObject4 = null;
+    Object localObject2;
+    Object localObject1;
+    Object localObject3;
+    if (paramMap != null)
+    {
+      localObject2 = (String)paramMap.get("info.module");
+      localObject1 = localObject2;
+      if (localObject2 != null)
+      {
+        localObject1 = localObject2;
+        if (((String)localObject2).length() < 1) {
+          localObject1 = null;
+        }
+      }
+      localObject3 = (String)paramMap.get("info.release");
+      localObject2 = localObject3;
+      if (localObject3 != null) {
+        if (((String)localObject3).length() >= 1)
+        {
+          localObject2 = localObject3;
+          if (!((String)localObject3).equals("${pom.version}")) {}
+        }
+        else
+        {
+          localObject2 = null;
+        }
+      }
+      paramMap = (String)paramMap.get("info.timestamp");
+      if ((paramMap != null) && ((paramMap.length() < 1) || (paramMap.equals("${mvn.timestamp}")))) {
+        paramMap = null;
+      }
+      localObject3 = paramMap;
+    }
+    else
+    {
+      localObject1 = null;
+      paramMap = localObject1;
+      localObject3 = paramMap;
+      localObject2 = paramMap;
+    }
+    paramMap = localObject4;
+    if (paramClassLoader != null) {
+      paramMap = paramClassLoader.toString();
+    }
+    return new j(paramString, localObject1, (String)localObject2, (String)localObject3, paramMap);
+  }
+  
+  public static String a(String paramString1, String paramString2, Class<?> paramClass)
+  {
+    paramString2 = a(paramString2, paramClass.getClassLoader());
+    if (paramString2 != null) {
+      paramString2 = paramString2.a();
+    } else {
+      paramString2 = "UNAVAILABLE";
+    }
+    return String.format("%s/%s (Java/%s)", new Object[] { paramString1, paramString2, System.getProperty("java.version") });
+  }
+  
+  public final String a()
+  {
+    return c;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder(a.length() + 20 + b.length() + c.length() + d.length() + e.length());
+    localStringBuilder.append("VersionInfo(");
+    localStringBuilder.append(a);
+    localStringBuilder.append(':');
+    localStringBuilder.append(b);
+    if (!"UNAVAILABLE".equals(c))
+    {
+      localStringBuilder.append(':');
+      localStringBuilder.append(c);
+    }
+    if (!"UNAVAILABLE".equals(d))
+    {
+      localStringBuilder.append(':');
+      localStringBuilder.append(d);
+    }
+    localStringBuilder.append(')');
+    if (!"UNAVAILABLE".equals(e))
+    {
+      localStringBuilder.append('@');
+      localStringBuilder.append(e);
+    }
+    return localStringBuilder.toString();
+  }
+}

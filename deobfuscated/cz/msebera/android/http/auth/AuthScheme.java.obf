@@ -1,0 +1,20 @@
+package c.a.a.a.a;
+
+import c.a.a.a.e;
+import c.a.a.a.r;
+
+public abstract interface c
+{
+  @Deprecated
+  public abstract e a(n paramN, r paramR);
+  
+  public abstract void a(e paramE);
+  
+  public abstract String getRealm();
+  
+  public abstract String getSchemeName();
+  
+  public abstract boolean isComplete();
+  
+  public abstract boolean isConnectionBased();
+}

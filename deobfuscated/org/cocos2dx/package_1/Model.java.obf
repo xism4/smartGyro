@@ -1,0 +1,18 @@
+package org.cocos2dx.lib;
+
+import android.util.SparseArray;
+import android.webkit.WebView;
+
+final class za
+  implements Runnable
+{
+  za(int paramInt) {}
+  
+  public void run()
+  {
+    Cocos2dxWebView localCocos2dxWebView = (Cocos2dxWebView)Cocos2dxWebViewHelper.access$200().get(a);
+    if (localCocos2dxWebView != null) {
+      localCocos2dxWebView.stopLoading();
+    }
+  }
+}

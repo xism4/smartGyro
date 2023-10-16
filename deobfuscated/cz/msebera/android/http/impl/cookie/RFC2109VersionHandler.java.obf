@@ -1,0 +1,53 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import c.a.a.a.f.h;
+import c.a.a.a.f.n;
+import c.a.a.a.f.p;
+
+public class B
+  extends a
+  implements b
+{
+  public B() {}
+  
+  public String a()
+  {
+    return "version";
+  }
+  
+  public void a(c paramC, f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    if (paramC.getVersion() >= 0) {
+      return;
+    }
+    throw new h("Cookie version may not be negative");
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    c.a.a.a.p.a.a(paramP, "Cookie");
+    if (paramString != null)
+    {
+      if (!paramString.trim().isEmpty()) {
+        try
+        {
+          paramP.setVersion(Integer.parseInt(paramString));
+          return;
+        }
+        catch (NumberFormatException paramP)
+        {
+          paramString = new StringBuilder();
+          paramString.append("Invalid version: ");
+          paramString.append(paramP.getMessage());
+          throw new n(paramString.toString());
+        }
+      }
+      throw new n("Blank value for version attribute");
+    }
+    throw new n("Missing value for version attribute");
+  }
+}

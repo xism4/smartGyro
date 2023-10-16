@@ -1,0 +1,12 @@
+package c.a.a.a;
+
+import java.io.IOException;
+
+public class a
+  extends IOException
+{
+  public a(String paramString)
+  {
+    super(paramString);
+  }
+}

@@ -1,0 +1,272 @@
+package android.support.v7.widget;
+
+import a.a.c.g.s;
+import a.a.d.a.a;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.support.v4.widget.b;
+import android.support.v4.widget.m;
+import android.util.AttributeSet;
+import android.view.ActionMode.Callback;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+
+public class k
+  extends Button
+  implements s, b
+{
+  private final j a = new j(this);
+  private final H b;
+  
+  public k(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, a.buttonStyle);
+  }
+  
+  public k(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(qa.a(paramContext), paramAttributeSet, paramInt);
+    a.a(paramAttributeSet, paramInt);
+    b = new H(this);
+    b.a(paramAttributeSet, paramInt);
+    b.a();
+  }
+  
+  protected void drawableStateChanged()
+  {
+    super.drawableStateChanged();
+    Object localObject = a;
+    if (localObject != null) {
+      ((j)localObject).a();
+    }
+    localObject = b;
+    if (localObject != null) {
+      ((H)localObject).a();
+    }
+  }
+  
+  public int getAutoSizeMaxTextSize()
+  {
+    if (b.a) {
+      return super.getAutoSizeMaxTextSize();
+    }
+    H localH = b;
+    if (localH != null) {
+      return localH.c();
+    }
+    return -1;
+  }
+  
+  public int getAutoSizeMinTextSize()
+  {
+    if (b.a) {
+      return super.getAutoSizeMinTextSize();
+    }
+    H localH = b;
+    if (localH != null) {
+      return localH.d();
+    }
+    return -1;
+  }
+  
+  public int getAutoSizeStepGranularity()
+  {
+    if (b.a) {
+      return super.getAutoSizeStepGranularity();
+    }
+    H localH = b;
+    if (localH != null) {
+      return localH.e();
+    }
+    return -1;
+  }
+  
+  public int[] getAutoSizeTextAvailableSizes()
+  {
+    if (b.a) {
+      return super.getAutoSizeTextAvailableSizes();
+    }
+    H localH = b;
+    if (localH != null) {
+      return localH.f();
+    }
+    return new int[0];
+  }
+  
+  public int getAutoSizeTextType()
+  {
+    boolean bool = b.a;
+    int i = 0;
+    if (bool)
+    {
+      if (super.getAutoSizeTextType() == 1) {
+        i = 1;
+      }
+      return i;
+    }
+    H localH = b;
+    if (localH != null) {
+      return localH.g();
+    }
+    return 0;
+  }
+  
+  public ColorStateList getSupportBackgroundTintList()
+  {
+    j localJ = a;
+    if (localJ != null) {
+      return localJ.b();
+    }
+    return null;
+  }
+  
+  public PorterDuff.Mode getSupportBackgroundTintMode()
+  {
+    j localJ = a;
+    if (localJ != null) {
+      return localJ.c();
+    }
+    return null;
+  }
+  
+  public void onInitializeAccessibilityEvent(AccessibilityEvent paramAccessibilityEvent)
+  {
+    super.onInitializeAccessibilityEvent(paramAccessibilityEvent);
+    paramAccessibilityEvent.setClassName(Button.class.getName());
+  }
+  
+  public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo paramAccessibilityNodeInfo)
+  {
+    super.onInitializeAccessibilityNodeInfo(paramAccessibilityNodeInfo);
+    paramAccessibilityNodeInfo.setClassName(Button.class.getName());
+  }
+  
+  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    super.onLayout(paramBoolean, paramInt1, paramInt2, paramInt3, paramInt4);
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramBoolean, paramInt1, paramInt2, paramInt3, paramInt4);
+    }
+  }
+  
+  protected void onTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3)
+  {
+    super.onTextChanged(paramCharSequence, paramInt1, paramInt2, paramInt3);
+    paramCharSequence = b;
+    if ((paramCharSequence != null) && (!b.a) && (paramCharSequence.h())) {
+      b.b();
+    }
+  }
+  
+  public void setAutoSizeTextTypeUniformWithConfiguration(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    if (b.a)
+    {
+      super.setAutoSizeTextTypeUniformWithConfiguration(paramInt1, paramInt2, paramInt3, paramInt4);
+      return;
+    }
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramInt1, paramInt2, paramInt3, paramInt4);
+    }
+  }
+  
+  public void setAutoSizeTextTypeUniformWithPresetSizes(int[] paramArrayOfInt, int paramInt)
+  {
+    if (b.a)
+    {
+      super.setAutoSizeTextTypeUniformWithPresetSizes(paramArrayOfInt, paramInt);
+      return;
+    }
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramArrayOfInt, paramInt);
+    }
+  }
+  
+  public void setAutoSizeTextTypeWithDefaults(int paramInt)
+  {
+    if (b.a)
+    {
+      super.setAutoSizeTextTypeWithDefaults(paramInt);
+      return;
+    }
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramInt);
+    }
+  }
+  
+  public void setBackgroundDrawable(Drawable paramDrawable)
+  {
+    super.setBackgroundDrawable(paramDrawable);
+    j localJ = a;
+    if (localJ != null) {
+      localJ.a(paramDrawable);
+    }
+  }
+  
+  public void setBackgroundResource(int paramInt)
+  {
+    super.setBackgroundResource(paramInt);
+    j localJ = a;
+    if (localJ != null) {
+      localJ.a(paramInt);
+    }
+  }
+  
+  public void setCustomSelectionActionModeCallback(ActionMode.Callback paramCallback)
+  {
+    super.setCustomSelectionActionModeCallback(m.a(this, paramCallback));
+  }
+  
+  public void setSupportAllCaps(boolean paramBoolean)
+  {
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramBoolean);
+    }
+  }
+  
+  public void setSupportBackgroundTintList(ColorStateList paramColorStateList)
+  {
+    j localJ = a;
+    if (localJ != null) {
+      localJ.b(paramColorStateList);
+    }
+  }
+  
+  public void setSupportBackgroundTintMode(PorterDuff.Mode paramMode)
+  {
+    j localJ = a;
+    if (localJ != null) {
+      localJ.a(paramMode);
+    }
+  }
+  
+  public void setTextAppearance(Context paramContext, int paramInt)
+  {
+    super.setTextAppearance(paramContext, paramInt);
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramContext, paramInt);
+    }
+  }
+  
+  public void setTextSize(int paramInt, float paramFloat)
+  {
+    if (b.a)
+    {
+      super.setTextSize(paramInt, paramFloat);
+      return;
+    }
+    H localH = b;
+    if (localH != null) {
+      localH.a(paramInt, paramFloat);
+    }
+  }
+}

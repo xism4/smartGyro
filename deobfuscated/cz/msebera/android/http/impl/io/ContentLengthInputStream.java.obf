@@ -1,0 +1,137 @@
+package c.a.a.a.i.f;
+
+import c.a.a.a.j.f;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class g
+  extends InputStream
+{
+  private final long a;
+  private long b = 0L;
+  private boolean c = false;
+  private f d = null;
+  
+  public g(f paramF, long paramLong)
+  {
+    c.a.a.a.p.a.a(paramF, "Session input buffer");
+    d = ((f)paramF);
+    c.a.a.a.p.a.a(paramLong, "Content length");
+    a = paramLong;
+  }
+  
+  public int available()
+  {
+    f localF = d;
+    if ((localF instanceof c.a.a.a.j.a)) {
+      return Math.min(((c.a.a.a.j.a)localF).length(), (int)(a - b));
+    }
+    return 0;
+  }
+  
+  public void close()
+  {
+    if (!c) {
+      try
+      {
+        if (b < a)
+        {
+          byte[] arrayOfByte = new byte['?'];
+          int i;
+          do
+          {
+            i = read(arrayOfByte);
+          } while (i >= 0);
+        }
+        return;
+      }
+      finally
+      {
+        c = true;
+      }
+    }
+  }
+  
+  public int read()
+  {
+    if (!c)
+    {
+      if (b >= a) {
+        return -1;
+      }
+      int i = d.read();
+      if (i == -1)
+      {
+        if (b >= a) {
+          return i;
+        }
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Premature end of Content-Length delimited message body (expected: ");
+        localStringBuilder.append(a);
+        localStringBuilder.append("; received: ");
+        localStringBuilder.append(b);
+        throw new c.a.a.a.a(localStringBuilder.toString());
+      }
+      b += 1L;
+      return i;
+    }
+    throw new IOException("Attempted read from closed stream.");
+  }
+  
+  public int read(byte[] paramArrayOfByte)
+  {
+    return read(paramArrayOfByte, 0, paramArrayOfByte.length);
+  }
+  
+  public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  {
+    if (!c)
+    {
+      long l1 = b;
+      long l2 = a;
+      if (l1 >= l2) {
+        return -1;
+      }
+      int i = paramInt2;
+      if (paramInt2 + l1 > l2) {
+        i = (int)(l2 - l1);
+      }
+      paramInt1 = d.read(paramArrayOfByte, paramInt1, i);
+      if ((paramInt1 == -1) && (b < a))
+      {
+        paramArrayOfByte = new StringBuilder();
+        paramArrayOfByte.append("Premature end of Content-Length delimited message body (expected: ");
+        paramArrayOfByte.append(a);
+        paramArrayOfByte.append("; received: ");
+        paramArrayOfByte.append(b);
+        throw new c.a.a.a.a(paramArrayOfByte.toString());
+      }
+      if (paramInt1 > 0) {
+        b += paramInt1;
+      }
+      return paramInt1;
+    }
+    throw new IOException("Attempted read from closed stream.");
+  }
+  
+  public long skip(long paramLong)
+  {
+    if (paramLong <= 0L) {
+      return 0L;
+    }
+    byte[] arrayOfByte = new byte['?'];
+    paramLong = Math.min(paramLong, a - b);
+    long l1 = 0L;
+    while (paramLong > 0L)
+    {
+      int i = read(arrayOfByte, 0, (int)Math.min(2048L, paramLong));
+      if (i == -1) {
+        return l1;
+      }
+      long l2 = i;
+      l1 += l2;
+      paramLong -= l2;
+    }
+    return l1;
+  }
+}

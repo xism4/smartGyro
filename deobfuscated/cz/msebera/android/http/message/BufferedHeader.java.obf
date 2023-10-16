@@ -1,0 +1,77 @@
+package c.a.a.a.k;
+
+import c.a.a.a.B;
+import c.a.a.a.f;
+import c.a.a.a.p.a;
+import java.io.Serializable;
+
+public class q
+  implements c.a.a.a.d, Cloneable, Serializable
+{
+  private final String a;
+  private final c.a.a.a.p.d b;
+  private final int c;
+  
+  public q(c.a.a.a.p.d paramD)
+  {
+    a.a(paramD, "Char array buffer");
+    int i = paramD.b(58);
+    if (i != -1)
+    {
+      localObject = paramD.b(0, i);
+      if (((String)localObject).length() != 0)
+      {
+        b = paramD;
+        a = ((String)localObject);
+        c = (i + 1);
+        return;
+      }
+      localObject = new StringBuilder();
+      ((StringBuilder)localObject).append("Invalid header: ");
+      ((StringBuilder)localObject).append(paramD.toString());
+      throw new B(((StringBuilder)localObject).toString());
+    }
+    Object localObject = new StringBuilder();
+    ((StringBuilder)localObject).append("Invalid header: ");
+    ((StringBuilder)localObject).append(paramD.toString());
+    throw new B(((StringBuilder)localObject).toString());
+  }
+  
+  public Object clone()
+  {
+    return super.clone();
+  }
+  
+  public c.a.a.a.p.d getBuffer()
+  {
+    return b;
+  }
+  
+  public f[] getElements()
+  {
+    w localW = new w(0, b.length());
+    localW.a(c);
+    return g.b.a(b, localW);
+  }
+  
+  public String getName()
+  {
+    return a;
+  }
+  
+  public String getValue()
+  {
+    c.a.a.a.p.d localD = b;
+    return localD.b(c, localD.length());
+  }
+  
+  public int getValuePos()
+  {
+    return c;
+  }
+  
+  public String toString()
+  {
+    return b.toString();
+  }
+}

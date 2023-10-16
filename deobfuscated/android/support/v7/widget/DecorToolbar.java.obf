@@ -1,0 +1,68 @@
+package android.support.v7.widget;
+
+import a.a.c.g.z;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v7.view.menu.v.a;
+import android.view.Menu;
+import android.view.ViewGroup;
+import android.view.Window.Callback;
+
+public abstract interface L
+{
+  public abstract z a(int paramInt, long paramLong);
+  
+  public abstract void a(int paramInt);
+  
+  public abstract void a(aa paramAa);
+  
+  public abstract void a(Menu paramMenu, v.a paramA);
+  
+  public abstract void a(boolean paramBoolean);
+  
+  public abstract boolean a();
+  
+  public abstract void b();
+  
+  public abstract void b(int paramInt);
+  
+  public abstract void b(boolean paramBoolean);
+  
+  public abstract void c(int paramInt);
+  
+  public abstract boolean c();
+  
+  public abstract void collapseActionView();
+  
+  public abstract boolean d();
+  
+  public abstract boolean e();
+  
+  public abstract boolean f();
+  
+  public abstract void g();
+  
+  public abstract CharSequence getTitle();
+  
+  public abstract boolean h();
+  
+  public abstract int i();
+  
+  public abstract ViewGroup j();
+  
+  public abstract Context k();
+  
+  public abstract int l();
+  
+  public abstract void m();
+  
+  public abstract void n();
+  
+  public abstract void setIcon(int paramInt);
+  
+  public abstract void setIcon(Drawable paramDrawable);
+  
+  public abstract void setWindowCallback(Window.Callback paramCallback);
+  
+  public abstract void setWindowTitle(CharSequence paramCharSequence);
+}

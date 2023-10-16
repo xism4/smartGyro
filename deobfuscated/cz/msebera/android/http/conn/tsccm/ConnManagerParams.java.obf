@@ -1,0 +1,46 @@
+package c.a.a.a.e.a;
+
+import c.a.a.a.l.g;
+
+@Deprecated
+public final class c
+  implements a
+{
+  private static final d a = new b();
+  
+  public static d a(g paramG)
+  {
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    d localD = (d)paramG.getParameter("http.conn-manager.max-per-route");
+    paramG = localD;
+    if (localD == null) {
+      paramG = a;
+    }
+    return paramG;
+  }
+  
+  public static void a(g paramG, int paramInt)
+  {
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    paramG.setIntParameter("http.conn-manager.max-total", paramInt);
+  }
+  
+  @Deprecated
+  public static void a(g paramG, long paramLong)
+  {
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    paramG.setLongParameter("http.conn-manager.timeout", paramLong);
+  }
+  
+  public static void a(g paramG, d paramD)
+  {
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    paramG.setParameter("http.conn-manager.max-per-route", paramD);
+  }
+  
+  public static int b(g paramG)
+  {
+    c.a.a.a.p.a.a(paramG, "HTTP parameters");
+    return paramG.getIntParameter("http.conn-manager.max-total", 20);
+  }
+}

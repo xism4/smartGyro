@@ -1,0 +1,320 @@
+package org.cocos2dx.lib;
+
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.util.Log;
+import b.a.a.a.a.b;
+import java.io.FileInputStream;
+
+public class Cocos2dxMusic
+{
+  private static final String TAG = "Cocos2dxMusic";
+  private MediaPlayer mBackgroundMediaPlayer;
+  private final Context mContext;
+  private String mCurrentPath;
+  private boolean mIsAudioFocus = true;
+  private boolean mIsLoop = false;
+  private float mLeftVolume;
+  private boolean mManualPaused = false;
+  private boolean mPaused;
+  private float mRightVolume;
+  
+  public Cocos2dxMusic(Context paramContext)
+  {
+    mContext = paramContext;
+    initData();
+  }
+  
+  private MediaPlayer createMediaPlayer(String paramString)
+  {
+    Object localObject1 = new MediaPlayer();
+    try
+    {
+      if (paramString.startsWith("/"))
+      {
+        paramString = new FileInputStream(paramString);
+        ((MediaPlayer)localObject1).setDataSource(paramString.getFD());
+        paramString.close();
+      }
+      else
+      {
+        long l1;
+        if (Cocos2dxHelper.getObbFile() != null)
+        {
+          localObject2 = Cocos2dxHelper.getObbFile().b(paramString);
+          paramString = ((AssetFileDescriptor)localObject2).getFileDescriptor();
+          l1 = ((AssetFileDescriptor)localObject2).getStartOffset();
+        }
+        for (long l2 = ((AssetFileDescriptor)localObject2).getLength();; l2 = ((AssetFileDescriptor)localObject2).getLength())
+        {
+          ((MediaPlayer)localObject1).setDataSource(paramString, l1, l2);
+          break;
+          localObject2 = mContext.getAssets().openFd(paramString);
+          paramString = ((AssetFileDescriptor)localObject2).getFileDescriptor();
+          l1 = ((AssetFileDescriptor)localObject2).getStartOffset();
+        }
+      }
+      ((MediaPlayer)localObject1).prepare();
+      ((MediaPlayer)localObject1).setVolume(mLeftVolume, mRightVolume);
+      return localObject1;
+    }
+    catch (Exception paramString)
+    {
+      localObject1 = TAG;
+      Object localObject2 = new StringBuilder();
+      ((StringBuilder)localObject2).append("error: ");
+      ((StringBuilder)localObject2).append(paramString.getMessage());
+      Log.e((String)localObject1, ((StringBuilder)localObject2).toString(), paramString);
+    }
+    return null;
+  }
+  
+  private void initData()
+  {
+    mLeftVolume = 0.5F;
+    mRightVolume = 0.5F;
+    mBackgroundMediaPlayer = null;
+    mPaused = false;
+    mCurrentPath = null;
+  }
+  
+  public void end()
+  {
+    MediaPlayer localMediaPlayer = mBackgroundMediaPlayer;
+    if (localMediaPlayer != null) {
+      localMediaPlayer.release();
+    }
+    initData();
+  }
+  
+  public float getBackgroundVolume()
+  {
+    if (mBackgroundMediaPlayer != null) {
+      return (mLeftVolume + mRightVolume) / 2.0F;
+    }
+    return 0.0F;
+  }
+  
+  public boolean isBackgroundMusicPlaying()
+  {
+    try
+    {
+      if (mBackgroundMediaPlayer == null) {
+        return false;
+      }
+      boolean bool = mBackgroundMediaPlayer.isPlaying();
+      return bool;
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      for (;;) {}
+    }
+    Log.e(TAG, "isBackgroundMusicPlaying, IllegalStateException was triggered!");
+    return false;
+  }
+  
+  public void onEnterBackground()
+  {
+    try
+    {
+      if ((mBackgroundMediaPlayer == null) || (!mBackgroundMediaPlayer.isPlaying())) {
+        break label39;
+      }
+      mBackgroundMediaPlayer.pause();
+      mPaused = true;
+      return;
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      label39:
+      for (;;) {}
+    }
+    Log.e(TAG, "onEnterBackground, IllegalStateException was triggered!");
+  }
+  
+  public void onEnterForeground()
+  {
+    try
+    {
+      if ((mManualPaused) || (mBackgroundMediaPlayer == null) || (!mPaused)) {
+        break label43;
+      }
+      mBackgroundMediaPlayer.start();
+      mPaused = false;
+      return;
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      label43:
+      for (;;) {}
+    }
+    Log.e(TAG, "onEnterForeground, IllegalStateException was triggered!");
+  }
+  
+  public void pauseBackgroundMusic()
+  {
+    try
+    {
+      if ((mBackgroundMediaPlayer == null) || (!mBackgroundMediaPlayer.isPlaying())) {
+        break label44;
+      }
+      mBackgroundMediaPlayer.pause();
+      mPaused = true;
+      mManualPaused = true;
+      return;
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      label44:
+      for (;;) {}
+    }
+    Log.e(TAG, "pauseBackgroundMusic, IllegalStateException was triggered!");
+  }
+  
+  public void playBackgroundMusic(String paramString, boolean paramBoolean)
+  {
+    Object localObject = mCurrentPath;
+    if (localObject == null) {}
+    for (;;)
+    {
+      mBackgroundMediaPlayer = createMediaPlayer(paramString);
+      mCurrentPath = paramString;
+      break;
+      if (((String)localObject).equals(paramString)) {
+        break;
+      }
+      localObject = mBackgroundMediaPlayer;
+      if (localObject != null) {
+        ((MediaPlayer)localObject).release();
+      }
+    }
+    paramString = mBackgroundMediaPlayer;
+    if (paramString == null) {
+      paramString = TAG;
+    }
+    for (localObject = "playBackgroundMusic: background media player is null";; localObject = "playBackgroundMusic: error state")
+    {
+      Log.e(paramString, (String)localObject);
+      return;
+      try
+      {
+        if (mPaused) {
+          paramString.seekTo(0);
+        }
+        while (!paramString.isPlaying())
+        {
+          mBackgroundMediaPlayer.start();
+          break;
+        }
+        mBackgroundMediaPlayer.seekTo(0);
+        mBackgroundMediaPlayer.setLooping(paramBoolean);
+        mPaused = false;
+        mIsLoop = paramBoolean;
+        return;
+      }
+      catch (Exception paramString)
+      {
+        for (;;) {}
+      }
+      paramString = TAG;
+    }
+  }
+  
+  public void preloadBackgroundMusic(String paramString)
+  {
+    Object localObject = mCurrentPath;
+    if ((localObject == null) || (!((String)localObject).equals(paramString)))
+    {
+      localObject = mBackgroundMediaPlayer;
+      if (localObject != null) {
+        ((MediaPlayer)localObject).release();
+      }
+      mBackgroundMediaPlayer = createMediaPlayer(paramString);
+      mCurrentPath = paramString;
+    }
+  }
+  
+  public void resumeBackgroundMusic()
+  {
+    try
+    {
+      if ((mBackgroundMediaPlayer == null) || (!mPaused)) {
+        break label41;
+      }
+      mBackgroundMediaPlayer.start();
+      mPaused = false;
+      mManualPaused = false;
+      return;
+    }
+    catch (IllegalStateException localIllegalStateException)
+    {
+      label41:
+      for (;;) {}
+    }
+    Log.e(TAG, "resumeBackgroundMusic, IllegalStateException was triggered!");
+  }
+  
+  public void rewindBackgroundMusic()
+  {
+    if (mBackgroundMediaPlayer != null) {
+      playBackgroundMusic(mCurrentPath, mIsLoop);
+    }
+  }
+  
+  void setAudioFocus(boolean paramBoolean)
+  {
+    mIsAudioFocus = paramBoolean;
+    if (mBackgroundMediaPlayer != null)
+    {
+      paramBoolean = mIsAudioFocus;
+      float f2 = 0.0F;
+      float f1;
+      if (paramBoolean) {
+        f1 = mLeftVolume;
+      } else {
+        f1 = 0.0F;
+      }
+      if (mIsAudioFocus) {
+        f2 = mRightVolume;
+      }
+      mBackgroundMediaPlayer.setVolume(f1, f2);
+    }
+  }
+  
+  public void setBackgroundVolume(float paramFloat)
+  {
+    float f = paramFloat;
+    if (paramFloat < 0.0F) {
+      f = 0.0F;
+    }
+    paramFloat = f;
+    if (f > 1.0F) {
+      paramFloat = 1.0F;
+    }
+    mRightVolume = paramFloat;
+    mLeftVolume = paramFloat;
+    MediaPlayer localMediaPlayer = mBackgroundMediaPlayer;
+    if ((localMediaPlayer != null) && (mIsAudioFocus)) {
+      localMediaPlayer.setVolume(mLeftVolume, mRightVolume);
+    }
+  }
+  
+  public void stopBackgroundMusic()
+  {
+    MediaPlayer localMediaPlayer = mBackgroundMediaPlayer;
+    if (localMediaPlayer != null)
+    {
+      localMediaPlayer.release();
+      mBackgroundMediaPlayer = createMediaPlayer(mCurrentPath);
+      mPaused = false;
+    }
+  }
+  
+  public boolean willPlayBackgroundMusic()
+  {
+    return ((AudioManager)mContext.getSystemService("audio")).isMusicActive() ^ true;
+  }
+}

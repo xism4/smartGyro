@@ -1,0 +1,108 @@
+package c.a.a.a.k;
+
+import c.a.a.a.f;
+import c.a.a.a.p.a;
+import c.a.a.a.p.d;
+import c.a.a.a.z;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
+public class g
+  implements t
+{
+  @Deprecated
+  public static final g a = new g();
+  public static final g b = new g();
+  private static final BitSet c = x.a(new int[] { 61, 59, 44 });
+  private static final BitSet d = x.a(new int[] { 59, 44 });
+  private final x e = x.a;
+  
+  public g() {}
+  
+  public static f[] a(String paramString, t paramT)
+  {
+    a.a(paramString, "Value");
+    d localD = new d(paramString.length());
+    localD.a(paramString);
+    paramString = new w(0, paramString.length());
+    if (paramT == null) {
+      paramT = b;
+    }
+    return paramT.a(localD, paramString);
+  }
+  
+  protected f a(String paramString1, String paramString2, z[] paramArrayOfZ)
+  {
+    return new c(paramString1, paramString2, paramArrayOfZ);
+  }
+  
+  protected z a(String paramString1, String paramString2)
+  {
+    return new m(paramString1, paramString2);
+  }
+  
+  public f[] a(d paramD, w paramW)
+  {
+    a.a(paramD, "Char array buffer");
+    a.a(paramW, "Parser cursor");
+    ArrayList localArrayList = new ArrayList();
+    while (!paramW.a())
+    {
+      f localF = b(paramD, paramW);
+      if ((localF.getName().length() != 0) || (localF.getValue() != null)) {
+        localArrayList.add(localF);
+      }
+    }
+    return (f[])localArrayList.toArray(new f[localArrayList.size()]);
+  }
+  
+  public f b(d paramD, w paramW)
+  {
+    a.a(paramD, "Char array buffer");
+    a.a(paramW, "Parser cursor");
+    z localZ = c(paramD, paramW);
+    if ((!paramW.a()) && (paramD.charAt(paramW.b() - 1) != ',')) {
+      paramD = d(paramD, paramW);
+    } else {
+      paramD = null;
+    }
+    return a(localZ.getName(), localZ.getValue(), paramD);
+  }
+  
+  public z c(d paramD, w paramW)
+  {
+    a.a(paramD, "Char array buffer");
+    a.a(paramW, "Parser cursor");
+    String str = e.a(paramD, paramW, c);
+    if (paramW.a()) {
+      return new m(str, null);
+    }
+    int i = paramD.charAt(paramW.b());
+    paramW.a(paramW.b() + 1);
+    if (i != 61) {
+      return a(str, null);
+    }
+    paramD = e.b(paramD, paramW, d);
+    if (!paramW.a()) {
+      paramW.a(paramW.b() + 1);
+    }
+    return a(str, paramD);
+  }
+  
+  public z[] d(d paramD, w paramW)
+  {
+    a.a(paramD, "Char array buffer");
+    a.a(paramW, "Parser cursor");
+    e.a(paramD, paramW);
+    ArrayList localArrayList = new ArrayList();
+    do
+    {
+      if (paramW.a()) {
+        break;
+      }
+      localArrayList.add(c(paramD, paramW));
+    } while (paramD.charAt(paramW.b() - 1) != ',');
+    return (z[])localArrayList.toArray(new z[localArrayList.size()]);
+  }
+}

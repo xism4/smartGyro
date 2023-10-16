@@ -1,0 +1,44 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.b.f.c;
+import c.a.a.a.f.b;
+import c.a.a.a.f.n;
+import c.a.a.a.f.p;
+import java.util.Date;
+
+public class g
+  extends a
+  implements b
+{
+  private final String[] a;
+  
+  public g(String[] paramArrayOfString)
+  {
+    c.a.a.a.p.a.a(paramArrayOfString, "Array of date patterns");
+    a = paramArrayOfString;
+  }
+  
+  public String a()
+  {
+    return "expires";
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    c.a.a.a.p.a.a(paramP, "Cookie");
+    if (paramString != null)
+    {
+      Date localDate = c.a(paramString, a);
+      if (localDate != null)
+      {
+        paramP.setExpiryDate(localDate);
+        return;
+      }
+      paramP = new StringBuilder();
+      paramP.append("Invalid 'expires' attribute: ");
+      paramP.append(paramString);
+      throw new n(paramP.toString());
+    }
+    throw new n("Missing value for 'expires' attribute");
+  }
+}

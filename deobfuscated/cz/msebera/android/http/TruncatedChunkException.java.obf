@@ -1,0 +1,10 @@
+package c.a.a.a;
+
+public class I
+  extends x
+{
+  public I(String paramString)
+  {
+    super(paramString);
+  }
+}

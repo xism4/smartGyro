@@ -1,0 +1,41 @@
+package c.a.a.a.i.b;
+
+import c.a.a.a.F;
+import c.a.a.a.b.c.i;
+import c.a.a.a.b.c.j;
+import c.a.a.a.b.c.l;
+import c.a.a.a.b.p;
+import c.a.a.a.n.e;
+import c.a.a.a.r;
+import c.a.a.a.t;
+
+@Deprecated
+class o
+  implements p
+{
+  private final c.a.a.a.b.o a;
+  
+  public o(c.a.a.a.b.o paramO)
+  {
+    a = paramO;
+  }
+  
+  public l a(r paramR, t paramT, e paramE)
+  {
+    paramT = a.a(paramT, paramE);
+    if (paramR.getRequestLine().getMethod().equalsIgnoreCase("HEAD")) {
+      return new j(paramT);
+    }
+    return new i(paramT);
+  }
+  
+  public c.a.a.a.b.o a()
+  {
+    return a;
+  }
+  
+  public boolean b(r paramR, t paramT, e paramE)
+  {
+    return a.b(paramT, paramE);
+  }
+}

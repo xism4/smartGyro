@@ -1,0 +1,32 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.f;
+import c.a.a.a.f.o;
+import c.a.a.a.f.p;
+
+public class C
+  implements b
+{
+  public C() {}
+  
+  public String a()
+  {
+    return "commenturl";
+  }
+  
+  public void a(c paramC, f paramF) {}
+  
+  public void a(p paramP, String paramString)
+  {
+    if ((paramP instanceof o)) {
+      ((o)paramP).setCommentURL(paramString);
+    }
+  }
+  
+  public boolean b(c paramC, f paramF)
+  {
+    return true;
+  }
+}

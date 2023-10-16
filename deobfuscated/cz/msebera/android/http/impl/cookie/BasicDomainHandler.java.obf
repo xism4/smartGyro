@@ -1,0 +1,112 @@
+package c.a.a.a.i.d;
+
+import c.a.a.a.f.b;
+import c.a.a.a.f.c;
+import c.a.a.a.f.h;
+import c.a.a.a.f.n;
+import c.a.a.a.f.p;
+import c.a.a.a.p.i;
+import java.util.Locale;
+
+public class f
+  implements b
+{
+  public f() {}
+  
+  static boolean a(String paramString1, String paramString2)
+  {
+    if (!c.a.a.a.e.f.a.a(paramString2))
+    {
+      if (c.a.a.a.e.f.a.b(paramString2)) {
+        return false;
+      }
+      String str = paramString1;
+      if (paramString1.startsWith(".")) {
+        str = paramString1.substring(1);
+      }
+      if (paramString2.endsWith(str))
+      {
+        int i = paramString2.length() - str.length();
+        if (i == 0) {
+          return true;
+        }
+        if ((i > 1) && (paramString2.charAt(i - 1) == '.')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
+  public String a()
+  {
+    return "domain";
+  }
+  
+  public void a(c paramC, c.a.a.a.f.f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    paramF = paramF.a();
+    paramC = paramC.getDomain();
+    if (paramC != null)
+    {
+      if (!paramF.equals(paramC))
+      {
+        if (a(paramC, paramF)) {
+          return;
+        }
+        StringBuilder localStringBuilder = new StringBuilder();
+        localStringBuilder.append("Illegal 'domain' attribute \"");
+        localStringBuilder.append(paramC);
+        localStringBuilder.append("\". Domain of origin: \"");
+        localStringBuilder.append(paramF);
+        localStringBuilder.append("\"");
+        throw new h(localStringBuilder.toString());
+      }
+      return;
+    }
+    throw new h("Cookie 'domain' may not be null");
+  }
+  
+  public void a(p paramP, String paramString)
+  {
+    c.a.a.a.p.a.a(paramP, "Cookie");
+    if (!i.b(paramString))
+    {
+      if (paramString.endsWith(".")) {
+        return;
+      }
+      String str = paramString;
+      if (paramString.startsWith(".")) {
+        str = paramString.substring(1);
+      }
+      paramP.setDomain(str.toLowerCase(Locale.ROOT));
+      return;
+    }
+    throw new n("Blank or null value for domain attribute");
+  }
+  
+  public boolean b(c paramC, c.a.a.a.f.f paramF)
+  {
+    c.a.a.a.p.a.a(paramC, "Cookie");
+    c.a.a.a.p.a.a(paramF, "Cookie origin");
+    String str2 = paramF.a();
+    String str1 = paramC.getDomain();
+    if (str1 == null) {
+      return false;
+    }
+    paramF = str1;
+    if (str1.startsWith(".")) {
+      paramF = str1.substring(1);
+    }
+    paramF = paramF.toLowerCase(Locale.ROOT);
+    if (str2.equals(paramF)) {
+      return true;
+    }
+    if (((paramC instanceof c.a.a.a.f.a)) && (((c.a.a.a.f.a)paramC).containsAttribute("domain"))) {
+      return a(paramF, str2);
+    }
+    return false;
+  }
+}

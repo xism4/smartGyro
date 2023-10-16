@@ -1,0 +1,479 @@
+package android.support.v7.view.menu;
+
+import a.a.c.c.a.b;
+import a.a.c.g.e;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.ActionProvider;
+import android.view.CollapsibleActionView;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
+import android.view.MenuItem.OnActionExpandListener;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.SubMenu;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.lang.reflect.Method;
+
+public class q
+  extends c<b>
+  implements MenuItem
+{
+  private Method e;
+  
+  q(Context paramContext, b paramB)
+  {
+    super(paramContext, paramB);
+  }
+  
+  a a(ActionProvider paramActionProvider)
+  {
+    return new a(b, paramActionProvider);
+  }
+  
+  public void a(boolean paramBoolean)
+  {
+    try
+    {
+      if (e == null) {
+        e = ((b)a).getClass().getDeclaredMethod("setExclusiveCheckable", new Class[] { Boolean.TYPE });
+      }
+      e.invoke(a, new Object[] { Boolean.valueOf(paramBoolean) });
+      return;
+    }
+    catch (Exception localException)
+    {
+      Log.w("MenuItemWrapper", "Error while calling setExclusiveCheckable", localException);
+    }
+  }
+  
+  public boolean collapseActionView()
+  {
+    return ((b)a).collapseActionView();
+  }
+  
+  public boolean expandActionView()
+  {
+    return ((b)a).expandActionView();
+  }
+  
+  public ActionProvider getActionProvider()
+  {
+    e localE = ((b)a).a();
+    if ((localE instanceof a)) {
+      return d;
+    }
+    return null;
+  }
+  
+  public View getActionView()
+  {
+    View localView2 = ((b)a).getActionView();
+    View localView1 = localView2;
+    if ((localView2 instanceof b)) {
+      localView1 = ((b)localView2).a();
+    }
+    return localView1;
+  }
+  
+  public int getAlphabeticModifiers()
+  {
+    return ((b)a).getAlphabeticModifiers();
+  }
+  
+  public char getAlphabeticShortcut()
+  {
+    return ((b)a).getAlphabeticShortcut();
+  }
+  
+  public CharSequence getContentDescription()
+  {
+    return ((b)a).getContentDescription();
+  }
+  
+  public int getGroupId()
+  {
+    return ((b)a).getGroupId();
+  }
+  
+  public Drawable getIcon()
+  {
+    return ((b)a).getIcon();
+  }
+  
+  public ColorStateList getIconTintList()
+  {
+    return ((b)a).getIconTintList();
+  }
+  
+  public PorterDuff.Mode getIconTintMode()
+  {
+    return ((b)a).getIconTintMode();
+  }
+  
+  public Intent getIntent()
+  {
+    return ((b)a).getIntent();
+  }
+  
+  public int getItemId()
+  {
+    return ((b)a).getItemId();
+  }
+  
+  public ContextMenu.ContextMenuInfo getMenuInfo()
+  {
+    return ((b)a).getMenuInfo();
+  }
+  
+  public int getNumericModifiers()
+  {
+    return ((b)a).getNumericModifiers();
+  }
+  
+  public char getNumericShortcut()
+  {
+    return ((b)a).getNumericShortcut();
+  }
+  
+  public int getOrder()
+  {
+    return ((b)a).getOrder();
+  }
+  
+  public SubMenu getSubMenu()
+  {
+    return a(((b)a).getSubMenu());
+  }
+  
+  public CharSequence getTitle()
+  {
+    return ((b)a).getTitle();
+  }
+  
+  public CharSequence getTitleCondensed()
+  {
+    return ((b)a).getTitleCondensed();
+  }
+  
+  public CharSequence getTooltipText()
+  {
+    return ((b)a).getTooltipText();
+  }
+  
+  public boolean hasSubMenu()
+  {
+    return ((b)a).hasSubMenu();
+  }
+  
+  public boolean isActionViewExpanded()
+  {
+    return ((b)a).isActionViewExpanded();
+  }
+  
+  public boolean isCheckable()
+  {
+    return ((b)a).isCheckable();
+  }
+  
+  public boolean isChecked()
+  {
+    return ((b)a).isChecked();
+  }
+  
+  public boolean isEnabled()
+  {
+    return ((b)a).isEnabled();
+  }
+  
+  public boolean isVisible()
+  {
+    return ((b)a).isVisible();
+  }
+  
+  public MenuItem setActionProvider(ActionProvider paramActionProvider)
+  {
+    b localB = (b)a;
+    if (paramActionProvider != null) {
+      paramActionProvider = a(paramActionProvider);
+    } else {
+      paramActionProvider = null;
+    }
+    localB.a(paramActionProvider);
+    return this;
+  }
+  
+  public MenuItem setActionView(int paramInt)
+  {
+    ((b)a).setActionView(paramInt);
+    View localView = ((b)a).getActionView();
+    if ((localView instanceof CollapsibleActionView)) {
+      ((b)a).setActionView(new b(localView));
+    }
+    return this;
+  }
+  
+  public MenuItem setActionView(View paramView)
+  {
+    Object localObject = paramView;
+    if ((paramView instanceof CollapsibleActionView)) {
+      localObject = new b(paramView);
+    }
+    ((b)a).setActionView((View)localObject);
+    return this;
+  }
+  
+  public MenuItem setAlphabeticShortcut(char paramChar)
+  {
+    ((b)a).setAlphabeticShortcut(paramChar);
+    return this;
+  }
+  
+  public MenuItem setAlphabeticShortcut(char paramChar, int paramInt)
+  {
+    ((b)a).setAlphabeticShortcut(paramChar, paramInt);
+    return this;
+  }
+  
+  public MenuItem setCheckable(boolean paramBoolean)
+  {
+    ((b)a).setCheckable(paramBoolean);
+    return this;
+  }
+  
+  public MenuItem setChecked(boolean paramBoolean)
+  {
+    ((b)a).setChecked(paramBoolean);
+    return this;
+  }
+  
+  public MenuItem setContentDescription(CharSequence paramCharSequence)
+  {
+    ((b)a).setContentDescription(paramCharSequence);
+    return this;
+  }
+  
+  public MenuItem setEnabled(boolean paramBoolean)
+  {
+    ((b)a).setEnabled(paramBoolean);
+    return this;
+  }
+  
+  public MenuItem setIcon(int paramInt)
+  {
+    ((b)a).setIcon(paramInt);
+    return this;
+  }
+  
+  public MenuItem setIcon(Drawable paramDrawable)
+  {
+    ((b)a).setIcon(paramDrawable);
+    return this;
+  }
+  
+  public MenuItem setIconTintList(ColorStateList paramColorStateList)
+  {
+    ((b)a).setIconTintList(paramColorStateList);
+    return this;
+  }
+  
+  public MenuItem setIconTintMode(PorterDuff.Mode paramMode)
+  {
+    ((b)a).setIconTintMode(paramMode);
+    return this;
+  }
+  
+  public MenuItem setIntent(Intent paramIntent)
+  {
+    ((b)a).setIntent(paramIntent);
+    return this;
+  }
+  
+  public MenuItem setNumericShortcut(char paramChar)
+  {
+    ((b)a).setNumericShortcut(paramChar);
+    return this;
+  }
+  
+  public MenuItem setNumericShortcut(char paramChar, int paramInt)
+  {
+    ((b)a).setNumericShortcut(paramChar, paramInt);
+    return this;
+  }
+  
+  public MenuItem setOnActionExpandListener(MenuItem.OnActionExpandListener paramOnActionExpandListener)
+  {
+    b localB = (b)a;
+    if (paramOnActionExpandListener != null) {
+      paramOnActionExpandListener = new c(paramOnActionExpandListener);
+    } else {
+      paramOnActionExpandListener = null;
+    }
+    localB.setOnActionExpandListener(paramOnActionExpandListener);
+    return this;
+  }
+  
+  public MenuItem setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener paramOnMenuItemClickListener)
+  {
+    b localB = (b)a;
+    if (paramOnMenuItemClickListener != null) {
+      paramOnMenuItemClickListener = new d(paramOnMenuItemClickListener);
+    } else {
+      paramOnMenuItemClickListener = null;
+    }
+    localB.setOnMenuItemClickListener(paramOnMenuItemClickListener);
+    return this;
+  }
+  
+  public MenuItem setShortcut(char paramChar1, char paramChar2)
+  {
+    ((b)a).setShortcut(paramChar1, paramChar2);
+    return this;
+  }
+  
+  public MenuItem setShortcut(char paramChar1, char paramChar2, int paramInt1, int paramInt2)
+  {
+    ((b)a).setShortcut(paramChar1, paramChar2, paramInt1, paramInt2);
+    return this;
+  }
+  
+  public void setShowAsAction(int paramInt)
+  {
+    ((b)a).setShowAsAction(paramInt);
+  }
+  
+  public MenuItem setShowAsActionFlags(int paramInt)
+  {
+    ((b)a).setShowAsActionFlags(paramInt);
+    return this;
+  }
+  
+  public MenuItem setTitle(int paramInt)
+  {
+    ((b)a).setTitle(paramInt);
+    return this;
+  }
+  
+  public MenuItem setTitle(CharSequence paramCharSequence)
+  {
+    ((b)a).setTitle(paramCharSequence);
+    return this;
+  }
+  
+  public MenuItem setTitleCondensed(CharSequence paramCharSequence)
+  {
+    ((b)a).setTitleCondensed(paramCharSequence);
+    return this;
+  }
+  
+  public MenuItem setTooltipText(CharSequence paramCharSequence)
+  {
+    ((b)a).setTooltipText(paramCharSequence);
+    return this;
+  }
+  
+  public MenuItem setVisible(boolean paramBoolean)
+  {
+    return ((b)a).setVisible(paramBoolean);
+  }
+  
+  class a
+    extends e
+  {
+    final ActionProvider d;
+    
+    public a(Context paramContext, ActionProvider paramActionProvider)
+    {
+      super();
+      d = paramActionProvider;
+    }
+    
+    public void a(SubMenu paramSubMenu)
+    {
+      d.onPrepareSubMenu(a(paramSubMenu));
+    }
+    
+    public boolean a()
+    {
+      return d.hasSubMenu();
+    }
+    
+    public View c()
+    {
+      return d.onCreateActionView();
+    }
+    
+    public boolean d()
+    {
+      return d.onPerformDefaultAction();
+    }
+  }
+  
+  static class b
+    extends FrameLayout
+    implements a.a.d.d.c
+  {
+    final CollapsibleActionView a;
+    
+    b(View paramView)
+    {
+      super();
+      a = ((CollapsibleActionView)paramView);
+      addView(paramView);
+    }
+    
+    View a()
+    {
+      return (View)a;
+    }
+    
+    public void onActionViewCollapsed()
+    {
+      a.onActionViewCollapsed();
+    }
+    
+    public void onActionViewExpanded()
+    {
+      a.onActionViewExpanded();
+    }
+  }
+  
+  private class c
+    extends d<MenuItem.OnActionExpandListener>
+    implements MenuItem.OnActionExpandListener
+  {
+    c(MenuItem.OnActionExpandListener paramOnActionExpandListener)
+    {
+      super();
+    }
+    
+    public boolean onMenuItemActionCollapse(MenuItem paramMenuItem)
+    {
+      return ((MenuItem.OnActionExpandListener)a).onMenuItemActionCollapse(a(paramMenuItem));
+    }
+    
+    public boolean onMenuItemActionExpand(MenuItem paramMenuItem)
+    {
+      return ((MenuItem.OnActionExpandListener)a).onMenuItemActionExpand(a(paramMenuItem));
+    }
+  }
+  
+  private class d
+    extends d<MenuItem.OnMenuItemClickListener>
+    implements MenuItem.OnMenuItemClickListener
+  {
+    d(MenuItem.OnMenuItemClickListener paramOnMenuItemClickListener)
+    {
+      super();
+    }
+    
+    public boolean onMenuItemClick(MenuItem paramMenuItem)
+    {
+      return ((MenuItem.OnMenuItemClickListener)a).onMenuItemClick(a(paramMenuItem));
+    }
+  }
+}

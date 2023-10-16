@@ -1,0 +1,55 @@
+package b.c.a.a;
+
+import android.os.Looper;
+import java.lang.ref.WeakReference;
+
+public class q
+{
+  private final WeakReference<e> a;
+  
+  public q(e paramE)
+  {
+    a = new WeakReference(paramE);
+  }
+  
+  public boolean a()
+  {
+    e localE = (e)a.get();
+    return (localE == null) || (localE.a());
+  }
+  
+  public boolean a(boolean paramBoolean)
+  {
+    e localE = (e)a.get();
+    if (localE != null)
+    {
+      if (Looper.myLooper() == Looper.getMainLooper())
+      {
+        new Thread(new p(this, localE, paramBoolean)).start();
+        return true;
+      }
+      return localE.a(paramBoolean);
+    }
+    return false;
+  }
+  
+  public boolean b()
+  {
+    e localE = (e)a.get();
+    return (localE == null) || (localE.b());
+  }
+  
+  public boolean c()
+  {
+    boolean bool;
+    if ((!a()) && (!b())) {
+      bool = false;
+    } else {
+      bool = true;
+    }
+    if (bool) {
+      a.clear();
+    }
+    return bool;
+  }
+}

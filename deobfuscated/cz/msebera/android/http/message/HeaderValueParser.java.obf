@@ -1,0 +1,11 @@
+package c.a.a.a.k;
+
+import c.a.a.a.f;
+import c.a.a.a.p.d;
+
+public abstract interface t
+{
+  public abstract f[] a(d paramD, w paramW);
+  
+  public abstract f b(d paramD, w paramW);
+}

@@ -1,0 +1,3 @@
+package android.arch.lifecycle;
+
+abstract class b {}

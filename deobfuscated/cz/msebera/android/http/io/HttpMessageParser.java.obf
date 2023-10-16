@@ -1,0 +1,8 @@
+package c.a.a.a.j;
+
+import c.a.a.a.q;
+
+public abstract interface c<T extends q>
+{
+  public abstract T parse();
+}

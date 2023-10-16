@@ -1,0 +1,11 @@
+package c.a.a.a;
+
+import java.util.Iterator;
+
+public abstract interface H
+  extends Iterator<Object>
+{
+  public abstract boolean hasNext();
+  
+  public abstract String nextToken();
+}

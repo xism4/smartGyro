@@ -1,0 +1,20 @@
+package c.a.a.a.e.e;
+
+@Deprecated
+public class c
+  extends a
+{
+  public static final c c = new c();
+  
+  public c() {}
+  
+  public final String toString()
+  {
+    return "BROWSER_COMPATIBLE";
+  }
+  
+  public final void verify(String paramString, String[] paramArrayOfString1, String[] paramArrayOfString2)
+  {
+    a(paramString, paramArrayOfString1, paramArrayOfString2, false);
+  }
+}

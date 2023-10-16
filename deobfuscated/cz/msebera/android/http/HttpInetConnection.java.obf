@@ -1,0 +1,11 @@
+package c.a.a.a;
+
+import java.net.InetAddress;
+
+public abstract interface p
+  extends j
+{
+  public abstract InetAddress getRemoteAddress();
+  
+  public abstract int getRemotePort();
+}

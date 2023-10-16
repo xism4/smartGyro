@@ -1,0 +1,39 @@
+package c.a.a.a.n;
+
+@Deprecated
+public class p
+  extends a
+{
+  public p(e paramE)
+  {
+    super(paramE);
+  }
+  
+  public Object getAttribute(String paramString)
+  {
+    try
+    {
+      paramString = super.getAttribute(paramString);
+      return paramString;
+    }
+    finally
+    {
+      paramString = finally;
+      throw paramString;
+    }
+  }
+  
+  public void setAttribute(String paramString, Object paramObject)
+  {
+    try
+    {
+      super.setAttribute(paramString, paramObject);
+      return;
+    }
+    finally
+    {
+      paramString = finally;
+      throw paramString;
+    }
+  }
+}

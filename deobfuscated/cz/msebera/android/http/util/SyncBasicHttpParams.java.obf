@@ -1,0 +1,50 @@
+package c.a.a.a.l;
+
+@Deprecated
+public class j
+  extends b
+{
+  public j() {}
+  
+  public Object clone()
+  {
+    try
+    {
+      Object localObject1 = super.clone();
+      return localObject1;
+    }
+    finally
+    {
+      localObject2 = finally;
+      throw localObject2;
+    }
+  }
+  
+  public Object getParameter(String paramString)
+  {
+    try
+    {
+      paramString = super.getParameter(paramString);
+      return paramString;
+    }
+    finally
+    {
+      paramString = finally;
+      throw paramString;
+    }
+  }
+  
+  public g setParameter(String paramString, Object paramObject)
+  {
+    try
+    {
+      super.setParameter(paramString, paramObject);
+      return this;
+    }
+    finally
+    {
+      paramString = finally;
+      throw paramString;
+    }
+  }
+}

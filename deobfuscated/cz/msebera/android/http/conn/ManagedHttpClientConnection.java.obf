@@ -1,0 +1,10 @@
+package c.a.a.a.e;
+
+import c.a.a.a.i;
+import javax.net.ssl.SSLSession;
+
+public abstract interface p
+  extends i, c.a.a.a.p
+{
+  public abstract SSLSession getSSLSession();
+}

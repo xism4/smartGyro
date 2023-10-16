@@ -1,0 +1,15 @@
+package c.a.a.a.e;
+
+import c.a.a.a.o;
+import java.io.InterruptedIOException;
+
+public class f
+  extends InterruptedIOException
+{
+  private final o a = null;
+  
+  public f(String paramString)
+  {
+    super(paramString);
+  }
+}

@@ -1,0 +1,88 @@
+package c.a.a.a.i.a;
+
+import c.a.a.a.a.n;
+import c.a.a.a.c;
+import c.a.a.a.k.q;
+import c.a.a.a.p.d;
+import c.a.a.a.p.f;
+import c.a.a.a.r;
+import java.nio.charset.Charset;
+import java.security.Principal;
+
+public class b
+  extends m
+{
+  private boolean d = false;
+  
+  public b()
+  {
+    this(c.b);
+  }
+  
+  public b(Charset paramCharset)
+  {
+    super(paramCharset);
+  }
+  
+  @Deprecated
+  public c.a.a.a.e a(n paramN, r paramR)
+  {
+    return a(paramN, paramR, new c.a.a.a.n.a());
+  }
+  
+  public c.a.a.a.e a(n paramN, r paramR, c.a.a.a.n.e paramE)
+  {
+    c.a.a.a.p.a.a(paramN, "Credentials");
+    c.a.a.a.p.a.a(paramR, "HTTP request");
+    paramE = new StringBuilder();
+    paramE.append(paramN.getUserPrincipal().getName());
+    paramE.append(":");
+    if (paramN.getPassword() == null) {
+      paramN = "null";
+    } else {
+      paramN = paramN.getPassword();
+    }
+    paramE.append(paramN);
+    paramR = c.a.a.a.h.a.a(f.a(paramE.toString(), a(paramR)), 2);
+    paramE = new d(32);
+    if (a()) {
+      paramN = "Proxy-Authorization";
+    } else {
+      paramN = "Authorization";
+    }
+    paramE.a(paramN);
+    paramE.a(": Basic ");
+    paramE.a(paramR, 0, paramR.length);
+    return new q(paramE);
+  }
+  
+  public void a(c.a.a.a.e paramE)
+  {
+    super.a(paramE);
+    d = true;
+  }
+  
+  public String getSchemeName()
+  {
+    return "basic";
+  }
+  
+  public boolean isComplete()
+  {
+    return d;
+  }
+  
+  public boolean isConnectionBased()
+  {
+    return false;
+  }
+  
+  public String toString()
+  {
+    StringBuilder localStringBuilder = new StringBuilder();
+    localStringBuilder.append("BASIC [complete=");
+    localStringBuilder.append(d);
+    localStringBuilder.append("]");
+    return localStringBuilder.toString();
+  }
+}

@@ -1,0 +1,19 @@
+package a.a.c.b;
+
+import a.a.c.d.f.b;
+
+class h
+  implements j.a<f.b>
+{
+  h(j paramJ) {}
+  
+  public int a(f.b paramB)
+  {
+    return paramB.d();
+  }
+  
+  public boolean b(f.b paramB)
+  {
+    return paramB.e();
+  }
+}

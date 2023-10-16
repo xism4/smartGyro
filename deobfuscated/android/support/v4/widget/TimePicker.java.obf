@@ -1,0 +1,19 @@
+package android.support.v4.widget;
+
+import android.os.Build.VERSION;
+
+public abstract interface b
+{
+  public static final boolean a;
+  
+  static
+  {
+    boolean bool;
+    if (Build.VERSION.SDK_INT >= 27) {
+      bool = true;
+    } else {
+      bool = false;
+    }
+    a = bool;
+  }
+}

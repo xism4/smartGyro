@@ -1,0 +1,12 @@
+package org.cocos2dx.lib;
+
+class aa
+  implements Runnable
+{
+  aa(Cocos2dxGLSurfaceView paramCocos2dxGLSurfaceView) {}
+  
+  public void run()
+  {
+    Cocos2dxGLSurfaceView.access$300(a).handleOnPause();
+  }
+}

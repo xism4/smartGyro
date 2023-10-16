@@ -1,0 +1,21 @@
+package c.a.a.a.p;
+
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
+
+public class e
+{
+  public static Charset a(String paramString)
+  {
+    if (paramString == null) {
+      return null;
+    }
+    try
+    {
+      paramString = Charset.forName(paramString);
+      return paramString;
+    }
+    catch (UnsupportedCharsetException paramString) {}
+    return null;
+  }
+}

@@ -1,0 +1,9 @@
+package c.a.a.a.a;
+
+import c.a.a.a.r;
+
+public abstract interface m
+  extends c
+{
+  public abstract c.a.a.a.e a(n paramN, r paramR, c.a.a.a.n.e paramE);
+}

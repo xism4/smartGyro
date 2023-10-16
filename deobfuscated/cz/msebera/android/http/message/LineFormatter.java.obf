@@ -1,0 +1,12 @@
+package c.a.a.a.k;
+
+import c.a.a.a.F;
+import c.a.a.a.e;
+import c.a.a.a.p.d;
+
+public abstract interface u
+{
+  public abstract d a(d paramD, F paramF);
+  
+  public abstract d a(d paramD, e paramE);
+}

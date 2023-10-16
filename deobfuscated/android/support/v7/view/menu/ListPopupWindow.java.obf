@@ -1,0 +1,14 @@
+package android.support.v7.view.menu;
+
+import android.widget.ListView;
+
+public abstract interface z
+{
+  public abstract boolean b();
+  
+  public abstract void c();
+  
+  public abstract ListView d();
+  
+  public abstract void dismiss();
+}

@@ -1,0 +1,12 @@
+package c.a.a.a.e;
+
+import java.io.InputStream;
+
+public abstract interface l
+{
+  public abstract boolean eofDetected(InputStream paramInputStream);
+  
+  public abstract boolean streamAbort(InputStream paramInputStream);
+  
+  public abstract boolean streamClosed(InputStream paramInputStream);
+}

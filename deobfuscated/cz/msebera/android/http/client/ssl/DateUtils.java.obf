@@ -1,0 +1,95 @@
+package c.a.a.a.b.f;
+
+import c.a.a.a.p.a;
+import java.lang.ref.SoftReference;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
+
+public final class c
+{
+  private static final String[] a = { "EEE, dd MMM yyyy HH:mm:ss zzz", "EEE, dd-MMM-yy HH:mm:ss zzz", "EEE MMM d HH:mm:ss yyyy" };
+  private static final Date b;
+  public static final TimeZone c = TimeZone.getTimeZone("GMT");
+  
+  static
+  {
+    Calendar localCalendar = Calendar.getInstance();
+    localCalendar.setTimeZone(c);
+    localCalendar.set(2000, 0, 1, 0, 0, 0);
+    localCalendar.set(14, 0);
+    b = localCalendar.getTime();
+  }
+  
+  public static Date a(String paramString, String[] paramArrayOfString)
+  {
+    return a(paramString, paramArrayOfString, null);
+  }
+  
+  public static Date a(String paramString, String[] paramArrayOfString, Date paramDate)
+  {
+    a.a(paramString, "Date value");
+    if (paramArrayOfString == null) {
+      paramArrayOfString = a;
+    }
+    if (paramDate == null) {
+      paramDate = b;
+    }
+    String str = paramString;
+    if (paramString.length() > 1)
+    {
+      str = paramString;
+      if (paramString.startsWith("'"))
+      {
+        str = paramString;
+        if (paramString.endsWith("'")) {
+          str = paramString.substring(1, paramString.length() - 1);
+        }
+      }
+    }
+    int j = paramArrayOfString.length;
+    int i = 0;
+    while (i < j)
+    {
+      Object localObject = a.a(paramArrayOfString[i]);
+      ((SimpleDateFormat)localObject).set2DigitYearStart(paramDate);
+      paramString = new ParsePosition(0);
+      localObject = ((SimpleDateFormat)localObject).parse(str, paramString);
+      if (paramString.getIndex() != 0) {
+        return localObject;
+      }
+      i += 1;
+    }
+    return null;
+  }
+  
+  static final class a
+  {
+    private static final ThreadLocal<SoftReference<Map<String, SimpleDateFormat>>> a = new b();
+    
+    public static SimpleDateFormat a(String paramString)
+    {
+      Object localObject2 = (Map)((SoftReference)a.get()).get();
+      Object localObject1 = localObject2;
+      if (localObject2 == null)
+      {
+        localObject1 = new HashMap();
+        a.set(new SoftReference(localObject1));
+      }
+      SimpleDateFormat localSimpleDateFormat = (SimpleDateFormat)((Map)localObject1).get(paramString);
+      localObject2 = localSimpleDateFormat;
+      if (localSimpleDateFormat == null)
+      {
+        localObject2 = new SimpleDateFormat(paramString, Locale.US);
+        ((SimpleDateFormat)localObject2).setTimeZone(TimeZone.getTimeZone("GMT"));
+        ((Map)localObject1).put(paramString, localObject2);
+      }
+      return localObject2;
+    }
+  }
+}
