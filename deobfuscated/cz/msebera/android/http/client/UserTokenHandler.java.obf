@@ -1,8 +1,0 @@
-package c.a.a.a.b;
-
-import c.a.a.a.n.e;
-
-public abstract interface r
-{
-  public abstract Object a(e paramE);
-}

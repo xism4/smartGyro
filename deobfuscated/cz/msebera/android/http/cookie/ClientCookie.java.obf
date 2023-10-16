@@ -1,9 +1,0 @@
-package c.a.a.a.f;
-
-public abstract interface a
-  extends c
-{
-  public abstract boolean containsAttribute(String paramString);
-  
-  public abstract String getAttribute(String paramString);
-}

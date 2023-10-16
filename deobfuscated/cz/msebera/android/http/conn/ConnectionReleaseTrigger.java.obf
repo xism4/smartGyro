@@ -1,8 +1,0 @@
-package c.a.a.a.e;
-
-public abstract interface i
-{
-  public abstract void abortConnection();
-  
-  public abstract void releaseConnection();
-}

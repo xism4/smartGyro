@@ -1,6 +1,0 @@
-package c.a.a.a.d;
-
-public abstract interface a<I>
-{
-  public abstract I lookup(String paramString);
-}

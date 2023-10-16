@@ -17,4 +17,4 @@ Same as the controllator of the e-scooter
 ![Controladora-S866-48V-800W-para-Smartgyro-Rockway-Speedway-Conector-waterproof-5-pines-1](https://github.com/xism4/smartGyro/assets/76608233/610d1506-1d73-42a3-8399-de56c20bf930)
 
 ## Contributing
-If you have any new ideas, please don't hesitate to support this repository, it would be ideal if we could find a way
+If you have any new ideas, please don't hesitate to support this repository, it would be ideal if we could find a way, decompilation with JADX

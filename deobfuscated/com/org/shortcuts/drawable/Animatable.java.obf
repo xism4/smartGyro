@@ -1,7 +1,0 @@
-package a.a.b.a;
-
-import android.graphics.drawable.Animatable;
-
-public abstract interface b
-  extends Animatable
-{}

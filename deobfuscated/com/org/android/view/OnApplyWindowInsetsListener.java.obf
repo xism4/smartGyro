@@ -1,8 +1,0 @@
-package a.a.c.g;
-
-import android.view.View;
-
-public abstract interface q
-{
-  public abstract D a(View paramView, D paramD);
-}

@@ -1,8 +1,0 @@
-package c.a.a.a;
-
-public abstract interface z
-{
-  public abstract String getName();
-  
-  public abstract String getValue();
-}

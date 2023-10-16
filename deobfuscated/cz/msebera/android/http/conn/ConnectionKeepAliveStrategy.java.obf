@@ -1,9 +1,0 @@
-package c.a.a.a.e;
-
-import c.a.a.a.n.e;
-import c.a.a.a.t;
-
-public abstract interface g
-{
-  public abstract long a(t paramT, e paramE);
-}

@@ -1,8 +1,0 @@
-package c.a.a.a.n;
-
-import c.a.a.a.s;
-import c.a.a.a.v;
-
-public abstract interface g
-  extends s, v
-{}

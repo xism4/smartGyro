@@ -1,7 +1,0 @@
-package c.a.a.a.j;
-
-@Deprecated
-public abstract interface b
-{
-  public abstract boolean a();
-}

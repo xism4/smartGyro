@@ -1,8 +1,0 @@
-package c.a.a.a.e;
-
-import c.a.a.a.o;
-
-public abstract interface r
-{
-  public abstract int a(o paramO);
-}

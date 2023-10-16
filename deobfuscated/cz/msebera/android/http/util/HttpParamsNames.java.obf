@@ -1,4 +1,0 @@
-package c.a.a.a.l;
-
-@Deprecated
-public abstract interface h {}

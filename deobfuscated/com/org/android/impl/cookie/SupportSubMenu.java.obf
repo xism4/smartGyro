@@ -1,7 +1,0 @@
-package a.a.c.c.a;
-
-import android.view.SubMenu;
-
-public abstract interface c
-  extends a, SubMenu
-{}

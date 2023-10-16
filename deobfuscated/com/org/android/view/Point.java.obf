@@ -1,6 +1,0 @@
-package a.a.c.g;
-
-public abstract interface l
-{
-  public abstract void stopNestedScroll();
-}

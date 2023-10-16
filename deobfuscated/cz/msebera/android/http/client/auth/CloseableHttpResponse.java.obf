@@ -1,8 +1,0 @@
-package c.a.a.a.b.c;
-
-import c.a.a.a.t;
-import java.io.Closeable;
-
-public abstract interface e
-  extends t, Closeable
-{}

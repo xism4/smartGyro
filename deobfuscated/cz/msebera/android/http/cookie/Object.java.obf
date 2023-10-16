@@ -1,7 +1,0 @@
-package c.a.a.a.f;
-
-public abstract interface b
-  extends d
-{
-  public abstract String a();
-}

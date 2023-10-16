@@ -1,8 +1,0 @@
-package c.a.a.a;
-
-import java.util.Locale;
-
-public abstract interface E
-{
-  public abstract String getReason(int paramInt, Locale paramLocale);
-}

@@ -1,8 +1,0 @@
-package c.a.a.a.j;
-
-import c.a.a.a.q;
-
-public abstract interface d<T extends q>
-{
-  public abstract void a(T paramT);
-}

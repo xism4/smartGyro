@@ -1,9 +1,0 @@
-package c.a.a.a;
-
-public abstract interface m
-  extends r
-{
-  public abstract boolean expectContinue();
-  
-  public abstract l getEntity();
-}

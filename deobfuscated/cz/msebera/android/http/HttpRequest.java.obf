@@ -1,7 +1,0 @@
-package c.a.a.a;
-
-public abstract interface r
-  extends q
-{
-  public abstract F getRequestLine();
-}

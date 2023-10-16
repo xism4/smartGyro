@@ -1,9 +1,0 @@
-package c.a.a.a;
-
-public abstract interface d
-  extends e
-{
-  public abstract c.a.a.a.p.d getBuffer();
-  
-  public abstract int getValuePos();
-}

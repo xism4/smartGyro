@@ -1,7 +1,0 @@
-package c.a.a.a.e.e;
-
-import c.a.a.a.o.a;
-
-public abstract interface k
-  extends a
-{}

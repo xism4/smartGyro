@@ -1,6 +1,0 @@
-package c.a.a.a.c;
-
-public abstract interface a
-{
-  public abstract boolean cancel();
-}

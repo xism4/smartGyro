@@ -1,8 +1,0 @@
-package c.a.a.a;
-
-import c.a.a.a.n.e;
-
-public abstract interface v
-{
-  public abstract void a(t paramT, e paramE);
-}

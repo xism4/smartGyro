@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<gameStringDefine >
+  <gameString
+    hxz1 = "Hall-E"
+    hxz2 = "Hall-E"
+    hxz3 = "Steering Abnormality"
+    hxz4 = "Gyro Abnormal"
+    hxz5 = "sudden power-down"
+    hxz6 = "high current protection"
+    hxz7 = "Abnormal stress sheet"
+    hxz8 = "RM-Loss"
+    hxz9 = "LM-Loss"
+    hxz10 = "Gyro Abnormal"
+    hxz11 = "Hall-A"
+    hxz12 = "Hall-A"
+    hxz13 = "Tilt speed is too large"
+
+    tip1 = "Opening upgrade file"
+    tip2 = "Could not find upgrade file"
+    tip3 = "upgrade file read abnormal, 
+please try again!"
+    tip4 = "successfully open the upgrade file"
+    tip5 = "Request upgrade failed, 
+please restart the car and then upgrade!"
+    tip6 = "Writing Upgrade Program!"
+    tip7 = "failed to write upgrade program, 
+restart the car to re-upgrade!"
+    tip8 = "Finish upgrade program write!"
+    tip9 = "upgrade verification failed, 
+please upgrade again!"
+    tip10 = "Congratulations! 
+Your upgrade has been completed!"
+    tip11 = "The network is abnormal, 
+please connect to the internet!"
+    tip12 = "This device does not support BLE"
+    tip13 = "This device does not support BLE"
+    tip14 = "Checking for updates"
+    tip15 = "The current version is the latest version"
+
+    tip16 = "loading upgrade file on the internet!"
+
+    tip17 = "Remote Control upgrade"
+    tip18 = "base station upgrade"
+    tip19 = "Control Upgrade"
+    tip20 = "Bluetooth board upgrade"
+    tip21 = "Electronic Control Board upgrade"
+
+
+    tip22 = "server can not find the upgrade file!"
+    tip23 = "server can not find the upgrade configuration file!"
+    tip24 = "server upgrade configuration file is incorrect!"
+    
+    tip25 ="Battery upgrade"
+	
+	tip26 = "您操作的太频繁，10秒内只能发送一次！"
+    tip27 = "网络异常,请检查网络连接！"
+    tip28 = "请输入留意内容！"
+    tip29 = "请输入电话！"
+    tip30 = "发送成功！"
+    tip31 = "正在发送中！"
+    tip32 = "请输入姓名！"
+	tip33 = "Waiting for the device to restart and initialize!"
+  tip34 = "undefine"
+	tip35 = "left"
+	tip36 = "right"
+	tip37 = "backward"
+  tip38 = "forward"
+	tip39 = "stay:"
+  tip40 = "Edit"
+	tip41 = "OK"
+  tip42 = "Starting"
+  tip43 = "End"
+    
+  tip44 = "Phone number"
+  tip45 = "Password"
+  tip46 = "Enter"
+  tip47 = "Click input"
+  tip48 = "Please enter your mailbox!"
+    
+  tip49 = "Preview path 1"
+  tip50 = "Preview path 2"
+  tip51 = "Preview path 3"
+    
+  tip52 = "管理员:"
+  tip53 = "显示板"
+  tip54 = "读卡板"
+    
+  tip55 = "前磁导"
+  tip56 = "后磁导"
+  tip57= "Enter the special code"
+  >
+  </gameString>
+
+</gameStringDefine>
